@@ -1,0 +1,2715 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Luis D. Verde Arregoitia">
+
+<title>Lo que nadie nos enseñó sobre R – Herramientas para el manejo de datos de biodiversidad en R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../maevolab.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-679c6e1ce78a9368f77aea21f9eef369.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-bd326a1e950f8b3f7393fe8de012d4fd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../cursologo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Herramientas para el manejo de datos de biodiversidad en R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../temario.html"> 
+<span class="menu-text">Temario y cronograma</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../materiales.html"> 
+<span class="menu-text">Materiales</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#temas-de-este-bloque" id="toc-temas-de-este-bloque" class="nav-link active" data-scroll-target="#temas-de-este-bloque">Temas de este bloque:</a></li>
+  <li><a href="#personalizando-el-entorno-de-trabajo" id="toc-personalizando-el-entorno-de-trabajo" class="nav-link" data-scroll-target="#personalizando-el-entorno-de-trabajo">Personalizando el entorno de trabajo</a>
+  <ul class="collapse">
+  <li><a href="#personalización" id="toc-personalización" class="nav-link" data-scroll-target="#personalización">Personalización</a></li>
+  <li><a href="#personalizando-el-arranque-en-r" id="toc-personalizando-el-arranque-en-r" class="nav-link" data-scroll-target="#personalizando-el-arranque-en-r">Personalizando el arranque en R</a></li>
+  <li><a href="#arranque" id="toc-arranque" class="nav-link" data-scroll-target="#arranque">Arranque</a></li>
+  </ul></li>
+  <li><a href="#iteración" id="toc-iteración" class="nav-link" data-scroll-target="#iteración">Iteración</a>
+  <ul class="collapse">
+  <li><a href="#aplicando-una-función-varias-veces" id="toc-aplicando-una-función-varias-veces" class="nav-link" data-scroll-target="#aplicando-una-función-varias-veces">Aplicando una función varias veces</a></li>
+  <li><a href="#ejercicio---futbol" id="toc-ejercicio---futbol" class="nav-link" data-scroll-target="#ejercicio---futbol">Ejercicio - futbol</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#copiando-pegando-y-editando" id="toc-copiando-pegando-y-editando" class="nav-link" data-scroll-target="#copiando-pegando-y-editando">Copiando, pegando, y editando</a></li>
+  </ul></li>
+  <li><a href="#datos-agrupados" id="toc-datos-agrupados" class="nav-link" data-scroll-target="#datos-agrupados">Datos agrupados</a></li>
+  <li><a href="#dplyrgroup_by" id="toc-dplyrgroup_by" class="nav-link" data-scroll-target="#dplyrgroup_by"><code>dplyr::group_by()</code></a></li>
+  <li><a href="#trabajando-con-datos-agrupados" id="toc-trabajando-con-datos-agrupados" class="nav-link" data-scroll-target="#trabajando-con-datos-agrupados">Trabajando con datos agrupados</a></li>
+  <li><a href="#opciones-para-datos-agrupados" id="toc-opciones-para-datos-agrupados" class="nav-link" data-scroll-target="#opciones-para-datos-agrupados">Opciones para datos agrupados</a></li>
+  <li><a href="#datos-msleep" id="toc-datos-msleep" class="nav-link" data-scroll-target="#datos-msleep">Datos <code>msleep</code></a></li>
+  <li><a href="#máximo-brainwt-para-cada-orden" id="toc-máximo-brainwt-para-cada-orden" class="nav-link" data-scroll-target="#máximo-brainwt-para-cada-orden">Máximo <code>brainwt</code> para cada orden</a></li>
+  <li><a href="#muestrar-una-fila-al-azar-de-cada-grupo" id="toc-muestrar-una-fila-al-azar-de-cada-grupo" class="nav-link" data-scroll-target="#muestrar-una-fila-al-azar-de-cada-grupo">Muestrar una fila al azar de cada grupo</a></li>
+  <li><a href="#desagrupar" id="toc-desagrupar" class="nav-link" data-scroll-target="#desagrupar">“Desagrupar”</a></li>
+  <li><a href="#agrupamiento-rápido" id="toc-agrupamiento-rápido" class="nav-link" data-scroll-target="#agrupamiento-rápido">Agrupamiento rápido</a></li>
+  <li><a href="#resumiendo-valores" id="toc-resumiendo-valores" class="nav-link" data-scroll-target="#resumiendo-valores">Resumiendo valores</a></li>
+  <li><a href="#bucles-for-loops" id="toc-bucles-for-loops" class="nav-link" data-scroll-target="#bucles-for-loops">Bucles (<em>for loops</em>)</a></li>
+  <li><a href="#bucles" id="toc-bucles" class="nav-link" data-scroll-target="#bucles">Bucles</a></li>
+  <li><a href="#ejercicio---loops" id="toc-ejercicio---loops" class="nav-link" data-scroll-target="#ejercicio---loops">Ejercicio - <em>loops</em></a></li>
+  <li><a href="#bucles-y-grupos" id="toc-bucles-y-grupos" class="nav-link" data-scroll-target="#bucles-y-grupos">Bucles y grupos</a></li>
+  <li><a href="#vectorización" id="toc-vectorización" class="nav-link" data-scroll-target="#vectorización">Vectorización</a></li>
+  <li><a href="#los-operadores-lógicos-entre-muchos-otros-son-vectorizados" id="toc-los-operadores-lógicos-entre-muchos-otros-son-vectorizados" class="nav-link" data-scroll-target="#los-operadores-lógicos-entre-muchos-otros-son-vectorizados">Los operadores lógicos (entre muchos otros) son vectorizados</a></li>
+  <li><a href="#cuando-sí-necesitemos-iterar" id="toc-cuando-sí-necesitemos-iterar" class="nav-link" data-scroll-target="#cuando-sí-necesitemos-iterar">Cuando sí necesitemos iterar:</a></li>
+  <li><a href="#mapeando-funciones-a-datos" id="toc-mapeando-funciones-a-datos" class="nav-link" data-scroll-target="#mapeando-funciones-a-datos">“Mapeando” funciones a datos</a></li>
+  <li><a href="#funciones" id="toc-funciones" class="nav-link" data-scroll-target="#funciones">Funciones</a></li>
+  <li><a href="#definiendo-funciones" id="toc-definiendo-funciones" class="nav-link" data-scroll-target="#definiendo-funciones">Definiendo funciones</a></li>
+  <li><a href="#definiendo-funciones-1" id="toc-definiendo-funciones-1" class="nav-link" data-scroll-target="#definiendo-funciones-1">Definiendo funciones</a></li>
+  <li><a href="#función-sin-argumentos" id="toc-función-sin-argumentos" class="nav-link" data-scroll-target="#función-sin-argumentos">Función sin argumentos</a></li>
+  <li><a href="#funciones-anónimas" id="toc-funciones-anónimas" class="nav-link" data-scroll-target="#funciones-anónimas">Funciones anónimas</a>
+  <ul class="collapse">
+  <li><a href="#sintaxis" id="toc-sintaxis" class="nav-link" data-scroll-target="#sintaxis">Sintaxis</a></li>
+  </ul></li>
+  <li><a href="#notation-corta-desde-r-v4.1.0" id="toc-notation-corta-desde-r-v4.1.0" class="nav-link" data-scroll-target="#notation-corta-desde-r-v4.1.0">Notation corta (desde R v4.1.0)</a></li>
+  <li><a href="#funciones-anónimas-1" id="toc-funciones-anónimas-1" class="nav-link" data-scroll-target="#funciones-anónimas-1">Funciones anónimas</a></li>
+  <li><a href="#por-qué-escribir-nuestras-propias-funciones" id="toc-por-qué-escribir-nuestras-propias-funciones" class="nav-link" data-scroll-target="#por-qué-escribir-nuestras-propias-funciones">Por qué escribir nuestras propias funciones</a></li>
+  </ul></li>
+  <li><a href="#listas" id="toc-listas" class="nav-link" data-scroll-target="#listas">Listas</a>
+  <ul class="collapse">
+  <li><a href="#listas-1" id="toc-listas-1" class="nav-link" data-scroll-target="#listas-1">Listas</a></li>
+  <li><a href="#podemos-creas-listas-partiendo-otros-objetos" id="toc-podemos-creas-listas-partiendo-otros-objetos" class="nav-link" data-scroll-target="#podemos-creas-listas-partiendo-otros-objetos">Podemos creas listas partiendo otros objetos</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"></a></li>
+  <li><a href="#indexando-listas" id="toc-indexando-listas" class="nav-link" data-scroll-target="#indexando-listas">‘Indexando’ listas</a></li>
+  <li><a href="#accediendo-a-elementos-de-listas" id="toc-accediendo-a-elementos-de-listas" class="nav-link" data-scroll-target="#accediendo-a-elementos-de-listas">Accediendo a elementos de listas</a></li>
+  <li><a href="#segundo-elemento" id="toc-segundo-elemento" class="nav-link" data-scroll-target="#segundo-elemento">Segundo elemento</a></li>
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"></a></li>
+  <li><a href="#para-qué-usar-listas" id="toc-para-qué-usar-listas" class="nav-link" data-scroll-target="#para-qué-usar-listas">¿Para qué usar listas?</a></li>
+  <li><a href="#mapeo-de-funciones-a-datos" id="toc-mapeo-de-funciones-a-datos" class="nav-link" data-scroll-target="#mapeo-de-funciones-a-datos">‘Mapeo’ de funciones a datos</a></li>
+  <li><a href="#aplicar-funciones-iterativamente" id="toc-aplicar-funciones-iterativamente" class="nav-link" data-scroll-target="#aplicar-funciones-iterativamente">Aplicar funciones iterativamente</a></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"></a>
+  <ul class="collapse">
+  <li><a href="#con-argumentos-adicionales" id="toc-con-argumentos-adicionales" class="nav-link" data-scroll-target="#con-argumentos-adicionales">con argumentos adicionales</a></li>
+  </ul></li>
+  <li><a href="#aplicar-funciones-personalizadas-iterativamente" id="toc-aplicar-funciones-personalizadas-iterativamente" class="nav-link" data-scroll-target="#aplicar-funciones-personalizadas-iterativamente">Aplicar funciones personalizadas iterativamente</a></li>
+  <li><a href="#probar-con-vectores" id="toc-probar-con-vectores" class="nav-link" data-scroll-target="#probar-con-vectores">Probar con vectores</a></li>
+  <li><a href="#map-para-aplicar-nuestra-función-a-la-lista" id="toc-map-para-aplicar-nuestra-función-a-la-lista" class="nav-link" data-scroll-target="#map-para-aplicar-nuestra-función-a-la-lista"><code>map()</code> para aplicar nuestra función a la lista</a></li>
+  <li><a href="#map-con-salidas-específicas" id="toc-map-con-salidas-específicas" class="nav-link" data-scroll-target="#map-con-salidas-específicas"><code>map()</code> con salidas específicas</a></li>
+  <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10"></a></li>
+  <li><a href="#map-con-funciones-anónimas" id="toc-map-con-funciones-anónimas" class="nav-link" data-scroll-target="#map-con-funciones-anónimas"><code>map()</code> con funciones anónimas</a></li>
+  <li><a href="#section-11" id="toc-section-11" class="nav-link" data-scroll-target="#section-11"></a></li>
+  <li><a href="#importando-o-escribiendo-muchos-archivos" id="toc-importando-o-escribiendo-muchos-archivos" class="nav-link" data-scroll-target="#importando-o-escribiendo-muchos-archivos">Importando o escribiendo muchos archivos</a></li>
+  <li><a href="#ejercicio" id="toc-ejercicio" class="nav-link" data-scroll-target="#ejercicio">Ejercicio</a>
+  <ul class="collapse">
+  <li><a href="#crear-una-carpeta-llena-de-archivos-de-texto" id="toc-crear-una-carpeta-llena-de-archivos-de-texto" class="nav-link" data-scroll-target="#crear-una-carpeta-llena-de-archivos-de-texto">Crear una carpeta llena de archivos de texto</a></li>
+  </ul></li>
+  <li><a href="#map-con-dos-inputs" id="toc-map-con-dos-inputs" class="nav-link" data-scroll-target="#map-con-dos-inputs"><code>map()</code> con dos inputs</a></li>
+  <li><a href="#ejercicio---carpeta-con-archivos" id="toc-ejercicio---carpeta-con-archivos" class="nav-link" data-scroll-target="#ejercicio---carpeta-con-archivos">Ejercicio - Carpeta con archivos</a></li>
+  <li><a href="#ejercicio---importando-varios-archivos-a-la-vez" id="toc-ejercicio---importando-varios-archivos-a-la-vez" class="nav-link" data-scroll-target="#ejercicio---importando-varios-archivos-a-la-vez">Ejercicio - Importando varios archivos a la vez</a></li>
+  </ul></li>
+  <li><a href="#atajos-y-herramientas-para-mayor-eficiencia" id="toc-atajos-y-herramientas-para-mayor-eficiencia" class="nav-link" data-scroll-target="#atajos-y-herramientas-para-mayor-eficiencia">Atajos y herramientas para mayor eficiencia</a>
+  <ul class="collapse">
+  <li><a href="#section-13" id="toc-section-13" class="nav-link" data-scroll-target="#section-13"></a></li>
+  <li><a href="#programando-eficientemente" id="toc-programando-eficientemente" class="nav-link" data-scroll-target="#programando-eficientemente">Programando eficientemente</a></li>
+  <li><a href="#atajos-de-teclado" id="toc-atajos-de-teclado" class="nav-link" data-scroll-target="#atajos-de-teclado">Atajos de teclado</a></li>
+  <li><a href="#atajos-útiles" id="toc-atajos-útiles" class="nav-link" data-scroll-target="#atajos-útiles">Atajos útiles</a></li>
+  <li><a href="#más-atajos" id="toc-más-atajos" class="nav-link" data-scroll-target="#más-atajos">Más atajos</a>
+  <ul class="collapse">
+  <li><a href="#abrir-el-directorio-de-trabajo" id="toc-abrir-el-directorio-de-trabajo" class="nav-link" data-scroll-target="#abrir-el-directorio-de-trabajo">Abrir el directorio de trabajo</a></li>
+  </ul></li>
+  <li><a href="#práctica" id="toc-práctica" class="nav-link" data-scroll-target="#práctica">Práctica</a></li>
+  <li><a href="#annotater" id="toc-annotater" class="nav-link" data-scroll-target="#annotater">📦 <code>annotater</code></a></li>
+  <li><a href="#littleboxes" id="toc-littleboxes" class="nav-link" data-scroll-target="#littleboxes">📦 <code>littleboxes</code></a></li>
+  <li><a href="#packup" id="toc-packup" class="nav-link" data-scroll-target="#packup">📦 <code>packup</code></a></li>
+  <li><a href="#secciones-de-código-y-el-esquema-de-documento" id="toc-secciones-de-código-y-el-esquema-de-documento" class="nav-link" data-scroll-target="#secciones-de-código-y-el-esquema-de-documento">Secciones de código y el esquema de documento</a></li>
+  <li><a href="#utilidades-geniales" id="toc-utilidades-geniales" class="nav-link" data-scroll-target="#utilidades-geniales">Utilidades geniales</a>
+  <ul class="collapse">
+  <li><a href="#datapasta" id="toc-datapasta" class="nav-link" data-scroll-target="#datapasta">📦 <code>datapasta</code></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#errores-comunes-y-como-solucionarlos" id="toc-errores-comunes-y-como-solucionarlos" class="nav-link" data-scroll-target="#errores-comunes-y-como-solucionarlos">Errores comunes y como solucionarlos</a>
+  <ul class="collapse">
+  <li><a href="#resetear" id="toc-resetear" class="nav-link" data-scroll-target="#resetear">1 - <strong>Resetear</strong></a>
+  <ul class="collapse">
+  <li><a href="#prueba" id="toc-prueba" class="nav-link" data-scroll-target="#prueba">prueba</a></li>
+  </ul></li>
+  <li><a href="#reprex-ejemplos-reproducibles" id="toc-reprex-ejemplos-reproducibles" class="nav-link" data-scroll-target="#reprex-ejemplos-reproducibles">2 - <strong>Reprex</strong> (ejemplos reproducibles)</a></li>
+  <li><a href="#errores-comunes" id="toc-errores-comunes" class="nav-link" data-scroll-target="#errores-comunes">Errores comunes</a></li>
+  <li><a href="#opciones-útiles" id="toc-opciones-útiles" class="nav-link" data-scroll-target="#opciones-útiles">Opciones útiles</a></li>
+  </ul></li>
+  <li><a href="#buscando-ayuda" id="toc-buscando-ayuda" class="nav-link" data-scroll-target="#buscando-ayuda">Buscando ayuda</a>
+  <ul class="collapse">
+  <li><a href="#otras-personas" id="toc-otras-personas" class="nav-link" data-scroll-target="#otras-personas">Otras personas</a></li>
+  <li><a href="#búsquedas-web" id="toc-búsquedas-web" class="nav-link" data-scroll-target="#búsquedas-web">Búsquedas web</a></li>
+  <li><a href="#cuáles-soluciones-son-mejores-útiles" id="toc-cuáles-soluciones-son-mejores-útiles" class="nav-link" data-scroll-target="#cuáles-soluciones-son-mejores-útiles">¿Cuáles soluciones son <del>mejores</del> útiles?</a></li>
+  </ul></li>
+  <li><a href="#discusión" id="toc-discusión" class="nav-link" data-scroll-target="#discusión">Discusión</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="4-LQNNESR.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lo que nadie nos enseñó sobre R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Luis D. Verde Arregoitia </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="temas-de-este-bloque" class="level2">
+<h2 class="anchored" data-anchor-id="temas-de-este-bloque">Temas de este bloque:</h2>
+<p>– Entornos de trabajo y configuración<br>
+– Iteración y vectorización para evitar repetición<br>
+– Trabajando con listas<br>
+– Manejo de matrices<br>
+– Atajos y herramientas para mayor eficiencia<br>
+– Errores comunes y cómo buscar soluciones</p>
+</section>
+<section id="personalizando-el-entorno-de-trabajo" class="level1">
+<h1>Personalizando el entorno de trabajo</h1>
+<section id="personalización" class="level2">
+<h2 class="anchored" data-anchor-id="personalización">Personalización</h2>
+<ul>
+<li>Colores para el IDE - 🔗 <a href="https://tmtheme-editor.glitch.me/">tmThemeEditor</a> por Allen Bargi</li>
+</ul>
+<div style="background-color: #3F3B3B; box-shadow: 10px 10px grey;  padding: 25px">
+<div class="neonText">
+<p><em>Nadie nos va a tomar en serio en la cafetería si no programamos con un fondo oscuro</em></p>
+</div>
+<div style="text-align: right">
+<p><em>-Jared Lander</em><br>
+📼 <a href="https://www.youtube.com/watch?v=gjpNEVcG1nU">R: Then and now</a></p>
+</div>
+</div>
+<ul>
+<li><p>Fuentes y texto - 🔗 <a href="https://www.nerdfonts.com/font-downloads">Nerd Fonts</a></p></li>
+<li><p>Disposición de los paneles</p></li>
+</ul>
+</section>
+<section id="personalizando-el-arranque-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="personalizando-el-arranque-en-r">Personalizando el arranque en R</h2>
+<p>El archivo <code>.Rprofile</code> file contiene código que se ejecuta cada que arrancamos R.</p>
+<p><br> <span style="text-align: center;"><code>.Rprofile</code> generalmente vive en nuestro directorio de inicio</span></p>
+<p>Podemos modificarlo con <code>usethis::edit_r_profile()</code></p>
+<p><em>Usar con precaución para no perder reproducibilidad</em></p>
+<div class="rightref">
+<div class="refbox">
+<p>R Startup<br>
+<a href="https://rstats.wtf/r-startup.html%5D">What they forgot to teach you about R</a></p>
+</div>
+</div>
+</section>
+<section id="arranque" class="level2">
+<h2 class="anchored" data-anchor-id="arranque">Arranque</h2>
+<ul>
+<li>Saludos o recordatorios con <code>cowsay</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ----- </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; No olviden tomar mucha agua </span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ------ </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;     \   </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      \</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &gt;&lt;((((º&gt;  &gt;&lt;((((º&gt;  &gt;&lt;((((º&gt;  &gt;&lt;((((º&gt;  &gt;&lt;((((º&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;       </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Ayuda con errores de dedo con <code>fcuk</code></li>
+</ul>
+<div class="cell">
+<pre class="text cell-code"><code>&gt; lenght(1:12)
+Error in lenght(1:12) : could not find function "lenght"
+&gt; fcuk::init_error_tracker()
+&gt; lenght(1:12)
+Error in lenght(1:12) : could not find function "lenght"
+Did you mean : length or ...length ?</code></pre>
+</div>
+</section>
+</section>
+<section id="iteración" class="level1">
+<h1>Iteración</h1>
+<section id="aplicando-una-función-varias-veces" class="level2">
+<h2 class="anchored" data-anchor-id="aplicando-una-función-varias-veces">Aplicando una función varias veces</h2>
+<p>Copiar/pegar código para editarlo en análisis repetitivos agrega pasos innecesarios, pierde tiempo, y aumenta el riesgo de introducir errores</p>
+<p><br></p>
+<div class="rightref">
+<div class="refbox">
+<p>Nick Holt (2017)<br>
+<a href="https://nick-holt.github.io/2017/12/function-iterations-in-r/">Function Iterations in R</a></p>
+</div>
+</div>
+</section>
+<section id="ejercicio---futbol" class="level2" data-background-color="#a4c5ff">
+<h2 data-background-color="#a4c5ff" class="anchored" data-anchor-id="ejercicio---futbol">Ejercicio - futbol</h2>
+<p>El archivo <code>tabla_futbol.csv</code> contiene la clasificación en la tabla global de la FIFA de los primeros 20 países de 1994 a 2022. Agrupa países en diferentes confederaciones.</p>
+<p><br></p>
+<p>¿De qué confederación fue el equipo 20 cada año?</p>
+<p>ej. para 1994 Zambia fue #20 y su confederación es “CAF”</p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<section id="copiando-pegando-y-editando" class="level3">
+<h3 class="anchored" data-anchor-id="copiando-pegando-y-editando">Copiando, pegando, y editando</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ranking1994 <span class="ot">&lt;-</span> fifa20esp[fifa20esp<span class="sc">$</span>periodo<span class="sc">==</span><span class="st">"1994-06-14"</span>,]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pais201994 <span class="ot">&lt;-</span> ranking1994[ranking1994<span class="sc">$</span>posicion<span class="sc">==</span><span class="dv">20</span>,]<span class="sc">$</span>pais</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pais201994</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>ranking1995 <span class="ot">&lt;-</span> fifa20esp[fifa20esp<span class="sc">$</span>periodo<span class="sc">==</span><span class="st">"1995-06-13"</span>,]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>pais201995 <span class="ot">&lt;-</span> ranking1995[ranking1995<span class="sc">$</span>posicion<span class="sc">==</span><span class="dv">20</span>,]<span class="sc">$</span>pais</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>pais201995</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>Siguiendo así seguramente introducimos algún error poco evidente y difícil de detectar</p>
+</blockquote>
+</section>
+</section>
+<section id="datos-agrupados" class="level2">
+<h2 class="anchored" data-anchor-id="datos-agrupados">Datos agrupados</h2>
+<p>La mayoría de nuestras tareas se pueden desarrollar siguiendo el paradigma “<em>dividir - aplicar - combinar</em>” ( <span style="color: purple">“split-apply-combine”</span>):</p>
+<ul>
+<li>dividir los datos en grupos</li>
+<li>aplicar alguna función a cada grupo</li>
+<li>combinar los resultados</li>
+</ul>
+<div class="rightref">
+<div class="refbox">
+<p>Data Carpentry (2018)<br>
+<a href="https://datacarpentry.org/R-genomics/04-dplyr.html">Aggregating and analyzing data with dplyr</a></p>
+<p>Hadley Wickham (2011)<br>
+<a href="https://doi.org/10.18637/jss.v040.i01">The split-apply-combine strategy for data analysis</a></p>
+</div>
+</div>
+</section>
+<section id="dplyrgroup_by" class="level2">
+<h2 class="anchored" data-anchor-id="dplyrgroup_by"><code>dplyr::group_by()</code></h2>
+<ul>
+<li>Define grupos según una o más variables<br>
+</li>
+<li>Estratifica un data frame<br>
+</li>
+<li>equivalente a <code>aggregate()</code> y al argumento ‘<code>by =</code>’ de <code>data.table</code></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/groupby.PNG" class="img-fluid figure-img" style="width:64.0%"></p>
+<figcaption>Manipulación de datos en R con dplyr - Rubén Sánchez</figcaption>
+</figure>
+</div>
+</section>
+<section id="trabajando-con-datos-agrupados" class="level2">
+<h2 class="anchored" data-anchor-id="trabajando-con-datos-agrupados">Trabajando con datos agrupados</h2>
+<p>Con la versión agrupada de nuestra tabla, las funciones de <code>dplyr</code> trabajan sobre cada grupo por separado y después se combinan los resultados.</p>
+<p><br></p>
+<div class="rightref">
+<div class="refbox">
+<p>RStudio (2021)<br>
+<a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/data-transformation.pdf">Data transformation with dplyr cheatsheet</a></p>
+</div>
+</div>
+</section>
+<section id="opciones-para-datos-agrupados" class="level2">
+<h2 class="anchored" data-anchor-id="opciones-para-datos-agrupados">Opciones para datos agrupados</h2>
+<ul>
+<li>resumir valores (media, mediana, etc. por grupo)</li>
+<li>extraer las primeras o últimas <em>n</em> filas por grupo</li>
+<li>identificar valores máximos o mínimos</li>
+<li>eliminar filas repetidas</li>
+<li>contar observaciones, etc.</li>
+</ul>
+</section>
+<section id="datos-msleep" class="level2">
+<h2 class="anchored" data-anchor-id="datos-msleep">Datos <code>msleep</code></h2>
+<p>Rasgos de 83 especies de mamíferos y sus horas de sueño. derivados de Savage &amp; West (2007) e incluidos con <code>ggplot2</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="mtfnmmvgos" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mtfnmmvgos table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#mtfnmmvgos thead, #mtfnmmvgos tbody, #mtfnmmvgos tfoot, #mtfnmmvgos tr, #mtfnmmvgos td, #mtfnmmvgos th {
+  border-style: none;
+}
+
+#mtfnmmvgos p {
+  margin: 0;
+  padding: 0;
+}
+
+#mtfnmmvgos .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#mtfnmmvgos .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mtfnmmvgos .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mtfnmmvgos .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mtfnmmvgos .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mtfnmmvgos .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mtfnmmvgos .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mtfnmmvgos .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mtfnmmvgos .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#mtfnmmvgos .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#mtfnmmvgos .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mtfnmmvgos .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mtfnmmvgos .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mtfnmmvgos .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mtfnmmvgos .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mtfnmmvgos .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mtfnmmvgos .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mtfnmmvgos .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#mtfnmmvgos .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mtfnmmvgos .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mtfnmmvgos .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mtfnmmvgos .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mtfnmmvgos .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mtfnmmvgos .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mtfnmmvgos .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mtfnmmvgos .gt_left {
+  text-align: left;
+}
+
+#mtfnmmvgos .gt_center {
+  text-align: center;
+}
+
+#mtfnmmvgos .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mtfnmmvgos .gt_font_normal {
+  font-weight: normal;
+}
+
+#mtfnmmvgos .gt_font_bold {
+  font-weight: bold;
+}
+
+#mtfnmmvgos .gt_font_italic {
+  font-style: italic;
+}
+
+#mtfnmmvgos .gt_super {
+  font-size: 65%;
+}
+
+#mtfnmmvgos .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#mtfnmmvgos .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mtfnmmvgos .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mtfnmmvgos .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mtfnmmvgos .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mtfnmmvgos .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mtfnmmvgos .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#mtfnmmvgos .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#mtfnmmvgos div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">name</th>
+<th id="genus" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">genus</th>
+<th id="vore" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">vore</th>
+<th id="order" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">order</th>
+<th id="conservation" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">conservation</th>
+<th id="sleep_total" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">sleep_total</th>
+<th id="sleep_rem" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">sleep_rem</th>
+<th id="sleep_cycle" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">sleep_cycle</th>
+<th id="awake" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">awake</th>
+<th id="brainwt" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">brainwt</th>
+<th id="bodywt" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" style="font-size: 21px" scope="col">bodywt</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="name" style="font-size: 21px">Cheetah</td>
+<td class="gt_row gt_left" headers="genus" style="font-size: 21px">Acinonyx</td>
+<td class="gt_row gt_left" headers="vore" style="font-size: 21px">carni</td>
+<td class="gt_row gt_left" headers="order" style="font-size: 21px">Carnivora</td>
+<td class="gt_row gt_left" headers="conservation" style="font-size: 21px">lc</td>
+<td class="gt_row gt_right" headers="sleep_total" style="font-size: 21px">12.1</td>
+<td class="gt_row gt_right" headers="sleep_rem" style="font-size: 21px">NA</td>
+<td class="gt_row gt_right" headers="sleep_cycle" style="font-size: 21px">NA</td>
+<td class="gt_row gt_right" headers="awake" style="font-size: 21px">11.9</td>
+<td class="gt_row gt_right" headers="brainwt" style="font-size: 21px">NA</td>
+<td class="gt_row gt_right" headers="bodywt" style="font-size: 21px">50.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name" style="font-size: 21px">Owl monkey</td>
+<td class="gt_row gt_left" headers="genus" style="font-size: 21px">Aotus</td>
+<td class="gt_row gt_left" headers="vore" style="font-size: 21px">omni</td>
+<td class="gt_row gt_left" headers="order" style="font-size: 21px">Primates</td>
+<td class="gt_row gt_left" headers="conservation" style="font-size: 21px">NA</td>
+<td class="gt_row gt_right" headers="sleep_total" style="font-size: 21px">17.0</td>
+<td class="gt_row gt_right" headers="sleep_rem" style="font-size: 21px">1.8</td>
+<td class="gt_row gt_right" headers="sleep_cycle" style="font-size: 21px">NA</td>
+<td class="gt_row gt_right" headers="awake" style="font-size: 21px">7.0</td>
+<td class="gt_row gt_right" headers="brainwt" style="font-size: 21px">0.01550</td>
+<td class="gt_row gt_right" headers="bodywt" style="font-size: 21px">0.480</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name" style="font-size: 21px">Mountain beaver</td>
+<td class="gt_row gt_left" headers="genus" style="font-size: 21px">Aplodontia</td>
+<td class="gt_row gt_left" headers="vore" style="font-size: 21px">herbi</td>
+<td class="gt_row gt_left" headers="order" style="font-size: 21px">Rodentia</td>
+<td class="gt_row gt_left" headers="conservation" style="font-size: 21px">nt</td>
+<td class="gt_row gt_right" headers="sleep_total" style="font-size: 21px">14.4</td>
+<td class="gt_row gt_right" headers="sleep_rem" style="font-size: 21px">2.4</td>
+<td class="gt_row gt_right" headers="sleep_cycle" style="font-size: 21px">NA</td>
+<td class="gt_row gt_right" headers="awake" style="font-size: 21px">9.6</td>
+<td class="gt_row gt_right" headers="brainwt" style="font-size: 21px">NA</td>
+<td class="gt_row gt_right" headers="bodywt" style="font-size: 21px">1.350</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name" style="font-size: 21px">Greater short-tailed shrew</td>
+<td class="gt_row gt_left" headers="genus" style="font-size: 21px">Blarina</td>
+<td class="gt_row gt_left" headers="vore" style="font-size: 21px">omni</td>
+<td class="gt_row gt_left" headers="order" style="font-size: 21px">Soricomorpha</td>
+<td class="gt_row gt_left" headers="conservation" style="font-size: 21px">lc</td>
+<td class="gt_row gt_right" headers="sleep_total" style="font-size: 21px">14.9</td>
+<td class="gt_row gt_right" headers="sleep_rem" style="font-size: 21px">2.3</td>
+<td class="gt_row gt_right" headers="sleep_cycle" style="font-size: 21px">0.1333333</td>
+<td class="gt_row gt_right" headers="awake" style="font-size: 21px">9.1</td>
+<td class="gt_row gt_right" headers="brainwt" style="font-size: 21px">0.00029</td>
+<td class="gt_row gt_right" headers="bodywt" style="font-size: 21px">0.019</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="name" style="font-size: 21px">Cow</td>
+<td class="gt_row gt_left" headers="genus" style="font-size: 21px">Bos</td>
+<td class="gt_row gt_left" headers="vore" style="font-size: 21px">herbi</td>
+<td class="gt_row gt_left" headers="order" style="font-size: 21px">Artiodactyla</td>
+<td class="gt_row gt_left" headers="conservation" style="font-size: 21px">domesticated</td>
+<td class="gt_row gt_right" headers="sleep_total" style="font-size: 21px">4.0</td>
+<td class="gt_row gt_right" headers="sleep_rem" style="font-size: 21px">0.7</td>
+<td class="gt_row gt_right" headers="sleep_cycle" style="font-size: 21px">0.6666667</td>
+<td class="gt_row gt_right" headers="awake" style="font-size: 21px">20.0</td>
+<td class="gt_row gt_right" headers="brainwt" style="font-size: 21px">0.42300</td>
+<td class="gt_row gt_right" headers="bodywt" style="font-size: 21px">600.000</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="name" style="font-size: 21px">Three-toed sloth</td>
+<td class="gt_row gt_left" headers="genus" style="font-size: 21px">Bradypus</td>
+<td class="gt_row gt_left" headers="vore" style="font-size: 21px">herbi</td>
+<td class="gt_row gt_left" headers="order" style="font-size: 21px">Pilosa</td>
+<td class="gt_row gt_left" headers="conservation" style="font-size: 21px">NA</td>
+<td class="gt_row gt_right" headers="sleep_total" style="font-size: 21px">14.4</td>
+<td class="gt_row gt_right" headers="sleep_rem" style="font-size: 21px">2.2</td>
+<td class="gt_row gt_right" headers="sleep_cycle" style="font-size: 21px">0.7666667</td>
+<td class="gt_row gt_right" headers="awake" style="font-size: 21px">9.6</td>
+<td class="gt_row gt_right" headers="brainwt" style="font-size: 21px">NA</td>
+<td class="gt_row gt_right" headers="bodywt" style="font-size: 21px">3.850</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="máximo-brainwt-para-cada-orden" class="level2">
+<h2 class="anchored" data-anchor-id="máximo-brainwt-para-cada-orden">Máximo <code>brainwt</code> para cada orden</h2>
+<div class="med-code">
+<div class="cell" data-output-location="fragment">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(order) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(brainwt,<span class="at">n=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 21 × 11
+# Groups:   order [19]
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Tenrec Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA       8.4
+ 2 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 3 Gray … Hali… carni Carn… lc                   6.2       1.5      NA      17.8
+ 4 Pilot… Glob… carni Ceta… cd                   2.7       0.1      NA      21.4
+ 5 Commo… Phoc… carni Ceta… vu                   5.6      NA        NA      18.4
+ 6 Bottl… Turs… carni Ceta… &lt;NA&gt;                 5.2      NA        NA      18.8
+ 7 Big b… Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3
+ 8 Giant… Prio… inse… Cing… en                  18.1       6.1      NA       5.9
+ 9 North… Dide… omni  Dide… lc                  18         4.9       0.333   6  
+10 Phala… Phal… &lt;NA&gt;  Dipr… &lt;NA&gt;                13.7       1.8      NA      10.3
+# ℹ 11 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="muestrar-una-fila-al-azar-de-cada-grupo" class="level2">
+<h2 class="anchored" data-anchor-id="muestrar-una-fila-al-azar-de-cada-grupo">Muestrar una fila al azar de cada grupo</h2>
+<div class="med-code">
+<div class="cell" data-output-location="fragment">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(order) <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 11
+# Groups:   order [19]
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Tenrec Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA       8.4
+ 2 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+ 3 Lion   Pant… carni Carn… vu                  13.5      NA        NA      10.5
+ 4 Commo… Phoc… carni Ceta… vu                   5.6      NA        NA      18.4
+ 5 Big b… Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3
+ 6 Long-… Dasy… carni Cing… lc                  17.4       3.1       0.383   6.6
+ 7 North… Dide… omni  Dide… lc                  18         4.9       0.333   6  
+ 8 Potor… Poto… herbi Dipr… &lt;NA&gt;                11.1       1.5      NA      12.9
+ 9 Deser… Para… &lt;NA&gt;  Erin… lc                  10.3       2.7      NA      13.7
+10 Gray … Hete… herbi Hyra… lc                   6.3       0.6      NA      17.7
+11 Rabbit Oryc… herbi Lago… domesticated         8.4       0.9       0.417  15.6
+12 Short… Tach… inse… Mono… &lt;NA&gt;                 8.6      NA        NA      15.4
+13 Horse  Equus herbi Peri… domesticated         2.9       0.6       1      21.1
+14 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+15 Human  Homo  omni  Prim… &lt;NA&gt;                 8         1.9       1.5    16  
+16 Afric… Loxo… herbi Prob… vu                   3.3      NA        NA      20.7
+17 Mole … Spal… &lt;NA&gt;  Rode… &lt;NA&gt;                10.6       2.4      NA      13.4
+18 Tree … Tupa… omni  Scan… &lt;NA&gt;                 8.9       2.6       0.233  15.1
+19 Star-… Cond… omni  Sori… lc                  10.3       2.2      NA      13.7
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="desagrupar" class="level2">
+<h2 class="anchored" data-anchor-id="desagrupar">“Desagrupar”</h2>
+<p>Las tablas agrupadas por <code>group_by</code> retienen el agrupamiento, y para descartarlo usamos <code>ungroup()</code></p>
+<div class="cell" data-output-location="fragment">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(order) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Tenrec Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA       8.4
+ 2 Pig    Sus   omni  Arti… domesticated         9.1       2.4       0.5    14.9
+ 3 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 4 Pilot… Glob… carni Ceta… cd                   2.7       0.1      NA      21.4
+ 5 Littl… Myot… inse… Chir… &lt;NA&gt;                19.9       2         0.2     4.1
+ 6 Giant… Prio… inse… Cing… en                  18.1       6.1      NA       5.9
+ 7 Thick… Lutr… carni Dide… lc                  19.4       6.6      NA       4.6
+ 8 Phala… Phal… &lt;NA&gt;  Dipr… &lt;NA&gt;                13.7       1.8      NA      10.3
+ 9 Deser… Para… &lt;NA&gt;  Erin… lc                  10.3       2.7      NA      13.7
+10 Rock … Proc… &lt;NA&gt;  Hyra… lc                   5.4       0.5      NA      18.6
+11 Rabbit Oryc… herbi Lago… domesticated         8.4       0.9       0.417  15.6
+12 Short… Tach… inse… Mono… &lt;NA&gt;                 8.6      NA        NA      15.4
+13 Donkey Equus herbi Peri… domesticated         3.1       0.4      NA      20.9
+14 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+15 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+16 Asian… Elep… herbi Prob… en                   3.9      NA        NA      20.1
+17 Thirt… Sper… herbi Rode… lc                  13.8       3.4       0.217  10.2
+18 Tree … Tupa… omni  Scan… &lt;NA&gt;                 8.9       2.6       0.233  15.1
+19 Musk … Sunc… &lt;NA&gt;  Sori… &lt;NA&gt;                12.8       2         0.183  11.2
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="agrupamiento-rápido" class="level2">
+<h2 class="anchored" data-anchor-id="agrupamiento-rápido">Agrupamiento rápido</h2>
+<p>En versiones recientes de <code>dplyr</code>:</p>
+<ul>
+<li>Agrupar con <code>.by</code> o <code>by</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">%&gt;%</span> <span class="fu">slice_sample</span>(<span class="at">n=</span><span class="dv">2</span>, <span class="at">by =</span> order) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 33 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+ 2 Arcti… Vulp… carni Carn… &lt;NA&gt;                12.5      NA        NA      11.5
+ 3 Human  Homo  omni  Prim… &lt;NA&gt;                 8         1.9       1.5    16  
+ 4 Patas… Eryt… omni  Prim… lc                  10.9       1.1      NA      13.1
+ 5 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 6 Golde… Meso… herbi Rode… en                  14.3       3.1       0.2     9.7
+ 7 Easte… Scal… inse… Sori… lc                   8.4       2.1       0.167  15.6
+ 8 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 9 Goat   Capri herbi Arti… lc                   5.3       0.6      NA      18.7
+10 Giraf… Gira… herbi Arti… cd                   1.9       0.4      NA      22.1
+# ℹ 23 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="resumiendo-valores" class="level2">
+<h2 class="anchored" data-anchor-id="resumiendo-valores">Resumiendo valores</h2>
+<div class="med-code">
+<div class="cell" data-output-location="fragment">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(order) <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mediana_slp =</span> <span class="fu">median</span>(sleep_total),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">media_brainwt=</span><span class="fu">mean</span>(brainwt))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 19 × 3
+   order           mediana_slp media_brainwt
+   &lt;chr&gt;                 &lt;dbl&gt;         &lt;dbl&gt;
+ 1 Afrosoricida           15.6      0.0026  
+ 2 Artiodactyla            3.9     NA       
+ 3 Carnivora              10.2     NA       
+ 4 Cetacea                 5.2     NA       
+ 5 Chiroptera             19.8      0.000275
+ 6 Cingulata              17.8      0.0459  
+ 7 Didelphimorphia        18.7     NA       
+ 8 Diprotodontia          12.4     NA       
+ 9 Erinaceomorpha         10.2      0.00295 
+10 Hyracoidea              5.4      0.0152  
+11 Lagomorpha              8.4      0.0121  
+12 Monotremata             8.6      0.025   
+13 Perissodactyla          3.1      0.414   
+14 Pilosa                 14.4     NA       
+15 Primates                9.9     NA       
+16 Proboscidea             3.6      5.16    
+17 Rodentia               12.9     NA       
+18 Scandentia              8.9      0.0025  
+19 Soricomorpha           10.3      0.000592</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="bucles-for-loops" class="level2">
+<h2 class="anchored" data-anchor-id="bucles-for-loops">Bucles (<em>for loops</em>)</h2>
+<ul>
+<li>De gran utilidad</li>
+<li>No siempre es necesario escribirlos de 0</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:40%;">
+<p><img src="imgs/Homer.png" class="img-fluid"></p>
+</div><div class="column" style="width:60%;">
+<div class="rightref">
+<div class="refbox">
+<p>Jenny Bryan<br>
+<a href="https://jennybc.github.io/purrr-tutorial/index.html">purrr tutorial</a><br>
+<a href="https://speakerdeck.com/jennybc/data-rectangling">Data Rectangling</a><br>
+<a href="https://speakerdeck.com/jennybc/purrr-workshop">purrr workshop</a></p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="bucles" class="level2">
+<h2 class="anchored" data-anchor-id="bucles">Bucles</h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (value <span class="cf">in</span> sequence){</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">statement</span>(s)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Ejecuta una serie de enunciados (<em>statements</em>), una vez para cada elemento de un vector o lista. Se detiene al llegar al último elemento.</p>
+</div><div class="column" style="width:42%;">
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>){</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(x)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>} </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="ejercicio---loops" class="level2" data-background-color="#a4c5ff">
+<h2 data-background-color="#a4c5ff" class="anchored" data-anchor-id="ejercicio---loops">Ejercicio - <em>loops</em></h2>
+<p>Escribir un bucle para imprimir en la consola cada letra del alfabeto, en minúscula y en orden descendiente (z,y,x,w…) <br></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>hay constantes pre-instaladas en R que les pueden servir</p>
+</div>
+</div>
+</section>
+<section id="bucles-y-grupos" class="level2">
+<h2 class="anchored" data-anchor-id="bucles-y-grupos">Bucles y grupos</h2>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(order) <span class="sc">%&gt;%</span> <span class="co"># para cada orden</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(<span class="dv">1</span>) <span class="co"># declaración a ejecutar </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Todo se queda dentro del data frame</p>
+</section>
+<section id="vectorización" class="level2">
+<h2 class="anchored" data-anchor-id="vectorización">Vectorización</h2>
+<p>Operaciones que ocurren en paralelo en todos los elementos (de un vector, lista, etc.) y no uno por uno en cada elemento</p>
+<section id="aquí-qué-pasa" class="level4">
+<h4 class="anchored" data-anchor-id="aquí-qué-pasa">¿Aquí qué pasa?</h4>
+<div class="big-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">12</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="los-operadores-lógicos-entre-muchos-otros-son-vectorizados" class="level2">
+<h2 class="anchored" data-anchor-id="los-operadores-lógicos-entre-muchos-otros-son-vectorizados">Los operadores lógicos (entre muchos otros) son vectorizados</h2>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">12</span>,<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">8</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE FALSE  TRUE  TRUE</code></pre>
+</div>
+</div>
+</div>
+<p>No hace falta teclear todo ésto o escribir un bucle</p>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>]<span class="sc">&gt;</span><span class="dv">5</span> ; x[<span class="dv">2</span>]<span class="sc">&gt;</span><span class="dv">5</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">3</span>]<span class="sc">&gt;</span><span class="dv">5</span> ; x[<span class="dv">4</span>]<span class="sc">&gt;</span><span class="dv">5</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">5</span>]<span class="sc">&gt;</span><span class="dv">5</span> ; x[<span class="dv">6</span>]<span class="sc">&gt;</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/dogscopy.jpg" class="img-fluid figure-img" style="width:36.0%"></p>
+<figcaption>American Greetings</figcaption>
+</figure>
+</div>
+</section>
+<section id="cuando-sí-necesitemos-iterar" class="level2">
+<h2 class="anchored" data-anchor-id="cuando-sí-necesitemos-iterar">Cuando sí necesitemos iterar:</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<p><img src="imgs/purrr.jpeg" class="img-fluid"></p>
+</div><div class="column" style="width:75%;">
+<p>📦 <strong><code>purrr</code></strong> - Herramientas para programación funcional</p>
+<ul>
+<li><p>funciones <code>map</code> que aplican una función a cada elemento de una lista o vector y devuelve un resultado de la misma longitud que la entrada</p></li>
+<li><p>trabaja bien con <strong>listas</strong></p></li>
+<li><p>código legible y conciso</p></li>
+</ul>
+</div>
+</div>
+<div class="rightref">
+<div class="refbox">
+<p>Thomas Mock (2018)<br>
+<a href="https://towardsdatascience.com/functional-programming-in-r-with-purrr-469e597d0229">Functional Programming in R with purrr</a></p>
+</div>
+</div>
+<hr>
+<div style="text-align: center">
+<p><span style="color:blue; font-family: monospace; font-weight: bold;font-size: 1.9em">map(</span><span style="color: red; font-family: Liberation Mono; font-weight: bold;font-size: 1.9em">.x</span>, <span style="color: green; font-family: Liberation Mono; font-weight: bold;font-size: 1.9em">.f</span><span style="color:blue; font-family: Liberation Mono; font-weight: bold; font-size: 1.9em">, …)</span></p>
+<p><br></p>
+<p>para cada elemento de <span style="color: red; font-family: Liberation Mono; font-weight: bold">.x</span></p>
+<p>aplica <span style="color: green; font-family: Liberation Mono; font-weight: bold">.f</span></p>
+<p><code>...</code> argumentos para <span style="color: green; font-family: Liberation Mono; font-weight: bold">.f</span></p>
+</div>
+</section>
+<section id="mapeando-funciones-a-datos" class="level2">
+<h2 class="anchored" data-anchor-id="mapeando-funciones-a-datos">“Mapeando” funciones a datos</h2>
+<p><br> <code>map(.x,</code><span style="color: green; font-family: monospace; font-weight: bold">.f</span><code>)</code></p>
+<p><span style="color: green; font-family: monospace; font-weight: bold">.f</span> se puede especificar como:</p>
+<div class="incremental">
+<ul class="incremental">
+<li><p>una función existente</p></li>
+<li><p>una función anónima definida sobre la marcha</p></li>
+<li><p>una fórmula: notación abreviada para funciones</p></li>
+<li><p>una función anónima abreviada (<em>shorthand</em>) en versiones recientes de R</p></li>
+</ul>
+</div>
+</section>
+<section id="funciones" class="level2">
+<h2 class="anchored" data-anchor-id="funciones">Funciones</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/r-function-syntax.png" class="img-fluid figure-img"></p>
+<figcaption><a href="https://www.learnbyexample.org/r-functions/">Learn by Example.com</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="definiendo-funciones" class="level2">
+<h2 class="anchored" data-anchor-id="definiendo-funciones">Definiendo funciones</h2>
+<p>usamos la función ‘<code>function()</code>’</p>
+<p><code style="font-size: 1.5em; text-align: center; font-family: monospace; font-weight: bold">function( arglist ) expr</code></p>
+<p><br></p>
+<p><strong>argumentos</strong> (<code>arglist</code>): valores para la función</p>
+<p><strong>expresión</strong> (<code>expr</code>): un objeto que representa una acción que R puede hacer</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Las expresiones pueden tener una o más declaraciones</p>
+</div>
+</div>
+</section>
+<section id="definiendo-funciones-1" class="level2">
+<h2 class="anchored" data-anchor-id="definiendo-funciones-1">Definiendo funciones</h2>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mi_funcion <span class="ot">&lt;-</span> <span class="cf">function</span>(mi_argumento){</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  mi_argumento<span class="sc">+</span><span class="dv">1</span> <span class="co"># declaración</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>mi_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">7</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mi_funcion</span>(<span class="at">mi_argumento =</span> mi_vector)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4 6 7 8</code></pre>
+</div>
+</div>
+</div>
+<hr>
+<p>El cuerpo de la función (las declaraciones que se ejecutan al correr la función) se agrupa con llaves (<code>{}</code>)</p>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>miFunc <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">4</span> <span class="co"># cuerpo</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:35%;">
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miFunc</span>(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">miFunc</span>(<span class="at">x=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:65%;">
+<p>Al ejecutar funciones es opcional especificar los nombres de los argumentos, pero en funciones con &gt;1 argumentos, el orden importa</p>
+</div>
+</div>
+<hr>
+<p><strong>PERO</strong> no hacen falta llaves para funciones con una sola declaración</p>
+<div class="big-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">+</span><span class="dv">4</span>   </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="at">x=</span><span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+</div>
+<div class="big-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">mean</span>(x)<span class="sc">/</span><span class="dv">2</span>   </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">43</span>,<span class="dv">12</span>,<span class="dv">5</span>,<span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.3</code></pre>
+</div>
+</div>
+</div>
+<hr>
+<p>Las llaves rodean el cuerpo en funciones con dos o más declaraciones</p>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x)  y <span class="ot">&lt;-</span> (x<span class="sc">*</span><span class="fl">0.2885</span>) <span class="fu">log</span>(y) <span class="co"># ERROR  </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Así sí funciona. Las declaraciones (statements) están en líneas separadas</p>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> (x<span class="sc">*</span><span class="fl">0.2885</span>) <span class="co"># una declaración</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">log</span>(y)          <span class="co"># otra declaración</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3663777</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="función-sin-argumentos" class="level2">
+<h2 class="anchored" data-anchor-id="función-sin-argumentos">Función sin argumentos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>queHoraEs <span class="ot">&lt;-</span> <span class="cf">function</span>(){</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span>(<span class="fu">Sys.time</span>(), <span class="st">"%H:%M"</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">queHoraEs</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "21:42"</code></pre>
+</div>
+</div>
+</section>
+<section id="funciones-anónimas" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-anónimas">Funciones anónimas</h2>
+<p><strong>Funciones para llevar</strong> (se crean y se ejecutan pero nunca se asignan a un objeto con nombre)</p>
+<section id="sintaxis" class="level3">
+<h3 class="anchored" data-anchor-id="sintaxis">Sintaxis</h3>
+<div class="big-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>(<span class="cf">function</span>(x) x <span class="sc">*</span> x <span class="sc">+</span> <span class="dv">3</span>)(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 103</code></pre>
+</div>
+</div>
+</div>
+<p>La definición va entre paréntesis para separar la función de sus argumentos</p>
+<hr>
+<div class="big-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>(<span class="cf">function</span>(x) x <span class="sc">+</span> <span class="dv">3</span>)(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>Es lo mismo que:</p>
+<div class="big-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">10</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># o bien </span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {x <span class="sc">+</span> <span class="dv">3</span>}</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="notation-corta-desde-r-v4.1.0" class="level2">
+<h2 class="anchored" data-anchor-id="notation-corta-desde-r-v4.1.0">Notation corta (desde R v4.1.0)</h2>
+<p>Reemplaza “<code>function(x) {}</code>” con “<code>\(x){}</code>”</p>
+<div class="big-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>(\(x) x <span class="sc">+</span> <span class="dv">3</span>)(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>(\(x) x <span class="sc">/</span> <span class="dv">2</span>)(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+</div>
+<div class="rightref">
+<div class="refbox">
+<p>Russ Hyde (2021)<br>
+<a href="https://www.jumpingrivers.com/blog/new-features-r410-pipe-anonymous-functions/">New features in R 4.1.0</a></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Los desarrolladores del <code>tidyverse</code> están migrando al uso de esta notación</p>
+</div>
+</div>
+</section>
+<section id="funciones-anónimas-1" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-anónimas-1">Funciones anónimas</h2>
+<ul>
+<li><p>Útiles para aplicar una función personalizada a varios elementos a la vez</p></li>
+<li><p>También conocidas como <em>expresiones lambda</em></p></li>
+<li><p>Autocontenidas</p></li>
+<li><p>Comparables con métodos parecidos en Python</p></li>
+</ul>
+</section>
+<section id="por-qué-escribir-nuestras-propias-funciones" class="level2">
+<h2 class="anchored" data-anchor-id="por-qué-escribir-nuestras-propias-funciones">Por qué escribir nuestras propias funciones</h2>
+<ul>
+<li><p>Menos repetición</p></li>
+<li><p>Mayor brevedad</p></li>
+<li><p>Menor posibilidad de errores</p></li>
+<li><p>Aprovechar las herramientas que nos dejan aplicar funciones a muchos elementos a la vez</p></li>
+</ul>
+<div class="rightref">
+<div class="refbox">
+<p>Jenny Bryan - Stat545<br>
+<a href="https://stat545.com/functions-part1.html">Write your own R functions</a></p>
+</div>
+</div>
+</section>
+</section>
+<section id="listas" class="level1">
+<h1>Listas</h1>
+<section id="listas-1" class="level2">
+<h2 class="anchored" data-anchor-id="listas-1">Listas</h2>
+<p>Objetos que pueden contener elementos de diferentes tipos como números, cadenas de texto, vectores, tablas, o incluso más listas</p>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>mi_lista <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">un_numero =</span> <span class="dv">7</span>,</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">un_vector =</span> <span class="fu">c</span>(<span class="st">"rata"</span>, <span class="st">"gato"</span>, <span class="st">"taco"</span>),</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">un_dataframe =</span> <span class="fu">data.frame</span>(</span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="fu">c</span>(<span class="st">"K"</span>, <span class="st">"L"</span>, <span class="st">"M"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="rightref">
+<div class="refbox">
+<p>Rebecca Barter (2019)<br>
+<a href="https://www.rebeccabarter.com/blog/2019-08-19_purrr/">Learn to purrr</a></p>
+</div>
+</div>
+<hr>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>mi_lista</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$un_numero
+[1] 7
+
+$un_vector
+[1] "rata" "gato" "taco"
+
+$un_dataframe
+  a b
+1 1 K
+2 2 L
+3 3 M</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="podemos-creas-listas-partiendo-otros-objetos" class="level2">
+<h2 class="anchored" data-anchor-id="podemos-creas-listas-partiendo-otros-objetos">Podemos creas listas partiendo otros objetos</h2>
+<p>Separando una data frame agrupada en una lista de data frames, una para cada grupo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>gremios <span class="ot">&lt;-</span> </span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  msleep <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(vore) <span class="sc">%&gt;%</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_split</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>gremios</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;list_of&lt;
+  tbl_df&lt;
+    name        : character
+    genus       : character
+    vore        : character
+    order       : character
+    conservation: character
+    sleep_total : double
+    sleep_rem   : double
+    sleep_cycle : double
+    awake       : double
+    brainwt     : double
+    bodywt      : double
+  &gt;
+&gt;[5]&gt;
+[[1]]
+# A tibble: 19 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9
+ 2 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3
+ 3 Dog    Canis carni Carn… domesticated        10.1       2.9       0.333  13.9
+ 4 Long-… Dasy… carni Cing… lc                  17.4       3.1       0.383   6.6
+ 5 Domes… Felis carni Carn… domesticated        12.5       3.2       0.417  11.5
+ 6 Pilot… Glob… carni Ceta… cd                   2.7       0.1      NA      21.4
+ 7 Gray … Hali… carni Carn… lc                   6.2       1.5      NA      17.8
+ 8 Thick… Lutr… carni Dide… lc                  19.4       6.6      NA       4.6
+ 9 Slow … Nyct… carni Prim… &lt;NA&gt;                11        NA        NA      13  
+10 North… Onyc… carni Rode… lc                  14.5      NA        NA       9.5
+11 Tiger  Pant… carni Carn… en                  15.8      NA        NA       8.2
+12 Jaguar Pant… carni Carn… nt                  10.4      NA        NA      13.6
+13 Lion   Pant… carni Carn… vu                  13.5      NA        NA      10.5
+14 Caspi… Phoca carni Carn… vu                   3.5       0.4      NA      20.5
+15 Commo… Phoc… carni Ceta… vu                   5.6      NA        NA      18.4
+16 Bottl… Turs… carni Ceta… &lt;NA&gt;                 5.2      NA        NA      18.8
+17 Genet  Gene… carni Carn… &lt;NA&gt;                 6.3       1.3      NA      17.7
+18 Arcti… Vulp… carni Carn… &lt;NA&gt;                12.5      NA        NA      11.5
+19 Red f… Vulp… carni Carn… &lt;NA&gt;                 9.8       2.4       0.35   14.2
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;
+
+[[2]]
+# A tibble: 32 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Mount… Aplo… herbi Rode… nt                  14.4       2.4      NA       9.6
+ 2 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  
+ 3 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6
+ 4 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  
+ 5 Goat   Capri herbi Arti… lc                   5.3       0.6      NA      18.7
+ 6 Guine… Cavis herbi Rode… domesticated         9.4       0.8       0.217  14.6
+ 7 Chinc… Chin… herbi Rode… domesticated        12.5       1.5       0.117  11.5
+ 8 Tree … Dend… herbi Hyra… lc                   5.3       0.5      NA      18.7
+ 9 Asian… Elep… herbi Prob… en                   3.9      NA        NA      20.1
+10 Horse  Equus herbi Peri… domesticated         2.9       0.6       1      21.1
+# ℹ 22 more rows
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;
+
+[[3]]
+# A tibble: 5 × 11
+  name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 Big br… Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3
+2 Little… Myot… inse… Chir… &lt;NA&gt;                19.9       2         0.2     4.1
+3 Giant … Prio… inse… Cing… en                  18.1       6.1      NA       5.9
+4 Easter… Scal… inse… Sori… lc                   8.4       2.1       0.167  15.6
+5 Short-… Tach… inse… Mono… &lt;NA&gt;                 8.6      NA        NA      15.4
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;
+
+[[4]]
+# A tibble: 20 × 11
+   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+ 1 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  
+ 2 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1
+ 3 Grivet Cerc… omni  Prim… lc                  10         0.7      NA      14  
+ 4 Star-… Cond… omni  Sori… lc                  10.3       2.2      NA      13.7
+ 5 Afric… Cric… omni  Rode… &lt;NA&gt;                 8.3       2        NA      15.7
+ 6 Lesse… Cryp… omni  Sori… lc                   9.1       1.4       0.15   14.9
+ 7 North… Dide… omni  Dide… lc                  18         4.9       0.333   6  
+ 8 Europ… Erin… omni  Erin… lc                  10.1       3.5       0.283  13.9
+ 9 Patas… Eryt… omni  Prim… lc                  10.9       1.1      NA      13.1
+10 Galago Gala… omni  Prim… &lt;NA&gt;                 9.8       1.1       0.55   14.2
+11 Human  Homo  omni  Prim… &lt;NA&gt;                 8         1.9       1.5    16  
+12 Macaq… Maca… omni  Prim… &lt;NA&gt;                10.1       1.2       0.75   13.9
+13 Chimp… Pan   omni  Prim… &lt;NA&gt;                 9.7       1.4       1.42   14.3
+14 Baboon Papio omni  Prim… &lt;NA&gt;                 9.4       1         0.667  14.6
+15 Potto  Pero… omni  Prim… lc                  11        NA        NA      13  
+16 Afric… Rhab… omni  Rode… &lt;NA&gt;                 8.7      NA        NA      15.3
+17 Squir… Saim… omni  Prim… &lt;NA&gt;                 9.6       1.4      NA      14.4
+18 Pig    Sus   omni  Arti… domesticated         9.1       2.4       0.5    14.9
+19 Tenrec Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA       8.4
+20 Tree … Tupa… omni  Scan… &lt;NA&gt;                 8.9       2.6       0.233  15.1
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;
+
+[[5]]
+# A tibble: 7 × 11
+  name    genus vore  order conservation sleep_total sleep_rem sleep_cycle awake
+  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;
+1 Vesper… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  
+2 Desert… Para… &lt;NA&gt;  Erin… lc                  10.3       2.7      NA      13.7
+3 Deer m… Pero… &lt;NA&gt;  Rode… &lt;NA&gt;                11.5      NA        NA      12.5
+4 Phalan… Phal… &lt;NA&gt;  Dipr… &lt;NA&gt;                13.7       1.8      NA      10.3
+5 Rock h… Proc… &lt;NA&gt;  Hyra… lc                   5.4       0.5      NA      18.6
+6 Mole r… Spal… &lt;NA&gt;  Rode… &lt;NA&gt;                10.6       2.4      NA      13.4
+7 Musk s… Sunc… &lt;NA&gt;  Sori… &lt;NA&gt;                12.8       2         0.183  11.2
+# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(gremios)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "vctrs_list_of" "vctrs_vctr"    "list"         </code></pre>
+</div>
+</div>
+</section>
+<section id="section-6" class="level2">
+<h2 class="anchored" data-anchor-id="section-6"></h2>
+<p><code>group_keys()</code> regresa los grupos</p>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>msleep <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(vore) <span class="sc">%&gt;%</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_keys</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 1
+  vore   
+  &lt;chr&gt;  
+1 carni  
+2 herbi  
+3 insecti
+4 omni   
+5 &lt;NA&gt;   </code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="indexando-listas" class="level2">
+<h2 class="anchored" data-anchor-id="indexando-listas">‘Indexando’ listas</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/listspepper.png" class="img-fluid figure-img" style="width:76.0%"></p>
+<figcaption>Hadley Wickam (2015) en <a href="https://twitter.com/hadleywickham/status/643381054758363136?s=20&amp;t=0Gu4Qs757o5KHEJR2ZwkEg">Twitter</a></figcaption>
+</figure>
+</div>
+</section>
+<section id="accediendo-a-elementos-de-listas" class="level2">
+<h2 class="anchored" data-anchor-id="accediendo-a-elementos-de-listas">Accediendo a elementos de listas</h2>
+<p>Primer elemento (<code>[[1]]</code>)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>gremios[[<span class="dv">1</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name,genus) <span class="sc">%&gt;%</span> head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  name                 genus        
+  &lt;chr&gt;                &lt;chr&gt;        
+1 Cheetah              Acinonyx     
+2 Northern fur seal    Callorhinus  
+3 Dog                  Canis        
+4 Long-nosed armadillo Dasypus      
+5 Domestic cat         Felis        
+6 Pilot whale          Globicephalus</code></pre>
+</div>
+</div>
+</section>
+<section id="segundo-elemento" class="level2">
+<h2 class="anchored" data-anchor-id="segundo-elemento">Segundo elemento</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>gremios[[<span class="dv">2</span>]] <span class="sc">%&gt;%</span> </span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name,genus, vore, conservation) <span class="sc">%&gt;%</span> </span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  head</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  name             genus      vore  conservation
+  &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;       
+1 Mountain beaver  Aplodontia herbi nt          
+2 Cow              Bos        herbi domesticated
+3 Three-toed sloth Bradypus   herbi &lt;NA&gt;        
+4 Roe deer         Capreolus  herbi lc          
+5 Goat             Capri      herbi lc          
+6 Guinea pig       Cavis      herbi domesticated</code></pre>
+</div>
+</div>
+</section>
+<section id="section-7" class="level2">
+<h2 class="anchored" data-anchor-id="section-7"></h2>
+<p><img src="imgs/purrrPost.png" class="img-fluid"></p>
+<div style="text-align: right">
+<p>Luis (2017)<br>
+<a href="https://luisdva.github.io/rstats/export-iteratively/">Export Iteratively</a></p>
+</div>
+</section>
+<section id="para-qué-usar-listas" class="level2">
+<h2 class="anchored" data-anchor-id="para-qué-usar-listas">¿Para qué usar listas?</h2>
+<ul>
+<li><p>Clase versátil para almacenar varios tipos de objetos</p></li>
+<li><p>Fáciles de crear partiendo otros objetos</p></li>
+<li><p>Cada elemento puede tener nombre</p></li>
+</ul>
+</section>
+<section id="mapeo-de-funciones-a-datos" class="level2">
+<h2 class="anchored" data-anchor-id="mapeo-de-funciones-a-datos">‘Mapeo’ de funciones a datos</h2>
+<ul>
+<li><p>Aplicar funciones iterativamente</p></li>
+<li><p>Importar varios archivos en un solo comando</p></li>
+<li><p>Modificar y/o exportar múltiples objetos</p></li>
+</ul>
+</section>
+<section id="aplicar-funciones-iterativamente" class="level2">
+<h2 class="anchored" data-anchor-id="aplicar-funciones-iterativamente">Aplicar funciones iterativamente</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(datos)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="co"># tres vectores (numéricos)</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>masa <span class="ot">&lt;-</span> pinguinos<span class="sc">$</span>masa_corporal_g</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>pico <span class="ot">&lt;-</span> pinguinos<span class="sc">$</span>largo_pico_mm</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a>aleta <span class="ot">&lt;-</span> pinguinos<span class="sc">$</span>largo_aleta_mm</span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a><span class="co"># juntarlos en una lista</span></span>
+<span id="cb60-8"><a href="#cb60-8" aria-hidden="true" tabindex="-1"></a>rasgos <span class="ot">&lt;-</span> <span class="fu">list</span>(masa,pico,aleta)</span>
+<span id="cb60-9"><a href="#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="co"># aplicar la función "mean" a cada elemento</span></span>
+<span id="cb60-10"><a href="#cb60-10" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(rasgos,mean)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] NA
+
+[[2]]
+[1] NA
+
+[[3]]
+[1] NA</code></pre>
+</div>
+</div>
+</section>
+<section id="section-8" class="level2">
+<h2 class="anchored" data-anchor-id="section-8"></h2>
+<section id="con-argumentos-adicionales" class="level3">
+<h3 class="anchored" data-anchor-id="con-argumentos-adicionales">con argumentos adicionales</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co"># aplicar la función "mean" a cada elemento</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(rasgos,mean,<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 4201.754
+
+[[2]]
+[1] 43.92193
+
+[[3]]
+[1] 200.9152</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="aplicar-funciones-personalizadas-iterativamente" class="level2">
+<h2 class="anchored" data-anchor-id="aplicar-funciones-personalizadas-iterativamente">Aplicar funciones personalizadas iterativamente</h2>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># obtener min, max, y la diferencia</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>resumenMMR <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  min_x <span class="ot">&lt;-</span> <span class="fu">min</span>(x,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>  max_x <span class="ot">&lt;-</span> <span class="fu">max</span>(x,<span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  maxmin <span class="ot">&lt;-</span> max_x <span class="sc">-</span> min_x</span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(min_x, max_x, maxmin)</span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="probar-con-vectores" class="level2">
+<h2 class="anchored" data-anchor-id="probar-con-vectores">Probar con vectores</h2>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">resumenMMR</span>(masa)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2700 6300 3600</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">resumenMMR</span>(aleta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 172 231  59</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="map-para-aplicar-nuestra-función-a-la-lista" class="level2">
+<h2 class="anchored" data-anchor-id="map-para-aplicar-nuestra-función-a-la-lista"><code>map()</code> para aplicar nuestra función a la lista</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Solo usamos el nombre de la función</p>
+</div>
+</div>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(<span class="at">.x =</span> rasgos, <span class="at">.f =</span> resumenMMR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 2700 6300 3600
+
+[[2]]
+[1] 32.1 59.6 27.5
+
+[[3]]
+[1] 172 231  59</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="map-con-salidas-específicas" class="level2">
+<h2 class="anchored" data-anchor-id="map-con-salidas-específicas"><code>map()</code> con salidas específicas</h2>
+<p><code>map()</code> regresa listas</p>
+<p><code>map_lgl()</code> regresa un vector T/F</p>
+<p><code>map_int()</code> regresa un vector numérico</p>
+<p><code>map_dbl()</code> regresa un vector numérico (con decimales)</p>
+<p><code>map_chr()</code> regresa un vector de caracteres</p>
+<p><code>map_df()</code> junta todo en un data frame</p>
+</section>
+<section id="section-10" class="level2">
+<h2 class="anchored" data-anchor-id="section-10"></h2>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># regresa una lista</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(rasgos, median, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 4050
+
+[[2]]
+[1] 44.45
+
+[[3]]
+[1] 197</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># aplana la lista en un vector</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map_dbl</span>(rasgos, median, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4050.00   44.45  197.00</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="map-con-funciones-anónimas" class="level2">
+<h2 class="anchored" data-anchor-id="map-con-funciones-anónimas"><code>map()</code> con funciones anónimas</h2>
+<p>Funciones que podemos escribir dentro de <code>map()</code> sin definir</p>
+<div class="rightref">
+<div class="refbox">
+<p>Mike Cheng (2019)<br>
+<a href="https://coolbutuseless.github.io/2019/03/13/anonymous-functions-in-r-part-1/">Anonymous Functions in R - Part 1</a></p>
+</div>
+</div>
+</section>
+<section id="section-11" class="level2">
+<h2 class="anchored" data-anchor-id="section-11"></h2>
+<p>Mismo comportamiento</p>
+<div class="med-code">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>listaNums <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>),<span class="fu">c</span>(<span class="dv">20</span><span class="sc">:</span><span class="dv">27</span>))</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="co"># función anónima</span></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(listaNums, <span class="cf">function</span>(x) x<span class="sc">+</span><span class="dv">2</span>)</span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fórmula</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(listaNums, <span class="sc">~</span> .x <span class="sc">+</span> <span class="dv">2</span>)</span>
+<span id="cb75-6"><a href="#cb75-6" aria-hidden="true" tabindex="-1"></a><span class="co"># notación 'nueva'</span></span>
+<span id="cb75-7"><a href="#cb75-7" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(listaNums,\(x) x<span class="sc">+</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<hr>
+<p>En notación de fórmula (usando <code>~</code>):</p>
+<p><code>.x</code> siempre se refiere al elemento del vector o lista con el que estamos iterando</p>
+<p>Internamente <code>~.x + 4</code> se vuelve <code>function(x) x+4</code></p>
+</section>
+<section id="importando-o-escribiendo-muchos-archivos" class="level2">
+<h2 class="anchored" data-anchor-id="importando-o-escribiendo-muchos-archivos">Importando o escribiendo muchos archivos</h2>
+<p><span style="font-size: 1.5em; text-align: center; font-family: monospace">map(.x,.f)</span></p>
+<p><code>.x</code> puede ser una lista o vector de rutas de archivo</p>
+<p><code>.f</code> puede ser una función que lee o escribe archivos</p>
+<div style="text-align: center">
+<p>📄📄📄📄📄📄📄📄📄</p>
+</div>
+</section>
+<section id="ejercicio" class="level2" data-background-color="#a4c5ff">
+<h2 data-background-color="#a4c5ff" class="anchored" data-anchor-id="ejercicio">Ejercicio</h2>
+<section id="crear-una-carpeta-llena-de-archivos-de-texto" class="level3">
+<h3 class="anchored" data-anchor-id="crear-una-carpeta-llena-de-archivos-de-texto">Crear una carpeta llena de archivos de texto</h3>
+<ul>
+<li><p>cargar el archivo <code>resultados_21k.csv</code></p></li>
+<li><p>agrupar los datos por localidad y crear una lista de data frames con una para cada localidad</p></li>
+<li><p>crear un vector con los nombres de las localidades</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>😲 es posible iterar con dos <em>inputs</em> en paralelo</p>
+</div>
+</div>
+</section>
+</section>
+<section id="map-con-dos-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="map-con-dos-inputs"><code>map()</code> con dos inputs</h2>
+<p><span style="font-size: 1.5em; text-align: center; font-family: monospace"><code>map2(.x, .y, .f)</code></span></p>
+<p>Ambas listas de vectores de entrada se le pasan como argumentos a la función <code>.f</code></p>
+<p><img src="imgs/map2.png" class="img-fluid" style="width:87.0%"></p>
+<div class="rightref">
+<div class="refbox">
+<p>Altman et al.&nbsp;(2021)<br>
+<a href="https://dcl-prog.stanford.edu/purrr-parallel.html">Map with multiple inputs</a></p>
+</div>
+</div>
+</section>
+<section id="ejercicio---carpeta-con-archivos" class="level2" data-background-color="#a4c5ff">
+<h2 data-background-color="#a4c5ff" class="anchored" data-anchor-id="ejercicio---carpeta-con-archivos">Ejercicio - Carpeta con archivos</h2>
+<ul>
+<li><p>crear una carpeta “resultados21k”</p></li>
+<li><p>usar <code>here()</code> para crear rutas estables y portátiles para cada localidad, por ejemplo: <code>here("datos","resultados21k","Usaquen")</code>, teniendo en cuenta que <code>here()</code> es una función vectorizada</p></li>
+<li><p>pasar la lista de data frames y el vector de rutas a <code>write_csv</code> de <code>readr</code> o <code>write.csv</code> de R base</p></li>
+</ul>
+<p>🔥🏃🔥</p>
+</section>
+<section id="ejercicio---importando-varios-archivos-a-la-vez" class="level2" data-background-color="#a4c5ff">
+<h2 data-background-color="#a4c5ff" class="anchored" data-anchor-id="ejercicio---importando-varios-archivos-a-la-vez">Ejercicio - Importando varios archivos a la vez</h2>
+<ul>
+<li><p>usar <code>dir_ls()</code> para crear un vector con las rutas de los archivos creados en el paso anterior</p></li>
+<li><p>importar cada elemento de este vector con <code>map()</code> y <code>read_csv()</code> de <code>readr</code></p></li>
+<li><p>usar funciones con regresos específicos para terminar con la tabla inicial</p></li>
+</ul>
+</section>
+</section>
+<section id="atajos-y-herramientas-para-mayor-eficiencia" class="level1">
+<h1>Atajos y herramientas para mayor eficiencia</h1>
+<section id="section-13" class="level2">
+<h2 class="anchored" data-anchor-id="section-13"></h2>
+<p><img src="imgs/remote-work-airplane-laptop.jpg" class="img-fluid"></p>
+</section>
+<section id="programando-eficientemente" class="level2">
+<h2 class="anchored" data-anchor-id="programando-eficientemente">Programando eficientemente</h2>
+<p><span style="font-size: 1.5em; text-align: center">Ctrl == ⌘ Command &amp;&amp; Alt == ⌥ Option</span></p>
+<ul>
+<li>cursor multilinea (<code>ctrl</code>+<code>alt</code>+<code>arriba</code>) o (<code>ctrl</code>+<code>alt</code>+<code>abajo</code>)</li>
+<li>quitar con <code>esc</code></li>
+</ul>
+</section>
+<section id="atajos-de-teclado" class="level2">
+<h2 class="anchored" data-anchor-id="atajos-de-teclado">Atajos de teclado</h2>
+<ul>
+<li>panel de atajos (<code>alt</code>+<code>shift</code>+<code>k</code>)</li>
+<li>insertar ‘pipe’ (<code>ctrl</code>+<code>shift</code>+<code>m</code>)</li>
+<li>operador de asignación (<code>alt</code>+<code>-</code>)</li>
+<li>arrastrar línea (<code>alt</code>+<code>up</code>) o (<code>alt</code>+<code>down</code>)</li>
+<li>ejecutar línea (<code>ctrl</code>+<code>enter</code>)</li>
+<li>indentar o ‘desindentar’ selección (<code>tab</code> y <code>shift</code>+<code>tab</code>)</li>
+<li>convertir selección a comentario (<code>ctrl</code> + <code>shift</code> + <code>c</code>)</li>
+</ul>
+<div class="rightref">
+<div class="refbox">
+<p><a href="https://appsilon.com/rstudio-shortcuts-and-tips/">RStudio Shortcuts and Tips (2021)</a></p>
+</div>
+</div>
+</section>
+<section id="atajos-útiles" class="level2">
+<h2 class="anchored" data-anchor-id="atajos-útiles">Atajos útiles</h2>
+<ul>
+<li>Cambiar enfoque entre paneles
+<ul>
+<li>(<code>ctrl</code>+<code>1</code> hasta <code>8</code>)</li>
+<li>Maximizar paneles con (<code>ctrl</code>+<code>shift</code>+<code>1</code> hasta <code>8</code>)</li>
+</ul></li>
+</ul>
+<p><img src="imgs/movingfocus.gif" class="img-fluid" style="width:48.0%"></p>
+</section>
+<section id="más-atajos" class="level2">
+<h2 class="anchored" data-anchor-id="más-atajos">Más atajos</h2>
+<p>Modificar selección <span style="color: orange"><code>ctrl</code>+<code>alt</code>+<code>shift</code>+<code>m</code></span></p>
+<p>Para acceder a la documentación <span style="color: orange">?</span> o <span style="color: orange">F1</span></p>
+<p>Abriendo objetos en el visualizador</p>
+<p><span style="color: orange"><code>ctrl</code> + click</span></p>
+<p>Ejecutar de nuevo la última línea</p>
+<p><span style="color: orange"><code>ctrl</code> + Alt + P</span></p>
+<section id="abrir-el-directorio-de-trabajo" class="level3">
+<h3 class="anchored" data-anchor-id="abrir-el-directorio-de-trabajo">Abrir el directorio de trabajo</h3>
+<p><span style="color: orange"><code>shell.exec(getwd())</code></span> en Windows y en Linux <span style="color: orange"><code>browseURL(getwd())</code></span></p>
+</section>
+</section>
+<section id="práctica" class="level2" data-background-color="#a4c5ff">
+<h2 data-background-color="#a4c5ff" class="anchored" data-anchor-id="práctica">Práctica</h2>
+<p>Exploremos la diversidad de paquetes que hay en CRAN hoy mismo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>p_db <span class="ot">&lt;-</span> tools<span class="sc">::</span><span class="fu">CRAN_package_db</span>()</span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>p_db <span class="ot">&lt;-</span> p_db <span class="sc">%&gt;%</span> <span class="fu">select</span>(Package, Author, Description, Title)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="annotater" class="level2">
+<h2 class="anchored" data-anchor-id="annotater">📦 <a href="https://annotater.liomys.mx"><code>annotater</code></a></h2>
+<p>Agregar detalles sobre los paquetes que estamos mencionando en nuestros scripts</p>
+<p>Fuente y versión</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)   <span class="co"># CRAN v1.0.7</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) <span class="co"># CRAN v2.1.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Título, fuente y versión</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr) <span class="co"># Read Rectangular Text Data, CRAN v2.0.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><em>También podemos anotar cuáles funciones o datos de c/ paquete estamos usando</em></li>
+</ul>
+</section>
+<section id="littleboxes" class="level2">
+<h2 class="anchored" data-anchor-id="littleboxes">📦 <a href="https://github.com/ThinkR-open/littleboxes"><code>littleboxes</code></a></h2>
+<p>Cajas para títulos</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="do">##%##################################################%##</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="co">#                                                      #</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="do">####    Mi análisis en R ,  Luis, Oct 2022          ####</span></span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a><span class="co">#                                                      #</span></span>
+<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a><span class="do">##%##################################################%##</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="packup" class="level2">
+<h2 class="anchored" data-anchor-id="packup">📦 <code>packup</code></h2>
+<p>https://github.com/MilesMcBain/packup</p>
+<p>Acomoda los llamados a <code>library()</code> al principio del archivo, quitando duplicados y ordenando alfabéticamente.</p>
+<blockquote class="blockquote">
+<p>El orden alfabético puede no ser adecuado</p>
+</blockquote>
+</section>
+<section id="secciones-de-código-y-el-esquema-de-documento" class="level2">
+<h2 class="anchored" data-anchor-id="secciones-de-código-y-el-esquema-de-documento">Secciones de código y el esquema de documento</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mi sección nueva ------------------------------------ </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dividir un script en segmentos discretos</p>
+<p>Las secciones se pueden colapsar y funcionan con el panel de navegación del editor de fuente.</p>
+<ul>
+<li>Crear con cuatro guiones después de un comentario</li>
+<li>Insertar con <code>ctrl</code> + <code>shift</code> + <code>R</code></li>
+</ul>
+</section>
+<section id="utilidades-geniales" class="level2">
+<h2 class="anchored" data-anchor-id="utilidades-geniales">Utilidades geniales</h2>
+<section id="datapasta" class="level3">
+<h3 class="anchored" data-anchor-id="datapasta">📦 <a href="https://milesmcbain.github.io/datapasta/"><code>datapasta</code></a></h3>
+<p>Copiar y pegar datos desde y hacia R, manipular vectores</p>
+<p><img src="imgs/tribble_paste.gif" class="img-fluid" style="width:48.0%"></p>
+</section>
+</section>
+</section>
+<section id="errores-comunes-y-como-solucionarlos" class="level1">
+<h1>Errores comunes y como solucionarlos</h1>
+<section id="resetear" class="level2">
+<h2 class="anchored" data-anchor-id="resetear">1 - <strong>Resetear</strong></h2>
+<p>Reiniciar R (limpia la ruta de búsqueda, “desprende” objetos, regresa opciones a sus valores predeterminados)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>search path</em>: los entornos que definen los objetos y funciones a los que podemos acceder desde el entorno de trabajo global</p>
+</div>
+</div>
+<section id="prueba" class="level3">
+<h3 class="anchored" data-anchor-id="prueba">prueba</h3>
+<p>(e.g.&nbsp;<code>Sys.setenv(LANGUAGE="ko"</code>))</p>
+</section>
+</section>
+<section id="reprex-ejemplos-reproducibles" class="level2">
+<h2 class="anchored" data-anchor-id="reprex-ejemplos-reproducibles">2 - <strong>Reprex</strong> (ejemplos reproducibles)</h2>
+<p>Crear el ejemplo más simple posible que genere el mismo error para poder confirmar o resolver algún problema</p>
+<ul>
+<li>Proporcionar datos</li>
+<li>Acotarse al problema<br>
+</li>
+<li>Paquetes, versiones, OS</li>
+<li>Que otras personas pueda copiar, pegar, y ejecutar</li>
+</ul>
+<div class="rightref">
+<div class="refbox">
+<p>Jenny Bryan (2020)<br>
+<a href="https://www.rstudio.com/resources/rstudioconf-2020/object-of-type-closure-is-not-subsettable/">Object of type ‘closure’ is not subsettable</a></p>
+</div>
+</div>
+</section>
+<section id="errores-comunes" class="level2">
+<h2 class="anchored" data-anchor-id="errores-comunes">Errores comunes</h2>
+<ul>
+<li>paquetes sin cargar o cargados en desorden (search path)</li>
+<li>operadores cambiados, signos</li>
+<li>espacios, paréntesis, o comas de más o de menos</li>
+<li>pasos en desorden</li>
+</ul>
+</section>
+<section id="opciones-útiles" class="level2">
+<h2 class="anchored" data-anchor-id="opciones-útiles">Opciones útiles</h2>
+<ul>
+<li>Estudiar los mensajes de error más comunes</li>
+</ul>
+<div class="rightref">
+<div class="refbox">
+<p>Emily Jennings-Dobbs (2021)<br>
+<a href="https://jtr13.github.io/cc21/common-errors-in-r.html">Common Errors in R</a></p>
+</div>
+</div>
+<ul>
+<li>Correr los ejemplos disponibles con la ayuda y comparar con nuestro código</li>
+</ul>
+</section>
+</section>
+<section id="buscando-ayuda" class="level1">
+<h1>Buscando ayuda</h1>
+<section id="otras-personas" class="level2">
+<h2 class="anchored" data-anchor-id="otras-personas">Otras personas</h2>
+<p>Foros</p>
+<p>Grupos de usuarios locales o de RLadies</p>
+<p><a href="https://stackoverflow.com/">StackOverflow</a></p>
+<p>Redes sociales</p>
+<p><a href="https://github.com/">GitHub</a> - issues (cerrados o abiertos)</p>
+<ul>
+<li>🧐 Modales!</li>
+</ul>
+</section>
+<section id="búsquedas-web" class="level2">
+<h2 class="anchored" data-anchor-id="búsquedas-web">Búsquedas web</h2>
+<p>Nadie sabe todo de memoria y hay que saber buscar en línea</p>
+<ul>
+<li><p>Aprender a usar funciones avanzadas en los buscadores populares <a href="https://tryhackme.com/resources/blog/google-fu">“Google-fu”</a></p></li>
+<li><p>Conocer la terminología general<br>
+<span style="color: orange"><em>“R subset rows partial match”</em></span></p></li>
+<li><p>Hacer búsquedas amplias (ej: no buscar partes de un mensaje que error que a nadie más le aparecerían)</p></li>
+</ul>
+<p><span style="color: red; font-family: monospace">Error: object ‘tesis_luis_23w-final’ not found</span></p>
+</section>
+<section id="cuáles-soluciones-son-mejores-útiles" class="level2">
+<h2 class="anchored" data-anchor-id="cuáles-soluciones-son-mejores-útiles">¿Cuáles soluciones son <del>mejores</del> útiles?</h2>
+<ul>
+<li><p>¿Hace falta limitar los resultados temporalmente?</p></li>
+<li><p>Soluciones para diferentes dialectos<br>
+<a href="https://stackoverflow.com/questions/1296646/sort-order-data-frame-rows-by-multiple-columns">Sort (order) data frame rows by multiple columns</a><br>
+(StackOverflow - 2009, 1.4 M visitas)</p></li>
+</ul>
+</section>
+</section>
+<section id="discusión" class="level1">
+<h1>Discusión</h1>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Página creada con <a href="https://quarto.org/">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Luis D. Verde Arregoitia - 2025</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gabriel Massaine Moulatlet &amp; Fabricio Villalobos">
+
+<title>Mapas bivariados – Herramientas para el manejo de datos de biodiversidad en R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../maevolab.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-679c6e1ce78a9368f77aea21f9eef369.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-377efe61d13d4c1b69db24eb858864b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../cursologo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Herramientas para el manejo de datos de biodiversidad en R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../temario.html"> 
+<span class="menu-text">Temario y cronograma</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../materiales.html"> 
+<span class="menu-text">Materiales</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#paquetes" id="toc-paquetes" class="nav-link active" data-scroll-target="#paquetes">Paquetes</a></li>
+  <li><a href="#biscale" id="toc-biscale" class="nav-link" data-scroll-target="#biscale">Biscale</a></li>
+  <li><a href="#según-wikipedia" id="toc-según-wikipedia" class="nav-link" data-scroll-target="#según-wikipedia">Según Wikipedia…</a></li>
+  <li><a href="#dos-o-más-variables" id="toc-dos-o-más-variables" class="nav-link" data-scroll-target="#dos-o-más-variables">Dos o más variables…</a></li>
+  <li><a href="#son-bastante-comunes-para-reportar-resultados-de-elecciones" id="toc-son-bastante-comunes-para-reportar-resultados-de-elecciones" class="nav-link" data-scroll-target="#son-bastante-comunes-para-reportar-resultados-de-elecciones">Son bastante comunes para reportar resultados de elecciones</a></li>
+  <li><a href="#también-para-reportar-indicadores-socio-económicos" id="toc-también-para-reportar-indicadores-socio-económicos" class="nav-link" data-scroll-target="#también-para-reportar-indicadores-socio-económicos">También para reportar indicadores socio-económicos</a></li>
+  <li><a href="#hay-otros-ejemplos-colores-y-marcaciones" id="toc-hay-otros-ejemplos-colores-y-marcaciones" class="nav-link" data-scroll-target="#hay-otros-ejemplos-colores-y-marcaciones">Hay otros ejemplos: colores y marcaciones</a></li>
+  <li><a href="#hay-otros-ejemplos-colores-y-area" id="toc-hay-otros-ejemplos-colores-y-area" class="nav-link" data-scroll-target="#hay-otros-ejemplos-colores-y-area">Hay otros ejemplos: colores y area <img src="imgs/happy.png" class="img-fluid quarto-figure quarto-figure-center"></a></li>
+  <li><a href="#leyendas-triangulares---tres-variables-sabatini-et-al.-2022" id="toc-leyendas-triangulares---tres-variables-sabatini-et-al.-2022" class="nav-link" data-scroll-target="#leyendas-triangulares---tres-variables-sabatini-et-al.-2022">Leyendas triangulares - Tres variables Sabatini et al.&nbsp;2022 <img src="imgs/sabatini.jpg" class="img-fluid quarto-figure quarto-figure-center"></a></li>
+  <li><a href="#formatos-complejos" id="toc-formatos-complejos" class="nav-link" data-scroll-target="#formatos-complejos">Formatos complejos</a></li>
+  <li><a href="#leyendas-rectangulares-con-varias-categorias" id="toc-leyendas-rectangulares-con-varias-categorias" class="nav-link" data-scroll-target="#leyendas-rectangulares-con-varias-categorias">Leyendas rectangulares con varias categorias</a></li>
+  <li><a href="#pero-lo-más-importante-es-que-la-información-esté-clara" id="toc-pero-lo-más-importante-es-que-la-información-esté-clara" class="nav-link" data-scroll-target="#pero-lo-más-importante-es-que-la-información-esté-clara">Pero lo más importante es que la información esté clara</a></li>
+  <li><a href="#producir-mapas-bivariados" id="toc-producir-mapas-bivariados" class="nav-link" data-scroll-target="#producir-mapas-bivariados">Producir mapas bivariados</a>
+  <ul class="collapse">
+  <li><a href="#teoría" id="toc-teoría" class="nav-link" data-scroll-target="#teoría">Teoría:</a></li>
+  </ul></li>
+  <li><a href="#categorización-de-variables" id="toc-categorización-de-variables" class="nav-link" data-scroll-target="#categorización-de-variables">1. Categorización de variables</a>
+  <ul class="collapse">
+  <li><a href="#pasos" id="toc-pasos" class="nav-link" data-scroll-target="#pasos">Pasos:</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#la-función-classintervals" id="toc-la-función-classintervals" class="nav-link" data-scroll-target="#la-función-classintervals">la función <code>classIntervals()</code></a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#la-función-findcols" id="toc-la-función-findcols" class="nav-link" data-scroll-target="#la-función-findcols">la función <code>findCols()</code></a></li>
+  <li><a href="#usando-el-paquete-biscale" id="toc-usando-el-paquete-biscale" class="nav-link" data-scroll-target="#usando-el-paquete-biscale">usando el paquete <code>biscale</code></a></li>
+  </ul></li>
+  <li><a href="#preparación-de-leyenda-bivariada" id="toc-preparación-de-leyenda-bivariada" class="nav-link" data-scroll-target="#preparación-de-leyenda-bivariada">2. Preparación de leyenda bivariada</a>
+  <ul class="collapse">
+  <li><a href="#preparación-de-una-leyenda" id="toc-preparación-de-una-leyenda" class="nav-link" data-scroll-target="#preparación-de-una-leyenda">Preparación de una leyenda</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
+  <li><a href="#la-función-bi_legend" id="toc-la-función-bi_legend" class="nav-link" data-scroll-target="#la-función-bi_legend">La función <code>bi_legend()</code></a></li>
+  <li><a href="#el-mapa-bivariado" id="toc-el-mapa-bivariado" class="nav-link" data-scroll-target="#el-mapa-bivariado">El mapa bivariado</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a></li>
+  <li><a href="#manos-a-la-obra" id="toc-manos-a-la-obra" class="nav-link" data-scroll-target="#manos-a-la-obra">Manos a la obra!</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"></a></li>
+  </ul></li>
+  <li><a href="#como-hacer-mapas-bivariados-sin-usar-el-paquete-biscale" id="toc-como-hacer-mapas-bivariados-sin-usar-el-paquete-biscale" class="nav-link" data-scroll-target="#como-hacer-mapas-bivariados-sin-usar-el-paquete-biscale">Como hacer mapas bivariados sin usar el paquete <code>biscale</code></a>
+  <ul class="collapse">
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"></a></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"></a></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9"></a></li>
+  <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10"></a></li>
+  <li><a href="#section-11" id="toc-section-11" class="nav-link" data-scroll-target="#section-11"></a></li>
+  <li><a href="#section-12" id="toc-section-12" class="nav-link" data-scroll-target="#section-12"></a></li>
+  <li><a href="#categorizar-los-datos" id="toc-categorizar-los-datos" class="nav-link" data-scroll-target="#categorizar-los-datos">Categorizar los datos</a></li>
+  <li><a href="#section-13" id="toc-section-13" class="nav-link" data-scroll-target="#section-13"></a></li>
+  <li><a href="#crar-un-objeto-para-el-alpha-y-otro-para-el-fill" id="toc-crar-un-objeto-para-el-alpha-y-otro-para-el-fill" class="nav-link" data-scroll-target="#crar-un-objeto-para-el-alpha-y-otro-para-el-fill">Crar un objeto para el <code>alpha</code> y otro para el <code>fill</code></a></li>
+  <li><a href="#graficar-el-mapa" id="toc-graficar-el-mapa" class="nav-link" data-scroll-target="#graficar-el-mapa">Graficar el mapa</a></li>
+  <li><a href="#graficar-la-leyenda" id="toc-graficar-la-leyenda" class="nav-link" data-scroll-target="#graficar-la-leyenda">Graficar la leyenda</a></li>
+  <li><a href="#juntar-los-dos" id="toc-juntar-los-dos" class="nav-link" data-scroll-target="#juntar-los-dos">Juntar los dos</a></li>
+  <li><a href="#se-parecen" id="toc-se-parecen" class="nav-link" data-scroll-target="#se-parecen">Se parecen?</a></li>
+  <li><a href="#vamos-hacer-el-mapa-bivariado-de-la-diversidad-filogenetica-de-angiospermas-en-la-peninsula-de-yucatán" id="toc-vamos-hacer-el-mapa-bivariado-de-la-diversidad-filogenetica-de-angiospermas-en-la-peninsula-de-yucatán" class="nav-link" data-scroll-target="#vamos-hacer-el-mapa-bivariado-de-la-diversidad-filogenetica-de-angiospermas-en-la-peninsula-de-yucatán">Vamos hacer el mapa bivariado de la diversidad filogenetica de angiospermas en la Peninsula de Yucatán</a></li>
+  <li><a href="#section-14" id="toc-section-14" class="nav-link" data-scroll-target="#section-14"></a></li>
+  <li><a href="#cargar-el-mapa-base" id="toc-cargar-el-mapa-base" class="nav-link" data-scroll-target="#cargar-el-mapa-base">Cargar el mapa base</a></li>
+  <li><a href="#cargar-los-datos-y-ajustar-el-crs" id="toc-cargar-los-datos-y-ajustar-el-crs" class="nav-link" data-scroll-target="#cargar-los-datos-y-ajustar-el-crs">Cargar los datos y ajustar el CRS</a></li>
+  <li><a href="#preparar-el-mapa-usando-el-paquete-biscale" id="toc-preparar-el-mapa-usando-el-paquete-biscale" class="nav-link" data-scroll-target="#preparar-el-mapa-usando-el-paquete-biscale">1. Preparar el mapa usando el paquete <code>biscale</code></a></li>
+  <li><a href="#preparar-la-leyenda" id="toc-preparar-la-leyenda" class="nav-link" data-scroll-target="#preparar-la-leyenda">Preparar la leyenda</a></li>
+  <li><a href="#preparar-el-mapa" id="toc-preparar-el-mapa" class="nav-link" data-scroll-target="#preparar-el-mapa">Preparar el mapa</a></li>
+  <li><a href="#manualmente" id="toc-manualmente" class="nav-link" data-scroll-target="#manualmente">2. Manualmente</a></li>
+  <li><a href="#crear-la-leyenda" id="toc-crear-la-leyenda" class="nav-link" data-scroll-target="#crear-la-leyenda">Crear la leyenda</a></li>
+  <li><a href="#categorizar-los-datos-1" id="toc-categorizar-los-datos-1" class="nav-link" data-scroll-target="#categorizar-los-datos-1">Categorizar los datos</a></li>
+  <li><a href="#hacer-las-columnas-para-el-alpha-transparencia-y-color" id="toc-hacer-las-columnas-para-el-alpha-transparencia-y-color" class="nav-link" data-scroll-target="#hacer-las-columnas-para-el-alpha-transparencia-y-color">Hacer las columnas para el <em>alpha</em> (transparencia) y <em>color</em></a></li>
+  <li><a href="#hacer-el-mapa" id="toc-hacer-el-mapa" class="nav-link" data-scroll-target="#hacer-el-mapa">Hacer el mapa</a></li>
+  <li><a href="#agregar-la-leyenda" id="toc-agregar-la-leyenda" class="nav-link" data-scroll-target="#agregar-la-leyenda">Agregar la leyenda</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="5.1-mapas_bivariados.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Mapas bivariados</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Gabriel Massaine Moulatlet &amp; Fabricio Villalobos </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Instituto de Ecología, A.C.
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="paquetes" class="level2">
+<h2 class="anchored" data-anchor-id="paquetes">Paquetes</h2>
+<p>Vamos a utilizar los siguientes paquetes:</p>
+<ul>
+<li><code>biscale</code></li>
+<li><code>ggplot2</code></li>
+</ul>
+</section>
+<section id="biscale" class="level2">
+<h2 class="anchored" data-anchor-id="biscale">Biscale</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img src="imgs/biscale.png" class="img-fluid"></p>
+</div><div class="column" style="width:80%;">
+<ul>
+<li>Paquete para producir mapas bivariados (i.e.&nbsp;dos variables en el mismo layout)
+<ul>
+<li>Sirve para producir leyendas bivariadas</li>
+<li>Herramientas para classificación de datos en categorías usando diferentes técnicas</li>
+<li><a href="https://chris-prener.github.io/biscale/index.html">Documentación</a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="según-wikipedia" class="level2">
+<h2 class="anchored" data-anchor-id="según-wikipedia">Según Wikipedia…</h2>
+<ul>
+<li>Mapas bivariados también son conocidos como <em>Mapa coropleto</em> o <em>Mapa de coropletas</em></li>
+</ul>
+<blockquote class="blockquote">
+<p>Mapa temático en el que las áreas se sombrean de distintos colores, frecuentemente de la misma gama cromática, que representan distintos valores de una variable estadística característica.</p>
+</blockquote>
+</section>
+<section id="dos-o-más-variables" class="level2">
+<h2 class="anchored" data-anchor-id="dos-o-más-variables">Dos o más variables…</h2>
+<ul>
+<li>Los mapas bivariados son útiles para graficar dos variables</li>
+<li>Ajuste de colores, transparencias y formas</li>
+</ul>
+<p><img src="https://www.joshuastevens.net/images/js_finalBivariateMap.png" class="img-fluid"></p>
+</section>
+<section id="son-bastante-comunes-para-reportar-resultados-de-elecciones" class="level2">
+<h2 class="anchored" data-anchor-id="son-bastante-comunes-para-reportar-resultados-de-elecciones">Son bastante comunes para reportar resultados de elecciones</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/para.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="también-para-reportar-indicadores-socio-económicos" class="level2">
+<h2 class="anchored" data-anchor-id="también-para-reportar-indicadores-socio-económicos">También para reportar indicadores socio-económicos</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/dengue.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="hay-otros-ejemplos-colores-y-marcaciones" class="level2">
+<h2 class="anchored" data-anchor-id="hay-otros-ejemplos-colores-y-marcaciones">Hay otros ejemplos: colores y marcaciones</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/tabaco.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="hay-otros-ejemplos-colores-y-area" class="level2">
+<h2 class="anchored" data-anchor-id="hay-otros-ejemplos-colores-y-area">Hay otros ejemplos: colores y area <img src="imgs/happy.png" class="img-fluid quarto-figure quarto-figure-center"></h2>
+</section>
+<section id="leyendas-triangulares---tres-variables-sabatini-et-al.-2022" class="level2">
+<h2 class="anchored" data-anchor-id="leyendas-triangulares---tres-variables-sabatini-et-al.-2022">Leyendas triangulares - Tres variables <a href="https://onlinelibrary.wiley.com/doi/full/10.1111/ddi.13158">Sabatini et al.&nbsp;2022</a> <img src="imgs/sabatini.jpg" class="img-fluid quarto-figure quarto-figure-center"></h2>
+</section>
+<section id="formatos-complejos" class="level2">
+<h2 class="anchored" data-anchor-id="formatos-complejos">Formatos complejos</h2>
+<p><a href="https://onlinelibrary.wiley.com/doi/full/10.1111/ddi.13158">Sabatini et al.&nbsp;2022</a> <img src="imgs/forest.jpg" class="img-fluid quarto-figure quarto-figure-center"> ## Mapas RGB</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/dengue3.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="leyendas-rectangulares-con-varias-categorias" class="level2">
+<h2 class="anchored" data-anchor-id="leyendas-rectangulares-con-varias-categorias">Leyendas rectangulares con varias categorias</h2>
+<p><a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/geb.12561">Peixoto et al.&nbsp;2017</a> <img src="imgs/peixoto.png" class="img-fluid quarto-figure quarto-figure-center"></p>
+</section>
+<section id="pero-lo-más-importante-es-que-la-información-esté-clara" class="level2">
+<h2 class="anchored" data-anchor-id="pero-lo-más-importante-es-que-la-información-esté-clara">Pero lo más importante es que la información esté clara</h2>
+<ul>
+<li>¿Cuál de los dos mapas transmite mejor la información?<br>
+<img src="imgs/dengue2.png" class="img-fluid quarto-figure quarto-figure-center"></li>
+</ul>
+</section>
+<section id="producir-mapas-bivariados" class="level1">
+<h1>Producir mapas bivariados</h1>
+<section id="teoría" class="level2">
+<h2 class="anchored" data-anchor-id="teoría">Teoría:</h2>
+<ul>
+<li><p>La idea central es buscar una manera de como combinar estas dos variables</p></li>
+<li><p>Escalas diferentes, número diferente de categorías etc…</p></li>
+<li><p>Los mapas bivariados conllevan dos pasos:</p>
+<ol type="1">
+<li>Categorización de las variables según alguna estadística</li>
+<li>Preparación de una leyenda y su “paleta” de colores</li>
+</ol></li>
+</ul>
+</section>
+</section>
+<section id="categorización-de-variables" class="level1">
+<h1>1. Categorización de variables</h1>
+<section id="pasos" class="level2">
+<h2 class="anchored" data-anchor-id="pasos">Pasos:</h2>
+<ul>
+<li>Normalizar los datos en conteos o proporciones</li>
+<li>las funciones <code>cut()</code> y <code>summary()</code> de R base pueden ser útiles (revisar también <code>santoku</code>)</li>
+<li>Con los datos <em>iris</em></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(iris<span class="sc">$</span>Sepal.Length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  4.300   5.100   5.800   5.843   6.400   7.900 </code></pre>
+</div>
+</div>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'janitor'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Categorizar de acuerdo a los quantiles</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ci <span class="ot">=</span> <span class="fu">cut</span>(iris<span class="sc">$</span>Sepal.Length,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">breaks =</span> <span class="fu">c</span>(<span class="fl">4.3</span>,<span class="fl">5.1</span>,<span class="fl">5.8</span>,<span class="fl">6.4</span>, <span class="fu">max</span>(iris<span class="sc">$</span>Sepal.Length)))</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Explorar los resultados</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">tabyl</span>(ci)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        ci  n     percent valid_percent
+ (4.3,5.1] 40 0.266666667     0.2684564
+ (5.1,5.8] 39 0.260000000     0.2617450
+ (5.8,6.4] 35 0.233333333     0.2348993
+ (6.4,7.9] 35 0.233333333     0.2348993
+      &lt;NA&gt;  1 0.006666667            NA</code></pre>
+</div>
+</div>
+</section>
+<section id="la-función-classintervals" class="level2">
+<h2 class="anchored" data-anchor-id="la-función-classintervals">la función <code>classIntervals()</code></h2>
+<ul>
+<li>Permite categorizar los datos usando varios tipos de categorización</li>
+<li><em>quantile</em>, <em>jenkins</em>, <em>equal</em> para mencionar algunas</li>
+<li>hay que definir el numero de clases (parámetro <em>n</em>)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classInt)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>classInt<span class="sc">::</span><span class="fu">classIntervals</span>(iris<span class="sc">$</span>Sepal.Length,<span class="at">style=</span><span class="st">"quantile"</span>,<span class="at">n=</span><span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>style: quantile
+  one of 5,984 possible partitions of this variable into 4 classes
+[4.3,5.1) [5.1,5.8) [5.8,6.4) [6.4,7.9] 
+       32        41        35        42 </code></pre>
+</div>
+</div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Luego de categorizar el vector de interés, se puede cortar con la función <code>cut()</code></li>
+<li>También se puede generar un vector con las categorías y juntarlo a los datos originales usando la función <code>findCols()</code></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>breaks <span class="ot">=</span> classInt<span class="sc">::</span><span class="fu">classIntervals</span>(iris<span class="sc">$</span>Sepal.Length,<span class="at">style=</span><span class="st">"quantile"</span>,<span class="at">n=</span><span class="dv">4</span>)<span class="sc">$</span>brks</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>cc <span class="ot">=</span> <span class="fu">cut</span>(iris<span class="sc">$</span>Sepal.Length, <span class="at">breaks =</span> breaks)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tabyl</span>(cc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        cc  n     percent valid_percent
+ (4.3,5.1] 40 0.266666667     0.2684564
+ (5.1,5.8] 39 0.260000000     0.2617450
+ (5.8,6.4] 35 0.233333333     0.2348993
+ (6.4,7.9] 35 0.233333333     0.2348993
+      &lt;NA&gt;  1 0.006666667            NA</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="la-función-findcols" class="level2">
+<h2 class="anchored" data-anchor-id="la-función-findcols">la función <code>findCols()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar un vector que se pueda juntar a la tabla de datos originales</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>fc <span class="ot">=</span> <span class="fu">findCols</span>(classInt<span class="sc">::</span><span class="fu">classIntervals</span>(iris<span class="sc">$</span>Sepal.Length,<span class="at">style=</span><span class="st">"quantile"</span>,<span class="at">n=</span><span class="dv">4</span>))</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(fc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 1 1 1 1 2</code></pre>
+</div>
+</div>
+</section>
+<section id="usando-el-paquete-biscale" class="level2">
+<h2 class="anchored" data-anchor-id="usando-el-paquete-biscale">usando el paquete <code>biscale</code></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Se utliza la función <code>bi_class()</code> para generar las catetorias</li>
+<li>Permite hacer la categorización de las dos variables elejidas de una vez, a diferencia de <code>classIntervals()</code></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(biscale)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">bi_class</span>(iris, <span class="at">x =</span> Sepal.Length, <span class="at">y =</span> Petal.Length, <span class="at">style =</span> <span class="st">"quantile"</span>, <span class="at">dim =</span> <span class="dv">3</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data<span class="sc">$</span>bi_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1-1" "1-1" "1-1" "1-1" "1-1" "1-1"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="preparación-de-leyenda-bivariada" class="level1">
+<h1>2. Preparación de leyenda bivariada</h1>
+<section id="preparación-de-una-leyenda" class="level2">
+<h2 class="anchored" data-anchor-id="preparación-de-una-leyenda">Preparación de una leyenda</h2>
+<p><img src="imgs/biva.png" class="img-fluid"></p>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<p><img src="imgs/mix.gif" class="img-fluid"></p>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+<p><img src="imgs/biva2.png" class="img-fluid"></p>
+</section>
+<section id="la-función-bi_legend" class="level2">
+<h2 class="anchored" data-anchor-id="la-función-bi_legend">La función <code>bi_legend()</code></h2>
+<ul>
+<li>Para ver las paletas disponibles <a href="https://chris-prener.github.io/biscale/articles/bivariate_palettes.html">aquí</a></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bi_legend</span>(<span class="at">pal =</span> <span class="st">"GrPink"</span>,</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dim =</span> <span class="dv">3</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">"Sepal.Length"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ylab =</span> <span class="st">"Petal.Lenght"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">size =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5.1-mapas_bivariados_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="el-mapa-bivariado" class="level2">
+<h2 class="anchored" data-anchor-id="el-mapa-bivariado">El mapa bivariado</h2>
+<ol type="1">
+<li>Vamos a ver el ejemplo del <a href="https://chris-prener.github.io/biscale/articles/biscale.html">vignette</a></li>
+</ol>
+<ul>
+<li>Son datos sobre el porcentaje de “brancos” y la ganancia en los EUA.</li>
+<li>Vamos usar las columnas <code>pctWhite</code> y <code>medInc</code> para hacer el mapa.</li>
+<li>Vamos usar 3 dimensiones y categorizar los datos usando <code>quantiles</code></li>
+</ul>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4"></h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://chris-prener.github.io/biscale/reference/figures/biscale.002.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="manos-a-la-obra" class="level2">
+<h2 class="anchored" data-anchor-id="manos-a-la-obra">Manos a la obra!</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>Determinamos el geom como <code>geom_sf</code> y <code>fill=bi_class</code></li>
+<li><code>bi_class</code> debe ser la categorización que hemos visto anteriormente con <code>bi_class()</code></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-overflow-wrap code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">bi_class</span>(stl_race_income, <span class="at">x =</span> pctWhite, <span class="at">y =</span> medInc, <span class="at">style =</span> <span class="st">"quantile"</span>, <span class="at">dim =</span> <span class="dv">3</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>map <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> bi_class), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bi_scale_fill</span>(<span class="at">pal =</span> <span class="st">"GrPink"</span>, <span class="at">dim =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<ul>
+<li><code>bi_scale_fill</code>, tiene el argumento <code>pal</code> para la paleta de colores y <code>dim</code> para el numero de categorías utilizadas</li>
+</ul>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5"></h2>
+<ul>
+<li>Después de preparar el mapa, hay que preparar la leyenda</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>legend <span class="ot">&lt;-</span> <span class="fu">bi_legend</span>(<span class="at">pal =</span> <span class="st">"GrPink"</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dim =</span> <span class="dv">3</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">xlab =</span> <span class="st">"Higher % White "</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">ylab =</span> <span class="st">"Higher Income "</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">size =</span> <span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Finalmente, ponerlos lado a lado usando <code>patchwork</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>map <span class="sc">+</span> legend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-6" class="level2">
+<h2 class="anchored" data-anchor-id="section-6"></h2>
+<p>Se juede jugar con el layout final usando la función <code>inset</code></p>
+<p>p1 + inset_element(p2, 0.6, 0.6, 1, 1) # left, top, right, bottom</p>
+<p><img src="https://patchwork.data-imaginist.com/reference/inset_element-1.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="como-hacer-mapas-bivariados-sin-usar-el-paquete-biscale" class="level1">
+<h1>Como hacer mapas bivariados sin usar el paquete <code>biscale</code></h1>
+<section id="section-7" class="level2">
+<h2 class="anchored" data-anchor-id="section-7"></h2>
+<ul>
+<li>El tutorial de <a href="http://lenkiefer.com/2017/04/24/bivariate-map/">Len Kiefer</a></li>
+<li>Usar el paquete <code>classInt</code> para categorizar los datos</li>
+<li>Usar el esquema de colores de la leyenda para preparar el mapa</li>
+</ul>
+<p><img src="http://lenkiefer.com/post/2017-04-24-bivariate-map_files/figure-html/04-24-2017-setup-2-1.png" class="img-fluid"></p>
+</section>
+<section id="section-8" class="level2">
+<h2 class="anchored" data-anchor-id="section-8"></h2>
+<ul>
+<li>Qué chulada! <img src="imgs/map.png" class="img-fluid"></li>
+</ul>
+</section>
+<section id="section-9" class="level2">
+<h2 class="anchored" data-anchor-id="section-9"></h2>
+<ul>
+<li>La leyenda se hace con la función <code>expand_grid()</code> de <code>tidyr</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>d<span class="ot">=</span><span class="fu">expand.grid</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">y=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-10" class="level2">
+<h2 class="anchored" data-anchor-id="section-10"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(x,y))<span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">alpha=</span>x<span class="sc">+</span>y,<span class="at">fill=</span><span class="fu">atan</span>(y<span class="sc">/</span>x)))<span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>()<span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>,</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5.1-mapas_bivariados_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="section-11" class="level2">
+<h2 class="anchored" data-anchor-id="section-11"></h2>
+<ul>
+<li>Lo importante aqui es usar el geom <code>geom_tile</code></li>
+<li>Permite usar varios <a href="https://ggplot2.tidyverse.org/reference/geom_tile.html">colores</a></li>
+<li>Vamos jugar con los valores de <code>alpha</code> (transparencia) y <code>fill</code></li>
+</ul>
+</section>
+<section id="section-12" class="level2">
+<h2 class="anchored" data-anchor-id="section-12"></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(x,y))<span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">atan</span>(y<span class="sc">/</span>x)))<span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>()<span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5.1-mapas_bivariados_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d, <span class="fu">aes</span>(x,y))<span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">atan</span>(y<span class="sc">/</span>x),<span class="at">alpha=</span>x<span class="sc">+</span>y))<span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>()<span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5.1-mapas_bivariados_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="categorizar-los-datos" class="level2">
+<h2 class="anchored" data-anchor-id="categorizar-los-datos">Categorizar los datos</h2>
+<ul>
+<li>vamos usar las funciones <code>classInt()</code> y <code>findCols()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a> x<span class="ot">=</span>classInt<span class="sc">::</span><span class="fu">classIntervals</span>(stl_race_income<span class="sc">$</span>pctWhite,</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>                            <span class="dv">4</span>,<span class="at">style =</span> <span class="st">"quantile"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a> y<span class="ot">=</span>classInt<span class="sc">::</span><span class="fu">classIntervals</span>(stl_race_income<span class="sc">$</span>medInc,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                            <span class="dv">4</span>,<span class="at">style =</span> <span class="st">"quantile"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-13" class="level2">
+<h2 class="anchored" data-anchor-id="section-13"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>stl_race_income<span class="sc">$</span>x <span class="ot">=</span> classInt<span class="sc">::</span><span class="fu">findCols</span>(x)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>stl_race_income<span class="sc">$</span>y <span class="ot">=</span> classInt<span class="sc">::</span><span class="fu">findCols</span>(y)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stl_race_income)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        GEOID  pctWhite medInc
+1 29510102300 82.925682  51650
+2 29510102400 90.116046  45375
+3 29510104500 74.723618  54286
+4 29510106100  1.752464  18895
+5 29510105500  2.376729  36130
+6 29510105200 36.833277  60938
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          geometry
+1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      -90.29702, -90.29696, -90.29687, -90.29660, -90.29651, -90.29638, -90.29601, -90.29588, -90.29536, -90.29528, -90.29521, -90.29512, -90.29503, -90.29415, -90.29398, -90.29348, -90.29332, -90.29315, -90.29267, -90.29251, -90.29215, -90.29144, -90.29106, -90.29074, -90.29071, -90.29040, -90.29011, -90.28971, -90.28947, -90.28916, -90.28900, -90.28853, -90.28843, -90.28837, -90.28817, -90.28804, -90.28757, -90.28737, -90.28720, -90.28697, -90.28668, -90.28651, -90.28643, -90.28637, -90.28617, -90.28598, -90.28586, -90.28577, -90.28551, -90.28549, -90.28535, -90.28511, -90.28447, -90.28435, -90.28433, -90.28427, -90.28415, -90.28387, -90.28335, -90.28297, -90.28286, -90.28074, -90.28031, -90.27998, -90.27967, -90.27958, -90.27916, -90.27868, -90.27847, -90.27750, -90.27716, -90.27729, -90.27767, -90.27780, -90.27784, -90.27796, -90.27800, -90.27808, -90.27834, -90.27843, -90.27858, -90.27893, -90.27905, -90.27920, -90.27927, -90.27948, -90.27956, -90.27958, -90.27965, -90.27967, -90.27977, -90.28006, -90.28015, -90.28020, -90.28033, -90.28038, -90.28075, -90.28122, -90.28137, -90.28197, -90.28262, -90.28291, -90.28299, -90.28306, -90.28314, -90.28322, -90.28346, -90.28352, -90.28372, -90.28379, -90.28397, -90.28411, -90.28460, -90.28509, -90.28542, -90.28553, -90.28583, -90.28594, -90.28609, -90.28655, -90.28671, -90.28675, -90.28688, -90.28692, -90.28695, -90.28704, -90.28705, -90.28974, -90.28981, -90.29230, -90.29242, -90.29250, -90.29343, -90.29462, -90.29657, -90.29698, -90.29702, 38.56237, 38.56241, 38.56247, 38.56265, 38.56271, 38.56279, 38.56305, 38.56313, 38.56348, 38.56352, 38.56357, 38.56364, 38.56370, 38.56428, 38.56439, 38.56470, 38.56480, 38.56490, 38.56519, 38.56528, 38.56550, 38.56591, 38.56614, 38.56634, 38.56636, 38.56654, 38.56671, 38.56695, 38.56709, 38.56728, 38.56737, 38.56765, 38.56771, 38.56775, 38.56787, 38.56795, 38.56823, 38.56835, 38.56845, 38.56859, 38.56876, 38.56886, 38.56890, 38.56895, 38.56912, 38.56928, 38.56940, 38.56929, 38.56902, 38.56900, 38.56885, 38.56861, 38.56795, 38.56786, 38.56784, 38.56784, 38.56787, 38.56803, 38.56835, 38.56859, 38.56867, 38.56750, 38.56727, 38.56713, 38.56703, 38.56700, 38.56685, 38.56665, 38.56655, 38.56618, 38.56603, 38.56589, 38.56548, 38.56535, 38.56530, 38.56518, 38.56514, 38.56504, 38.56476, 38.56466, 38.56449, 38.56410, 38.56397, 38.56379, 38.56372, 38.56348, 38.56341, 38.56338, 38.56330, 38.56328, 38.56317, 38.56286, 38.56275, 38.56270, 38.56256, 38.56251, 38.56212, 38.56163, 38.56148, 38.56083, 38.56014, 38.55984, 38.55976, 38.55968, 38.55960, 38.55951, 38.55926, 38.55919, 38.55898, 38.55891, 38.55871, 38.55855, 38.55802, 38.55749, 38.55714, 38.55703, 38.55671, 38.55660, 38.55643, 38.55594, 38.55578, 38.55573, 38.55560, 38.55556, 38.55552, 38.55544, 38.55542, 38.55702, 38.55707, 38.55892, 38.55900, 38.55904, 38.55975, 38.56061, 38.56203, 38.56233, 38.56237
+2 -90.28452, -90.28448, -90.28445, -90.28422, -90.28401, -90.28349, -90.28346, -90.28343, -90.28310, -90.28297, -90.28285, -90.28278, -90.28258, -90.28252, -90.28245, -90.28238, -90.28223, -90.28221, -90.28215, -90.28200, -90.28175, -90.28151, -90.28109, -90.28104, -90.28096, -90.28072, -90.28056, -90.28024, -90.28017, -90.27985, -90.27983, -90.27973, -90.27957, -90.27943, -90.27935, -90.27933, -90.27922, -90.27916, -90.27898, -90.27890, -90.27882, -90.27862, -90.27817, -90.27804, -90.27785, -90.27779, -90.27763, -90.27757, -90.27741, -90.27719, -90.27716, -90.27711, -90.27704, -90.27683, -90.27648, -90.27635, -90.27614, -90.27592, -90.27581, -90.27574, -90.27552, -90.27544, -90.27525, -90.27495, -90.27466, -90.27446, -90.27426, -90.27393, -90.27365, -90.27345, -90.27325, -90.27323, -90.27296, -90.27257, -90.27235, -90.27224, -90.27193, -90.27183, -90.27126, -90.27095, -90.27074, -90.27064, -90.27054, -90.27041, -90.27030, -90.26999, -90.26981, -90.26978, -90.26969, -90.26966, -90.26939, -90.26918, -90.26858, -90.26832, -90.26845, -90.26847, -90.26855, -90.26858, -90.26863, -90.26879, -90.26884, -90.26890, -90.26897, -90.26905, -90.26910, -90.26969, -90.27125, -90.27144, -90.27147, -90.27185, -90.27202, -90.27211, -90.27237, -90.27246, -90.27266, -90.27280, -90.27324, -90.27344, -90.27360, -90.27405, -90.27408, -90.27424, -90.27428, -90.27440, -90.27445, -90.27464, -90.27498, -90.27523, -90.27542, -90.27550, -90.27573, -90.27581, -90.27589, -90.27597, -90.27612, -90.27620, -90.27638, -90.27693, -90.27712, -90.27729, -90.27781, -90.27798, -90.27812, -90.27816, -90.27850, -90.27871, -90.27889, -90.27927, -90.27965, -90.27970, -90.28046, -90.28052, -90.28068, -90.28105, -90.28193, -90.28211, -90.28247, -90.28249, -90.28269, -90.28278, -90.28344, -90.28377, -90.28407, -90.28415, -90.28438, -90.28440, -90.28440, -90.28451, -90.28453, -90.28452, 38.57405, 38.57416, 38.57424, 38.57465, 38.57505, 38.57601, 38.57607, 38.57612, 38.57672, 38.57697, 38.57719, 38.57732, 38.57771, 38.57785, 38.57797, 38.57809, 38.57832, 38.57836, 38.57843, 38.57862, 38.57884, 38.57902, 38.57924, 38.57926, 38.57929, 38.57940, 38.57947, 38.57961, 38.57965, 38.57983, 38.57985, 38.57993, 38.58005, 38.58017, 38.58024, 38.58026, 38.58038, 38.58045, 38.58067, 38.58079, 38.58094, 38.58092, 38.58088, 38.58086, 38.58084, 38.58084, 38.58082, 38.58081, 38.58079, 38.58076, 38.58075, 38.58074, 38.58071, 38.58056, 38.58027, 38.58017, 38.58001, 38.57984, 38.57974, 38.57974, 38.57973, 38.57973, 38.57972, 38.57972, 38.57972, 38.57971, 38.57971, 38.57971, 38.57971, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57969, 38.57966, 38.57961, 38.57955, 38.57949, 38.57931, 38.57921, 38.57923, 38.57930, 38.57933, 38.57919, 38.57908, 38.57878, 38.57865, 38.57825, 38.57818, 38.57795, 38.57787, 38.57772, 38.57726, 38.57711, 38.57695, 38.57671, 38.57647, 38.57631, 38.57662, 38.57744, 38.57755, 38.57756, 38.57776, 38.57787, 38.57784, 38.57777, 38.57775, 38.57769, 38.57765, 38.57756, 38.57752, 38.57749, 38.57739, 38.57738, 38.57733, 38.57732, 38.57728, 38.57726, 38.57719, 38.57706, 38.57693, 38.57684, 38.57680, 38.57668, 38.57664, 38.57660, 38.57656, 38.57647, 38.57642, 38.57631, 38.57598, 38.57587, 38.57577, 38.57545, 38.57535, 38.57526, 38.57524, 38.57504, 38.57491, 38.57479, 38.57456, 38.57434, 38.57431, 38.57387, 38.57383, 38.57374, 38.57350, 38.57294, 38.57280, 38.57253, 38.57251, 38.57233, 38.57224, 38.57162, 38.57132, 38.57224, 38.57250, 38.57327, 38.57332, 38.57333, 38.57372, 38.57388, 38.57405
+3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          -90.29432, -90.29425, -90.29422, -90.29417, -90.29416, -90.29412, -90.29402, -90.29400, -90.29394, -90.29390, -90.29379, -90.29376, -90.29372, -90.29362, -90.29358, -90.29356, -90.29352, -90.29350, -90.29348, -90.29343, -90.29342, -90.29339, -90.29333, -90.29331, -90.29327, -90.29320, -90.29315, -90.29311, -90.29308, -90.29300, -90.29300, -90.29297, -90.29289, -90.29288, -90.29265, -90.29240, -90.29217, -90.29183, -90.29148, -90.29125, -90.29035, -90.28992, -90.28973, -90.28822, -90.28765, -90.28707, -90.28675, -90.28614, -90.28559, -90.28518, -90.28498, -90.28278, -90.28264, -90.28146, -90.28069, -90.27850, -90.27683, -90.27537, -90.27453, -90.27391, -90.27289, -90.27268, -90.27242, -90.27115, -90.26995, -90.26962, -90.26949, -90.26798, -90.26746, -90.26635, -90.26598, -90.26577, -90.26519, -90.26487, -90.26450, -90.26451, -90.26454, -90.26455, -90.26457, -90.26465, -90.26468, -90.26469, -90.26473, -90.26474, -90.26476, -90.26483, -90.26486, -90.26487, -90.26489, -90.26490, -90.26491, -90.26496, -90.26498, -90.26501, -90.26510, -90.26512, -90.26514, -90.26534, -90.26548, -90.26570, -90.26680, -90.26749, -90.26796, -90.26850, -90.26872, -90.26918, -90.27013, -90.27193, -90.27243, -90.27282, -90.27367, -90.27401, -90.27573, -90.27662, -90.27766, -90.27929, -90.28018, -90.28176, -90.28229, -90.28636, -90.28651, -90.28809, -90.28850, -90.28971, -90.29012, -90.29098, -90.29118, -90.29202, -90.29336, -90.29354, -90.29403, -90.29435, -90.29432, 38.62098, 38.62118, 38.62124, 38.62154, 38.62159, 38.62179, 38.62233, 38.62241, 38.62270, 38.62289, 38.62344, 38.62363, 38.62380, 38.62434, 38.62452, 38.62460, 38.62484, 38.62492, 38.62501, 38.62530, 38.62540, 38.62553, 38.62593, 38.62607, 38.62629, 38.62669, 38.62698, 38.62720, 38.62737, 38.62785, 38.62788, 38.62805, 38.62852, 38.62858, 38.62999, 38.63146, 38.63143, 38.63140, 38.63136, 38.63134, 38.63125, 38.63121, 38.63119, 38.63105, 38.63099, 38.63093, 38.63089, 38.63082, 38.63078, 38.63075, 38.63073, 38.63056, 38.63055, 38.63041, 38.63031, 38.63010, 38.62994, 38.62980, 38.62972, 38.62966, 38.62956, 38.62954, 38.62952, 38.62940, 38.62927, 38.62924, 38.62923, 38.62909, 38.62904, 38.62893, 38.62889, 38.62887, 38.62882, 38.62879, 38.62875, 38.62869, 38.62851, 38.62845, 38.62828, 38.62780, 38.62763, 38.62756, 38.62735, 38.62728, 38.62713, 38.62670, 38.62655, 38.62651, 38.62636, 38.62632, 38.62622, 38.62595, 38.62586, 38.62567, 38.62512, 38.62501, 38.62493, 38.62395, 38.62322, 38.62328, 38.62357, 38.62373, 38.62383, 38.62392, 38.62396, 38.62403, 38.62410, 38.62407, 38.62404, 38.62401, 38.62391, 38.62387, 38.62367, 38.62357, 38.62345, 38.62326, 38.62315, 38.62296, 38.62290, 38.62242, 38.62240, 38.62222, 38.62217, 38.62201, 38.62196, 38.62185, 38.62183, 38.62167, 38.62131, 38.62124, 38.62106, 38.62091, 38.62098
+4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         -90.29005, -90.28941, -90.28915, -90.28881, -90.28821, -90.28763, -90.28734, -90.28684, -90.28603, -90.28596, -90.28590, -90.28582, -90.28575, -90.28572, -90.28560, -90.28553, -90.28522, -90.28404, -90.28302, -90.28256, -90.28232, -90.28189, -90.28133, -90.28113, -90.28099, -90.28055, -90.28036, -90.28016, -90.27958, -90.27938, -90.27917, -90.27855, -90.27834, -90.27819, -90.27776, -90.27762, -90.27727, -90.27702, -90.27623, -90.27588, -90.27563, -90.27444, -90.27414, -90.27413, -90.27312, -90.27296, -90.27251, -90.27236, -90.27256, -90.27284, -90.27314, -90.27333, -90.27351, -90.27380, -90.27408, -90.27427, -90.27445, -90.27502, -90.27521, -90.27540, -90.27615, -90.27686, -90.27878, -90.27884, -90.27965, -90.28021, -90.28053, -90.28070, -90.28122, -90.28140, -90.28157, -90.28191, -90.28209, -90.28227, -90.28244, -90.28297, -90.28314, -90.28356, -90.28433, -90.28468, -90.28574, -90.28609, -90.28716, -90.28809, -90.28846, -90.28860, -90.28900, -90.28913, -90.28932, -90.28963, -90.28967, -90.28977, -90.28981, -90.28984, -90.28988, -90.28991, -90.28995, -90.29005, 38.67058, 38.67139, 38.67172, 38.67214, 38.67290, 38.67363, 38.67400, 38.67463, 38.67565, 38.67560, 38.67557, 38.67553, 38.67549, 38.67547, 38.67540, 38.67537, 38.67520, 38.67455, 38.67403, 38.67378, 38.67365, 38.67343, 38.67313, 38.67302, 38.67294, 38.67270, 38.67260, 38.67249, 38.67218, 38.67207, 38.67196, 38.67162, 38.67151, 38.67143, 38.67120, 38.67113, 38.67094, 38.67080, 38.67038, 38.67019, 38.67005, 38.66941, 38.66925, 38.66923, 38.66869, 38.66861, 38.66837, 38.66829, 38.66803, 38.66768, 38.66726, 38.66699, 38.66673, 38.66632, 38.66595, 38.66569, 38.66543, 38.66467, 38.66441, 38.66414, 38.66309, 38.66347, 38.66450, 38.66454, 38.66498, 38.66529, 38.66546, 38.66555, 38.66583, 38.66592, 38.66602, 38.66620, 38.66630, 38.66640, 38.66649, 38.66677, 38.66687, 38.66709, 38.66750, 38.66769, 38.66826, 38.66846, 38.66903, 38.66953, 38.66972, 38.66979, 38.67001, 38.67008, 38.67018, 38.67035, 38.67037, 38.67043, 38.67045, 38.67047, 38.67049, 38.67051, 38.67053, 38.67058
+5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            -90.28601, -90.28595, -90.28593, -90.28593, -90.28592, -90.28587, -90.28586, -90.28572, -90.28569, -90.28564, -90.28559, -90.28556, -90.28552, -90.28547, -90.28542, -90.28539, -90.28530, -90.28525, -90.28520, -90.28512, -90.28499, -90.28419, -90.28371, -90.28335, -90.28314, -90.28297, -90.28244, -90.28227, -90.28209, -90.28191, -90.28157, -90.28140, -90.28122, -90.28070, -90.28053, -90.28021, -90.27965, -90.27884, -90.27878, -90.27686, -90.27615, -90.27526, -90.27437, -90.27362, -90.27249, -90.27246, -90.27199, -90.27047, -90.26926, -90.26898, -90.26722, -90.26640, -90.26626, -90.26599, -90.26586, -90.26572, -90.26575, -90.26579, -90.26584, -90.26587, -90.26590, -90.26592, -90.26594, -90.26599, -90.26603, -90.26606, -90.26611, -90.26616, -90.26619, -90.26622, -90.26626, -90.26631, -90.26634, -90.26705, -90.26918, -90.26989, -90.26996, -90.27017, -90.27024, -90.27072, -90.27088, -90.27122, -90.27215, -90.27263, -90.27265, -90.27271, -90.27274, -90.27275, -90.27278, -90.27280, -90.27284, -90.27287, -90.27295, -90.27299, -90.27301, -90.27307, -90.27308, -90.27309, -90.27358, -90.27382, -90.27481, -90.27517, -90.27593, -90.27601, -90.27674, -90.27733, -90.27888, -90.27872, -90.27868, -90.27860, -90.27853, -90.27849, -90.27838, -90.27834, -90.28143, -90.28345, -90.28360, -90.28369, -90.28383, -90.28425, -90.28547, -90.28602, -90.28601, 38.65899, 38.65938, 38.65951, 38.65955, 38.65961, 38.65992, 38.66002, 38.66089, 38.66109, 38.66140, 38.66170, 38.66190, 38.66210, 38.66240, 38.66273, 38.66294, 38.66348, 38.66380, 38.66401, 38.66416, 38.66433, 38.66544, 38.66609, 38.66658, 38.66687, 38.66677, 38.66649, 38.66640, 38.66630, 38.66620, 38.66602, 38.66592, 38.66583, 38.66555, 38.66546, 38.66529, 38.66498, 38.66454, 38.66450, 38.66347, 38.66309, 38.66262, 38.66214, 38.66174, 38.66111, 38.66109, 38.66090, 38.66073, 38.66062, 38.66059, 38.66041, 38.66031, 38.66030, 38.66027, 38.66025, 38.66024, 38.66004, 38.65972, 38.65944, 38.65924, 38.65905, 38.65888, 38.65877, 38.65848, 38.65829, 38.65811, 38.65784, 38.65757, 38.65739, 38.65721, 38.65694, 38.65667, 38.65649, 38.65656, 38.65678, 38.65685, 38.65686, 38.65688, 38.65689, 38.65694, 38.65696, 38.65700, 38.65708, 38.65713, 38.65699, 38.65659, 38.65646, 38.65639, 38.65618, 38.65611, 38.65586, 38.65563, 38.65512, 38.65487, 38.65474, 38.65436, 38.65430, 38.65423, 38.65429, 38.65431, 38.65440, 38.65443, 38.65449, 38.65450, 38.65457, 38.65463, 38.65477, 38.65577, 38.65595, 38.65646, 38.65695, 38.65718, 38.65787, 38.65811, 38.65842, 38.65861, 38.65862, 38.65863, 38.65865, 38.65869, 38.65881, 38.65886, 38.65899
+6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               -90.29462, -90.29460, -90.29458, -90.29456, -90.29456, -90.29451, -90.29449, -90.29446, -90.29442, -90.29436, -90.29433, -90.29430, -90.29426, -90.29421, -90.29418, -90.29415, -90.29410, -90.29406, -90.29403, -90.29400, -90.29396, -90.29391, -90.29389, -90.29385, -90.29384, -90.29386, -90.29389, -90.29402, -90.29411, -90.29425, -90.29434, -90.29459, -90.29414, -90.29392, -90.29371, -90.29360, -90.29353, -90.29310, -90.29289, -90.29243, -90.29231, -90.29147, -90.29105, -90.29059, -90.29022, -90.28911, -90.28874, -90.28834, -90.28742, -90.28714, -90.28674, -90.28638, -90.28625, -90.28532, -90.28503, -90.28479, -90.28446, -90.28431, -90.28400, -90.28314, -90.28308, -90.28277, -90.28263, -90.28222, -90.28216, -90.28208, -90.28210, -90.28215, -90.28217, -90.28231, -90.28240, -90.28247, -90.28248, -90.28252, -90.28253, -90.28254, -90.28259, -90.28267, -90.28273, -90.28277, -90.28281, -90.28286, -90.28292, -90.28296, -90.28340, -90.28350, -90.28452, -90.28516, -90.28528, -90.28531, -90.28533, -90.28543, -90.28544, -90.28547, -90.28546, -90.28542, -90.28533, -90.28597, -90.29487, -90.29462, 38.64858, 38.64872, 38.64883, 38.64893, 38.64894, 38.64925, 38.64936, 38.64955, 38.64980, 38.65012, 38.65031, 38.65049, 38.65078, 38.65104, 38.65123, 38.65141, 38.65168, 38.65197, 38.65215, 38.65233, 38.65260, 38.65288, 38.65306, 38.65326, 38.65336, 38.65349, 38.65358, 38.65382, 38.65400, 38.65425, 38.65443, 38.65493, 38.65489, 38.65486, 38.65484, 38.65479, 38.65477, 38.65472, 38.65470, 38.65465, 38.65464, 38.65457, 38.65453, 38.65449, 38.65445, 38.65434, 38.65430, 38.65426, 38.65417, 38.65414, 38.65409, 38.65405, 38.65404, 38.65396, 38.65393, 38.65391, 38.65388, 38.65386, 38.65384, 38.65376, 38.65375, 38.65373, 38.65372, 38.65368, 38.65367, 38.65366, 38.65355, 38.65321, 38.65310, 38.65230, 38.65178, 38.65142, 38.65134, 38.65112, 38.65110, 38.65102, 38.65074, 38.65031, 38.64990, 38.64963, 38.64938, 38.64902, 38.64866, 38.64842, 38.64847, 38.64848, 38.64859, 38.64864, 38.64788, 38.64768, 38.64759, 38.64684, 38.64673, 38.64651, 38.64637, 38.64623, 38.64606, 38.64612, 38.64699, 38.64858
+  x y
+1 4 4
+2 4 3
+3 4 4
+4 1 1
+5 1 3
+6 2 4</code></pre>
+</div>
+</div>
+</section>
+<section id="crar-un-objeto-para-el-alpha-y-otro-para-el-fill" class="level2">
+<h2 class="anchored" data-anchor-id="crar-un-objeto-para-el-alpha-y-otro-para-el-fill">Crar un objeto para el <code>alpha</code> y otro para el <code>fill</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>stl_race_income<span class="sc">$</span>alpha <span class="ot">=</span> <span class="fu">as.character</span>(stl_race_income<span class="sc">$</span>x <span class="sc">+</span> stl_race_income<span class="sc">$</span>y)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>stl_race_income<span class="sc">$</span>color <span class="ot">=</span> <span class="fu">as.character</span>(<span class="fu">atan</span>(stl_race_income<span class="sc">$</span>y<span class="sc">/</span>stl_race_income<span class="sc">$</span>x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="graficar-el-mapa" class="level2">
+<h2 class="anchored" data-anchor-id="graficar-el-mapa">Graficar el mapa</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span> <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_sf(data=wrld)+</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> stl_race_income,<span class="fu">aes</span>(<span class="at">fill=</span>color,<span class="at">alpha=</span>alpha),<span class="at">shape=</span><span class="dv">15</span>, <span class="at">size=</span><span class="dv">11</span>,<span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_d</span>()<span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using alpha for a discrete variable is not advised.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5.1-mapas_bivariados_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="graficar-la-leyenda" class="level2">
+<h2 class="anchored" data-anchor-id="graficar-la-leyenda">Graficar la leyenda</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>leg <span class="ot">=</span> <span class="fu">ggplot</span>(d, <span class="fu">aes</span>(x,y))<span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">atan</span>(y<span class="sc">/</span>x),<span class="at">alpha=</span>x<span class="sc">+</span>y))<span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>()<span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>()</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>leg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5.1-mapas_bivariados_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="juntar-los-dos" class="level2">
+<h2 class="anchored" data-anchor-id="juntar-los-dos">Juntar los dos</h2>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using alpha for a discrete variable is not advised.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5.1-mapas_bivariados_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="se-parecen" class="level2">
+<h2 class="anchored" data-anchor-id="se-parecen">Se parecen?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using alpha for a discrete variable is not advised.</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="5.1-mapas_bivariados_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img src="https://chris-prener.github.io/biscale/reference/figures/biscale.002.jpeg" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="vamos-hacer-el-mapa-bivariado-de-la-diversidad-filogenetica-de-angiospermas-en-la-peninsula-de-yucatán" class="level2">
+<h2 class="anchored" data-anchor-id="vamos-hacer-el-mapa-bivariado-de-la-diversidad-filogenetica-de-angiospermas-en-la-peninsula-de-yucatán">Vamos hacer el mapa bivariado de la diversidad filogenetica de angiospermas en la Peninsula de Yucatán</h2>
+<ol type="1">
+<li>Usando el paquete <code>biscale</code></li>
+<li>Manualmente</li>
+</ol>
+</section>
+<section id="section-14" class="level2">
+<h2 class="anchored" data-anchor-id="section-14"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Los paquetes que vamos a utilizar</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rnaturalearth)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyterra)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(classInt)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(biscale)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cargar-el-mapa-base" class="level2">
+<h2 class="anchored" data-anchor-id="cargar-el-mapa-base">Cargar el mapa base</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>wrld <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">"small"</span>,<span class="at">returnclass =</span> <span class="st">"sf"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cargar-los-datos-y-ajustar-el-crs" class="level2">
+<h2 class="anchored" data-anchor-id="cargar-los-datos-y-ajustar-el-crs">Cargar los datos y ajustar el CRS</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>resu <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="at">file=</span><span class="st">"dados_bivariate_maps.csv"</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>geo <span class="ot">=</span> <span class="fu">st_as_sf</span>(resu,<span class="at">coords =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">st_crs</span>(geo)<span class="ot">=</span> <span class="fu">st_crs</span>(wrld)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="preparar-el-mapa-usando-el-paquete-biscale" class="level2">
+<h2 class="anchored" data-anchor-id="preparar-el-mapa-usando-el-paquete-biscale">1. Preparar el mapa usando el paquete <code>biscale</code></h2>
+<ul>
+<li>Calcular las categorias</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>cat <span class="ot">&lt;-</span> <span class="fu">bi_class</span>(geo, <span class="at">x =</span> TBD, <span class="at">y =</span> PBD, <span class="at">style =</span> <span class="st">"quantile"</span>, <span class="at">dim =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="preparar-la-leyenda" class="level2">
+<h2 class="anchored" data-anchor-id="preparar-la-leyenda">Preparar la leyenda</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>leg <span class="ot">=</span><span class="fu">bi_legend</span>(<span class="at">pal =</span> <span class="st">"DkBlue"</span>,</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">dim =</span> <span class="dv">3</span>,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">xlab =</span> <span class="st">"Taxonomic beta"</span>,</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">"Phylogenetic beta"</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">size =</span> <span class="dv">12</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="preparar-el-mapa" class="level2">
+<h2 class="anchored" data-anchor-id="preparar-el-mapa">Preparar el mapa</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span><span class="fu">ggplot</span>(<span class="at">data=</span>wrld)<span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>()<span class="sc">+</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> cat, <span class="fu">aes</span>(<span class="at">color =</span>  bi_class), <span class="at">size =</span> <span class="dv">10</span>, <span class="at">shape=</span><span class="dv">15</span>,<span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bi_scale_color</span>(<span class="at">pal =</span> <span class="st">"DkBlue"</span>, <span class="at">dim =</span> <span class="dv">3</span>)<span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">95</span>, <span class="sc">-</span><span class="dv">86</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">25</span>), <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>map</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="manualmente" class="level2">
+<h2 class="anchored" data-anchor-id="manualmente">2. Manualmente</h2>
+<ul>
+<li>Crear un <em>grid</em></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>d<span class="ot">&lt;-</span><span class="fu">expand.grid</span>(<span class="at">x=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="at">y=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="crear-la-leyenda" class="level2">
+<h2 class="anchored" data-anchor-id="crear-la-leyenda">Crear la leyenda</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>leg2 <span class="ot">=</span><span class="fu">ggplot</span>(d,<span class="fu">aes</span>(x,y))<span class="sc">+</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#crear el *tile* jugando con los parámetros de colores *fill* y *alpha*</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>( <span class="fu">aes</span>(<span class="at">fill=</span><span class="fu">atan</span>(y<span class="sc">/</span>x),<span class="at">alpha=</span>x<span class="sc">+</span>y))<span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>()<span class="sc">+</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Definir los temas</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">"none"</span>,</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.background=</span><span class="fu">element_blank</span>(),</span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.x =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>,<span class="at">hjust=</span><span class="fl">0.6</span>),</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.title.y =</span> <span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">15</span>),</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>,<span class="at">color=</span><span class="st">"white"</span>))<span class="sc">+</span></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Definir los titulos de los ejes</span></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">"PBD"</span>,</span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>       <span class="at">y=</span><span class="st">"TBD"</span>)<span class="sc">+</span></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Decir que los tiles deben se cuadrados</span></span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>()<span class="sc">+</span></span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb40-26"><a href="#cb40-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Poner flechitas</span></span>
+<span id="cb40-27"><a href="#cb40-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">1</span>, <span class="at">xend =</span> <span class="dv">3</span> , <span class="at">y=</span><span class="dv">0</span>, <span class="at">yend =</span> <span class="dv">0</span>), <span class="at">size=</span><span class="fl">1.5</span>,</span>
+<span id="cb40-28"><a href="#cb40-28" aria-hidden="true" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.6</span>,<span class="st">"cm"</span>))) <span class="sc">+</span></span>
+<span id="cb40-29"><a href="#cb40-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">xend =</span> <span class="dv">0</span> , <span class="at">y=</span><span class="dv">1</span>, <span class="at">yend =</span> <span class="dv">3</span>), <span class="at">size=</span><span class="fl">1.5</span>,</span>
+<span id="cb40-30"><a href="#cb40-30" aria-hidden="true" tabindex="-1"></a>               <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.6</span>,<span class="st">"cm"</span>))) </span>
+<span id="cb40-31"><a href="#cb40-31" aria-hidden="true" tabindex="-1"></a>leg2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="categorizar-los-datos-1" class="level2">
+<h2 class="anchored" data-anchor-id="categorizar-los-datos-1">Categorizar los datos</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>catTBD <span class="ot">=</span> classInt<span class="sc">::</span><span class="fu">classIntervals</span>(geo<span class="sc">$</span>TBD,<span class="dv">3</span>,<span class="at">style =</span> <span class="st">"quantile"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>catPBD <span class="ot">=</span> classInt<span class="sc">::</span><span class="fu">classIntervals</span>(geo<span class="sc">$</span>PBD,<span class="dv">3</span>,<span class="at">style =</span> <span class="st">"quantile"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Juntar las columnas</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>geo<span class="sc">$</span>catTBD <span class="ot">=</span> classInt<span class="sc">::</span><span class="fu">findCols</span>(catTBD)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>geo<span class="sc">$</span>catPBD<span class="ot">=</span> classInt<span class="sc">::</span><span class="fu">findCols</span>(catPBD)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="hacer-las-columnas-para-el-alpha-transparencia-y-color" class="level2">
+<h2 class="anchored" data-anchor-id="hacer-las-columnas-para-el-alpha-transparencia-y-color">Hacer las columnas para el <em>alpha</em> (transparencia) y <em>color</em></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>geo<span class="sc">$</span>alpha <span class="ot">=</span> <span class="fu">as.character</span>(geo<span class="sc">$</span>catTBD <span class="sc">+</span> geo<span class="sc">$</span>catPBD)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>geo<span class="sc">$</span>color  <span class="ot">=</span> <span class="fu">as.character</span>(<span class="fu">atan</span>(geo<span class="sc">$</span>catTBD<span class="sc">/</span>geo<span class="sc">$</span>catPBD))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="hacer-el-mapa" class="level2">
+<h2 class="anchored" data-anchor-id="hacer-el-mapa">Hacer el mapa</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>map2 <span class="ot">=</span> <span class="fu">ggplot</span>()<span class="sc">+</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data=</span>wrld)<span class="sc">+</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> geo,<span class="fu">aes</span>(<span class="at">color=</span>color,<span class="at">alpha=</span>alpha),<span class="at">shape=</span><span class="dv">15</span>, <span class="at">size=</span><span class="dv">10</span>,<span class="at">show.legend =</span> <span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>()<span class="sc">+</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>())<span class="sc">+</span></span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_sf</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">95</span>, <span class="sc">-</span><span class="dv">86</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">25</span>), <span class="at">expand =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>map2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="agregar-la-leyenda" class="level2">
+<h2 class="anchored" data-anchor-id="agregar-la-leyenda">Agregar la leyenda</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>map <span class="sc">+</span> leg</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>map2 <span class="sc">+</span> leg2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Página creada con <a href="https://quarto.org/">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Luis D. Verde Arregoitia - 2025</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

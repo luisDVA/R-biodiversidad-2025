@@ -1,0 +1,506 @@
+---
+title: "Exploración rápida de datos"
+author: "Gabriel Massaine Moulatlet & Fabricio Villalobos"
+institute: Instituto de Ecología, A.C.
+format:
+  revealjs:
+    theme: curso_styles.scss
+    transition: fade
+    progress: true
+    preview-links: true
+    hide-inactive-cursor: true
+    highlight-style: a11y
+    pause: true
+editor: source
+knitr:
+  opts_chunk:
+    dev: "ragg_png"
+    retina: 3
+    dpi: 200
+execute:
+  freeze: auto
+  cache: true
+  echo: true
+  fig-width: 5
+  fig-height: 6
+---
+
+
+# Exploración de datos
+
+## 
+
+-   Buscar información general sobre los datos
+-   Con *Big Data* es muy dificil, si no imposible, visualizar toda la información que se importa a R
+-   Identificar problemas de forma y contenido
+
+::: notes
+A idéia dessa aula é importar dados e olhar pra eles, os pacotes usados aqui são para ajudar a olhar conjuntos de dados grandes
+:::
+
+## Paquetes
+
+Vamos a utilizar los siguientes paquetes de R
+
+-   `skimR`
+-   `janitor`
+-   `report`
+
+------------------------------------------------------------------------
+
+> "Los científicos de datos dedican entre el 50 % y el 80 % de su tiempo a esta labor mundana de recopilar y preparar datos digitales rebeldes, antes de que puedan explorarse en busca de información útil" 
+
+![](imgs//meme_data.jpg){fig-align="center"}
+
+## Pasos para la exploración de datos
+
+-   El primer paso es importar los datos en R.
+-   Antes de analizar los datos, hay que prepararlos y limpiarlos
+-   Luego, explorar los datos de manera rápida y eficiente para saber sí:
+    1)  Fueron importados correctamente
+    2)  Resumir características de los datos
+
+## En R
+
+-   R identifica de manera automática las diferencias entre los tipos de datos
+-   Números, caracteres, factores, vacíos...
+-   Importante visualizar rápidamente la existencia de posibles problemas/errores
+
+# Funciones de visualización de datos
+
+## skimR
+
+::: columns
+::: {.column width="20%"}
+![](imgs/skimr.png)
+:::
+
+::: {.column width="80%"}
+-   Es un paquete con una única función `skim()`
+-   La función `skim()` es útil para resumir conjuntos de datos, especialmente grandes conjuntos sin necesidad de exploralos con detalle (e.g., toda la tabla, línea por línea)
+-   Es un combo de algunas funciones del R base, como `str()`, `class()`, `summary()`
+-   Documentación [aquí](https://cran.r-project.org/web/packages/skimr/vignettes/skimr.html) y [aquí](https://docs.ropensci.org/skimr/articles/extending_skimr.html)
+:::
+
+::: notes
+A funcão skimr mostra os dados de forma geral, super útil para identificar problemas sem precisar ficar olhando as tabelas e buscando erros linha por linha
+:::
+:::
+
+## 
+
+Vamos a aplicar la función `summary()` sobre nuestro conjunto de datos *pambol*
+
+```{r}
+#| eval: true
+#| echo: true
+
+pambol <- data.frame(nacionalidad = c("ARG","NOR","FRA","ARG","ARG","ARG","ARG"),
+                 jugadores = c('Messi', 'Haaland', 'Benzema', 'Alvarez', 'Lautaro',
+                               'DiMaria','Maradona'),
+                 goles = c(12, 30, 30, 12, 12, 30, NA),
+                 partidos = c(15, 20, 20, 20, 18, 20, NA))
+```
+
+. . .
+
+```{r}
+summary(pambol)
+```
+
+## Ahora vamos aplicar la función `skim()` sobre un conjunto de datos *pambol*
+
+-   Ayuden con la interpretación
+
+```{r,skimr_include_summary = FALSE}
+#| eval: false
+#| echo: true
+
+library(tidyverse)
+library(skimr)
+
+skim(pambol)
+```
+
+## 
+
+![](imgs/skimout.jpg)
+
+## Separando los elementos
+
+::: notes
+Essa função yank() serve para separar os dados numericos ou categoricos, etc. Ela recorta o que se visualiza com o skimr
+:::
+
+-   la función `yank()`
+
+```{r}
+#| eval: true
+#| echo: true
+
+library(tidyverse)
+library(skimr)
+
+
+  s <- skim(pambol)
+  yank(s, "numeric")
+
+```
+
+## Conjuntos de datos muy grandes
+
+-   Estos son datos del proyecto postdoc de Gabriel: redes de interacción (binarias: 0s o 1s) aves-plantas
+-   Son más de 140 mil filas...
+
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+library(tidyverse)
+birds <-  read_csv(file = here::here("dados/birds.csv"))
+```
+
+## QUIZ:
+
+-   Use la función `skim()` y conteste:
+-   ¿Cuál es el número de especies plantas y de aves?
+-   ¿Hay datos faltantes?
+-   ¿Hay datos raros en las interacciones?
+
+## Vamos a identificar los NAs
+
+-   ¿Alguien sugiere alguna manera de hacer eso?
+
+. . .
+
+```{r}
+#| eval: true
+#| echo: true
+library(tidyr)
+
+is.na(birds)
+
+```
+
+## ¿En cuál fila están los valores faltantes?
+
+-   ¿Sugerencias de cómo hacerlo?
+
+. . .
+
+::: {.big-code}
+```{r}
+#| eval: true
+#| echo: true
+
+which(birds$birds=="")
+```
+:::
+
+
+## Funciones adicionales: `dplyr::glimpse()`
+
+```{r}
+#| eval: true
+#| echo: true
+library(dplyr)
+
+  glimpse(pambol)
+
+```
+
+## 
+
+```{r}
+#| eval: true
+#| echo: true
+library(dplyr)
+
+  glimpse(birds)
+```
+
+## `easystats::report()`
+
+```{r}
+#| eval: true
+#| echo: true
+library(easystats)
+
+
+  report(pambol)
+```
+
+## 
+
+-   ¿Qué otra información les pareció relevante de la función `report`?
+
+```{r}
+#| eval: true
+#| echo: true
+library(easystats)
+
+
+  report(birds)
+```
+
+## 
+
+-   La función `report` es muy útil cuando se aplica a modelos estadísticos, permitiendo una descripción detallada de dichos modelos
+
+```{r}
+#| eval: true
+#| echo: true
+library(easystats)
+
+model <- lm(Sepal.Length ~ Species, data = iris)
+report(model)
+
+```
+
+# Extraer información de los datos
+
+## `janitor`
+
+::: columns
+::: {.column width="20%"}
+![](imgs//janitor.png)
+:::
+
+::: {.column width="80%"}
+-   Paquete con dos tipos de funciones
+    -   Limpieza de datos (veremos más sobre esto en otra clase)
+    -   Preparación de tablas de conteos (contingencia)
+    -   [Documentación](https://sfirke.github.io/janitor/articles/janitor.html)
+:::
+:::
+
+## Uso de la función *table()* de R base
+
+Esta función sirve para generar tablas de contingencia; es decir, con frecuencias, proporciones o conteos entre los objetos
+
+::: notes
+A ideia aqui é comparar a funcão table() do R base com a funcão tabyl() do janitor
+:::
+
+```{r}
+#| eval: true
+#| echo: true
+# vamos usar nuestro df
+pambol <- data.frame(nacionalidad = c("ARG","NOR","FRA","ARG","ARG","ARG","ARG"),
+                 jugadores = c('Messi', 'Haaland', 'Benzema', 'Alvarez', 'Lautaro',
+                               'DiMaria','Maradona'),
+                 goles = c(12, 30, 30, 12, 12, 30, NA),
+                 partidos = c(15, 20, 20, 20, 18, 20, NA))
+```
+
+## Vamos a probar algunas de sus habilidades en R...
+
+-   Usando la función `table()`:
+    -   ¿Cuántos jugadores anotaron el mismo número de goles y cuál es este número?
+    -   ¿Cuántos goles hizo cada jugador?
+
+## 
+### Jugadores que anotaron el mísmo no. de goles y cuántos
+
+::: {.big-code}
+```{r}
+#| eval: true
+#| echo: true
+
+table(pambol$goles)
+```
+:::
+
+## ¿Cuántos goles hizo cada jugador?
+
+```{r}
+#| eval: true
+#| echo: true
+
+# Cruzar la información "jugadores" y "goles"
+table(pambol$jugadores, pambol$goles)
+```
+
+## La función `table()` permite calcular proporciones
+
+```{r}
+#| eval: true
+#| echo: true
+
+prop.table(table(pambol$jugadores, pambol$goles))
+```
+
+## Desventajas de usar la función table()
+
+-   El output no es un data.frame
+-   No funciona bien con los pipes (%\>%)
+-   Los resultados son complicados de extraer y formatear . . .
+
+```{r}
+#| eval: true
+#| echo: true
+
+tab <- table(pambol$jugadores, pambol$goles)
+class(tab)
+```
+
+## Uso de la función `janitor::tabyl()`
+
+-   Usa la estructura tidyverse
+-   El output nos da informaciones más relevantes
+-   Es más fácil de trabajar que la función `table()`
+
+## La función `janitor::tabyl()`
+
+::: columns
+::: {.column width="50%"}
+-   Con \`tabyl()´
+
+```{r}
+#| eval: true
+#| echo: true
+library(janitor)
+
+# Tablas con una variable
+  tabyl(pambol$jugadores)
+```
+:::
+
+::: {.column width="50%"}
+-   Con `table()`
+
+```{r}
+#| eval: true
+#| echo: true
+
+# Tablas con una variable - comparar con la función `table()`
+  table(pambol$jugadores)
+```
+:::
+:::
+
+## Tablas con NA
+
+-   La función `tabyl()`te indica la presencia de NAs, mientras que `table()` no lo hace (por default)
+
+```{r}
+#| eval: true
+#| echo: true
+
+  tabyl(pambol$goles)
+```
+
+## 
+
+:::{.big-code}
+```{r}
+#| eval: true
+#| echo: true
+
+table(pambol$goles, useNA = "always")
+```
+:::
+
+## QUIZ:
+
+-   Use la función `tabyl()` para saber cuál es la especie de ave con más interacciones
+
+## Algunas funciones derivadas útiles
+
+-   `adorn_totals()`
+-   `adorn_percentages()`
+-   `adorn_rounding(digits=1)`
+
+::: notes
+Aqui tem um problema. Eu uso os pipes pela primeira vez...não sei como mostrar o código abaixo sem pipes. Pode ser um bom momento para mostrar aos alunos que os pipes existem
+:::
+
+## `adorn_totals()`
+
+```{r}
+#| eval: true
+#| echo: true
+
+pambol %>%
+  filter(nacionalidad == "ARG") %>%
+  tabyl(goles) %>%
+  adorn_totals()
+
+```
+
+## Tablas con dos variables
+
+```{r}
+#| eval: true
+#| echo: true
+
+pambol %>%
+  filter(nacionalidad == "ARG") %>%
+  tabyl(goles,partidos) %>%
+  adorn_percentages()
+```
+
+## QUIZ
+
+> Al usar la función `adorn_percentages()`, ¿qué porcentajes se están calculando? Hay un argumento llamado *denominator = c("all", "row", "col")* en la función `adorn_percentages()`. ¿Cuál es la diferencia de usar cada una de las opciones?
+
+## No confundir:
+
+-   `adorn_percentages()` - calcular porcentajes
+-   `adorn_pct_formatting()` - formatear los valores calculados
+-   ambas funciones pueden ser usadas una después de la otra
+
+## 
+
+```{r}
+#| eval: true
+#| echo: true
+
+pambol %>%
+  filter(nacionalidad == "ARG") %>%
+  tabyl(goles,partidos) %>%
+  adorn_percentages() %>%
+  adorn_pct_formatting()
+
+```
+
+## Función adicional: `adorn_ns()`
+
+```{r}
+#| eval: true
+#| echo: true
+
+pambol %>%
+  filter(nacionalidad == "ARG") %>%
+  tabyl(goles,partidos) %>%
+  adorn_percentages() %>%
+  adorn_pct_formatting() %>%
+  adorn_ns()
+
+```
+
+## función bonus `top_levels()`
+
+-   Sirve para obtener la tabla de frecuencias de un vector de factores (niveles)
+-   Separa los factores en 3 grupos *bajo*, *medio*, *alto*
+-   La función `top_levels()` te devuelve un data.frame
+
+## 
+
+```{r}
+#| eval: true
+#| echo: true
+
+fac <- as.factor(c("muy fuerte","muy fuerte","muy fuerte","fuerte","débil","débil","muy débil","muy débil"))
+```
+
+. . .
+
+```{r}
+top_levels(fac,n=1) # n es el numero de niveles en las categorías *bajo* y *alto*
+```
+
+
+# Fin

@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Gabriel Massaine Moulatlet">
+
+<title>Matrices en Ecología – Herramientas para el manejo de datos de biodiversidad en R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../maevolab.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-679c6e1ce78a9368f77aea21f9eef369.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-377efe61d13d4c1b69db24eb858864b4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../cursologo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Herramientas para el manejo de datos de biodiversidad en R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../temario.html"> 
+<span class="menu-text">Temario y cronograma</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../materiales.html"> 
+<span class="menu-text">Materiales</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#matrices" id="toc-matrices" class="nav-link active" data-scroll-target="#matrices">Matrices</a>
+  <ul class="collapse">
+  <li><a href="#matrices-1" id="toc-matrices-1" class="nav-link" data-scroll-target="#matrices-1">Matrices</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  <li><a href="#son-muy-usadas-en-los-análisis-de-ecologia" id="toc-son-muy-usadas-en-los-análisis-de-ecologia" class="nav-link" data-scroll-target="#son-muy-usadas-en-los-análisis-de-ecologia">Son muy usadas en los análisis de ecologia</a></li>
+  <li><a href="#matrices-en-r" id="toc-matrices-en-r" class="nav-link" data-scroll-target="#matrices-en-r">Matrices en R</a></li>
+  <li><a href="#estructura-de-la-matriz" id="toc-estructura-de-la-matriz" class="nav-link" data-scroll-target="#estructura-de-la-matriz">Estructura de la matriz</a></li>
+  <li><a href="#diferencias-entre-matrix-y-array" id="toc-diferencias-entre-matrix-y-array" class="nav-link" data-scroll-target="#diferencias-entre-matrix-y-array">Diferencias entre <code>matrix()</code> y <code>array()</code></a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#argumentos-de-la-función-matrix" id="toc-argumentos-de-la-función-matrix" class="nav-link" data-scroll-target="#argumentos-de-la-función-matrix">Argumentos de la función <code>matrix()</code></a></li>
+  <li><a href="#llenado-de-matriz" id="toc-llenado-de-matriz" class="nav-link" data-scroll-target="#llenado-de-matriz">Llenado de matriz</a></li>
+  <li><a href="#si-byrowf-el-llenado-se-da-por-columnas" id="toc-si-byrowf-el-llenado-se-da-por-columnas" class="nav-link" data-scroll-target="#si-byrowf-el-llenado-se-da-por-columnas">Si <code>byrow=F</code>, el llenado se da por columnas</a></li>
+  <li><a href="#diag" id="toc-diag" class="nav-link" data-scroll-target="#diag"><code>diag()</code></a></li>
+  </ul></li>
+  <li><a href="#algebra-de-matrices" id="toc-algebra-de-matrices" class="nav-link" data-scroll-target="#algebra-de-matrices">Algebra de matrices</a>
+  <ul class="collapse">
+  <li><a href="#la-matriz" id="toc-la-matriz" class="nav-link" data-scroll-target="#la-matriz">La matriz</a></li>
+  <li><a href="#diferentes-tipos-de-matrices" id="toc-diferentes-tipos-de-matrices" class="nav-link" data-scroll-target="#diferentes-tipos-de-matrices">Diferentes tipos de matrices</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  <li><a href="#operaciones-con-matrices-sumatoria" id="toc-operaciones-con-matrices-sumatoria" class="nav-link" data-scroll-target="#operaciones-con-matrices-sumatoria">Operaciones con matrices: Sumatoria</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
+  <li><a href="#operaciones-con-matrices-diferencia" id="toc-operaciones-con-matrices-diferencia" class="nav-link" data-scroll-target="#operaciones-con-matrices-diferencia">Operaciones con matrices: Diferencia</a></li>
+  <li><a href="#operaciones-con-escalares" id="toc-operaciones-con-escalares" class="nav-link" data-scroll-target="#operaciones-con-escalares">Operaciones con escalares</a></li>
+  <li><a href="#pero" id="toc-pero" class="nav-link" data-scroll-target="#pero">pero…</a></li>
+  <li><a href="#multiplicación-de-matrices" id="toc-multiplicación-de-matrices" class="nav-link" data-scroll-target="#multiplicación-de-matrices">Multiplicación de matrices</a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"></a></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6"></a></li>
+  <li><a href="#la-división-de-matrices-no-existe-se-las-multiplica-por-su-inverso" id="toc-la-división-de-matrices-no-existe-se-las-multiplica-por-su-inverso" class="nav-link" data-scroll-target="#la-división-de-matrices-no-existe-se-las-multiplica-por-su-inverso">La división de matrices no existe, se las multiplica por su inverso</a></li>
+  <li><a href="#la-función-det" id="toc-la-función-det" class="nav-link" data-scroll-target="#la-función-det">la función <code>det()</code></a></li>
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7"></a></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"></a></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9"></a></li>
+  <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10"></a></li>
+  <li><a href="#quiz" id="toc-quiz" class="nav-link" data-scroll-target="#quiz">QUIZ</a></li>
+  <li><a href="#section-11" id="toc-section-11" class="nav-link" data-scroll-target="#section-11"></a></li>
+  <li><a href="#section-12" id="toc-section-12" class="nav-link" data-scroll-target="#section-12"></a></li>
+  </ul></li>
+  <li><a href="#tipos-de-matriz-en-r" id="toc-tipos-de-matriz-en-r" class="nav-link" data-scroll-target="#tipos-de-matriz-en-r">Tipos de matriz en R</a>
+  <ul class="collapse">
+  <li><a href="#sparse-vs.-dense-matrices" id="toc-sparse-vs.-dense-matrices" class="nav-link" data-scroll-target="#sparse-vs.-dense-matrices"><em>Sparse</em> vs.&nbsp;<em>Dense</em> matrices</a></li>
+  <li><a href="#sparse-vs.-dense-matrices-1" id="toc-sparse-vs.-dense-matrices-1" class="nav-link" data-scroll-target="#sparse-vs.-dense-matrices-1"><em>Sparse</em> vs.&nbsp;<em>Dense</em> matrices</a></li>
+  <li><a href="#section-13" id="toc-section-13" class="nav-link" data-scroll-target="#section-13"></a></li>
+  <li><a href="#en-ecología-de-comunidades" id="toc-en-ecología-de-comunidades" class="nav-link" data-scroll-target="#en-ecología-de-comunidades">En ecología de comunidades</a></li>
+  <li><a href="#funciones-útiles-en-el-paquete-phyloregion" id="toc-funciones-útiles-en-el-paquete-phyloregion" class="nav-link" data-scroll-target="#funciones-útiles-en-el-paquete-phyloregion">Funciones útiles en el paquete <code>phyloregion</code></a></li>
+  <li><a href="#section-14" id="toc-section-14" class="nav-link" data-scroll-target="#section-14"></a></li>
+  <li><a href="#matrices-de-distancia" id="toc-matrices-de-distancia" class="nav-link" data-scroll-target="#matrices-de-distancia">Matrices de distancia</a></li>
+  <li><a href="#section-15" id="toc-section-15" class="nav-link" data-scroll-target="#section-15"></a></li>
+  <li><a href="#funciones-del-paquete-vegan" id="toc-funciones-del-paquete-vegan" class="nav-link" data-scroll-target="#funciones-del-paquete-vegan">Funciones del paquete <code>vegan()</code></a></li>
+  <li><a href="#transformar-objetos-dist-en-objetos-de-formato-ancho" id="toc-transformar-objetos-dist-en-objetos-de-formato-ancho" class="nav-link" data-scroll-target="#transformar-objetos-dist-en-objetos-de-formato-ancho">Transformar objetos <code>dist()</code> en objetos de formato <em>ancho</em></a></li>
+  <li><a href="#section-16" id="toc-section-16" class="nav-link" data-scroll-target="#section-16"></a></li>
+  </ul></li>
+  <li><a href="#visualización-de-matrices" id="toc-visualización-de-matrices" class="nav-link" data-scroll-target="#visualización-de-matrices">Visualización de matrices</a>
+  <ul class="collapse">
+  <li><a href="#visualizar-datos-crudos" id="toc-visualizar-datos-crudos" class="nav-link" data-scroll-target="#visualizar-datos-crudos">Visualizar datos crudos</a></li>
+  <li><a href="#uso-de-gráficos-genéricos" id="toc-uso-de-gráficos-genéricos" class="nav-link" data-scroll-target="#uso-de-gráficos-genéricos">Uso de gráficos <em>genéricos</em></a></li>
+  <li><a href="#gausch-1982" id="toc-gausch-1982" class="nav-link" data-scroll-target="#gausch-1982">Gausch 1982</a></li>
+  <li><a href="#hacer-gráficos-genéricos" id="toc-hacer-gráficos-genéricos" class="nav-link" data-scroll-target="#hacer-gráficos-genéricos">Hacer gráficos genéricos</a></li>
+  <li><a href="#uso-de-análisis-de-gradientes-indirectos" id="toc-uso-de-análisis-de-gradientes-indirectos" class="nav-link" data-scroll-target="#uso-de-análisis-de-gradientes-indirectos">Uso de análisis de gradientes (in)directos</a></li>
+  <li><a href="#interpretación-de-los-resultados" id="toc-interpretación-de-los-resultados" class="nav-link" data-scroll-target="#interpretación-de-los-resultados">Interpretación de los resultados</a></li>
+  <li><a href="#cálculo-de-gradiente-directo" id="toc-cálculo-de-gradiente-directo" class="nav-link" data-scroll-target="#cálculo-de-gradiente-directo">Cálculo de gradiente directo</a></li>
+  <li><a href="#ejemplo-usando-dados-de-abundancia-de-moluscos" id="toc-ejemplo-usando-dados-de-abundancia-de-moluscos" class="nav-link" data-scroll-target="#ejemplo-usando-dados-de-abundancia-de-moluscos">Ejemplo usando dados de abundancia de moluscos</a></li>
+  <li><a href="#editar-la-tabla-de-moluscos-quitar-la-columna-sites" id="toc-editar-la-tabla-de-moluscos-quitar-la-columna-sites" class="nav-link" data-scroll-target="#editar-la-tabla-de-moluscos-quitar-la-columna-sites">Editar la tabla de moluscos, quitar la columna “sites”</a></li>
+  <li><a href="#calcular-las-medias" id="toc-calcular-las-medias" class="nav-link" data-scroll-target="#calcular-las-medias">calcular las medias</a></li>
+  <li><a href="#visualizar" id="toc-visualizar" class="nav-link" data-scroll-target="#visualizar">Visualizar</a></li>
+  <li><a href="#section-17" id="toc-section-17" class="nav-link" data-scroll-target="#section-17"></a></li>
+  <li><a href="#otras-opiciones-de-gráficos-genéricos" id="toc-otras-opiciones-de-gráficos-genéricos" class="nav-link" data-scroll-target="#otras-opiciones-de-gráficos-genéricos">Otras opiciones de gráficos genéricos</a></li>
+  <li><a href="#section-18" id="toc-section-18" class="nav-link" data-scroll-target="#section-18"></a></li>
+  <li><a href="#cuando-no-hay-variables-ambientales" id="toc-cuando-no-hay-variables-ambientales" class="nav-link" data-scroll-target="#cuando-no-hay-variables-ambientales">Cuando no hay variables ambientales</a></li>
+  <li><a href="#en-resumen" id="toc-en-resumen" class="nav-link" data-scroll-target="#en-resumen">En Resumen</a></li>
+  <li><a href="#no-voy-en-serio" id="toc-no-voy-en-serio" class="nav-link" data-scroll-target="#no-voy-en-serio">No, voy en serio!</a></li>
+  </ul></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="4.1-matricesv2.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Matrices en Ecología</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Gabriel Massaine Moulatlet </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Instituto de Ecología, A.C.
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="matrices" class="level1">
+<h1>Matrices</h1>
+<section id="matrices-1" class="level2">
+<h2 class="anchored" data-anchor-id="matrices-1">Matrices</h2>
+<p><img src="https://i.imgflip.com/lnf8o.jpg" class="img-fluid"></p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<ul>
+<li>Es el formato más comun de representación de datos ecológicos</li>
+<li>Más popular en ecología con el desarollo de mejores computadoras</li>
+<li>Gran parte del lenguaje de los softwares está basada en notaciones de matrices</li>
+</ul>
+</section>
+<section id="son-muy-usadas-en-los-análisis-de-ecologia" class="level2">
+<h2 class="anchored" data-anchor-id="son-muy-usadas-en-los-análisis-de-ecologia">Son muy usadas en los análisis de ecologia</h2>
+<ul>
+<li>Análisis multivariados en ecologia de comunidades</li>
+<li>Para resumir grandes conjuntos de datos</li>
+<li>Comunes en macroecología (matriz de presencia-ausencia)</li>
+<li>Correlación entre variables</li>
+</ul>
+</section>
+<section id="matrices-en-r" class="level2">
+<h2 class="anchored" data-anchor-id="matrices-en-r">Matrices en R</h2>
+<ul>
+<li><code>matrix()</code>vs.&nbsp;<code>data.frame()</code> vs.&nbsp;<code>array()</code></li>
+<li><code>matrix()</code>: solo numeros o solo caracteres</li>
+<li><code>data.frame()</code>: mix de tipos numeros y caracteres</li>
+<li><code>array()</code> son <em>n</em>-dimensionales</li>
+</ul>
+</section>
+<section id="estructura-de-la-matriz" class="level2">
+<h2 class="anchored" data-anchor-id="estructura-de-la-matriz">Estructura de la matriz</h2>
+<ul>
+<li>Una matriz es un tipo especial de <code>array()</code></li>
+<li>Una matriz tiene 2 dimensiones, formadas por filas y columnas</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">data=</span><span class="cn">NA</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]   NA   NA
+[2,]   NA   NA</code></pre>
+</div>
+</div>
+</section>
+<section id="diferencias-entre-matrix-y-array" class="level2">
+<h2 class="anchored" data-anchor-id="diferencias-entre-matrix-y-array">Diferencias entre <code>matrix()</code> y <code>array()</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>))</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , 1
+
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+, , 2
+
+     [,1] [,2] [,3]
+[1,]    7    9   11
+[2,]    8   10   12
+
+, , 3
+
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+
+, , 4
+
+     [,1] [,2] [,3]
+[1,]    7    9   11
+[2,]    8   10   12</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="argumentos-de-la-función-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="argumentos-de-la-función-matrix">Argumentos de la función <code>matrix()</code></h2>
+<ul>
+<li><em>dimnames</em></li>
+<li>Una lista con los nombres de las filas y de las columnas, respectivamente</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="at">data=</span><span class="cn">NA</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">2</span>,<span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"row1"</span>,<span class="st">"row2"</span>),</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                                                 <span class="fu">c</span>(<span class="st">"col1"</span>, <span class="st">"col2"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     col1 col2
+row1   NA   NA
+row2   NA   NA</code></pre>
+</div>
+</div>
+</section>
+<section id="llenado-de-matriz" class="level2">
+<h2 class="anchored" data-anchor-id="llenado-de-matriz">Llenado de matriz</h2>
+<ul>
+<li><em>byrow</em></li>
+<li>Define como se da el llenado de la matrix</li>
+<li>Si <code>byrow=T</code>, el llenado se da por filas</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span>,<span class="st">"e"</span>,<span class="st">"f"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(vec, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> T )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,] "a"  "b" 
+[2,] "c"  "d" 
+[3,] "e"  "f" </code></pre>
+</div>
+</div>
+</section>
+<section id="si-byrowf-el-llenado-se-da-por-columnas" class="level2">
+<h2 class="anchored" data-anchor-id="si-byrowf-el-llenado-se-da-por-columnas">Si <code>byrow=F</code>, el llenado se da por columnas</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vec <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"a"</span>,<span class="st">"b"</span>,<span class="st">"c"</span>,<span class="st">"d"</span>,<span class="st">"e"</span>,<span class="st">"f"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(vec, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> F )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,] "a"  "d" 
+[2,] "b"  "e" 
+[3,] "c"  "f" </code></pre>
+</div>
+</div>
+</section>
+<section id="diag" class="level2">
+<h2 class="anchored" data-anchor-id="diag"><code>diag()</code></h2>
+<ul>
+<li>Es la función para extraer la diagonal de una matriz</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diag</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 4</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="algebra-de-matrices" class="level1">
+<h1>Algebra de matrices</h1>
+<section id="la-matriz" class="level2">
+<h2 class="anchored" data-anchor-id="la-matriz">La matriz</h2>
+<p><img src="imgs/matrix.jpg" class="img-fluid"></p>
+</section>
+<section id="diferentes-tipos-de-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="diferentes-tipos-de-matrices">Diferentes tipos de matrices</h2>
+<ul>
+<li>Cuadrada (número de filas igual al numero de columnas)</li>
+<li>Diagonal (todos valores además de las diagonal son ceros)</li>
+<li>Triangular (valores en cero en una de las mitades)</li>
+<li>Identidad (valores de la diagonal son 1 y los demás, 0)</li>
+<li>Escalar (valores de la diagonal son iguales y los demás, 0)</li>
+</ul>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<p><img src="imgs/matrices.png" class="img-fluid"></p>
+</section>
+<section id="operaciones-con-matrices-sumatoria" class="level2">
+<h2 class="anchored" data-anchor-id="operaciones-con-matrices-sumatoria">Operaciones con matrices: Sumatoria</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a> a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> b <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1</code></pre>
+</div>
+</div>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a> a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a> b <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a> a <span class="sc">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    2    4    7
+[2,]    2    6    8
+[3,]    3    6   10</code></pre>
+</div>
+</div>
+</section>
+<section id="operaciones-con-matrices-diferencia" class="level2">
+<h2 class="anchored" data-anchor-id="operaciones-con-matrices-diferencia">Operaciones con matrices: Diferencia</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a> a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a> b <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    0    0
+[2,]    0    1    0
+[3,]    0    0    1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a> a <span class="sc">-</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    0    4    7
+[2,]    2    4    8
+[3,]    3    6    8</code></pre>
+</div>
+</div>
+</section>
+<section id="operaciones-con-escalares" class="level2">
+<h2 class="anchored" data-anchor-id="operaciones-con-escalares">Operaciones con escalares</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a> a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a> d <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 0 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    4    7   10</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a> a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a> a <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    2    5    8
+[2,]    3    6    9
+[3,]    4    7   10</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="pero" class="level2">
+<h2 class="anchored" data-anchor-id="pero">pero…</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>a + b y a + b2 son iguales?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a> a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a> b <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a> a <span class="sc">+</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    2    5    8
+[2,]    3    6    9
+[3,]    4    7   10</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li>Y esta suma, ¿sale bien?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a> a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow=</span><span class="dv">3</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a> b2 <span class="ot">&lt;-</span> <span class="fu">matrix</span>(b, <span class="at">nrow=</span><span class="dv">1</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a> b2</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a> a <span class="sc">+</span> b2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="multiplicación-de-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="multiplicación-de-matrices">Multiplicación de matrices</h2>
+<ul>
+<li>El comando <code>%*%</code> se aplica par las multiplicaciones</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    3
+[2,]    2    4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    0
+[2,]    0    1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]
+[1,]    0
+[2,]    1</code></pre>
+</div>
+</div>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a> a <span class="sc">%*%</span> b <span class="co"># ¿Salió bien?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    3
+[2,]    2    4</code></pre>
+</div>
+</div>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a> a <span class="sc">%*%</span> d <span class="co"># ¿esta?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1]
+[1,]    3
+[2,]    4</code></pre>
+</div>
+</div>
+</section>
+<section id="section-6" class="level2">
+<h2 class="anchored" data-anchor-id="section-6"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">diag</span>(<span class="fu">rep</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a> d <span class="sc">%*%</span> a <span class="co"># ¿y esta?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="la-división-de-matrices-no-existe-se-las-multiplica-por-su-inverso" class="level2">
+<h2 class="anchored" data-anchor-id="la-división-de-matrices-no-existe-se-las-multiplica-por-su-inverso">La división de matrices no existe, se las multiplica por su inverso</h2>
+<p><img src="imgs/invma.png" class="img-fluid"></p>
+</section>
+<section id="la-función-det" class="level2">
+<h2 class="anchored" data-anchor-id="la-función-det">la función <code>det()</code></h2>
+<ul>
+<li>Para calcular el inverso es necesario conocer el <em>determinante</em></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    3
+[2,]    2    4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">*</span><span class="dv">4</span>) <span class="sc">-</span> (<span class="dv">3</span><span class="sc">*</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2</code></pre>
+</div>
+</div>
+</section>
+<section id="section-7" class="level2">
+<h2 class="anchored" data-anchor-id="section-7"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">det</span>(a)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2</code></pre>
+</div>
+</div>
+</section>
+<section id="section-8" class="level2">
+<h2 class="anchored" data-anchor-id="section-8"></h2>
+<ul>
+<li>Dividir cada elemento de la matriz inversa por por el determinante</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>inva <span class="ot">&lt;-</span>  <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">4</span>,<span class="sc">-</span><span class="dv">3</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>inva</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    4   -2
+[2,]   -3    1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">4</span><span class="sc">/</span><span class="fu">det</span>(a))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>(<span class="sc">-</span><span class="dv">3</span><span class="sc">/</span><span class="fu">det</span>(a))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>(<span class="sc">-</span><span class="dv">2</span><span class="sc">/</span><span class="fu">det</span>(a))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span><span class="sc">/</span><span class="fu">det</span>(a))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.5</code></pre>
+</div>
+</div>
+</section>
+<section id="section-9" class="level2">
+<h2 class="anchored" data-anchor-id="section-9"></h2>
+<ul>
+<li>La función <code>solve()</code> calcula el inverso</li>
+<li>No confundir con <code>t()</code>, que es la función para transponer la matriz</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>ainv <span class="ot">&lt;-</span> <span class="fu">solve</span>(a)</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>ainv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]   -2  1.5
+[2,]    1 -0.5</code></pre>
+</div>
+</div>
+</section>
+<section id="section-10" class="level2">
+<h2 class="anchored" data-anchor-id="section-10"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">%*%</span> ainv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    0
+[2,]    0    1</code></pre>
+</div>
+</div>
+</section>
+<section id="quiz" class="level2">
+<h2 class="anchored" data-anchor-id="quiz">QUIZ</h2>
+<ul>
+<li>Un pesticida tiene 2 compuestos tóxicos I y II que se acumulan en 3 especies de plantas A, B y C</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">nrow=</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">3</span>,<span class="at">byrow=</span>T,</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">dimnames =</span> </span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"I"</span>,<span class="st">"II"</span>),</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>             <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>,<span class="st">"C"</span>)))</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>M</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   A B C
+I  2 3 4
+II 0 1 2</code></pre>
+</div>
+</div>
+</section>
+<section id="section-11" class="level2">
+<h2 class="anchored" data-anchor-id="section-11"></h2>
+<ul>
+<li>Si un herbívoro se alimenta de estas 3 especies en las seguientes cantidades por día:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">3</span>,<span class="at">ncol=</span><span class="dv">1</span>,<span class="at">byrow=</span>F,</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>)))</span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>N</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [,1]
+A    5
+B    3
+C    1</code></pre>
+</div>
+</div>
+</section>
+<section id="section-12" class="level2">
+<h2 class="anchored" data-anchor-id="section-12"></h2>
+<ul>
+<li>¿Cuántos contaminantes I y II consume diariamente?</li>
+<li>Tip: Mirar el producto de M x N</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">nrow=</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">3</span>,<span class="at">byrow=</span>T,</span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"I"</span>,<span class="st">"II"</span>),</span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>                                                                   <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>,<span class="st">"C"</span>)))</span>
+<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>N <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">1</span>), <span class="at">nrow=</span><span class="dv">3</span>,<span class="at">ncol=</span><span class="dv">1</span>,<span class="at">byrow=</span>F,</span>
+<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">"A"</span>,<span class="st">"B"</span>,<span class="st">"C"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>. . .</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>M<span class="sc">%*%</span>N</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   [,1]
+I    23
+II    5</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="tipos-de-matriz-en-r" class="level1">
+<h1>Tipos de matriz en R</h1>
+<section id="sparse-vs.-dense-matrices" class="level2">
+<h2 class="anchored" data-anchor-id="sparse-vs.-dense-matrices"><em>Sparse</em> vs.&nbsp;<em>Dense</em> matrices</h2>
+<ul>
+<li>paquete <code>Matrix</code></li>
+<li><a href="https://ocw.mit.edu/courses/18-335j-introduction-to-numerical-methods-spring-2019/bcd746dca8cbf0d5a890f01a72d8ef64_MIT18_335JS19_lec24.pdf">Documentación</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/sparse_dense.gif" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="sparse-vs.-dense-matrices-1" class="level2">
+<h2 class="anchored" data-anchor-id="sparse-vs.-dense-matrices-1"><em>Sparse</em> vs.&nbsp;<em>Dense</em> matrices</h2>
+<ul>
+<li>Funciones aplicadas a ambos tipos de matrices producen los mismos resultados</li>
+<li>Ventajas en el tiempo de procesamiento de datos</li>
+</ul>
+</section>
+<section id="section-13" class="level2">
+<h2 class="anchored" data-anchor-id="section-13"></h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><code>Dense</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">10</span> <span class="sc">+</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">28</span>, <span class="dv">4</span>, <span class="dv">7</span>) <span class="co"># crear matrix</span></span>
+<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="sc">-</span><span class="dv">1</span>, M) <span class="co"># poner una columna con -1</span></span>
+<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a>M[<span class="dv">2</span>, <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">4</span><span class="sc">:</span><span class="dv">6</span>)] <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># agregar unos ceros</span></span>
+<span id="cb81-4"><a href="#cb81-4" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="dv">0</span>, M, <span class="dv">0</span>) <span class="co">#agregar más ceros</span></span>
+<span id="cb81-5"><a href="#cb81-5" aria-hidden="true" tabindex="-1"></a>M[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,<span class="dv">2</span>]  <span class="ot">&lt;-</span> <span class="cn">NA</span> <span class="co"># agregar NAs</span></span>
+<span id="cb81-6"><a href="#cb81-6" aria-hidden="true" tabindex="-1"></a>M[<span class="dv">2</span><span class="sc">:</span><span class="dv">6</span>,<span class="dv">8</span>]  <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># agregar otros ceros</span></span>
+<span id="cb81-7"><a href="#cb81-7" aria-hidden="true" tabindex="-1"></a>M</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+[1,]    0   NA    0    0    0    0    0    0
+[2,]   -1   NA   15   19   23   27   31    0
+[3,]   -1    0   16    0    0    0   32    0
+[4,]   -1   13   17   21   25   29   33    0
+[5,]   -1   14   18   22   26   30   34    0
+[6,]    0    0    0    0    0    0    0    0</code></pre>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<ul>
+<li><code>Sparse</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a>sM <span class="ot">&lt;-</span> <span class="fu">as</span>(M, <span class="st">"sparseMatrix"</span>)</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>sM</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>6 x 8 sparse Matrix of class "dgCMatrix"
+                           
+[1,]  . NA  .  .  .  .  . .
+[2,] -1 NA 15 19 23 27 31 .
+[3,] -1  . 16  .  .  . 32 .
+[4,] -1 13 17 21 25 29 33 .
+[5,] -1 14 18 22 26 30 34 .
+[6,]  .  .  .  .  .  .  . .</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="en-ecología-de-comunidades" class="level2">
+<h2 class="anchored" data-anchor-id="en-ecología-de-comunidades">En ecología de comunidades</h2>
+<ul>
+<li>Matrices son usadas para guardar los elementos de analisis de diversidad</li>
+<li>Tiene muchos ceros (presencia-ausencia)</li>
+<li>R tiene que guardar cada valor en matrices del tipo <em>dense</em></li>
+<li>Matrices del tipo <em>sparse</em> no guardan los ceros</li>
+</ul>
+</section>
+<section id="funciones-útiles-en-el-paquete-phyloregion" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-útiles-en-el-paquete-phyloregion">Funciones útiles en el paquete <code>phyloregion</code></h2>
+<ul>
+<li>Para datos de comunidades (sitios x species)</li>
+<li><a href="https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.13478g">Phyloregion</a></li>
+</ul>
+</section>
+<section id="section-14" class="level2">
+<h2 class="anchored" data-anchor-id="section-14"></h2>
+<p><img src="imgs/phylo.jpg" class="img-fluid"></p>
+</section>
+<section id="matrices-de-distancia" class="level2">
+<h2 class="anchored" data-anchor-id="matrices-de-distancia">Matrices de distancia</h2>
+<ul>
+<li>Pueden ser transformadas en objetos de distancias <code>dist()</code></li>
+<li>Por defecto calcula distancias euclidianas</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dist</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         1        2
+2 1.414214         
+3 2.828427 1.414214</code></pre>
+</div>
+</div>
+</section>
+<section id="section-15" class="level2">
+<h2 class="anchored" data-anchor-id="section-15"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "matrix" "array" </code></pre>
+</div>
+</div>
+</section>
+<section id="funciones-del-paquete-vegan" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-del-paquete-vegan">Funciones del paquete <code>vegan()</code></h2>
+<ul>
+<li>Análisis comunes en ecología de comunidades usan el formato <em>dist</em></li>
+<li><a href="https://www.rdocumentation.org/packages/vegan/versions/2.6-4/topics/vegdist">vegdist()</a></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vegan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: permute</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: lattice</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(varespec)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>vare.dist <span class="ot">&lt;-</span> <span class="fu">vegdist</span>(varespec)</span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>vare.dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          18        15        24        27        23        19        22
+15 0.5310021                                                            
+24 0.6680661 0.3597783                                                  
+27 0.5621247 0.4055610 0.4934947                                        
+23 0.3747078 0.3652097 0.5020306 0.4286111                              
+19 0.5094738 0.4560757 0.5092318 0.4878190 0.3606242                    
+22 0.6234419 0.3579517 0.5010050 0.4655224 0.4812706 0.4726483          
+16 0.5337610 0.3976674 0.5907623 0.5683930 0.4094312 0.4496731 0.2678031
+28 0.8418209 0.5225414 0.5736665 0.3027802 0.6979519 0.6431734 0.5985666
+13 0.3453347 0.6063846 0.7576747 0.7543736 0.6221471 0.5739244 0.6948736
+14 0.5449810 0.4803756 0.6533606 0.7467915 0.5645808 0.6331942 0.5357609
+20 0.3879069 0.3784188 0.4346892 0.4957833 0.2877014 0.3953776 0.4627020
+25 0.6318891 0.3376115 0.3369098 0.5001593 0.4258617 0.4311299 0.3822981
+7  0.3603697 0.6717391 0.7931069 0.7792917 0.6390838 0.6958570 0.7459886
+5  0.4955699 0.7178612 0.8561753 0.8732190 0.7295255 0.7898205 0.8611451
+6  0.3382309 0.6355122 0.7441373 0.7496935 0.6252483 0.5684030 0.7249162
+3  0.5277480 0.7578503 0.8382119 0.8090236 0.7128798 0.5302756 0.8026152
+4  0.4694018 0.6843974 0.8309875 0.8413800 0.7117919 0.5177604 0.8015314
+2  0.5724092 0.8206269 0.8372551 0.7581924 0.7249869 0.5389222 0.8321464
+9  0.6583569 0.7761039 0.7590517 0.7415898 0.6693889 0.5393143 0.7725082
+12 0.4688038 0.6794199 0.6894538 0.6253616 0.5384762 0.4288556 0.7051751
+10 0.6248996 0.7644564 0.7842829 0.7096540 0.6625476 0.5059910 0.7875328
+11 0.4458523 0.4716274 0.5677373 0.6322919 0.4710280 0.3293493 0.5812219
+21 0.5560864 0.7607281 0.7272727 0.5456001 0.4951221 0.5315894 0.6771167
+          16        28        13        14        20        25         7
+15                                                                      
+24                                                                      
+27                                                                      
+23                                                                      
+19                                                                      
+22                                                                      
+16                                                                      
+28 0.7015360                                                            
+13 0.5514941 0.8600122                                                  
+14 0.4826350 0.8239667 0.5547565                                        
+20 0.3737797 0.6963560 0.5785542 0.5115258                              
+25 0.4306058 0.6086150 0.7412605 0.5541517 0.4518556                    
+7  0.6596144 0.8960202 0.4533054 0.6550830 0.5959162 0.7556726          
+5  0.7184789 0.9539592 0.5148988 0.7257681 0.7153827 0.8600858 0.3237446
+6  0.6509879 0.9014440 0.3515673 0.6227473 0.5439118 0.7343872 0.1754713
+3  0.6837953 0.9234485 0.4965478 0.7836661 0.6690479 0.8168684 0.5154487
+4  0.6462648 0.9381169 0.3881748 0.6734743 0.6771854 0.8400134 0.5601721
+2  0.7354202 0.9053213 0.5968691 0.8592489 0.6951539 0.8179089 0.6465777
+9  0.8185866 0.8686670 0.7292530 0.8282497 0.6982486 0.7884243 0.8318435
+12 0.6342166 0.8543167 0.5902386 0.7507074 0.5182426 0.7062564 0.6991666
+10 0.7656598 0.9016604 0.7160439 0.8304088 0.6706349 0.7845955 0.7697453
+11 0.5172825 0.7544064 0.4272808 0.6743277 0.4461712 0.6175930 0.5262233
+21 0.7474559 0.7248773 0.7212772 0.8096450 0.6320431 0.7466232 0.7933350
+           5         6         3         4         2         9        12
+15                                                                      
+24                                                                      
+27                                                                      
+23                                                                      
+19                                                                      
+22                                                                      
+16                                                                      
+28                                                                      
+13                                                                      
+14                                                                      
+20                                                                      
+25                                                                      
+7                                                                       
+5                                                                       
+6  0.3984538                                                            
+3  0.5634432 0.4517627                                                  
+4  0.5377506 0.4665100 0.3592689                                        
+2  0.7257597 0.5552754 0.2099203 0.4841145                              
+9  0.9014583 0.7223126 0.3885811 0.6222340 0.2330286                    
+12 0.7808641 0.5762462 0.2641851 0.4870742 0.1846147 0.2277228          
+10 0.8504191 0.6567926 0.3413378 0.5776062 0.1456729 0.1117280 0.1793368
+11 0.5563798 0.4077948 0.3002597 0.3215966 0.4209596 0.5145260 0.3688102
+21 0.8888316 0.6720141 0.7507773 0.7641304 0.6779661 0.5952563 0.5602137
+          10        11
+15                    
+24                    
+27                    
+23                    
+19                    
+22                    
+16                    
+28                    
+13                    
+14                    
+20                    
+25                    
+7                     
+5                     
+6                     
+3                     
+4                     
+2                     
+9                     
+12                    
+10                    
+11 0.5043578          
+21 0.6147874 0.6713363</code></pre>
+</div>
+</div>
+</section>
+<section id="transformar-objetos-dist-en-objetos-de-formato-ancho" class="level2">
+<h2 class="anchored" data-anchor-id="transformar-objetos-dist-en-objetos-de-formato-ancho">Transformar objetos <code>dist()</code> en objetos de formato <em>ancho</em></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+Attaching package: 'tidyr'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The following objects are masked from 'package:Matrix':
+
+    expand, pack, unpack</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ purrr     1.0.4
+✔ forcats   1.0.0     ✔ readr     2.1.5
+✔ ggplot2   3.5.2     ✔ stringr   1.5.1
+✔ lubridate 1.9.4     ✔ tibble    3.2.1</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ tidyr::expand() masks Matrix::expand()
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+✖ tidyr::pack()   masks Matrix::pack()
+✖ tidyr::unpack() masks Matrix::unpack()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>dx <span class="ot">=</span> <span class="fu">dist</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-16" class="level2">
+<h2 class="anchored" data-anchor-id="section-16"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>dx <span class="sc">|&gt;</span> </span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.matrix</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sites =</span> <span class="fu">c</span>(<span class="st">"1"</span>,<span class="st">"2"</span>,<span class="st">"3"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
+<span id="cb101-6"><a href="#cb101-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"sites2"</span>,</span>
+<span id="cb101-7"><a href="#cb101-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"distances"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb101-8"><a href="#cb101-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb101-9"><a href="#cb101-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  sites sites2 distances
+  &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;
+1 1     1           0   
+2 1     2           1.41
+3 1     3           2.83
+4 2     1           1.41
+5 2     2           0   
+6 2     3           1.41</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="visualización-de-matrices" class="level1">
+<h1>Visualización de matrices</h1>
+<section id="visualizar-datos-crudos" class="level2">
+<h2 class="anchored" data-anchor-id="visualizar-datos-crudos">Visualizar datos crudos</h2>
+<p><img src="imgs/warton.png" class="img-fluid"></p>
+</section>
+<section id="uso-de-gráficos-genéricos" class="level2">
+<h2 class="anchored" data-anchor-id="uso-de-gráficos-genéricos">Uso de gráficos <em>genéricos</em></h2>
+<ul>
+<li>A partir de una matriz de species x sitios</li>
+<li>Nos permiten visualizar patrones de la comunidad</li>
+<li>Asociar los patrones a teorias ecológicas</li>
+</ul>
+</section>
+<section id="gausch-1982" class="level2">
+<h2 class="anchored" data-anchor-id="gausch-1982">Gausch 1982</h2>
+<p><img src="imgs/DA4.png" class="img-fluid"></p>
+</section>
+<section id="hacer-gráficos-genéricos" class="level2">
+<h2 class="anchored" data-anchor-id="hacer-gráficos-genéricos">Hacer gráficos genéricos</h2>
+<p><img src="imgs/DA.png" class="img-fluid"></p>
+</section>
+<section id="uso-de-análisis-de-gradientes-indirectos" class="level2">
+<h2 class="anchored" data-anchor-id="uso-de-análisis-de-gradientes-indirectos">Uso de análisis de gradientes (in)directos</h2>
+<p><img src="imgs/DA2.png" class="img-fluid"></p>
+</section>
+<section id="interpretación-de-los-resultados" class="level2">
+<h2 class="anchored" data-anchor-id="interpretación-de-los-resultados">Interpretación de los resultados</h2>
+<p><img src="imgs/DA3.png" class="img-fluid"></p>
+</section>
+<section id="cálculo-de-gradiente-directo" class="level2">
+<h2 class="anchored" data-anchor-id="cálculo-de-gradiente-directo">Cálculo de gradiente directo</h2>
+<p><img src="imgs/DA5.png" class="img-fluid"></p>
+</section>
+<section id="ejemplo-usando-dados-de-abundancia-de-moluscos" class="level2">
+<h2 class="anchored" data-anchor-id="ejemplo-usando-dados-de-abundancia-de-moluscos">Ejemplo usando dados de abundancia de moluscos</h2>
+<ul>
+<li>Importar el archivo <code>moluscos.txt</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>moluscos <span class="ot">=</span> <span class="fu">read_table</span>(<span class="at">file=</span><span class="fu">here</span>(<span class="st">"dados"</span>,<span class="st">"moluscos.txt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  sites = col_character(),
+  sp1 = col_double(),
+  sp2 = col_double(),
+  sp3 = col_double(),
+  sp4 = col_double(),
+  sp5 = col_double(),
+  sp6 = col_double()
+)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co"># importar los datos ambientales</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>ambi <span class="ot">=</span> <span class="fu">read_table</span>(<span class="at">file=</span><span class="fu">here</span>(<span class="st">"dados"</span>,<span class="st">"ambi.txt"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>
+── Column specification ────────────────────────────────────────────────────────
+cols(
+  lluvia = col_double(),
+  alt = col_double(),
+  site = col_character()
+)</code></pre>
+</div>
+</div>
+</section>
+<section id="editar-la-tabla-de-moluscos-quitar-la-columna-sites" class="level2">
+<h2 class="anchored" data-anchor-id="editar-la-tabla-de-moluscos-quitar-la-columna-sites">Editar la tabla de moluscos, quitar la columna “sites”</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>moluscos <span class="ot">&lt;-</span> </span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>  moluscos <span class="sc">|&gt;</span> </span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">c</span>(sp1<span class="sc">:</span>sp6))</span>
+<span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a>moluscos</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 6
+     sp1   sp2   sp3   sp4   sp5   sp6
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1    10     9    15     2     1     0
+ 2     0     0     0     0    13    12
+ 3     7     4     0     0     0     0
+ 4     0     1     0     3    14    20
+ 5     0     0     0    10     8     6
+ 6     0     0     2     5     4     0
+ 7     0     4    11     0     0     0
+ 8     0     0     7     3     0     0
+ 9     0     0     0     9     5     0
+10     0     0     1    15    10     8</code></pre>
+</div>
+</div>
+</section>
+<section id="calcular-las-medias" class="level2">
+<h2 class="anchored" data-anchor-id="calcular-las-medias">calcular las medias</h2>
+<ul>
+<li>Usar el gradiente de precipitacion</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>molu.medias <span class="ot">&lt;-</span><span class="fu">colSums</span>(moluscos<span class="sc">*</span>ambi<span class="sc">$</span>lluvia)<span class="sc">/</span><span class="fu">colSums</span>(moluscos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Ordenar las filas de acuerdo con el gradiente ambiental y con las medias</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>molu.ord<span class="ot">&lt;-</span>moluscos[<span class="fu">order</span>(ambi<span class="sc">$</span>lluvia,<span class="at">decreasing=</span>F),]</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>molu.ord1<span class="ot">&lt;-</span>molu.ord[,<span class="fu">order</span>(molu.medias,<span class="at">decreasing=</span>T)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="visualizar" class="level2">
+<h2 class="anchored" data-anchor-id="visualizar">Visualizar</h2>
+<ul>
+<li>Algunos ajustes..</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>ambi2 <span class="ot">&lt;-</span> ambi[<span class="fu">order</span>(ambi<span class="sc">$</span>lluvia,<span class="at">decreasing=</span>F),]</span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>molu.ord2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(molu.ord1,ambi2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-17" class="level2">
+<h2 class="anchored" data-anchor-id="section-17"></h2>
+<ul>
+<li>Qué vemos en la gráfica abajo? Hay algun patrón?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>molu.ord2 <span class="sc">|&gt;</span> </span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(sp1<span class="sc">:</span>sp6)) <span class="sc">|&gt;</span> </span>
+<span id="cb112-3"><a href="#cb112-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">factor</span>(lluvia),<span class="at">y=</span><span class="fu">fct_rev</span>(name),<span class="at">size=</span><span class="fu">ifelse</span>(value<span class="sc">==</span><span class="dv">0</span>,<span class="cn">NA</span>,value)))<span class="sc">+</span></span>
+<span id="cb112-4"><a href="#cb112-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 31 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="4.1-matricesv2_files/figure-html/unnamed-chunk-43-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="otras-opiciones-de-gráficos-genéricos" class="level2">
+<h2 class="anchored" data-anchor-id="otras-opiciones-de-gráficos-genéricos">Otras opiciones de gráficos genéricos</h2>
+<ul>
+<li>Ver el github de Cristian Dambros, de la UFSM-BRA</li>
+<li>La función <a href="https://raw.githubusercontent.com/csdambros/R-functions/master/poncho.R">poncho</a></li>
+<li>para llamar la función directamente a su script usar: source(“https://raw.githubusercontent.com/csdambros/R-functions/master/poncho.R”)</li>
+</ul>
+</section>
+<section id="section-18" class="level2">
+<h2 class="anchored" data-anchor-id="section-18"></h2>
+<p><img src="imgs/poncho.png" class="img-fluid"></p>
+</section>
+<section id="cuando-no-hay-variables-ambientales" class="level2">
+<h2 class="anchored" data-anchor-id="cuando-no-hay-variables-ambientales">Cuando no hay variables ambientales</h2>
+<ul>
+<li>Igual se pueden ordenar las matrices para visualizar los patrones</li>
+<li><em>Indirect</em> gradient analysis</li>
+<li>De este tipo se análisis se derivan técnicas más complejas como RA, CA y PCA</li>
+</ul>
+</section>
+<section id="en-resumen" class="level2">
+<h2 class="anchored" data-anchor-id="en-resumen">En Resumen</h2>
+<p><img src="imgs/whatever.jpg" class="img-fluid"></p>
+</section>
+<section id="no-voy-en-serio" class="level2">
+<h2 class="anchored" data-anchor-id="no-voy-en-serio">No, voy en serio!</h2>
+<ul>
+<li>La matriz es una de los formatos esenciales para los analisis ecológicos</li>
+<li>Manejar y visualizar información de matrices puede revelar informaciones importantes de los datos incluso antes de los análisis</li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Página creada con <a href="https://quarto.org/">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Luis D. Verde Arregoitia - 2025</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

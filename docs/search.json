@@ -1,0 +1,1647 @@
+[
+  {
+    "objectID": "temario.html",
+    "href": "temario.html",
+    "title": "Temario y cronograma",
+    "section": "",
+    "text": "Organización de proyectos y archivos\n\nBuenas prácticas para nombrar archivos y objetos\nTrabajando con rutas\n\nEstructuras de datos\n\nExploración rápida de datos"
+  },
+  {
+    "objectID": "temario.html#flujos-de-trabajo-y-análisis-0.5-días",
+    "href": "temario.html#flujos-de-trabajo-y-análisis-0.5-días",
+    "title": "Temario y cronograma",
+    "section": "",
+    "text": "Organización de proyectos y archivos\n\nBuenas prácticas para nombrar archivos y objetos\nTrabajando con rutas\n\nEstructuras de datos\n\nExploración rápida de datos"
+  },
+  {
+    "objectID": "temario.html#manipulación-y-limpieza-de-datos-1.5-días",
+    "href": "temario.html#manipulación-y-limpieza-de-datos-1.5-días",
+    "title": "Temario y cronograma",
+    "section": "2) Manipulación y limpieza de datos (1.5 días)",
+    "text": "2) Manipulación y limpieza de datos (1.5 días)\n\nPasos a seguir para importar y reestructurar tablas y archivos\nPrincipios de datos ordenados (tidy data) y herramientas del ‘tidyverse’ para ordenar datos\n\nExpresiones regulares para trabajar con cadenas de texto\n\nHerramientas para trabajar con datos faltantes\n\nFormas de identificar Información repetida"
+  },
+  {
+    "objectID": "temario.html#visualización-de-datos-1-día",
+    "href": "temario.html#visualización-de-datos-1-día",
+    "title": "Temario y cronograma",
+    "section": "3) Visualización de Datos (1 día)",
+    "text": "3) Visualización de Datos (1 día)\n\nIntroducción a ggplot2\nRepresentaciones gráficas de información\n\nPersonalización de elementos gráficos (ejes, colores, fuentes, leyendas)\nPreparación de figuras científicas\n\nExportando gráficos de alta calidad"
+  },
+  {
+    "objectID": "temario.html#lo-que-nadie-nos-enseñó-sobre-r-1-día",
+    "href": "temario.html#lo-que-nadie-nos-enseñó-sobre-r-1-día",
+    "title": "Temario y cronograma",
+    "section": "4) Lo que nadie nos enseñó sobre R (1 día)",
+    "text": "4) Lo que nadie nos enseñó sobre R (1 día)\n\nEntornos de trabajo y configuración\n\nIteración y vectorización para evitar repetición\nTrabajando con listas\n\nAtajos y herramientas para mayor eficiencia\n\nNovedades y direcciones futuras\nPráctica: funciones y automatización (nichos murciélagos)"
+  },
+  {
+    "objectID": "temario.html#aspectos-de-geografía-de-la-biodiversidad-1-día",
+    "href": "temario.html#aspectos-de-geografía-de-la-biodiversidad-1-día",
+    "title": "Temario y cronograma",
+    "section": "5) Aspectos de geografía de la biodiversidad (1 día)",
+    "text": "5) Aspectos de geografía de la biodiversidad (1 día)\n\nPuntos, polígonos, rasters: nuevas paqueterías para manejo de datos espaciales\n\nCalculando riqueza de especies para diferentes unidades espaciales\n\n\nPaquetes para generar mapas bivariados\n\nTrabajo con modelos de elevación digital\nFilogenias: manejo y visualización"
+  },
+  {
+    "objectID": "materiales.html",
+    "href": "materiales.html",
+    "title": "Materiales del curso",
+    "section": "",
+    "text": "Descargar todos los archivos (datos y scripts) para los ejercicios y ejemplos del curso:\nArchivos para el curso"
+  },
+  {
+    "objectID": "materiales.html#datos",
+    "href": "materiales.html#datos",
+    "title": "Materiales del curso",
+    "section": "",
+    "text": "Descargar todos los archivos (datos y scripts) para los ejercicios y ejemplos del curso:\nArchivos para el curso"
+  },
+  {
+    "objectID": "materiales.html#presentaciones",
+    "href": "materiales.html#presentaciones",
+    "title": "Materiales del curso",
+    "section": "Presentaciones",
+    "text": "Presentaciones\nEstas presentaciones en formato web cuentan con un índice de contenidos interactivo (botón en la esquina inferior izquierda).\n\nLunes\nFlujos de Trabajo y Organización de Proyectos\nExploración de datos\nManipulación y Limpieza de datos - I\n\n\nMartes\nManipulación y Limpieza de datos - II\n\n\nMiércoles\nVisualización de Datos\n\n\nJueves\n\n\n\n\n\nViernes"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html",
+    "href": "presentaciones/5-gradiente_riqueza.html",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "“To do science is to search for repeated patterns, not simply to accumulate facts” R. MacArthur\n\n\nA partir de las distribuciones geográficas de las especies es posible describir y evaluar diferentes patrones de biodiversidad que emergen cuando estudiamos conjuntos de especies (y no a nivel indivual)"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#áreas-de-distribución-y-patrones-geográficos-de-riqueza",
+    "href": "presentaciones/5-gradiente_riqueza.html#áreas-de-distribución-y-patrones-geográficos-de-riqueza",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "“To do science is to search for repeated patterns, not simply to accumulate facts” R. MacArthur\n\n\nA partir de las distribuciones geográficas de las especies es posible describir y evaluar diferentes patrones de biodiversidad que emergen cuando estudiamos conjuntos de especies (y no a nivel indivual)"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#áreas-de-distribución-y-patrones-geográficos-de-riqueza-1",
+    "href": "presentaciones/5-gradiente_riqueza.html#áreas-de-distribución-y-patrones-geográficos-de-riqueza-1",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "Áreas de distribución y patrones geográficos de riqueza",
+    "text": "Áreas de distribución y patrones geográficos de riqueza\n\nEn este ejercicio veremos cómo usar las distribuciones de las especies (polígonos, como los que generamos en el ejercicio anterior) para generar el patrón geográfico de riqueza de especies"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section",
+    "href": "presentaciones/5-gradiente_riqueza.html#section",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "Los datos (polígonos) son del orden PRIMATES (MAMMALIA) obtenidos de la IUCN"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#paquetes-necesarios",
+    "href": "presentaciones/5-gradiente_riqueza.html#paquetes-necesarios",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "Paquetes necesarios:",
+    "text": "Paquetes necesarios:\n\nlibrary(letsR)\nlibrary(sf)\nlibrary(ggplot2)\nlibrary(viridisLite)\nlibrary(tmap)\nlibrary(here)"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-1",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-1",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "Cargar los polígonos de las especies de interés (shapefiles en su carpeta de trabajo)\n\nprimates_maps &lt;- st_read(here(\"dados\",\"primates_maps.shp\"))\n\nReading layer `primates_maps' from data source \n  `/home/luisd/Dropbox/darcyDB/PDRF/R-biodiversidad-2025/dados/primates_maps.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 915 features and 28 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -99.2274 ymin: -34.83983 xmax: 141.9292 ymax: 41.54623\nGeodetic CRS:  WGS 84\n\n\n. . .\nConocer el dominio (“extent”) de los datos, para usarlo después en la delimitación del espacio (geográfico) de trabajo\n\nst_bbox(primates_maps)\n\n     xmin      ymin      xmax      ymax \n-99.22740 -34.83983 141.92917  41.54623"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-2",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-2",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "Crear una matriz de presencia-ausencia a partir de los polígonos\n\nprimates.pam &lt;- lets.presab(primates_maps, xmn = -100,xmx = 141, ymn = -35, ymx = 42, resol=1, count=T)\n\n\n  |                                                                            \n  |                                                                      |   0%\n  |                                                                            \n  |                                                                      |   1%\n  |                                                                            \n  |=                                                                     |   1%\n  |                                                                            \n  |=                                                                     |   2%\n  |                                                                            \n  |==                                                                    |   2%\n  |                                                                            \n  |==                                                                    |   3%\n  |                                                                            \n  |===                                                                   |   4%\n  |                                                                            \n  |===                                                                   |   5%\n  |                                                                            \n  |====                                                                  |   5%\n  |                                                                            \n  |====                                                                  |   6%\n  |                                                                            \n  |=====                                                                 |   6%\n  |                                                                            \n  |=====                                                                 |   7%\n  |                                                                            \n  |=====                                                                 |   8%\n  |                                                                            \n  |======                                                                |   8%\n  |                                                                            \n  |======                                                                |   9%\n  |                                                                            \n  |=======                                                               |   9%\n  |                                                                            \n  |=======                                                               |  10%\n  |                                                                            \n  |=======                                                               |  11%\n  |                                                                            \n  |========                                                              |  11%\n  |                                                                            \n  |========                                                              |  12%\n  |                                                                            \n  |=========                                                             |  12%\n  |                                                                            \n  |=========                                                             |  13%\n  |                                                                            \n  |=========                                                             |  14%\n  |                                                                            \n  |==========                                                            |  14%\n  |                                                                            \n  |==========                                                            |  15%\n  |                                                                            \n  |===========                                                           |  15%\n  |                                                                            \n  |===========                                                           |  16%\n  |                                                                            \n  |============                                                          |  17%\n  |                                                                            \n  |============                                                          |  18%\n  |                                                                            \n  |=============                                                         |  18%\n  |                                                                            \n  |=============                                                         |  19%\n  |                                                                            \n  |==============                                                        |  19%\n  |                                                                            \n  |==============                                                        |  20%\n  |                                                                            \n  |==============                                                        |  21%\n  |                                                                            \n  |===============                                                       |  21%\n  |                                                                            \n  |===============                                                       |  22%\n  |                                                                            \n  |================                                                      |  22%\n  |                                                                            \n  |================                                                      |  23%\n  |                                                                            \n  |=================                                                     |  24%\n  |                                                                            \n  |=================                                                     |  25%\n  |                                                                            \n  |==================                                                    |  25%\n  |                                                                            \n  |==================                                                    |  26%\n  |                                                                            \n  |===================                                                   |  26%\n  |                                                                            \n  |===================                                                   |  27%\n  |                                                                            \n  |===================                                                   |  28%\n  |                                                                            \n  |====================                                                  |  28%\n  |                                                                            \n  |====================                                                  |  29%\n  |                                                                            \n  |=====================                                                 |  29%\n  |                                                                            \n  |=====================                                                 |  30%\n  |                                                                            \n  |=====================                                                 |  31%\n  |                                                                            \n  |======================                                                |  31%\n  |                                                                            \n  |======================                                                |  32%\n  |                                                                            \n  |=======================                                               |  32%\n  |                                                                            \n  |=======================                                               |  33%\n  |                                                                            \n  |=======================                                               |  34%\n  |                                                                            \n  |========================                                              |  34%\n  |                                                                            \n  |========================                                              |  35%\n  |                                                                            \n  |=========================                                             |  35%\n  |                                                                            \n  |=========================                                             |  36%\n  |                                                                            \n  |==========================                                            |  37%\n  |                                                                            \n  |==========================                                            |  38%\n  |                                                                            \n  |===========================                                           |  38%\n  |                                                                            \n  |===========================                                           |  39%\n  |                                                                            \n  |============================                                          |  39%\n  |                                                                            \n  |============================                                          |  40%\n  |                                                                            \n  |============================                                          |  41%\n  |                                                                            \n  |=============================                                         |  41%\n  |                                                                            \n  |=============================                                         |  42%\n  |                                                                            \n  |==============================                                        |  42%\n  |                                                                            \n  |==============================                                        |  43%\n  |                                                                            \n  |===============================                                       |  44%\n  |                                                                            \n  |===============================                                       |  45%\n  |                                                                            \n  |================================                                      |  45%\n  |                                                                            \n  |================================                                      |  46%\n  |                                                                            \n  |=================================                                     |  46%\n  |                                                                            \n  |=================================                                     |  47%\n  |                                                                            \n  |=================================                                     |  48%\n  |                                                                            \n  |==================================                                    |  48%\n  |                                                                            \n  |==================================                                    |  49%\n  |                                                                            \n  |===================================                                   |  49%\n  |                                                                            \n  |===================================                                   |  50%\n  |                                                                            \n  |===================================                                   |  51%\n  |                                                                            \n  |====================================                                  |  51%\n  |                                                                            \n  |====================================                                  |  52%\n  |                                                                            \n  |=====================================                                 |  52%\n  |                                                                            \n  |=====================================                                 |  53%\n  |                                                                            \n  |=====================================                                 |  54%\n  |                                                                            \n  |======================================                                |  54%\n  |                                                                            \n  |======================================                                |  55%\n  |                                                                            \n  |=======================================                               |  55%\n  |                                                                            \n  |=======================================                               |  56%\n  |                                                                            \n  |========================================                              |  57%\n  |                                                                            \n  |========================================                              |  58%\n  |                                                                            \n  |=========================================                             |  58%\n  |                                                                            \n  |=========================================                             |  59%\n  |                                                                            \n  |==========================================                            |  59%\n  |                                                                            \n  |==========================================                            |  60%\n  |                                                                            \n  |==========================================                            |  61%\n  |                                                                            \n  |===========================================                           |  61%\n  |                                                                            \n  |===========================================                           |  62%\n  |                                                                            \n  |============================================                          |  62%\n  |                                                                            \n  |============================================                          |  63%\n  |                                                                            \n  |=============================================                         |  64%\n  |                                                                            \n  |=============================================                         |  65%\n  |                                                                            \n  |==============================================                        |  65%\n  |                                                                            \n  |==============================================                        |  66%\n  |                                                                            \n  |===============================================                       |  66%\n  |                                                                            \n  |===============================================                       |  67%\n  |                                                                            \n  |===============================================                       |  68%\n  |                                                                            \n  |================================================                      |  68%\n  |                                                                            \n  |================================================                      |  69%\n  |                                                                            \n  |=================================================                     |  69%\n  |                                                                            \n  |=================================================                     |  70%\n  |                                                                            \n  |=================================================                     |  71%\n  |                                                                            \n  |==================================================                    |  71%\n  |                                                                            \n  |==================================================                    |  72%\n  |                                                                            \n  |===================================================                   |  72%\n  |                                                                            \n  |===================================================                   |  73%\n  |                                                                            \n  |===================================================                   |  74%\n  |                                                                            \n  |====================================================                  |  74%\n  |                                                                            \n  |====================================================                  |  75%\n  |                                                                            \n  |=====================================================                 |  75%\n  |                                                                            \n  |=====================================================                 |  76%\n  |                                                                            \n  |======================================================                |  77%\n  |                                                                            \n  |======================================================                |  78%\n  |                                                                            \n  |=======================================================               |  78%\n  |                                                                            \n  |=======================================================               |  79%\n  |                                                                            \n  |========================================================              |  79%\n  |                                                                            \n  |========================================================              |  80%\n  |                                                                            \n  |========================================================              |  81%\n  |                                                                            \n  |=========================================================             |  81%\n  |                                                                            \n  |=========================================================             |  82%\n  |                                                                            \n  |==========================================================            |  82%\n  |                                                                            \n  |==========================================================            |  83%\n  |                                                                            \n  |===========================================================           |  84%\n  |                                                                            \n  |===========================================================           |  85%\n  |                                                                            \n  |============================================================          |  85%\n  |                                                                            \n  |============================================================          |  86%\n  |                                                                            \n  |=============================================================         |  86%\n  |                                                                            \n  |=============================================================         |  87%\n  |                                                                            \n  |=============================================================         |  88%\n  |                                                                            \n  |==============================================================        |  88%\n  |                                                                            \n  |==============================================================        |  89%\n  |                                                                            \n  |===============================================================       |  89%\n  |                                                                            \n  |===============================================================       |  90%\n  |                                                                            \n  |===============================================================       |  91%\n  |                                                                            \n  |================================================================      |  91%\n  |                                                                            \n  |================================================================      |  92%\n  |                                                                            \n  |=================================================================     |  92%\n  |                                                                            \n  |=================================================================     |  93%\n  |                                                                            \n  |=================================================================     |  94%\n  |                                                                            \n  |==================================================================    |  94%\n  |                                                                            \n  |==================================================================    |  95%\n  |                                                                            \n  |===================================================================   |  95%\n  |                                                                            \n  |===================================================================   |  96%\n  |                                                                            \n  |====================================================================  |  97%\n  |                                                                            \n  |====================================================================  |  98%\n  |                                                                            \n  |===================================================================== |  98%\n  |                                                                            \n  |===================================================================== |  99%\n  |                                                                            \n  |======================================================================|  99%\n  |                                                                            \n  |======================================================================| 100%"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#cómo-se-ve-el-patrón-geográfico",
+    "href": "presentaciones/5-gradiente_riqueza.html#cómo-se-ve-el-patrón-geográfico",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "¿Cómo se ve el patrón geográfico?",
+    "text": "¿Cómo se ve el patrón geográfico?\n. . .\n\nplot(primates.pam)"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-3",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-3",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "¿Qué tiene el objeto que se graficó?\n\nprimates.pam$Richness_Raster\n\nclass       : SpatRaster \ndimensions  : 77, 241, 1  (nrow, ncol, nlyr)\nresolution  : 1, 1  (x, y)\nextent      : -100, 141, -35, 42  (xmin, xmax, ymin, ymax)\ncoord. ref. : +proj=longlat +datum=WGS84 +no_defs \nsource(s)   : memory\nname        : lyr.1 \nmin value   :     0 \nmax value   :    33"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-4",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-4",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "Vamos a verlo en ggplot\n. . .\nPrimero, convertimos el raster en un data.frame\n\nrdf &lt;- as.data.frame(primates.pam$Richness_Raster, xy=TRUE) #Convert raster to data.frame\nnames(rdf)[3] &lt;- 'richness' #Name value column\nhead(rdf)\n\n      x    y richness\n1 -99.5 41.5        0\n2 -98.5 41.5        0\n3 -97.5 41.5        0\n4 -96.5 41.5        0\n5 -95.5 41.5        0\n6 -94.5 41.5        0\n\nrdf2 &lt;- rdf\nrdf2[,3] &lt;- ifelse(rdf[,3]==0,NA,rdf[,3])\nhead(rdf2)\n\n      x    y richness\n1 -99.5 41.5       NA\n2 -98.5 41.5       NA\n3 -97.5 41.5       NA\n4 -96.5 41.5       NA\n5 -95.5 41.5       NA\n6 -94.5 41.5       NA"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-5",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-5",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "Ahora sí, lo graficamos\n\nggplot(data = rdf2)+\n  geom_raster(mapping=aes(x=x, y=y, fill=richness))+\n  scale_fill_gradientn(colours= rev(inferno(10)), name='Richness')"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-6",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-6",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "¿Qué más podemos hacer con esto?\n. . .\nPor ejemplo, relacionar el patrón de riqueza con alguna variable ambiental\n. . .\nCarguemos una variable ambiental (temperatura máxima, que viene de WorldClim)\n\ntemp &lt;- rast(here(\"dados\",\"bio1.bil\"))\n\nplot(temp)"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-7",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-7",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "temp &lt;- rast(here(\"dados\",\"bio1.bil\"))\n\nplot(temp)"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-8",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-8",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "Ahora, podemos extraer ambos valores/variables de interés: riqueza y temperatura\n¿Cómo? . . .\n\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:terra':\n\n    intersect, union\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nprimates.pam2 &lt;- primates.pam2 &lt;- as_tibble(primates.pam$Presence_and_Absence_Matrix)\n\nprimates.richness &lt;- primates.pam2 %&gt;% \n  mutate(richness=rowSums(primates.pam2[,-c(1:2)])) %&gt;% \n  select(`Longitude(x)`,`Latitude(y)`,richness) %&gt;% \n  filter(richness&gt;0)\n\n\ntemp2 &lt;- extract(temp, primates.pam2[,1:2])"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-9",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-9",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "Ahora ya podemos evaluar la relación entre riqueza y temperatura\n\nplot(primates.richness$richness~temp2$bio1)\n\n\n\n\n\n\n\n\n. . .\n\ncor.test(temp2$bio1, primates.richness$richness, method=\"spearman\")\n\nWarning in cor.test.default(temp2$bio1, primates.richness$richness, method =\n\"spearman\"): Cannot compute exact p-value with ties\n\n\n\n    Spearman's rank correlation rho\n\ndata:  temp2$bio1 and primates.richness$richness\nS = 1.0509e+10, p-value &lt; 2.2e-16\nalternative hypothesis: true rho is not equal to 0\nsample estimates:\n     rho \n0.188953"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "‘pipes’ y el tidyverse \nEstructuras y organización de datos\n\nMétodos para reestructurar tablas y archivos\n\nPrincipios de datos ordenados (tidy data) y herramientas del ‘tidyverse’ para ordenar datos"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#temas-del-bloque",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#temas-del-bloque",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Temas del bloque:",
+    "text": "Temas del bloque:\n\n‘pipes’ y el tidyverse \nEstructuras y organización de datos\n\nMétodos para reestructurar tablas y archivos\n\nPrincipios de datos ordenados (tidy data) y herramientas del ‘tidyverse’ para ordenar datos"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#más-temas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#más-temas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Más temas:",
+    "text": "Más temas:\n\nExpresiones regulares para trabajar con cadenas de texto\n\nHerramientas para manejar datos faltantes\n\nFormas de identificar información repetida"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#pipes-paips",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#pipes-paips",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Pipes (\\paips\\)",
+    "text": "Pipes (\\paips\\)\nSi queremos hacer varias operaciones en secuencia:\n\n\nCódigo anidado (los resultados se evalúan de adentro hacia afuera)\nObjetos intermedios (creamos objetos con resultados intermedios y para la siguiente función en la secuencia)\nPipes (estructuramos operaciones seriadas de izquierda a derecha)"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#código-anidado",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#código-anidado",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Código anidado",
+    "text": "Código anidado\n\n\n\nnotas &lt;- c(7,8,8,10,6,9,5,9,8)\n\nround(mean(notas), digits = 2)\n\n[1] 7.78"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#objetos-intermedios",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#objetos-intermedios",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Objetos intermedios",
+    "text": "Objetos intermedios\n\n\n\nnotas_promedio &lt;- mean(notas)\n\nnotas_promedio_rd &lt;- \n  round(notas_promedio,\n           digits = 2)\n\nnotas_promedio_rd\n\n[1] 7.78"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#pipes",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#pipes",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Pipes",
+    "text": "Pipes\n\n\n\nMano izquierda\n(LHS)\n\noperador ‘pipe’\n%&gt;%\nde 📦 magrittr\n|&gt; en R v &gt;= 4.1.0\n\nMano derecha\n(RHS)\n\n\n\nToma un objeto a la izquierda del operador y lo inserta como argumento en la función a su derecha\n* Por defecto lo que esté a la izquierda del ‘pipe’ se inserta como el primer argumento de la función"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#pipes-1",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#pipes-1",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Pipes",
+    "text": "Pipes\n\nReducen la necesidad de guardar resultados intermedios o de anidar código\nCódigo más fácil de leer\nMás fácil quitar o agregar pasos a la secuencia\n\n\nInsertamos con ctrl + shift + M\n\n\n\nAdolfo Álvarez (2021)\nThe (updated) history of the pipe operator in R"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "notas |&gt; \n  mean() |&gt; \n  round(digits=2)\n\n[1] 7.78"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-1",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-1",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "LHS |&gt; RHS(argument = 12)\nse convierte en\nRHS(LHS, argument = 12)"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#tidyverse",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#tidyverse",
+    "title": "Manipulación y limpieza de datos",
+    "section": "tidyverse",
+    "text": "tidyverse\n\n\n\n\n\n… una colección de paquetes de R diseñados para ciencia de datos. Todos los paquetes comparten una filosofía de diseño, gramática, y estructuras de datos. Su objetivo principal es de ‘facilitar una conversación sobre datos entre un humano y su computador’\n\n\n\n\nWickham et al. (2019)\nWelcome to the tidyverse\nhttps://www.tidyverse.org/"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#tidyverse-1",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#tidyverse-1",
+    "title": "Manipulación y limpieza de datos",
+    "section": "tidyverse",
+    "text": "tidyverse\n\nPara tareas comunes con datos: importar archivos, limpiar datos, transformar, visualizar, o programar nuevas funciones.\nDiseñado para facilitar su aprendizaje y que los usuarios vayan aprendiendo más funciones conforme interactúen con más elementos de este ‘ecosistema’.\n\n\n\nÇetinkaya-Rundel et al. (2021)\nAn educator’s perspective of the tidyverse"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-2",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-2",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "Teaching the tidyverse in 2023"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#tibbles-tibls",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#tibbles-tibls",
+    "title": "Manipulación y limpieza de datos",
+    "section": "tibbles (/tibls/)",
+    "text": "tibbles (/tibls/)\nModernizando el data.frame\nImplementado para todo el tidyverse a través de 📦 tibble\n\ntibble(\n  x = c(\"a\", \"b\", \"c\"),\n  y = c(1, 2, 3)\n)\n\n# A tibble: 3 × 2\n  x         y\n  &lt;chr&gt; &lt;dbl&gt;\n1 a         1\n2 b         2\n3 c         3\n\n\n\nObjeto rectangular común para todos los paquetes del tidyverse"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#funciones-de-tidyverse",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#funciones-de-tidyverse",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Funciones de tidyverse",
+    "text": "Funciones de tidyverse\n\n\nreciben un data.frame ➡️ regresan un data.frame\nreciben un tibble ➡️ regresan un tibble\ngeneran un objeto nuevo ➡️ crean un tibble"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#creando-tibbles",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#creando-tibbles",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Creando tibbles",
+    "text": "Creando tibbles\n\nSalida predeterminada de funciones\nConvirtiendo otros objetos con as_tibble()\nConstruyendo a partir de vectores con tibble()"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#tibbles",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#tibbles",
+    "title": "Manipulación y limpieza de datos",
+    "section": "tibbles",
+    "text": "tibbles\nPara menos ambigüedad:\n\n\n\nNo asignan nombres a las filas\nNo modifican los nombres de las columnas\nNo convierten caracteres en factores\nExigen nombres completos para seleccionar subconjuntos de variables con $"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#impresión-de-tibbles",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#impresión-de-tibbles",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Impresión de tibbles",
+    "text": "Impresión de tibbles\nPara no saturar la consola, los métodos de impresión para tibbles muestran:\n\n\nLas primeras 10 filas\nCuántas filas y columnas no se imprimieron\nSolo las columnas que entran en el ancho de nuestra pantalla\nEl tipo de variable de todas las columnas"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#qué-problemas-vemos-con-esta-presentación-de-datos",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#qué-problemas-vemos-con-esta-presentación-de-datos",
+    "title": "Manipulación y limpieza de datos",
+    "section": "¿Qué problemas vemos con esta presentación de datos?",
+    "text": "¿Qué problemas vemos con esta presentación de datos?"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#más-utilizable",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#más-utilizable",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Más utilizable",
+    "text": "Más utilizable\n\n\n\n\n\n\n\n\nNombre\nPeriodo\nTipoViaje\nPropositoViaje\nCosto\nPais\n\n\n\n\nMiguel J.\n2022\nNacional\nSalida campo\n1000\nMX\n\n\nMiguel J.\n2022\nNacional\nSalida campo\n1000\nMX\n\n\nMiguel J.\n2022\nNacional\nCongreso\n500\nMX\n\n\nMiguel J.\n2022\nNacional\nTaller\n500\nMX\n\n\nMiguel J.\n2022\nInternacional\nCongreso\n2000\nEUA\n\n\nAlejandra M.\n2022\nNA\nNA\nNA\nNA\n\n\nRaul S.\n2022\nNacional\nSalida campo\n1000\nMX"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#datos-bien-organizados",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#datos-bien-organizados",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Datos bien organizados",
+    "text": "Datos bien organizados\n\nMás fácil de importar y manipular\nMenos potencial de errores no replicables (alteraciones, omisiones, duplicaciones)\n\nSiguiendo buenos principios de organización producimos mejores datos y podremos identificar y resolver problemas en datos existentes"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#recomendaciones",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#recomendaciones",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Recomendaciones",
+    "text": "Recomendaciones\n\nUnidades, nombres, esquemas, fechas etc. consistentes\nNombres utilizables\nEstructuras rectangulares\n\n\n\n\n\nOpenscapes (2020)\nTidy data illustrated\n\nBroman and Woo (2018)\nOrganizing data in spreadsheets\n\nVerde Arregoita et al. (2018)\nGood practices for sharing analysis-ready data…"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#consistencia",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#consistencia",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Consistencia",
+    "text": "Consistencia\nTablas relacionadas con datos sobre seguimiento GPS de aves\n\n\n\n\n\n\n\n\n\n\nid\nave\nedad\nestado\n\n\n\n\n23\ngorrión\njuvenil\nVER\n\n\n11\nbuho\nadulto\nVeracruz\n\n\n7\nbuho\nj\nPuebla\n\n\n40\ncodorniz\nADULTO\nPU\n\n\n34\ngorrión\n1\nVER\n\n\n30\npaloma\nA\nV\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nID_ave\nnum_rasteador\nsexo\n\n\n\n\n23\nb452\nM\n\n\n11\nb256\nM\n\n\n7\na122\nF\n\n\n40\nb889\nM\n\n\n34\nd136\nF\n\n\n\n\n\n\n\n\n\n¿Cuántas inconsistencias ven aquí?"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#datos-rectangulares",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#datos-rectangulares",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Datos rectangulares",
+    "text": "Datos rectangulares\n\n\n\n\nObjetos con filas y columnas, en los cuales:\n\nCada fila tiene el mismo número de columnas\nCada columna tiene el mismo número de filas\nVectores o factores de la misma longitud entonces todas las columnas tienen la misma ‘altura’"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#datos-rectangulares-rangos-de-celdas-en-una-hoja-de-cálculo",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#datos-rectangulares-rangos-de-celdas-en-una-hoja-de-cálculo",
+    "title": "Manipulación y limpieza de datos",
+    "section": "datos rectangulares ~ rangos de celdas en una hoja de cálculo",
+    "text": "datos rectangulares ~ rangos de celdas en una hoja de cálculo\n\n\n\n\n\n\n\n\nDavis Vaughan (2018)\nTidying Excel cash flow spreadsheets"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-3",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-3",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "but sometimes such data is “rectangular” in the same sense that this cat is “bowl-shaped” 😂 pic.twitter.com/ZmxvgcV57d\n\n— Jenny Bryan (@JennyBryan) May 9, 2019"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-4",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-4",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "animal\nind_observados\nhabitat\n\n\n\n\ncaracol\n12\nmar\n\n\ngaviota\n14\ncosta\n\n\nnutria\n11\nrío\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncaracol\ngaviota\nnutria\n\n\n\n\n12\n14\n11\n\n\nmar\ncosta\nrío"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#datos-listos-para-uso",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#datos-listos-para-uso",
+    "title": "Manipulación y limpieza de datos",
+    "section": "¿Datos listos para uso?",
+    "text": "¿Datos listos para uso?\n\nAgrupar, transformar, ordenar, visualizar, modelar, compartir, etc."
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#no-se-puede",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#no-se-puede",
+    "title": "Manipulación y limpieza de datos",
+    "section": "¿No se puede?",
+    "text": "¿No se puede?\n\nOrdenar para un manejo más fácil y eficiente"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#datos-ordenados-tidy-data",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#datos-ordenados-tidy-data",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Datos ordenados (tidy data)",
+    "text": "Datos ordenados (tidy data)\nUna reinterpretación accesible de distintos principios y definiciones de estadística y ciencias de la computación\n\n\n\nWickham (2014)\nTidy Data - Journal of Statistical Software"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#tidy-data",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#tidy-data",
+    "title": "Manipulación y limpieza de datos",
+    "section": "‘Tidy data’",
+    "text": "‘Tidy data’\n\nDatos acomodados en una matriz 2D con filas y columnas\nLas filas corresponden a observaciones\nLas columnas corresponden a variables\nUn solo valor por celda"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#para-qué",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#para-qué",
+    "title": "Manipulación y limpieza de datos",
+    "section": "¿Para qué?",
+    "text": "¿Para qué?\nMás fácil de reacomodar y manejar"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#para-qué-1",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#para-qué-1",
+    "title": "Manipulación y limpieza de datos",
+    "section": "¿Para qué?",
+    "text": "¿Para qué?\nTrabajando con filas\nLos valores de cada observación quedan juntos"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-7",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-7",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "Las variables entran directamente como especificaciones para modelos y/o parámetros gráficos"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#cuándo-no",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#cuándo-no",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Cuándo no",
+    "text": "Cuándo no\n\nLos datos ordenados son más repetitivos y pueden ocupar más espacio que otras representaciones más compactas\n\n\n\nNo es un formato ideal para la captura de datos, o para tablas que forman parte de algún texto que será impreso"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#variables-por-separado-para-definir-grupos",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#variables-por-separado-para-definir-grupos",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Variables por separado para definir grupos",
+    "text": "Variables por separado para definir grupos\nUsar ‘variables indicadoras’ en lugar de colapsar información entre dos o más variables.\n\n\n\n\n\n\n\n\n\n\n\n\nEquipo\nLiga\nVictorias\nClasificado\n\n\n\n\nOsos\nPrimera\n8\nSI\n\n\nVenados\nReservas\n2\nNO\n\n\nDragones\nPrimera\n12\nSI\n\n\nLeones\nPrimera\n4\nNO\n\n\nFénix FC\nReservas\n7\nSI"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#valores-faltantes",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#valores-faltantes",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Valores faltantes",
+    "text": "Valores faltantes\nNo se registraron, no aplican, se perdieron, etc.\n\n Los datos faltantes siguen siendo datos \nEn R usamos NA, una constante especial que indica valores faltantes"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#encabezados-utilizables-nombres-de-las-columnas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#encabezados-utilizables-nombres-de-las-columnas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Encabezados utilizables (nombres de las columnas)",
+    "text": "Encabezados utilizables (nombres de las columnas)\nNombres poco informativos e inconsistentes\n\n\n\n\n\n\n\n\nX\nx1\nX2\ncalif_min\nCALIFICACION.PROMEDIO\n\n\n\n\nUANL\nNorte\nArquitectura\n6\n8.90\n\n\nUT\nNorte\nDiseño\n7\n7.78\n\n\nUABJO\nSur\nDiseño\n6\n8.50\n\n\n\n\n\n\n\n\nMás difícil de recordar para hacer referencia a diferentes variables\nNo se ordenan bien (alfa-numéricamente)"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-9",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-9",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "universidad\nregion\narea\ncalificacion_minima\ncalificacion_promedio\n\n\n\n\nUANL\nNorte\nArquitectura\n6\n8.90\n\n\nUT\nNorte\nDiseño\n7\n7.78\n\n\nUABJO\nSur\nDiseño\n6\n8.50"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#nombres-de-columna-partidos",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#nombres-de-columna-partidos",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Nombres de columna partidos",
+    "text": "Nombres de columna partidos\n\n\n\n\n\n\n\n\nuniversidad\nregion\narea\ncalificacion_\ncalificacion\n\n\n\n\nNA\nNA\nNA\nminima\npromedio\n\n\nUANL\nNorte\nArquitectura\n6\n8.9\n\n\nUT\nNorte\nDiseño\n7\n7.78\n\n\nUABJO\nSur\nDiseño\n6\n8.5\n\n\n\n\n\n\n\n\nLos nombres de las columnas aparecen en &gt;1 fila\nMezcla de fragmentos de nombre con datos\nSe pierden los separadores entre palabras\nSe introducen NA"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#datos-compartidos-adecuadamente",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#datos-compartidos-adecuadamente",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Datos compartidos adecuadamente",
+    "text": "Datos compartidos adecuadamente\nFáciles de interpretar (por humanos y por máquinas) y listos para analizar\n↘ Reduce la dependencia a software complejo o caro y disminuye la necesidad de saber programar para limpiar datos complejos\n↘ Reducir la interpretación que habrá que hacer para poder usar los datos"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#formatos",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#formatos",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Formatos",
+    "text": "Formatos\n\n\n\nEl PDF no es un formato para datos\n\n\n\n\n\nMientras más simple mejor (ej: csv, txt)\nCompartir datos, guardar cálculos y resultados por separado"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#para-preparar-transformar-y-estructurar-datos",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#para-preparar-transformar-y-estructurar-datos",
+    "title": "Manipulación y limpieza de datos",
+    "section": "🔨 para preparar, transformar, y estructurar datos",
+    "text": "🔨 para preparar, transformar, y estructurar datos\n📦 dplyr y 📦 tidyr\nFlexibles, pero desarrollados en torno a una filosofía común"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-10",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-10",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "Trabas para no usar las funciones incorrectamente\n\nMenos código para lograr un resultado\nGramática y estructuras de datos compartidas\nTareas divididas entre funciones y paquetes\nUso de ‘pipes’"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#funciones-útiles-de-dplyr",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#funciones-útiles-de-dplyr",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Funciones útiles de 📦 dplyr",
+    "text": "Funciones útiles de 📦 dplyr\n\nDistintas funciones para las operaciones más comunes\nCada función solo hace una cosa pero la hace bien\n\n\n\nFunciones intuitivas para:\n\nCrear subconjuntos de filas y columnas\nCrear o modificar columnas"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-11",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-11",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "Países megadiversosDatos\n\n\n\n\n\n\n\n\n\n\npais\nespecies\namenazadas\nregion\n\n\n\n\nIndonesia\n670\n191\nAsia\n\n\nBrasil\n648\n80\nAmerica\n\n\nChina\n551\n73\nAsia\n\n\nMexico\n523\n96\nAmerica\n\n\nPeru\n467\n53\nAmerica\n\n\nCongo\n430\n15\nAfrica\n\n\nIndia\n412\n93\nAsia\n\n\nKenya\n376\n30\nAfrica\n\n\nArgentina\n374\n38\nAmerica\n\n\nEcuador\n372\n47\nAmerica\n\n\nVenezuela\n363\n35\nAmerica\n\n\nTanzania\n359\n41\nAfrica\n\n\n\n\n\n\n\n\n\n\npaises_m &lt;- \ntibble::tribble(\n        ~pais, ~especies, ~amenazadas,   ~region,\n  \"Indonesia\",      670L,        191L,    \"Asia\",\n     \"Brasil\",      648L,         80L, \"America\",\n      \"China\",      551L,         73L,    \"Asia\",\n     \"Mexico\",      523L,         96L, \"America\",\n       \"Peru\",      467L,         53L, \"America\",\n      \"Congo\",      430L,         15L,  \"Africa\",\n      \"India\",      412L,         93L,    \"Asia\",\n      \"Kenya\",      376L,         30L,  \"Africa\",\n  \"Argentina\",      374L,         38L, \"America\",\n    \"Ecuador\",      372L,         47L, \"America\",\n  \"Venezuela\",      363L,         35L, \"America\",\n   \"Tanzania\",      359L,         41L,  \"Africa\"\n  )"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#select",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#select",
+    "title": "Manipulación y limpieza de datos",
+    "section": "select()",
+    "text": "select()\n\n\nSeleccionar columnas\n\npor nombre\n\npor posición\n\npor tipo\n\n\n\n\n\npaises_m %&gt;% \n  select(pais,\n         amenazadas) %&gt;% \n  head(4)\n\n# A tibble: 4 × 2\n  pais      amenazadas\n  &lt;chr&gt;          &lt;int&gt;\n1 Indonesia        191\n2 Brasil            80\n3 China             73\n4 Mexico            96"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#mutate",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#mutate",
+    "title": "Manipulación y limpieza de datos",
+    "section": "mutate()",
+    "text": "mutate()\n\n\nCrea o modifica columnas\n\nCrear nuevas\n\n‘sobre-escribir’ existentes\n\n\n\n\npaises_m %&gt;%\n  select(pais, amenazadas) %&gt;% \n  mutate(amenazadas_log = log(amenazadas)) %&gt;% \n  head(5)\n\n# A tibble: 5 × 3\n  pais      amenazadas amenazadas_log\n  &lt;chr&gt;          &lt;int&gt;          &lt;dbl&gt;\n1 Indonesia        191           5.25\n2 Brasil            80           4.38\n3 China             73           4.29\n4 Mexico            96           4.56\n5 Peru              53           3.97\n\n\n\nPodemos controlar en dónde aparece la nueva columna con los argumentos .before y .after"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#filter",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#filter",
+    "title": "Manipulación y limpieza de datos",
+    "section": "filter()",
+    "text": "filter()\nSeleccionar filas\nRetiene solamente las filas que cumplen una condición\n\n\npaises_m %&gt;% \n  select(pais, especies, amenazadas) %&gt;% \n  filter(amenazadas &gt; 75)\n\n# A tibble: 4 × 3\n  pais      especies amenazadas\n  &lt;chr&gt;        &lt;int&gt;      &lt;int&gt;\n1 Indonesia      670        191\n2 Brasil         648         80\n3 Mexico         523         96\n4 India          412         93"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#rename",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#rename",
+    "title": "Manipulación y limpieza de datos",
+    "section": "rename()",
+    "text": "rename()\nCambiar nombres de columnas\nNombre nuevo primero luego variable objetivo\n\n\npaises_m %&gt;% \n  rename(country = pais,species = especies, threatened = amenazadas) %&gt;% \n  head()\n\n# A tibble: 6 × 4\n  country   species threatened region \n  &lt;chr&gt;       &lt;int&gt;      &lt;int&gt; &lt;chr&gt;  \n1 Indonesia     670        191 Asia   \n2 Brasil        648         80 America\n3 China         551         73 Asia   \n4 Mexico        523         96 America\n5 Peru          467         53 America\n6 Congo         430         15 Africa"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#operaciones-de-dos-tablas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#operaciones-de-dos-tablas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Operaciones de dos tablas",
+    "text": "Operaciones de dos tablas\n\nFunciones _join() para combinar tablas a partir de identificadores comunes\n\n🤹 tidyexplain tidy animated verbs"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-12",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-12",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "paises_convenio &lt;- tibble::tibble(pais=c(\"Peru\",\"China\",\"Indonesia\"),\n               desde=c(2014,2011,2013))"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-13",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-13",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "left_join(paises_m,paises_convenio)\n\n# A tibble: 12 × 5\n   pais      especies amenazadas region  desde\n   &lt;chr&gt;        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;\n 1 Indonesia      670        191 Asia     2013\n 2 Brasil         648         80 America    NA\n 3 China          551         73 Asia     2011\n 4 Mexico         523         96 America    NA\n 5 Peru           467         53 America  2014\n 6 Congo          430         15 Africa     NA\n 7 India          412         93 Asia       NA\n 8 Kenya          376         30 Africa     NA\n 9 Argentina      374         38 America    NA\n10 Ecuador        372         47 America    NA\n11 Venezuela      363         35 America    NA\n12 Tanzania       359         41 Africa     NA\n\n\n\nAtención al orden en el que mencionamos los objetos"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-14",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-14",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "left_join(paises_convenio,paises_m)\n\n# A tibble: 3 × 5\n  pais      desde especies amenazadas region \n  &lt;chr&gt;     &lt;dbl&gt;    &lt;int&gt;      &lt;int&gt; &lt;chr&gt;  \n1 Peru       2014      467         53 America\n2 China      2011      551         73 Asia   \n3 Indonesia  2013      670        191 Asia   \n\n\n\nSi la columna en común no tiene el mismo nombre la especificamos con el argumento “by”"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#pegando-tablas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#pegando-tablas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "“Pegando” tablas",
+    "text": "“Pegando” tablas\n\nbind_rows apila filas (siempre y cuando los nombres de columna tengan correspondencia)\n\n\nNZ &lt;- tibble(pais=\"Nueva Zelanda\",especies=2,amenazadas=2,region=\"Oceania\")\nbind_rows(paises_m,NZ)\n\n# A tibble: 13 × 4\n   pais          especies amenazadas region \n   &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  \n 1 Indonesia          670        191 Asia   \n 2 Brasil             648         80 America\n 3 China              551         73 Asia   \n 4 Mexico             523         96 America\n 5 Peru               467         53 America\n 6 Congo              430         15 Africa \n 7 India              412         93 Asia   \n 8 Kenya              376         30 Africa \n 9 Argentina          374         38 America\n10 Ecuador            372         47 America\n11 Venezuela          363         35 America\n12 Tanzania           359         41 Africa \n13 Nueva Zelanda        2          2 Oceania"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-15",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-15",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "bind_cols pega columnas indiscriminadamente si las longitudes son iguales\n\n\ncol_nueva &lt;- tibble(ranking_eco=c(12,3,5,6,1,7,8,1,6,77,33,5))\nbind_cols(paises_m,col_nueva)\n\n# A tibble: 12 × 5\n   pais      especies amenazadas region  ranking_eco\n   &lt;chr&gt;        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;         &lt;dbl&gt;\n 1 Indonesia      670        191 Asia             12\n 2 Brasil         648         80 America           3\n 3 China          551         73 Asia              5\n 4 Mexico         523         96 America           6\n 5 Peru           467         53 America           1\n 6 Congo          430         15 Africa            7\n 7 India          412         93 Asia              8\n 8 Kenya          376         30 Africa            1\n 9 Argentina      374         38 America           6\n10 Ecuador        372         47 America          77\n11 Venezuela      363         35 America          33\n12 Tanzania       359         41 Africa            5"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#rebanando-filas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#rebanando-filas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "🍕 rebanando filas",
+    "text": "🍕 rebanando filas\nFamilia de funciones slice_ para obtener máximos, mínimos, muestreos aleatorios, etc.\n\npaises_m %&gt;% slice_max(especies)\n\n# A tibble: 1 × 4\n  pais      especies amenazadas region\n  &lt;chr&gt;        &lt;int&gt;      &lt;int&gt; &lt;chr&gt; \n1 Indonesia      670        191 Asia  \n\nslice_min(paises_m,amenazadas)\n\n# A tibble: 1 × 4\n  pais  especies amenazadas region\n  &lt;chr&gt;    &lt;int&gt;      &lt;int&gt; &lt;chr&gt; \n1 Congo      430         15 Africa\n\npaises_m %&gt;% slice_sample(n=2)\n\n# A tibble: 2 × 4\n  pais    especies amenazadas region \n  &lt;chr&gt;      &lt;int&gt;      &lt;int&gt; &lt;chr&gt;  \n1 Ecuador      372         47 America\n2 Brasil       648         80 America"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---datos-desde-paquetes-1",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---datos-desde-paquetes-1",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio - Datos desde paquetes (1)",
+    "text": "Ejercicio - Datos desde paquetes (1)\n\ndata() carga o genera una lista de juegos de datos disponibles con los paquetes que tengamos instalados \ndata() sin ningún argumento muestra todos los datos disponibles"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---datos-desde-paquetes-2",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---datos-desde-paquetes-2",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio - Datos desde paquetes (2)",
+    "text": "Ejercicio - Datos desde paquetes (2)\nPodemos especificar de cuál paquete enlistar datos\ndata(package=\"ggplot2\")\ndata(package=\"datasets\")\ndata(package=\"tidyr\")"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---datos-desde-paquetes-3",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---datos-desde-paquetes-3",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio - Datos desde paquetes (3)",
+    "text": "Ejercicio - Datos desde paquetes (3)\n data() carga datos desde un paquete, como argumento usamos el nombre del juego de datos que necesitamos (con o sin comillas)\n\nDebe estar cargado el paquete que contiene los datos\n\n\nlibrary(ggplot2)\ndata(economics)\n\nlibrary(openintro)\ndata(\"nba_players_19\")"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---manipulación-de-datos",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---manipulación-de-datos",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio - manipulación de datos",
+    "text": "Ejercicio - manipulación de datos\n\nCargar el objeto pinguinos, se instala con el paquete datos\n\n\nPor ahora los datos de este paquete no se cargan con data()"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---manipulación-de-datos-1",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---manipulación-de-datos-1",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio - manipulación de datos",
+    "text": "Ejercicio - manipulación de datos\n\nCrear un subconjunto de datos que solo incluya especie, isla, y largo_aleta_mm\n¿Cuántos individuos tienen aletas &gt; a 195 mm?\nCrea una nueva columna con el largo de aleta en pulgadas"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#operaciones-con-varias-columnas-en-simultáneo",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#operaciones-con-varias-columnas-en-simultáneo",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Operaciones con varias columnas en simultáneo",
+    "text": "Operaciones con varias columnas en simultáneo\nacross()\nPara aplicar filter o mutate a varias columnas\n\nColumnas especificadas por posición (no es buena opción), nombre, o tipo\nSelecciones compuestas\n(ej: variables de tipo factor que contienen ‘temp’ en su nombre)"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#argumentos-de-across",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#argumentos-de-across",
+    "title": "Manipulación y limpieza de datos",
+    "section": "argumentos de across():",
+    "text": "argumentos de across():\n.cols Columnas para transformar\n.fns Función a aplicarse a cada una\n\nacross espera una función entonces el nombre y sus argumentos se pueden pasar por separado"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#funciones-adicionales-para-referirnos-a-columnas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#funciones-adicionales-para-referirnos-a-columnas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Funciones adicionales para referirnos a columnas",
+    "text": "Funciones adicionales para referirnos a columnas\nExisten funciones auxiliares para especificar conjuntos de variables, se usan junto con o en lugar de across()\n\n\n\n[dplyr selection features and helpers]"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#everything",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#everything",
+    "title": "Manipulación y limpieza de datos",
+    "section": "everything()",
+    "text": "everything()\nTodas las variables\n\n\npaises_m %&gt;% \n  mutate(across(everything(), as.character)) %&gt;% head(3)\n\n# A tibble: 3 × 4\n  pais      especies amenazadas region \n  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;  \n1 Indonesia 670      191        Asia   \n2 Brasil    648      80         America\n3 China     551      73         Asia"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-16",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-16",
+    "title": "Manipulación y limpieza de datos",
+    "section": "!",
+    "text": "!\nDevuelve el complemento de un conjunto de variables\n\n\npaises_m %&gt;% \n  select(!c(region,amenazadas)) %&gt;% head()\n\n# A tibble: 6 × 2\n  pais      especies\n  &lt;chr&gt;        &lt;int&gt;\n1 Indonesia      670\n2 Brasil         648\n3 China          551\n4 Mexico         523\n5 Peru           467\n6 Congo          430"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#where",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#where",
+    "title": "Manipulación y limpieza de datos",
+    "section": "where()",
+    "text": "where()\nSelecciona las variables para las cuales alguna comparación regrese TRUE\n\nej: transformar todas las variables de tipo numérico, identificadas con is.numeric()\n\n\npaises_m %&gt;% \n  mutate(across(where(is.numeric), log2)) %&gt;% slice(1:3)\n\n# A tibble: 3 × 4\n  pais      especies amenazadas region \n  &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  \n1 Indonesia     9.39       7.58 Asia   \n2 Brasil        9.34       6.32 America\n3 China         9.11       6.19 Asia"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#matches",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#matches",
+    "title": "Manipulación y limpieza de datos",
+    "section": "matches()",
+    "text": "matches()\nEncuentra nombres de variables con expresiones regulares\n\nej: palabra de 4 letras, ‘p’ al principio y ‘s’ al final\n\n\npaises_m %&gt;% \n  mutate(across(matches(\"p..s\"), toupper)) %&gt;% head\n\n# A tibble: 6 × 4\n  pais      especies amenazadas region \n  &lt;chr&gt;        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;  \n1 INDONESIA      670        191 Asia   \n2 BRASIL         648         80 America\n3 CHINA          551         73 Asia   \n4 MEXICO         523         96 America\n5 PERU           467         53 America\n6 CONGO          430         15 Africa"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-17",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-17",
+    "title": "Manipulación y limpieza de datos",
+    "section": ":",
+    "text": ":\nSelecciona variables contiguas\n\n\npaises_m %&gt;% \n  select(pais:amenazadas) %&gt;% head()\n\n# A tibble: 6 × 3\n  pais      especies amenazadas\n  &lt;chr&gt;        &lt;int&gt;      &lt;int&gt;\n1 Indonesia      670        191\n2 Brasil         648         80\n3 China          551         73\n4 Mexico         523         96\n5 Peru           467         53\n6 Congo          430         15"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-18",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-18",
+    "title": "Manipulación y limpieza de datos",
+    "section": "-",
+    "text": "-\nExcluir variables\n(devuelve todos los elementos excepto el que sigue el operador de resta)\n\n\npaises_m %&gt;% \n  select(-region) %&gt;% head(3)\n\n# A tibble: 3 × 3\n  pais      especies amenazadas\n  &lt;chr&gt;        &lt;int&gt;      &lt;int&gt;\n1 Indonesia      670        191\n2 Brasil         648         80\n3 China          551         73"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#across-sin-funciones-auxiliares",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#across-sin-funciones-auxiliares",
+    "title": "Manipulación y limpieza de datos",
+    "section": "across sin funciones auxiliares",
+    "text": "across sin funciones auxiliares\nRaíz cuadrada (sqrt()) de especies y amenazadas\n\npaises_m %&gt;%  \n  mutate(across(c(especies, amenazadas), sqrt)) %&gt;% \n  head()\n\n# A tibble: 6 × 4\n  pais      especies amenazadas region \n  &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  \n1 Indonesia     25.9      13.8  Asia   \n2 Brasil        25.5       8.94 America\n3 China         23.5       8.54 Asia   \n4 Mexico        22.9       9.80 America\n5 Peru          21.6       7.28 America\n6 Congo         20.7       3.87 Africa"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#raíz-cuadrada-sqrt-de-todas-las-variables-numéricas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#raíz-cuadrada-sqrt-de-todas-las-variables-numéricas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Raíz cuadrada (sqrt()) de todas las variables numéricas",
+    "text": "Raíz cuadrada (sqrt()) de todas las variables numéricas\n\npaises_m %&gt;% \n  mutate(across(where(is.numeric), sqrt)) %&gt;% \n  head()\n\n# A tibble: 6 × 4\n  pais      especies amenazadas region \n  &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;  \n1 Indonesia     25.9      13.8  Asia   \n2 Brasil        25.5       8.94 America\n3 China         23.5       8.54 Asia   \n4 Mexico        22.9       9.80 America\n5 Peru          21.6       7.28 America\n6 Congo         20.7       3.87 Africa"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#funciones-auxiliares-para-descartar-variables",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#funciones-auxiliares-para-descartar-variables",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Funciones auxiliares para descartar variables",
+    "text": "Funciones auxiliares para descartar variables\nDejar solo variables numéricas\n\npaises_m %&gt;% \n  select(where(is.numeric)) %&gt;% \n  head()\n\n# A tibble: 6 × 2\n  especies amenazadas\n     &lt;int&gt;      &lt;int&gt;\n1      670        191\n2      648         80\n3      551         73\n4      523         96\n5      467         53\n6      430         15"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-19",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-19",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "Datos anchos\n\nLectura y captura más fácil\n\nÚtil para edición interactiva en hojas de cálculo\n\n\n\nDatos largos\n\nTiende a seguir principios de Datos Ordenados\n\nListos para analizar\n\nSe vinculan directamente con parámetros estéticos en un gráfico"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#reestructurando-datos-con-tidyr",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#reestructurando-datos-con-tidyr",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Reestructurando datos con 📦 tidyr",
+    "text": "Reestructurando datos con 📦 tidyr\n ancho a largo: pivot_longer()\n\n\npivot_longer(data, cols, \n             names_to, values_to)\n\n\n largo a ancho: pivot_wider()\n\n\npivot_longer(data, cols, \n             names_from, values_from)"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-20",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-20",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "coloniasDatos\n\n\n\n\n\n\n\n\n\n\nAsentamiento\nTipo\nCP\nAbarrotes\nSupermercado\nMinisuper\n\n\n\n\nArroyo Blanco\nColonia\n91025\n7\n2\n1\n\n\nAtenas\nFraccionamiento\n91184\n1\n0\n2\n\n\nColibris\nColonia\n91067\n8\n3\n2\n\n\nDel Valle\nUnidad Habitacional\n91097\n2\n1\n1\n\n\nEl Cafetal\nFraccionamiento\n91150\n2\n0\n0\n\n\n\n\n\n\n\n\n\n\ncolonias &lt;- \ntibble::tribble(\n    ~Asentamiento,                 ~Tipo,    ~CP, ~Abarrotes, ~Supermercado, ~Minisuper,\n  \"Arroyo Blanco\",             \"Colonia\", 91025L,         7L,            2L,         1L,\n         \"Atenas\",     \"Fraccionamiento\", 91184L,         1L,            0L,         2L,\n       \"Colibris\",             \"Colonia\", 91067L,         8L,            3L,         2L,\n      \"Del Valle\", \"Unidad Habitacional\", 91097L,         2L,            1L,         1L,\n     \"El Cafetal\",     \"Fraccionamiento\", 91150L,         2L,            0L,         0L\n  )\n\n\n\n\n¿Qué variables tenemos?"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ancho-a-largo",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ancho-a-largo",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ancho a largo",
+    "text": "Ancho a largo\n\ncolonias_largo &lt;- colonias %&gt;%\n  pivot_longer(\n    cols = c(Abarrotes,Supermercado,Minisuper),\n    names_to = \"tipo_negocio\",\n    values_to = \"n_negocios\")\n\ncols Las columnas cuyos nombres son datos\nnames_to Nombre para la nueva variable que se crea a partir de los nombres de cada cols\nvalues_to Nombre para la variable que se crea a partir de los contenidos de cada columna especificada con cols"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-21",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-21",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "colonias %&gt;%\n  pivot_longer(\n    cols = c(Abarrotes,Supermercado,Minisuper),\n    names_to = \"tipo_negocio\",\n    values_to = \"n_negocios\")"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-22",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-22",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "colonias %&gt;%\n  pivot_longer(\n    cols = c(Abarrotes,Supermercado,Minisuper),\n    names_to = \"tipo_negocio\",\n    values_to = \"n_negocios\")\n\n# A tibble: 15 × 5\n   Asentamiento  Tipo                   CP tipo_negocio n_negocios\n   &lt;chr&gt;         &lt;chr&gt;               &lt;int&gt; &lt;chr&gt;             &lt;int&gt;\n 1 Arroyo Blanco Colonia             91025 Abarrotes             7\n 2 Arroyo Blanco Colonia             91025 Supermercado          2\n 3 Arroyo Blanco Colonia             91025 Minisuper             1\n 4 Atenas        Fraccionamiento     91184 Abarrotes             1\n 5 Atenas        Fraccionamiento     91184 Supermercado          0\n 6 Atenas        Fraccionamiento     91184 Minisuper             2\n 7 Colibris      Colonia             91067 Abarrotes             8\n 8 Colibris      Colonia             91067 Supermercado          3\n 9 Colibris      Colonia             91067 Minisuper             2\n10 Del Valle     Unidad Habitacional 91097 Abarrotes             2\n11 Del Valle     Unidad Habitacional 91097 Supermercado          1\n12 Del Valle     Unidad Habitacional 91097 Minisuper             1\n13 El Cafetal    Fraccionamiento     91150 Abarrotes             2\n14 El Cafetal    Fraccionamiento     91150 Supermercado          0\n15 El Cafetal    Fraccionamiento     91150 Minisuper             0"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#largo-a-ancho",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#largo-a-ancho",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Largo a ancho",
+    "text": "Largo a ancho\n\ncolonias_largo %&gt;% \n  pivot_wider(names_from = tipo_negocio, \n              values_from = n_negocios)\n\nnames_from De cuáles columnas vamos a tomar valores para los nombres de las nuevas variables\nvalues_from Cuál columna tiene los valores de celda para las nuevas variables creadas"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-23",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-23",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "colonias_largo %&gt;% \n  pivot_wider(names_from = tipo_negocio, \n              values_from = n_negocios)\n\n# A tibble: 5 × 6\n  Asentamiento  Tipo                   CP Abarrotes Supermercado Minisuper\n  &lt;chr&gt;         &lt;chr&gt;               &lt;int&gt;     &lt;int&gt;        &lt;int&gt;     &lt;int&gt;\n1 Arroyo Blanco Colonia             91025         7            2         1\n2 Atenas        Fraccionamiento     91184         1            0         2\n3 Colibris      Colonia             91067         8            3         2\n4 Del Valle     Unidad Habitacional 91097         2            1         1\n5 El Cafetal    Fraccionamiento     91150         2            0         0"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---pivot",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---pivot",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio - pivot",
+    "text": "Ejercicio - pivot\n\nCarga el archivo “expresion_genes.csv”. Esta tabla contiene valores de expresión génica para cinco especies de peces, a partir de muestras tomadas en seis tiempos y de dos tejidos.\nTransforma los datos de ancho a largo y de regreso a ancho."
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-24",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-24",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "coalesce() - Combina valores. A partir de dos o más vectores, retiene valores en orden y rellena datos faltantes con valores de los siguientes vectores.\n\nfill() Rellena valores adyacentes. Ayuda a evitar datos faltantes innecesarios. Similar a las funciones para rellenar valores contiguos en hojas de cálculo."
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#dplyrcoalesce",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#dplyrcoalesce",
+    "title": "Manipulación y limpieza de datos",
+    "section": "dplyr::coalesce()",
+    "text": "dplyr::coalesce()\n\nEncuentra y regresa el primer valor que no sea NA en cada posición para un conjunto de vectores\n\n* las columnas en datos rectangulares son vectores\n\nDevuelve un solo vector con los valores que no sean NA que aparezcan primero."
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-25",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-25",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "x &lt;- c(1, 2, NA, NA, 5)\ny &lt;- c(NA, NA, 3, 4, 5)\nz &lt;- c(1, 4, 3, 5, 3)\n\n\nVectores numéricos del mismo largo, hay valores faltantes.\n\n\ncoalesce(x, y, z)\n\n[1] 1 2 3 4 5\n\n\n\n\nEl orden de los argumentos importa"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-26",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-26",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "x &lt;- c(1, 2, NA, NA, 5)\ny &lt;- c(NA, NA, 3, 4, 5)\nz &lt;- c(1, 4, 3, 5, 3)\n\n\n\n\ncoalesce(z,x,y)\n\n[1] 1 4 3 5 3"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-27",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-27",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "humedad sueloDatos\n\n\n\n\n\n\n\n\n\n\nmuestra\nsensor_1\nsensor_respaldo\nliteratura\n\n\n\n\nladera sur\nNA\n4.9\n2.6\n\n\nladera norte\n2.2\nNA\n4.3\n\n\nurbano\n4.5\n5.0\n3.4\n\n\ninvernadero A\nNA\n2.7\n3.5\n\n\ninvernadero B\n2.5\nNA\n2.3\n\n\n\n\n\n\n\n\n\n\nhumedad &lt;- \ntibble::tribble(\n         ~muestra, ~sensor_1, ~sensor_respaldo, ~literatura,\n     \"ladera sur\",        NA,              4.9,         2.6,\n   \"ladera norte\",       2.2,               NA,         4.3,\n         \"urbano\",       4.5,                5,         3.4,\n  \"invernadero A\",        NA,              2.7,         3.5,\n  \"invernadero B\",       2.5,               NA,         2.3\n  )"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-28",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-28",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "humedad %&gt;% \n  mutate(val_completo = coalesce(sensor_1, sensor_respaldo, literatura))\n\n# A tibble: 5 × 5\n  muestra       sensor_1 sensor_respaldo literatura val_completo\n  &lt;chr&gt;            &lt;dbl&gt;           &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;\n1 ladera sur        NA               4.9        2.6          4.9\n2 ladera norte       2.2            NA          4.3          2.2\n3 urbano             4.5             5          3.4          4.5\n4 invernadero A     NA               2.7        3.5          2.7\n5 invernadero B      2.5            NA          2.3          2.5"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#tidyrfill",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#tidyrfill",
+    "title": "Manipulación y limpieza de datos",
+    "section": "tidyr::fill()",
+    "text": "tidyr::fill()\n\n\n\n\n\n\n\n\n\n\nmamiferos\nbiomasa\n\n\n\n\nganado\n21\n\n\nNA\n5\n\n\nNA\n7\n\n\nNA\n23\n\n\nNA\n74\n\n\nsilvestre\n23\n\n\nNA\n65\n\n\nNA\n12\n\n\nNA\n5\n\n\n\n\n\n\n\n\n\nRellena valores faltantes en una columna (por defecto de arriba a abajo)\nSe asume que los valores contiguos son los mismos hasta que aparece otro distinto en la misma columna\nRellena hasta el siguiente valor que no sea NA"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-29",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-29",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "carbon_mamiferos\n\n# A tibble: 9 × 2\n  mamiferos biomasa\n  &lt;chr&gt;       &lt;dbl&gt;\n1 ganado         21\n2 &lt;NA&gt;            5\n3 &lt;NA&gt;            7\n4 &lt;NA&gt;           23\n5 &lt;NA&gt;           74\n6 silvestre      23\n7 &lt;NA&gt;           65\n8 &lt;NA&gt;           12\n9 &lt;NA&gt;            5\n\n\n\n\ncarbon_mamiferos %&gt;% \n  fill(mamiferos)\n\n# A tibble: 9 × 2\n  mamiferos biomasa\n  &lt;chr&gt;       &lt;dbl&gt;\n1 ganado         21\n2 ganado          5\n3 ganado          7\n4 ganado         23\n5 ganado         74\n6 silvestre      23\n7 silvestre      65\n8 silvestre      12\n9 silvestre       5"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#expresiones-regulares",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#expresiones-regulares",
+    "title": "Manipulación y limpieza de datos",
+    "section": "¿Expresiones regulares?",
+    "text": "¿Expresiones regulares?\n\n\nConocidas como regex, R.E., E.R., o regexp (singular)\nLenguaje conciso para describir patrones de texto\n\n\nCadenas (🧶strings) de caracteres codificadas especificamente para empatar patrones en otras cadenas de texto"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#expresiones-regulares-1",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#expresiones-regulares-1",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Expresiones regulares",
+    "text": "Expresiones regulares\nEn la práctica, un lenguaje de programación con su propia sintaxis y terminología\n\nentrada: una cadena de texto que se compila en un mini programa construido específicamente para identificar un patrón\n Pueden usarse para empatar, buscar, reemplazar, o partir texto"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#cadenas-de-texto-strings",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#cadenas-de-texto-strings",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Cadenas de texto (🧶Strings)",
+    "text": "Cadenas de texto (🧶Strings)\nUn conjunto de caracteres que componen un elemento de un vector:\n\ncadena_de_texto &lt;- \"Esta oración es una cadena\"\n\nPodemos almacenar varias cadenas en un vector de texto:\n\nmascotas &lt;-  c(\"perro\",\"gato\",\"loro\",\"perro\")"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#cadenas-de-texto",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#cadenas-de-texto",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Cadenas de texto",
+    "text": "Cadenas de texto\n\n\nLos nombres de variables, objetos, y los valores en un data frame también pueden ser cadenas de texto:\n\n\n\n\n\n\n\n\n\nbebida\nprecio\n\n\n\n\ncafé\n3.50\n\n\nté\n2.99\n\n\njugo\n3.20"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#r-distingue-entre-mayúsculas-y-minúsculas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#r-distingue-entre-mayúsculas-y-minúsculas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "R distingue entre mayúsculas y minúsculas",
+    "text": "R distingue entre mayúsculas y minúsculas\nLa misma letra en mayúscula y minúscula se trata como un carácter diferente\n\n\n\"rata\"==\"RATA\"\n\n[1] FALSE\n\n\n\n\"rata\"==\"raTa\"\n\n[1] FALSE"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#por-defecto-las-expresionas-regulares-también-distinguen-entre-mayúsculas-y-mínusculas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#por-defecto-las-expresionas-regulares-también-distinguen-entre-mayúsculas-y-mínusculas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Por defecto las expresionas regulares también distinguen entre mayúsculas y mínusculas",
+    "text": "Por defecto las expresionas regulares también distinguen entre mayúsculas y mínusculas\nPodemos:\n\nConstruir expresiones que no distingan\n‘Ignorar’ esta distinción al momento de empatar caracteres"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#para-qué-aprender-a-escribir-expresiones-regulares",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#para-qué-aprender-a-escribir-expresiones-regulares",
+    "title": "Manipulación y limpieza de datos",
+    "section": "¿Para qué aprender a escribir expresiones regulares?",
+    "text": "¿Para qué aprender a escribir expresiones regulares?\n\n\n\nAhorrar tiempo al buscar patrones, transformar texto, describir patrones, extraer partes de palabras, etc.\nUna sola expresión regular puede reemplazar decenas de líneas de código\nSirven en prácticamente cualquier lenguaje de programación o aplicación de línea de comandos"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#primeros-pasos-con-regex",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#primeros-pasos-con-regex",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Primeros pasos con regex",
+    "text": "Primeros pasos con regex\n\n\nExpresión regular\n gato\n\nEntrada\n “Ese gato feo”\n\nResultado\n Ese gato feo\n\nLa expresión regular para encontrar una secuencia fija de caracteres es esa misma secuencia\n\nbusca una g seguida de una a luego t y o (todos estos caracteres juntos y en ese orden de izq. a der.)"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#probando-regex",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#probando-regex",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Probando regex",
+    "text": "Probando regex\n¿Está funcionando mi expresión?\n\nrubular - Michael Lovitt\nregex101 - Firas Dib\nregexr - Grant Skinner\nregexpal - Dan’s Developer Tools"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio",
+    "text": "Ejercicio\nAbrir rubular, regex101, regexr, o regexpal\nProbemos el primer ejemplo gato y “ese gato feo”"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#caracteres-literales-y-metacaracteres",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#caracteres-literales-y-metacaracteres",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Caracteres literales y metacaracteres",
+    "text": "Caracteres literales y metacaracteres\nTanto las cadenas de texto como las expresiones regulares se componen por caracteres\n\nPodemos agrupar a los caracteres dependiendo de su comportamiento"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#literales",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#literales",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Literales",
+    "text": "Literales\nSi la entrada es “pato” y la E.R. es pato\n\nHabrá coincidencia cuando los caracteres p, a, t y o aparezcan consecutivamente en el texto de entrada"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#caracteres-literales",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#caracteres-literales",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Caracteres literales",
+    "text": "Caracteres literales\np, a, t y o serían ejemplos de caracteres literales\n Se encuentran a sí mismos"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-30",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-30",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "Note\n\n\nEl poder y la flexibilidad de las expresiones regulares viene de su capacidad de describir patrones complejos\n\n\n\n Si un patrón de texto se puede describir verbalmente, seguramente se puede codificar en una expresión regular"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#patrones-posibles",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#patrones-posibles",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Patrones posibles",
+    "text": "Patrones posibles\n\n“rata” pero no “bata”\n“pollo” pero solo si el esta secuencia está al principio de la cadena de texto\nnúmeros (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)\nVariantes ortográficas “Brasil” o “Brazil”\nPalabras con terminaciones específicas (DAE, NAE, etc.)\nFechas\nCorreos electrónicos"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#más-posibilidades",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#más-posibilidades",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Más posibilidades",
+    "text": "Más posibilidades\n\nCódigos postales\nNúmeros entre paréntesis\nUsuarios de Twitter/X (comienzan con @, sin espacios ni símbolos, &lt;16 caracteres)\nPalabras en MAYÚSCULA"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#metacaracteres",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#metacaracteres",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Metacaracteres",
+    "text": "Metacaracteres\nUn pequeño subconjunto de caracteres nos ayudan a describir patrones más complejos porque tienen comportamientos especiales y no se buscan solo a sí mismos.\nCuando aparecen en una E.R., se interpretan de una manera especial.\nIncluyen: []^$.|?*+(), que están apartados para fines especiales"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#comodines",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#comodines",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Comodines",
+    "text": "Comodines\nPara empatar caracteres desconocidos\n. empata cualquier caracter una vez\n m..l empata “miel” pero no “miguel”"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#conjuntos-de-caracteres",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#conjuntos-de-caracteres",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Conjuntos de caracteres",
+    "text": "Conjuntos de caracteres\nEmpatan uno o más caracteres especificados con corchetes\n[ ] para buscar conjuntos de caracteres\n\n[mr]ata empata “mata”, y “rata”, pero no “bata”"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#negando-conjuntos-de-caracteres",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#negando-conjuntos-de-caracteres",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Negando conjuntos de caracteres",
+    "text": "Negando conjuntos de caracteres\n[^]    excluye conjuntos de caracteres\n\n^ va al principio del conjunto\n\n\n[^aoeiou] solo empata consonantes\n[^R] todo excepto R mayúscula"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#intervalos-de-caracteres",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#intervalos-de-caracteres",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Intervalos de caracteres",
+    "text": "Intervalos de caracteres\nIndican una serie de caracteres contiguos dentro de un conjunto de caracteres\nEl guión - dentro de un conjunto de caracteres sirve para abreviar secuencias alfabéticas o numéricas\n[A-D] cualquier letra mayúscula entre A y D\n[5-8] cualquier dígito entre 5 y 8\n[A-Za-z] cualquier letra"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#aserciones-de-tipo-límite-anchors",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#aserciones-de-tipo-límite-anchors",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Aserciones de tipo límite (anchors)",
+    "text": "Aserciones de tipo límite (anchors)\nEspecifican la posición relativa del patrón que estamos buscando\n ^     comienza con\n $     termina con\n\n\n  ^mil empata “militar” pero no “familia”\ning$ empata “Boing” pero no “ingeniero”"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio-1",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio-1",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio",
+    "text": "Ejercicio\n\n¿Cómo podemos empatar mano, milo, malo, y mito?\n¿Cómo podemos empatar Cristian, Kristian, y Crystian usando conjuntos de caracteres?"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#práctica",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#práctica",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Práctica",
+    "text": "Práctica\n\n¿Cuál de estas E.R. empata mila al principio de una cadena de texto?\n\n\n\n\n^mila\n\n\n\nmila\n\n\n\n$mila\n\n\n\nmila^"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#cuantificadores",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#cuantificadores",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Cuantificadores",
+    "text": "Cuantificadores\nIndican el número de caracteres o expresiones que deben coincidir\n ?    Cero o una\n *    Cero o más\n +    Una o más\n {}    n veces\n\nlos cuantificadores aplican al caracter que tienen a su izquierda"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#cuantificadores-1",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#cuantificadores-1",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Cuantificadores",
+    "text": "Cuantificadores\nIsabell?a coincide con “Isabella” y con “Isabela”\n\n0 o 1\n\ngo*l! coincide con: “gl!”, “gol!”, “gooool!”, “goooooooool!”, etc.\n\n0 o más"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#cuantificadores-2",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#cuantificadores-2",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Cuantificadores",
+    "text": "Cuantificadores\nno+ empata “no”, “nooo”, “noooooo”, etc, pero no “n”\n\nuna o más\n\na{2} empata “portaaviones” pero no “portaviones”\n\nn veces"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio-2",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio-2",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio",
+    "text": "Ejercicio\n\nEmpatar mira, miiiiiiiiiira, y miiira\nEmpatar Computador, computadora, computador, y Computadora (usar juegos de caracteres y cuantificadores)"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#coincidencias-alternativas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#coincidencias-alternativas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Coincidencias alternativas",
+    "text": "Coincidencias alternativas\nSepara alternativas de búsqueda\n |     una u otra opción\n\nBra(s|z)il encuentra Brasil y Brazil.\n\nlas dos alternativas van entre paréntesis"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#construcciones-especiales-y-escapes",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#construcciones-especiales-y-escapes",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Construcciones especiales y escapes",
+    "text": "Construcciones especiales y escapes\n \\     indica una construcción especial abreviada o sirve para poder usar caracteres especiales como literales"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#escapes",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#escapes",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Escapes",
+    "text": "Escapes\nqué\\\\? para poder buscar el signo de interrogación literalmente\n\nen R la diagonal también se tiene que escapar\n\nLos metacaracteres dentro de conjuntos de caracteres se vuelven literales"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#construcciones-especiales",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#construcciones-especiales",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Construcciones especiales",
+    "text": "Construcciones especiales\nPara abreviar conjuntos de caracteres\n\\w  letras, guión bajo, y números\n\\d  dígitos\n\\t  tabulación\n\\n   saltos de línea\n\\s  espacio\n\\b  límite de palabra"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#límites-de-palabra",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#límites-de-palabra",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Límites de palabra",
+    "text": "Límites de palabra\n\\b\nMarca la posición en la que un caracter de palabra (letras, números, guión bajo) no va seguido o precedido por otro caracter de palabra (espacios o el inicio o fin de la cadena)\nEl límite de una palabra encontrada no se incluye en el resultado"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#límites-de-palabra-1",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#límites-de-palabra-1",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Límites de palabra",
+    "text": "Límites de palabra\nAntes de\n\\bmila encuentra “la milanesa” pero no “Camila”\nDespués de\narte\\b encuentra “saludarte hoy” pero no “artesanal”"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio-3",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio-3",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio",
+    "text": "Ejercicio\n\nCon la entrada “Los tacos de canasta en Tabasco se abarrotaron”\n\nExpliquemos qué pasa cuando usamos estas tres E.R.\n\nta\n\n\\bta\n\nta\\b"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#combinaciones",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#combinaciones",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Combinaciones",
+    "text": "Combinaciones\n^can.* empata “can”, “canino”, “canasta”, y “canadiense”\nA.*n cualquier cadena de texto que empiece con “A” y termine con “n”\n^[a-z]+$ solo minúsculas\n\\w+\\b$ la última palabra en una cadena\n“12 de marzo”\n“Liomys pictus”\n^\\w+\\b primera palabra “12 de marzo”\n“Liomys pictus”"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio-4",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio-4",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio",
+    "text": "Ejercicio\nEmpatemos:\n\nOraciones que terminen con un punto\nCuatro dígitos\nCadenas sin la letra s"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-32",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-32",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "Podemos crear subconjuntos de filas y columnas mediante coincidencias entre expresiones regulares y nombres de variables o con sus valores"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#stringr",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#stringr",
+    "title": "Manipulación y limpieza de datos",
+    "section": "📦 stringr",
+    "text": "📦 stringr\nFunciones para manipular cadenas de texto\n\nLos nombres de las funciones tienen el prefijo str_\nEl primer argumento de sus funciones es la cadena de texto de interés\nFunción regex() para modificar el comportamiento de búsqueda\n\nignore_case=TRUE para dejar de distinguir entre mayúsculas y minúsculas"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#stringr---ejemplos",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#stringr---ejemplos",
+    "title": "Manipulación y limpieza de datos",
+    "section": "stringr - ejemplos",
+    "text": "stringr - ejemplos\n¿Coincidencias?\n\nstr_detect(string = c(\"catalogo\", \"aguacate\",\n\"pera\"),\n pattern = \"cat\")\n\n\nRegresa un vector V/F de la misma longitud que la entrada"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#stringr---más-ejemplos",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#stringr---más-ejemplos",
+    "title": "Manipulación y limpieza de datos",
+    "section": "stringr - más ejemplos",
+    "text": "stringr - más ejemplos\n¿Cuáles elementos coinciden?\n\nstr_which(string = c(\"catalogo\", \"aguacate\", \"pera\"), pattern = \"cat\")\n\n\nRegresa el índice de los elementos con coincidencias"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#stringr---reemplazar-coincidencias",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#stringr---reemplazar-coincidencias",
+    "title": "Manipulación y limpieza de datos",
+    "section": "stringr - reemplazar coincidencias",
+    "text": "stringr - reemplazar coincidencias\n\nstr_replace(string = c(\"anthonyi\", \"daviesi\", \"jonesi\"),\n            pattern = \"i$\",\n            replacement = \"ii\")\n\n[1] \"anthonyii\" \"daviesii\"  \"jonesii\""
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#stringr---función-regex",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#stringr---función-regex",
+    "title": "Manipulación y limpieza de datos",
+    "section": "stringr - función regex()",
+    "text": "stringr - función regex()\nSin distinción entre MAYUSCULAS y minúsculas\n\nstr_replace(string = c(\"anthonyI\", \"daviesi\", \"jonesi\"),\n            pattern = regex(\"i$\",ignore_case = TRUE),\n            replacement = \"ii\")\n\n[1] \"anthonyii\" \"daviesii\"  \"jonesii\""
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---stringr",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---stringr",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio - stringr",
+    "text": "Ejercicio - stringr\nProbemos estas expresiones contra este vector usando str_detect. Explicar las coincidencias.\nE. regulares\n\n^ave\n\n^[a-z]+$\n\n\\d\n\n\nvec_texto &lt;- c(\"Aves y reptiles\",\"hamburguesa\",\n                 \"34\",\"(34)\",\"rAta\",\"avenida\",\n                 \"2011_julio\",\"inecol\",\"INECOL\")"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#manipulando-datos-con-expresiones-regulares",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#manipulando-datos-con-expresiones-regulares",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Manipulando datos con expresiones regulares",
+    "text": "Manipulando datos con expresiones regulares\n\nElegir/descartar filas y columnas\nReemplazar o modificar valores\nExtraer o borrar partes de cadenas de texto"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#expresiones-regulares-y-dplyr",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#expresiones-regulares-y-dplyr",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Expresiones regulares y 📦 dplyr",
+    "text": "Expresiones regulares y 📦 dplyr\n\nLa función auxiliar matches() acepta expresiones regulares para seleccionar variables que contengan coincidencias"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#seleccionando-variables",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#seleccionando-variables",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Seleccionando variables",
+    "text": "Seleccionando variables\nDatos de pingüinos pinguinos de 📦 datos\n\n\nlibrary(datos)\nnames(pinguinos)\n\n[1] \"especie\"         \"isla\"            \"largo_pico_mm\"   \"alto_pico_mm\"   \n[5] \"largo_aleta_mm\"  \"masa_corporal_g\" \"sexo\"            \"anio\""
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-34",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-34",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "pinguinos %&gt;% \n  select(especie, matches(\"larg\")) %&gt;% \n  sample_n(3)\n\n# A tibble: 3 × 3\n  especie largo_pico_mm largo_aleta_mm\n  &lt;fct&gt;           &lt;dbl&gt;          &lt;int&gt;\n1 Adelia           42.3            191\n2 Adelia           36.8            193\n3 Papúa            53.4            219"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#filtrando-filas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#filtrando-filas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Filtrando filas",
+    "text": "Filtrando filas\nDatos de países del paquete 📦 datos\n\nlibrary(datos)\ndata(paises)\n\n\n\npaises %&gt;% select(pais,continente) %&gt;% \n  sample_n(4)\n\n# A tibble: 4 × 2\n  pais        continente\n  &lt;fct&gt;       &lt;fct&gt;     \n1 Puerto Rico Américas  \n2 Zimbabue    África    \n3 Baréin      Asia      \n4 India       Asia"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#coincidencias-en-filas",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#coincidencias-en-filas",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Coincidencias en filas",
+    "text": "Coincidencias en filas\nPaíses con “z” en su nombre\n\npaises %&gt;% select(pais,continente) %&gt;% \n  filter(str_detect(pais,\"z\")) %&gt;% \n  distinct()\n\n# A tibble: 7 × 2\n  pais                 continente\n  &lt;fct&gt;                &lt;fct&gt;     \n1 Bosnia y Herzegovina Europa    \n2 Mozambique           África    \n3 Swazilandia          África    \n4 Suiza                Europa    \n5 Tanzania             África    \n6 Túnez                África    \n7 Venezuela            Américas"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#valores-repetidos",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#valores-repetidos",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Valores repetidos",
+    "text": "Valores repetidos\n\nDefinición variable pero generalmente dos o más copias del mismo registro u observación\n\nProblemas posibles\n\nInflan datos\nCostos de repetición no intencional\nResultados imprecisos"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#identificando-y-eliminando-duplicados",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#identificando-y-eliminando-duplicados",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Identificando y eliminando duplicados",
+    "text": "Identificando y eliminando duplicados\n\nIdentificar con get_dupes() del paquete 📦 janitor\nEliminar con distinct() de 📦 dplyr"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#repetición",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#repetición",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Repetición",
+    "text": "Repetición\n\nEn todas las variables (copias idénticas de una fila)\nEn las variables que definen nuestras unidades observacionales\nEn conjuntos arbitrarios de variables"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-35",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-35",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "ordenes_pizzadatos\n\n\n\n\n\n\n\n\n\n\nIDusuario\nDireccion\nColonia\nAlcaldia\n\n\n\n\nPablitoo\nCafetal 395 Casa 2\nSan Angel\nA. Obregón\n\n\nsusana24\nFresnos 114\nSan Angel\nA. Obregón\n\n\nsusana24\nFresnos 114\nSan Angel\nA. Obregón\n\n\njd.adriana\nCafetal 395 Casa 8\nSan Angel\nA. Obregón\n\n\nJuanManuel\nHidalgo 11 Depto 1B\nCampestre\nA. Obregón\n\n\nJoaquinED\nHidalgo 11 Depto 1B\nCampestre\nA. Obregón\n\n\ne_ric2\nHidalgo 11 Depto 1B\nCampestre\nA. Obregón\n\n\n\n\n\n\n\n\n\n\nordenes_pizza &lt;- \ntibble::tribble(\n    ~IDusuario,            ~Direccion,    ~Colonia,    ~Alcaldia,\n    \"Pablitoo\",  \"Cafetal 395 Casa 2\", \"San Angel\", \"A. Obregón\",\n    \"susana24\",         \"Fresnos 114\", \"San Angel\", \"A. Obregón\",\n    \"susana24\",         \"Fresnos 114\", \"San Angel\", \"A. Obregón\",\n  \"jd.adriana\",  \"Cafetal 395 Casa 8\", \"San Angel\", \"A. Obregón\",\n  \"JuanManuel\", \"Hidalgo 11 Depto 1B\", \"Campestre\", \"A. Obregón\",\n   \"JoaquinED\", \"Hidalgo 11 Depto 1B\", \"Campestre\", \"A. Obregón\",\n      \"e_ric2\", \"Hidalgo 11 Depto 1B\", \"Campestre\", \"A. Obregón\"\n  )"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#identificar-con-get_dupes",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#identificar-con-get_dupes",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Identificar con get_dupes()",
+    "text": "Identificar con get_dupes()\n\nordenes_pizza %&gt;%\n  get_dupes() # todas las variables (por defecto)\n\n# A tibble: 2 × 5\n  IDusuario Direccion   Colonia   Alcaldia   dupe_count\n  &lt;chr&gt;     &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;           &lt;int&gt;\n1 susana24  Fresnos 114 San Angel A. Obregón          2\n2 susana24  Fresnos 114 San Angel A. Obregón          2\n\n\n\nAñade una variable dupe_count que cuantifica las filas con valores duplicados\nAcomoda las variables de interés al principio del data frame resultante"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-36",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-36",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "get_dupes() asignando una variable para definir nuestra unidad observacional\n¿Alguien ordenó más de una vez?\n\nordenes_pizza %&gt;%\n  get_dupes(IDusuario)\n\n# A tibble: 2 × 5\n  IDusuario dupe_count Direccion   Colonia   Alcaldia  \n  &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;     &lt;chr&gt;     \n1 susana24           2 Fresnos 114 San Angel A. Obregón\n2 susana24           2 Fresnos 114 San Angel A. Obregón"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-37",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-37",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "get_dupes() con combinaciones de variables\n\nFilas repetidas en dirección * colonia\n\n\naccepta funciones auxiliares de 📦 tidyselect\n\n\nordenes_pizza %&gt;%\n  get_dupes(Direccion, starts_with(\"Col\"))\n\n# A tibble: 5 × 5\n  Direccion           Colonia   dupe_count IDusuario  Alcaldia  \n  &lt;chr&gt;               &lt;chr&gt;          &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;     \n1 Hidalgo 11 Depto 1B Campestre          3 JuanManuel A. Obregón\n2 Hidalgo 11 Depto 1B Campestre          3 JoaquinED  A. Obregón\n3 Hidalgo 11 Depto 1B Campestre          3 e_ric2     A. Obregón\n4 Fresnos 114         San Angel          2 susana24   A. Obregón\n5 Fresnos 114         San Angel          2 susana24   A. Obregón"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-38",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-38",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "Descartar con distinct() de 📦 dplyr\n\n\nordenes_pizza %&gt;%\n  distinct() # todas las variables\n\n# A tibble: 6 × 4\n  IDusuario  Direccion           Colonia   Alcaldia  \n  &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;     &lt;chr&gt;     \n1 Pablitoo   Cafetal 395 Casa 2  San Angel A. Obregón\n2 susana24   Fresnos 114         San Angel A. Obregón\n3 jd.adriana Cafetal 395 Casa 8  San Angel A. Obregón\n4 JuanManuel Hidalgo 11 Depto 1B Campestre A. Obregón\n5 JoaquinED  Hidalgo 11 Depto 1B Campestre A. Obregón\n6 e_ric2     Hidalgo 11 Depto 1B Campestre A. Obregón"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-39",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-39",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "distinct() con la variables que definen las unidades observacionales\n\nordenes_pizza %&gt;%\n  distinct(IDusuario, .keep_all = TRUE)\n\n# A tibble: 6 × 4\n  IDusuario  Direccion           Colonia   Alcaldia  \n  &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;     &lt;chr&gt;     \n1 Pablitoo   Cafetal 395 Casa 2  San Angel A. Obregón\n2 susana24   Fresnos 114         San Angel A. Obregón\n3 jd.adriana Cafetal 395 Casa 8  San Angel A. Obregón\n4 JuanManuel Hidalgo 11 Depto 1B Campestre A. Obregón\n5 JoaquinED  Hidalgo 11 Depto 1B Campestre A. Obregón\n6 e_ric2     Hidalgo 11 Depto 1B Campestre A. Obregón\n\n\n\n.keep_all para retener o no las demás columnas"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-40",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-40",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "distinct() con combinaciones de variables\n\nCombinaciones únicas de dirección * colonia\n\n\nordenes_pizza %&gt;%\n  distinct(Direccion,Colonia)\n\n# A tibble: 4 × 2\n  Direccion           Colonia  \n  &lt;chr&gt;               &lt;chr&gt;    \n1 Cafetal 395 Casa 2  San Angel\n2 Fresnos 114         San Angel\n3 Cafetal 395 Casa 8  San Angel\n4 Hidalgo 11 Depto 1B Campestre"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-41",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-41",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "⚠️ Si .keep_all = TRUE y hay valores duplicados en otras variables, distinct solo retiene la primera fila\n\n\nordenes_pizza %&gt;%\n  distinct(Direccion,Colonia, .keep_all = TRUE)\n\n# A tibble: 4 × 4\n  IDusuario  Direccion           Colonia   Alcaldia  \n  &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;     &lt;chr&gt;     \n1 Pablitoo   Cafetal 395 Casa 2  San Angel A. Obregón\n2 susana24   Fresnos 114         San Angel A. Obregón\n3 jd.adriana Cafetal 395 Casa 8  San Angel A. Obregón\n4 JuanManuel Hidalgo 11 Depto 1B Campestre A. Obregón"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio-5",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio-5",
+    "title": "Manipulación y limpieza de datos",
+    "section": "Ejercicio",
+    "text": "Ejercicio\n\nCargar el archivo murcielagos.csv\n¿De cuántas localidades únicas provienen estos registros?\nExportar un archivo con las localidades únicas y nombres de columna en español"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Materiales del curso",
+    "section": "",
+    "text": "Página oficial con todos los recursos (materiales prácticos y presentaciones) para todos los temas. El material será actualizado al finalizar el curso para resolver errores o dudas."
+  },
+  {
+    "objectID": "index.html#imparten",
+    "href": "index.html#imparten",
+    "title": "Materiales del curso",
+    "section": "Imparten",
+    "text": "Imparten\nDr. Luis D. Verde Arregoitia\nDr. Fabricio Villalobos Camacho\nM. en C. Juliana Herrera Pérez\nM. en C. Gerardo Dirzo Uribe\nM. en C. Daniel Valencia Rodríguez\n📆   26-30 de mayo, 2025\n⏰  09:00 - 17:00\n🏨  Aula Híbrida, Edificio E"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#temas-de-este-bloque",
+    "href": "presentaciones/1-flujos_trabajo.html#temas-de-este-bloque",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Temas de este bloque",
+    "text": "Temas de este bloque\n\nOrganización de proyectos y archivos\n\nBuenas prácticas para nombrar archivos y objetos\n\nTrabajando con rutas\n\nObjetos\n\nRepaso\nExploración rápida de datos"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#qué-es",
+    "href": "presentaciones/1-flujos_trabajo.html#qué-es",
+    "title": "Flujos de trabajo y análisis",
+    "section": "¿Qué es ?",
+    "text": "¿Qué es ?\n✍️Software\n\n¿Dialecto de S?\n¿Paquete estadístico?\n¿RStudio?\n¿Empresa?\n¿Lenguaje de programación?\n¿Dispositivo gráfico?"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#section-1",
+    "href": "presentaciones/1-flujos_trabajo.html#section-1",
+    "title": "Flujos de trabajo y análisis",
+    "section": "?",
+    "text": "?\n\n\n✍️🧑‍🎓Ventajas\n\n✍️🧑‍🎓Desventajas"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#este-curso",
+    "href": "presentaciones/1-flujos_trabajo.html#este-curso",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Este curso",
+    "text": "Este curso\n\nInstalaciones locales\nRStudio\nDialecto tidyverse\nPipes"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#mi-sistema",
+    "href": "presentaciones/1-flujos_trabajo.html#mi-sistema",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Mi sistema",
+    "text": "Mi sistema\n\nR v4.5.0\nRStudio 2025.05.0\nSin personalizaciones visuales\nLinux Mint 22.1"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#no-es-rstudio",
+    "href": "presentaciones/1-flujos_trabajo.html#no-es-rstudio",
+    "title": "Flujos de trabajo y análisis",
+    "section": " no es RStudio",
+    "text": "no es RStudio\nIDE - Entorno de desarrollo integrado\nHerramientas para facilitar el uso de un lenguaje de programación\n\nEditor de texto que ‘reconoce’ la sintaxis de un lenguaje\nAtajos y herramientas para administrar y ejecutar código"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#section-3",
+    "href": "presentaciones/1-flujos_trabajo.html#section-3",
+    "title": "Flujos de trabajo y análisis",
+    "section": "",
+    "text": "https://rstudio.github.io/cheatsheets/rstudio-ide.pdf"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#otras-opciones",
+    "href": "presentaciones/1-flujos_trabajo.html#otras-opciones",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Otras opciones",
+    "text": "Otras opciones\n\nPositron\n\nEmacs + ESS (https://ess.r-project.org)\n\nvim + Nvim-R: (Turn Vim Into an IDE for R)\n\nVisual Studio + RTVS\nCualquier editor de texto (enviando líneas o selecciones a una instancia de R)"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#section-4",
+    "href": "presentaciones/1-flujos_trabajo.html#section-4",
+    "title": "Flujos de trabajo y análisis",
+    "section": "",
+    "text": "R. Geert van den Berg [SPSS Tutorials]"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#section-5",
+    "href": "presentaciones/1-flujos_trabajo.html#section-5",
+    "title": "Flujos de trabajo y análisis",
+    "section": "",
+    "text": "https://speakerdeck.com/jennybc/spreadsheets\n\n\n\n“spreadsheets: a dystopian moonscape of unrecorded user actions”\n-Gordon Shotwell\n\n\n\nSpreadsheets\nJenny Bryan (2016)"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#scripts-y-código-fuente",
+    "href": "presentaciones/1-flujos_trabajo.html#scripts-y-código-fuente",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Scripts y código fuente",
+    "text": "Scripts y código fuente\n\n\n\n\nReproducir y modificar pasos\nEncontrar errores\nDocumentar el proceso\nExaminar código ajeno"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#paquetes",
+    "href": "presentaciones/1-flujos_trabajo.html#paquetes",
+    "title": "Flujos de trabajo y análisis",
+    "section": "📦 Paquetes",
+    "text": "📦 Paquetes\n\n\nAl instalar R instalamos:\nbase: las funciones fundamentales de R\n\nlist()\nlog()\ncat() rm() etc…"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#paquetes-1",
+    "href": "presentaciones/1-flujos_trabajo.html#paquetes-1",
+    "title": "Flujos de trabajo y análisis",
+    "section": "📦 Paquetes",
+    "text": "📦 Paquetes\nOtros componentes de R-base:\nutils, stats, datasets, graphics, grDevices, grid, methods, tools, parallel, compiler, splines, tcltk, stats4\nPaquetes ‘recomendados’ (se instalan con R pero no se cargan automáticamente)\nboot, class, cluster, codetools, foreign, KernSmooth, lattice, mgcv, nlme, rpart, survival, MASS, spatial, nnet, Matrix"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#paquetes-adicionales",
+    "href": "presentaciones/1-flujos_trabajo.html#paquetes-adicionales",
+    "title": "Flujos de trabajo y análisis",
+    "section": "📦 Paquetes Adicionales",
+    "text": "📦 Paquetes Adicionales\n\n22,422 en CRAN (The Comprehensive R Archive Network)\nmuchos más en GitHub, GitLab, R-universe, Bioconductor, etc.\ncrear uno propio\n\nSe instalan desde R con:\ninstall.packages() para paquetes de CRAN\n📦 remotes o pak para todos los demás repositorios"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#visita-guiada-por-r-y-rstudio",
+    "href": "presentaciones/1-flujos_trabajo.html#visita-guiada-por-r-y-rstudio",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Visita guiada por R y RStudio",
+    "text": "Visita guiada por R y RStudio\n\nEjecutar R\nEjecutar RStudio\nInstalar algunos paquetes para hoy (si les faltan o no lo han hecho):\n\n\ninstall.packages(\"ggplot2\")\ninstall.packages(\"dplyr\")\ninstall.packages(\"readr\")\ninstall.packages(\"tidyr\")\ninstall.packages(\"fs\")\ninstall.packages(\"here\")"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#sistemas-de-archivos",
+    "href": "presentaciones/1-flujos_trabajo.html#sistemas-de-archivos",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Sistemas de archivos",
+    "text": "Sistemas de archivos\n\n\n Monica Chin (2021)\nFile not Found\n\n Jody Macgregor (2021)\nPC Gamer"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#directorios-rutas-y-nombres",
+    "href": "presentaciones/1-flujos_trabajo.html#directorios-rutas-y-nombres",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Directorios, rutas y nombres",
+    "text": "Directorios, rutas y nombres\n\n\n\n\nGuardar archivos en ubicaciones específicas, con nombres intencionales y útiles\n\nNombres cortos e informativos\nFáciles de ordenar y que cooperen con búsquedas parciales\nAtención con caracteres especiales y espacios"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#nombres",
+    "href": "presentaciones/1-flujos_trabajo.html#nombres",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Nombres",
+    "text": "Nombres\n\nPalabras que existen en el diccionario\nAbreviaciones conocidas\nNo nombrar solo con números\nEntre 2 y 4 palabras\n\n\n\nWhat Science Says About Naming\nFelienne Hermans"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#nombres-1",
+    "href": "presentaciones/1-flujos_trabajo.html#nombres-1",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Nombres",
+    "text": "Nombres\n\n\nOK\nmax_temp \n prec_min_usd\ntemp_mensual\n\nNo tanto\ntemperatura_maximaC2014\nmax\ntemp\n'Precio Mínimo ($) USD'\n'Temperatura/Mes (°F)'\n\n\n\n\nJenny Bryan (2015)\nNaming Things"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#nombres-2",
+    "href": "presentaciones/1-flujos_trabajo.html#nombres-2",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Nombres",
+    "text": "Nombres\n\n\nOK\n01_factura-marzo2023.pdf\n02_factura-julio2023.pdf\nms_helechos_20210412.docx\n\nNo tanto\ndescarga5462.pdf\njuliocompraluis.pdf\nborrador.docx\n\n\nEn R los nombres válidos solo pueden llevar letras, números, puntos, y guiones; no pueden comenzar con números"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#esquemas-de-mayúsculasminúsculas-y-espacios",
+    "href": "presentaciones/1-flujos_trabajo.html#esquemas-de-mayúsculasminúsculas-y-espacios",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Esquemas de mayúsculas/minúsculas y espacios",
+    "text": "Esquemas de mayúsculas/minúsculas y espacios\n\ncamelCase - la segunda palabra en adelante con mayúscula, sin espacios\nsnake_case - solo minúsculas, guión bajo entre palabras\nslug-case - solo minúsculas, guión entre palabras"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#organización-de-proyectos",
+    "href": "presentaciones/1-flujos_trabajo.html#organización-de-proyectos",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Organización de proyectos",
+    "text": "Organización de proyectos\nProyecto: Directorio con todo los archivos relevantes para algún trabajo\nSeparar:\n📁 Datos (o código para cargarlos desde fuentes remotas)\n📁 Scripts de análisis y/o visualización\n📁 Salidas (figuras, informes, datos intermedios, etc.)\n\n\n\n\n\n\nJenny Bryan (2017)\nProject-oriented workflow\n\nMaëlle Salmon (2021)\nDraw me a project"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#proyectos-en-rstudio",
+    "href": "presentaciones/1-flujos_trabajo.html#proyectos-en-rstudio",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Proyectos en RStudio",
+    "text": "Proyectos en RStudio\n\n\n\n\n\nInstancia de R dedicada\nNavegador apuntando al directorio del proyecto\n\nbotón para regresar al dir. del proyecto\n\nDir. de proyecto establecido como Dir. de Trabajo\n\nrutas relativas al Dir. de Proyecto"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#ejercicio",
+    "href": "presentaciones/1-flujos_trabajo.html#ejercicio",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Ejercicio",
+    "text": "Ejercicio\nCrear un proyecto para el curso en RStudio\n\n\nen alguna ubicación fácil de encontrar (ej. Escritorio)\n“curso-R-biodiversidad” como nombre\n\n\nLos proyectos en OneDrive pueden no funcionar correctamente"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#fs",
+    "href": "presentaciones/1-flujos_trabajo.html#fs",
+    "title": "Flujos de trabajo y análisis",
+    "section": "📦 fs",
+    "text": "📦 fs\nTrabajando con el sistema de archivos (cualquier plataforma)\nfs siempre trabaja con rutas ordenadas\n\n‘/’ para delimitar carpetas\n\nSin ‘/’ dobles o extras\n\nCrear directorios\nMover archivos\nCopiar archivos\nCambiar nombres"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#ejercicio-1",
+    "href": "presentaciones/1-flujos_trabajo.html#ejercicio-1",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Ejercicio",
+    "text": "Ejercicio\n\nCrear nuevas carpetas en el directorio del proyecto\n\ndatos\nsalida\nR\n\n\nLos paquetes ya instalados se cargan con la función library()\n\nlibrary(fs)"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#crear-nuevas-carpetas-en-el-directorio-del-proyecto",
+    "href": "presentaciones/1-flujos_trabajo.html#crear-nuevas-carpetas-en-el-directorio-del-proyecto",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Crear nuevas carpetas en el directorio del proyecto",
+    "text": "Crear nuevas carpetas en el directorio del proyecto\n\ndir_create(\"R\")\ndir_create(\"datos\")\ndir_create(\"salida\")\ndir_ls()\n\n\nTodo esto también se puede hacer desde el navegador de RStudio, la terminal, o el explorador del sistema operativo"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#guardar-la-fuente-y-no-el-entorno",
+    "href": "presentaciones/1-flujos_trabajo.html#guardar-la-fuente-y-no-el-entorno",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Guardar la fuente y no el entorno",
+    "text": "Guardar la fuente y no el entorno\n\n\n\n\n\nExportar figuras, objetos intermedios, y resultados\nEvitar rm(list = ls()).\n‘Hoja en blanco’ & reiniciar R seguido\n\n\n\nJenny Bryan & Jim Hester (2020)\nWhat they forgot to teach you about R\nJenny Bryan (2018)\nZen And The aRt Of Workflow Maintenance"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#hoja-en-blanco-blank-slate",
+    "href": "presentaciones/1-flujos_trabajo.html#hoja-en-blanco-blank-slate",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Hoja en blanco (blank slate)",
+    "text": "Hoja en blanco (blank slate)\n\n\n\nNo se guarda el espacio de trabajo a un archivo .Rdata\nNo se carga el espacio de trabajo desde un archivo .Rdata al arrancar R"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#reiniciar-r",
+    "href": "presentaciones/1-flujos_trabajo.html#reiniciar-r",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Reiniciar R",
+    "text": "Reiniciar R\nCtrl+Shift+F10\n(Windows y Linux)\nCommand+Shift+F10\n(Mac)"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#here-y-rutas-relativas",
+    "href": "presentaciones/1-flujos_trabajo.html#here-y-rutas-relativas",
+    "title": "Flujos de trabajo y análisis",
+    "section": "📦 here y rutas relativas",
+    "text": "📦 here y rutas relativas\nF:\\PC de Luis\\ruta\\que\\solo\\tengo\\mi-proyecto\\analisis\\script1.R\nTrabajemos en relación a la raíz del proyecto con la función here()\n\nresuelve cuál es la raíz del proyecto\nconstruye rutas portátiles\ngenera rutas absolutas (comienzan con /, C:\\ o \\\\)\n\n\n\nOde to the here package (2018)"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#section-8",
+    "href": "presentaciones/1-flujos_trabajo.html#section-8",
+    "title": "Flujos de trabajo y análisis",
+    "section": "",
+    "text": "Si la raíz del proyecto es mi-proyecto\n\nhere(\"analisis\",\"script1.R\")\n\nconstruye:\nF:\\PC de Luis\\ruta\\que\\solo\\tengo\\mi-proyecto\\analisis\\script1.R"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#section-9",
+    "href": "presentaciones/1-flujos_trabajo.html#section-9",
+    "title": "Flujos de trabajo y análisis",
+    "section": "",
+    "text": "Construir rutas:\n\n\nlibrary(here)\nhere(\"carpeta ficticia\",\"subcarpeta\",\"tesis-terminada.doc\")\n\n[1] \"/home/luisd/Dropbox/darcyDB/PDRF/R-biodiversidad-2025/carpeta ficticia/subcarpeta/tesis-terminada.doc\""
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#importando-archivos-tablas",
+    "href": "presentaciones/1-flujos_trabajo.html#importando-archivos-tablas",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Importando archivos (tablas)",
+    "text": "Importando archivos (tablas)\n\nCon el botón “Import Dataset”\nCon alguna función read"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#necesitamos",
+    "href": "presentaciones/1-flujos_trabajo.html#necesitamos",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Necesitamos:",
+    "text": "Necesitamos:\n\nalguna función para importar\nruta del archivo\nnombre del objeto que vamos a crear a partir del archivo\nargumentos adicionales para controlar la lectura del archivo"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#section-10",
+    "href": "presentaciones/1-flujos_trabajo.html#section-10",
+    "title": "Flujos de trabajo y análisis",
+    "section": "",
+    "text": "mi_tabla &lt;- read.csv(file = \"mi_ruta/mi-archivo.csv\",\n                     header = TRUE) \n\nmi_tabla - objeto que creamos\nread.csv() - función para leer archivos de texto\nfile = \"mi_ruta/mi-archivo.csv\" - ruta del archivo\nheader = TRUE argumento adicional (especifica si hay encabezado)"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#readr-y-readxl",
+    "href": "presentaciones/1-flujos_trabajo.html#readr-y-readxl",
+    "title": "Flujos de trabajo y análisis",
+    "section": "readr y readxl",
+    "text": "readr y readxl\nPaquetes adicionales para importar datos rectangulares desde archivos de texto y hojas de cálculo\n\nMenos errores al importar\nMayor flexibilidad al leer archivos\nLectura más rápida\nFunciones adicionales para limpiar los valores en las columnas"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#ejercicio-2",
+    "href": "presentaciones/1-flujos_trabajo.html#ejercicio-2",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Ejercicio",
+    "text": "Ejercicio\nImportar una tabla a R desde un archivo"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#hojas-de-cálculo",
+    "href": "presentaciones/1-flujos_trabajo.html#hojas-de-cálculo",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Hojas de cálculo",
+    "text": "Hojas de cálculo\n\n~ 1000,000,000 usuarios a nivel mundial\nFormatos xlsx, xls, ods y en línea (Google Sheets)\n\n\n\n\n\n\nRegistro de préstamos 1593\n\n\n\n\n\n\nVisiCalc\n\n\n\n\nPodemos trabajar en R con todos estos formatos"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#ejercicio-3",
+    "href": "presentaciones/1-flujos_trabajo.html#ejercicio-3",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Ejercicio",
+    "text": "Ejercicio\nCon readxl:\nImportar las hojas del archivo mascoteria.xlsx\nArgumentos útiles\n\npath\nsheet\nskip"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#principios-de-programación-en-r",
+    "href": "presentaciones/1-flujos_trabajo.html#principios-de-programación-en-r",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Principios de programación en R",
+    "text": "Principios de programación en R\n\nTodo lo que existe es un objeto\n Todo lo que ocurre lo hace una función\n(Las funciones son objetos)\n Las funciones (generalmente) viven en paquetes"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#objetos",
+    "href": "presentaciones/1-flujos_trabajo.html#objetos",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Objetos",
+    "text": "Objetos\n\nTablas con filas y columnas\nModelos\nListas\nGráficos\n\n\nTodos los objetos tienen clases y atributos y hay distintas formas de crearlos"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#section-11",
+    "href": "presentaciones/1-flujos_trabajo.html#section-11",
+    "title": "Flujos de trabajo y análisis",
+    "section": "",
+    "text": "Vectores\n\nListas\n\n\nTablas"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#vectores-1",
+    "href": "presentaciones/1-flujos_trabajo.html#vectores-1",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Vectores",
+    "text": "Vectores\nNúmeros\n\n\nc(1,2,3,4)\n\n[1] 1 2 3 4\n\n\n\n\n\n\nc(22.1,0.006,4.1)\n\n[1] 22.100  0.006  4.100"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#vectores-2",
+    "href": "presentaciones/1-flujos_trabajo.html#vectores-2",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Vectores",
+    "text": "Vectores\nCaracteres\n\n\nc(\"perro\",\"gato\",\"rata\",\"B\")\n\n[1] \"perro\" \"gato\"  \"rata\"  \"B\""
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#vectores-3",
+    "href": "presentaciones/1-flujos_trabajo.html#vectores-3",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Vectores",
+    "text": "Vectores\nLógicos (verdadero/falso)\n\n\nc(TRUE,FALSE,FALSE,FALSE,TRUE)\n\n[1]  TRUE FALSE FALSE FALSE  TRUE"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#creando-objetos",
+    "href": "presentaciones/1-flujos_trabajo.html#creando-objetos",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Creando objetos",
+    "text": "Creando objetos\n\n\nx &lt;- c(1, 2, 3)\n\n\nFunción c() para juntar elementos en un vector\n\n\nx &lt;- c(1,2,3)\ny &lt;- c(\"a\",\"G\",\"h\")\n\n\n\n\nx\n\n[1] 1 2 3\n\ny\n\n[1] \"a\" \"G\" \"h\""
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#los-objetos-tienen-clases",
+    "href": "presentaciones/1-flujos_trabajo.html#los-objetos-tienen-clases",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Los objetos tienen clases",
+    "text": "Los objetos tienen clases\n\n\nclass(x)\n\n[1] \"numeric\"\n\nclass(y)\n\n[1] \"character\""
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#los-vectores-solo-pueden-tener-objetos-de-la-misma-clase",
+    "href": "presentaciones/1-flujos_trabajo.html#los-vectores-solo-pueden-tener-objetos-de-la-misma-clase",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Los vectores solo pueden tener objetos de la misma clase",
+    "text": "Los vectores solo pueden tener objetos de la misma clase\n\n\nc(1,\"a\",2)\n\n[1] \"1\" \"a\" \"2\"\n\n\n\nAl combinar caracteres y números hay conversión automática"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#factores",
+    "href": "presentaciones/1-flujos_trabajo.html#factores",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Factores",
+    "text": "Factores\n\n\n\n\n\nRepresentan datos categóricos\nLas etiquetas de cada valor se conocen como niveles, que pueden o no llevar un orden específico\nCrear con factor()"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#factores-1",
+    "href": "presentaciones/1-flujos_trabajo.html#factores-1",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Factores",
+    "text": "Factores\n\n\nfactor(c(\"perro\",\"gato\",\"ave\",\"ninguno\",\n         \"perro\",\"ninguno\",\"perro\",\"perro\",\n         \"gato\",\"ave\",\"perro\"))\n\n [1] perro   gato    ave     ninguno perro   ninguno perro   perro   gato   \n[10] ave     perro  \nLevels: ave gato ninguno perro"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#dos-o-más-vectores-del-mismo-largo",
+    "href": "presentaciones/1-flujos_trabajo.html#dos-o-más-vectores-del-mismo-largo",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Dos o más vectores del mismo largo…",
+    "text": "Dos o más vectores del mismo largo…\n\n\n\n\n\n¡Data frame!\n\nObjeto tabular con filas y columnas\nPuede almacenar objetos de distintas clases en las columnas\nNombres para cada columna"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#data-frames",
+    "href": "presentaciones/1-flujos_trabajo.html#data-frames",
+    "title": "Flujos de trabajo y análisis",
+    "section": "Data frames",
+    "text": "Data frames\nSe crean importando un archivo tabular o con data.frame()\n\n\nmi_tabla &lt;- \ndata.frame(id=c(\"rana\",\"pez\",\"nutria\",\"gusano\"),\n           ind_g=c(12,15,13,10),\n           listo=c(TRUE,TRUE,FALSE,TRUE))\n\n\n\ncada vector es una columna\nnombres de columnas sin comillas\nmismo largo para todos los vectores"
+  },
+  {
+    "objectID": "presentaciones/1-flujos_trabajo.html#section-12",
+    "href": "presentaciones/1-flujos_trabajo.html#section-12",
+    "title": "Flujos de trabajo y análisis",
+    "section": "",
+    "text": "mi_tabla\n\n      id ind_g listo\n1   rana    12  TRUE\n2    pez    15  TRUE\n3 nutria    13 FALSE\n4 gusano    10  TRUE"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#stringr---ejemplos-output",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#stringr---ejemplos-output",
+    "title": "Manipulación y limpieza de datos",
+    "section": "stringr - ejemplos",
+    "text": "stringr - ejemplos\n\n[1]  TRUE  TRUE FALSE"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#stringr---más-ejemplos-output",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#stringr---más-ejemplos-output",
+    "title": "Manipulación y limpieza de datos",
+    "section": "stringr - más ejemplos",
+    "text": "stringr - más ejemplos\n\n[1] 1 2"
+  }
+]
