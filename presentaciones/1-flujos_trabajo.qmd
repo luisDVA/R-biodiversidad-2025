@@ -120,19 +120,13 @@ Herramientas para facilitar el uso de un lenguaje de programación
 ![R. Geert van den Berg [SPSS Tutorials] ](https://spss-tutorials.com/img/spss-data-editor-data-view.png)
 
 ##
-::: columns
-::: {.column width="50%"}
-![https://speakerdeck.com/jennybc/spreadsheets](imgs/moonscape.jpeg)
-:::
 
-::: {.column width="50%"}
-"spreadsheets: a dystopian moonscape of unrecorded user actions"
+
+> "spreadsheets: a dystopian moonscape of unrecorded user actions"
 
 -Gordon Shotwell
 
 
-:::
-:::
 
 ::::{.rightref}
 :::{.refbox}
