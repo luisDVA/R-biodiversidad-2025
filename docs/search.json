@@ -438,7 +438,7 @@
     "href": "presentaciones/2-manipulacion_y_limpieza.html#section-9",
     "title": "Manipulación y limpieza de datos",
     "section": "",
-    "text": "universidad\nregion\narea\ncalificacion_minima\ncalificacion_promedio\n\n\n\n\nUANL\nNorte\nArquitectura\n6\n8.90\n\n\nUT\nNorte\nDiseño\n7\n7.78\n\n\nUABJO\nSur\nDiseño\n6\n8.50"
+    "text": "Las variables entran directamente como especificaciones para modelos y/o parámetros gráficos"
   },
   {
     "objectID": "presentaciones/2-manipulacion_y_limpieza.html#nombres-de-columna-partidos",
@@ -564,7 +564,7 @@
     "href": "presentaciones/2-manipulacion_y_limpieza.html#rebanando-filas",
     "title": "Manipulación y limpieza de datos",
     "section": "🍕 rebanando filas",
-    "text": "🍕 rebanando filas\nFamilia de funciones slice_ para obtener máximos, mínimos, muestreos aleatorios, etc.\n\npaises_m %&gt;% slice_max(especies)\n\n# A tibble: 1 × 4\n  pais      especies amenazadas region\n  &lt;chr&gt;        &lt;int&gt;      &lt;int&gt; &lt;chr&gt; \n1 Indonesia      670        191 Asia  \n\nslice_min(paises_m,amenazadas)\n\n# A tibble: 1 × 4\n  pais  especies amenazadas region\n  &lt;chr&gt;    &lt;int&gt;      &lt;int&gt; &lt;chr&gt; \n1 Congo      430         15 Africa\n\npaises_m %&gt;% slice_sample(n=2)\n\n# A tibble: 2 × 4\n  pais    especies amenazadas region \n  &lt;chr&gt;      &lt;int&gt;      &lt;int&gt; &lt;chr&gt;  \n1 Ecuador      372         47 America\n2 Brasil       648         80 America"
+    "text": "🍕 rebanando filas\nFamilia de funciones slice_ para obtener máximos, mínimos, muestreos aleatorios, etc.\n\npaises_m %&gt;% slice_max(especies)\n\n# A tibble: 1 × 4\n  pais      especies amenazadas region\n  &lt;chr&gt;        &lt;int&gt;      &lt;int&gt; &lt;chr&gt; \n1 Indonesia      670        191 Asia  \n\nslice_min(paises_m,amenazadas)\n\n# A tibble: 1 × 4\n  pais  especies amenazadas region\n  &lt;chr&gt;    &lt;int&gt;      &lt;int&gt; &lt;chr&gt; \n1 Congo      430         15 Africa\n\npaises_m %&gt;% slice_sample(n=2)\n\n# A tibble: 2 × 4\n  pais      especies amenazadas region \n  &lt;chr&gt;        &lt;int&gt;      &lt;int&gt; &lt;chr&gt;  \n1 Argentina      374         38 America\n2 Congo          430         15 Africa"
   },
   {
     "objectID": "presentaciones/2-manipulacion_y_limpieza.html#ejercicio---datos-desde-paquetes-1",
@@ -1068,7 +1068,7 @@
     "href": "presentaciones/2-manipulacion_y_limpieza.html#section-32",
     "title": "Manipulación y limpieza de datos",
     "section": "",
-    "text": "Podemos crear subconjuntos de filas y columnas mediante coincidencias entre expresiones regulares y nombres de variables o con sus valores"
+    "text": "Note\n\n\nEl poder y la flexibilidad de las expresiones regulares viene de su capacidad de describir patrones complejos\n\n\n\n Si un patrón de texto se puede describir verbalmente, seguramente se puede codificar en una expresión regular"
   },
   {
     "objectID": "presentaciones/2-manipulacion_y_limpieza.html#stringr",
@@ -1138,7 +1138,7 @@
     "href": "presentaciones/2-manipulacion_y_limpieza.html#section-34",
     "title": "Manipulación y limpieza de datos",
     "section": "",
-    "text": "pinguinos %&gt;% \n  select(especie, matches(\"larg\")) %&gt;% \n  sample_n(3)\n\n# A tibble: 3 × 3\n  especie largo_pico_mm largo_aleta_mm\n  &lt;fct&gt;           &lt;dbl&gt;          &lt;int&gt;\n1 Adelia           42.3            191\n2 Adelia           36.8            193\n3 Papúa            53.4            219"
+    "text": "Podemos crear subconjuntos de filas y columnas mediante coincidencias entre expresiones regulares y nombres de variables o con sus valores"
   },
   {
     "objectID": "presentaciones/2-manipulacion_y_limpieza.html#filtrando-filas",
@@ -1941,6 +1941,20 @@
   {
     "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-42",
     "href": "presentaciones/2-manipulacion_y_limpieza.html#section-42",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "⚠️ Si .keep_all = TRUE y hay valores duplicados en otras variables, distinct solo retiene la primera fila\n\n\nordenes_pizza %&gt;%\n  distinct(Direccion,Colonia, .keep_all = TRUE)\n\n# A tibble: 4 × 4\n  IDusuario  Direccion           Colonia   Alcaldia  \n  &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;     &lt;chr&gt;     \n1 Pablitoo   Cafetal 395 Casa 2  San Angel A. Obregón\n2 susana24   Fresnos 114         San Angel A. Obregón\n3 jd.adriana Cafetal 395 Casa 8  San Angel A. Obregón\n4 JuanManuel Hidalgo 11 Depto 1B Campestre A. Obregón"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-6",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-6",
+    "title": "Manipulación y limpieza de datos",
+    "section": "",
+    "text": "animal\nind_observados\nhabitat\n\n\n\n\ncaracol\n12\nmar\n\n\ngaviota\n14\ncosta\n\n\nnutria\n11\nrío\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncaracol\ngaviota\nnutria\n\n\n\n\n12\n14\n11\n\n\nmar\ncosta\nrío"
+  },
+  {
+    "objectID": "presentaciones/2-manipulacion_y_limpieza.html#section-43",
+    "href": "presentaciones/2-manipulacion_y_limpieza.html#section-43",
     "title": "Manipulación y limpieza de datos",
     "section": "",
     "text": "⚠️ Si .keep_all = TRUE y hay valores duplicados en otras variables, distinct solo retiene la primera fila\n\n\nordenes_pizza %&gt;%\n  distinct(Direccion,Colonia, .keep_all = TRUE)\n\n# A tibble: 4 × 4\n  IDusuario  Direccion           Colonia   Alcaldia  \n  &lt;chr&gt;      &lt;chr&gt;               &lt;chr&gt;     &lt;chr&gt;     \n1 Pablitoo   Cafetal 395 Casa 2  San Angel A. Obregón\n2 susana24   Fresnos 114         San Angel A. Obregón\n3 jd.adriana Cafetal 395 Casa 8  San Angel A. Obregón\n4 JuanManuel Hidalgo 11 Depto 1B Campestre A. Obregón"
