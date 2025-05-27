@@ -1656,7 +1656,7 @@
     "href": "presentaciones/1.1-exploracion_rapida_datos.html#paquetes",
     "title": "Exploración rápida de datos",
     "section": "Paquetes",
-    "text": "Paquetes\nVamos a utilizar los siguientes paquetes de R\n\nskimR\njanitor\nreport"
+    "text": "Paquetes\nVamos a utilizar los siguientes paquetes de R\n\nskimr\njanitor\nreport"
   },
   {
     "objectID": "presentaciones/1.1-exploracion_rapida_datos.html#pasos-para-la-exploración-de-datos",
@@ -1676,8 +1676,8 @@
     "objectID": "presentaciones/1.1-exploracion_rapida_datos.html#skimr",
     "href": "presentaciones/1.1-exploracion_rapida_datos.html#skimr",
     "title": "Exploración rápida de datos",
-    "section": "skimR",
-    "text": "skimR\n\n\n\n\n\nEs un paquete con una única función skim()\nLa función skim() es útil para resumir conjuntos de datos, especialmente grandes conjuntos sin necesidad de exploralos con detalle (e.g., toda la tabla, línea por línea)\nEs un combo de algunas funciones del R base, como str(), class(), summary()\nDocumentación aquí y aquí\n\n\nA funcão skimr mostra os dados de forma geral, super útil para identificar problemas sem precisar ficar olhando as tabelas e buscando erros linha por linha"
+    "section": "skimr",
+    "text": "skimr\n\n\n\n\n\nEs un paquete con una única función skim()\nLa función skim() es útil para resumir conjuntos de datos, especialmente grandes conjuntos sin necesidad de exploralos con detalle (e.g., toda la tabla, línea por línea)\nEs un combo de algunas funciones del R base, como str(), class(), summary()\nDocumentación aquí y aquí\n\n\nA funcão skimr mostra os dados de forma geral, super útil para identificar problemas sem precisar ficar olhando as tabelas e buscando erros linha por linha"
   },
   {
     "objectID": "presentaciones/1.1-exploracion_rapida_datos.html#section-1",
@@ -1691,14 +1691,14 @@
     "href": "presentaciones/1.1-exploracion_rapida_datos.html#ahora-vamos-aplicar-la-función-skim-sobre-un-conjunto-de-datos-pambol",
     "title": "Exploración rápida de datos",
     "section": "Ahora vamos aplicar la función skim() sobre un conjunto de datos pambol",
-    "text": "Ahora vamos aplicar la función skim() sobre un conjunto de datos pambol\n\nAyuden con la interpretación\n\n\nlibrary(tidyverse)\nlibrary(skimr)\n\nskim(pambol)"
+    "text": "Ahora vamos aplicar la función skim() sobre un conjunto de datos pambol\n\nAyuden con la interpretación\n\n\nlibrary(skimr)\n\nskim(pambol)"
   },
   {
     "objectID": "presentaciones/1.1-exploracion_rapida_datos.html#separando-los-elementos",
     "href": "presentaciones/1.1-exploracion_rapida_datos.html#separando-los-elementos",
     "title": "Exploración rápida de datos",
     "section": "Separando los elementos",
-    "text": "Separando los elementos\n\nEssa função yank() serve para separar os dados numericos ou categoricos, etc. Ela recorta o que se visualiza com o skimr\n\n\nla función yank()\n\n\nlibrary(tidyverse)\nlibrary(skimr)\n\n\n  s &lt;- skim(pambol)\n  yank(s, \"numeric\")\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\ngoles\n1\n0.86\n21.00\n9.86\n12\n12.0\n21\n30\n30\n▇▁▁▁▇\n\n\npartidos\n1\n0.86\n18.83\n2.04\n15\n18.5\n20\n20\n20\n▂▁▂▁▇"
+    "text": "Separando los elementos\n\nEssa função yank() serve para separar os dados numericos ou categoricos, etc. Ela recorta o que se visualiza com o skimr\n\n\nla función yank()\n\n\nlibrary(skimr)\n\n\n  s &lt;- skim(pambol)\n  yank(s, \"numeric\")\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\ngoles\n1\n0.86\n21.00\n9.86\n12\n12.0\n21\n30\n30\n▇▁▁▁▇\n\n\npartidos\n1\n0.86\n18.83\n2.04\n15\n18.5\n20\n20\n20\n▂▁▂▁▇"
   },
   {
     "objectID": "presentaciones/1.1-exploracion_rapida_datos.html#conjuntos-de-datos-muy-grandes",

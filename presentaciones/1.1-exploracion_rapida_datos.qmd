@@ -42,7 +42,7 @@ A idéia dessa aula é importar dados e olhar pra eles, os pacotes usados aqui s
 
 Vamos a utilizar los siguientes paquetes de R
 
--   `skimR`
+-   `skimr`
 -   `janitor`
 -   `report`
 
@@ -68,7 +68,7 @@ Vamos a utilizar los siguientes paquetes de R
 
 # Funciones de visualización de datos
 
-## skimR
+## `skimr`
 
 ::: columns
 ::: {.column width="20%"}
@@ -116,7 +116,6 @@ summary(pambol)
 #| eval: false
 #| echo: true
 
-library(tidyverse)
 library(skimr)
 
 skim(pambol)
@@ -138,7 +137,6 @@ Essa função yank() serve para separar os dados numericos ou categoricos, etc. 
 #| eval: true
 #| echo: true
 
-library(tidyverse)
 library(skimr)
 
 
