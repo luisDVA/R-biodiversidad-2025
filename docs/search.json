@@ -46,14 +46,14 @@
     "href": "materiales.html",
     "title": "Materiales del curso",
     "section": "",
-    "text": "Descargar todos los archivos (datos y scripts) para los ejercicios y ejemplos del curso:\nArchivos para el curso"
+    "text": "Descargar todos los archivos (datos y scripts) para los ejercicios y ejemplos del curso:\nArchivos para el curso\nDatos automatización"
   },
   {
     "objectID": "materiales.html#datos",
     "href": "materiales.html#datos",
     "title": "Materiales del curso",
     "section": "",
-    "text": "Descargar todos los archivos (datos y scripts) para los ejercicios y ejemplos del curso:\nArchivos para el curso"
+    "text": "Descargar todos los archivos (datos y scripts) para los ejercicios y ejemplos del curso:\nArchivos para el curso\nDatos automatización"
   },
   {
     "objectID": "materiales.html#presentaciones",
@@ -2299,8 +2299,8 @@
     "objectID": "presentaciones/4-LQNNESR.html#temas-de-este-bloque",
     "href": "presentaciones/4-LQNNESR.html#temas-de-este-bloque",
     "title": "Lo que nadie nos enseñó sobre R",
-    "section": "Temas de este bloque:",
-    "text": "Temas de este bloque:\n\nEntornos de trabajo y configuración\n\nIteración y vectorización para evitar repetición\n\nTrabajando con listas\n\nAtajos y herramientas para mayor eficiencia\n\nNovedades\n\nErrores comunes"
+    "section": "",
+    "text": "Entornos de trabajo y configuración\n\nIteración y vectorización para evitar repetición\n\nTrabajando con listas\n\nAtajos y herramientas para mayor eficiencia\n\nNovedades\n\nErrores comunes"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#personalización",
@@ -2356,7 +2356,7 @@
     "href": "presentaciones/4-LQNNESR.html#dplyrgroup_by",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "dplyr::group_by()",
-    "text": "dplyr::group_by()\n\nDefine grupos según una o más variables\n\nEstratifica un data frame\n\nequivalente a aggregate() y al argumento ‘by =’ de data.table\n\n\nManipulación de datos en R con dplyr - Rubén Sánchez"
+    "text": "dplyr::group_by()\n\nDefine grupos según una o más variables\n\nEstratifica un data frame\n\nequivalente a aggregate() y al argumento ‘by =’ de data.table\n\n\n\n\nManipulación de datos en R con dplyr - Rubén Sánchez"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#trabajando-con-datos-agrupados",
@@ -2384,35 +2384,35 @@
     "href": "presentaciones/4-LQNNESR.html#máximo-brainwt-para-cada-orden",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Máximo brainwt para cada orden",
-    "text": "Máximo brainwt para cada orden\n\n\nmsleep %&gt;% group_by(order) %&gt;% \n  slice_max(brainwt,n=1)\n\n\n\n# A tibble: 21 × 11\n# Groups:   order [19]\n   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake\n   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;\n 1 Tenrec Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA       8.4\n 2 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  \n 3 Gray … Hali… carni Carn… lc                   6.2       1.5      NA      17.8\n 4 Pilot… Glob… carni Ceta… cd                   2.7       0.1      NA      21.4\n 5 Commo… Phoc… carni Ceta… vu                   5.6      NA        NA      18.4\n 6 Bottl… Turs… carni Ceta… &lt;NA&gt;                 5.2      NA        NA      18.8\n 7 Big b… Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3\n 8 Giant… Prio… inse… Cing… en                  18.1       6.1      NA       5.9\n 9 North… Dide… omni  Dide… lc                  18         4.9       0.333   6  \n10 Phala… Phal… &lt;NA&gt;  Dipr… &lt;NA&gt;                13.7       1.8      NA      10.3\n# ℹ 11 more rows\n# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;"
+    "text": "Máximo brainwt para cada orden\n\n\nmsleep %&gt;% group_by(order) %&gt;% \n  slice_max(brainwt,n=1)\n\n# A tibble: 21 × 11\n# Groups:   order [19]\n   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake\n   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;\n 1 Tenrec Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA       8.4\n 2 Cow    Bos   herbi Arti… domesticated         4         0.7       0.667  20  \n 3 Gray … Hali… carni Carn… lc                   6.2       1.5      NA      17.8\n 4 Pilot… Glob… carni Ceta… cd                   2.7       0.1      NA      21.4\n 5 Commo… Phoc… carni Ceta… vu                   5.6      NA        NA      18.4\n 6 Bottl… Turs… carni Ceta… &lt;NA&gt;                 5.2      NA        NA      18.8\n 7 Big b… Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3\n 8 Giant… Prio… inse… Cing… en                  18.1       6.1      NA       5.9\n 9 North… Dide… omni  Dide… lc                  18         4.9       0.333   6  \n10 Phala… Phal… &lt;NA&gt;  Dipr… &lt;NA&gt;                13.7       1.8      NA      10.3\n# ℹ 11 more rows\n# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#muestrar-una-fila-al-azar-de-cada-grupo",
     "href": "presentaciones/4-LQNNESR.html#muestrar-una-fila-al-azar-de-cada-grupo",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Muestrar una fila al azar de cada grupo",
-    "text": "Muestrar una fila al azar de cada grupo\n\n\nmsleep %&gt;% group_by(order) %&gt;% \n  slice_sample(n=1)\n\n\n\n# A tibble: 19 × 11\n# Groups:   order [19]\n   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake\n   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;\n 1 Tenrec Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA       8.4\n 2 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  \n 3 Domes… Felis carni Carn… domesticated        12.5       3.2       0.417  11.5\n 4 Commo… Phoc… carni Ceta… vu                   5.6      NA        NA      18.4\n 5 Big b… Epte… inse… Chir… lc                  19.7       3.9       0.117   4.3\n 6 Giant… Prio… inse… Cing… en                  18.1       6.1      NA       5.9\n 7 Thick… Lutr… carni Dide… lc                  19.4       6.6      NA       4.6\n 8 Phala… Phal… &lt;NA&gt;  Dipr… &lt;NA&gt;                13.7       1.8      NA      10.3\n 9 Deser… Para… &lt;NA&gt;  Erin… lc                  10.3       2.7      NA      13.7\n10 Rock … Proc… &lt;NA&gt;  Hyra… lc                   5.4       0.5      NA      18.6\n11 Rabbit Oryc… herbi Lago… domesticated         8.4       0.9       0.417  15.6\n12 Short… Tach… inse… Mono… &lt;NA&gt;                 8.6      NA        NA      15.4\n13 Brazi… Tapi… herbi Peri… vu                   4.4       1         0.9    19.6\n14 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6\n15 Slow … Nyct… carni Prim… &lt;NA&gt;                11        NA        NA      13  \n16 Asian… Elep… herbi Prob… en                   3.9      NA        NA      20.1\n17 Round… Neof… herbi Rode… nt                  14.6      NA        NA       9.4\n18 Tree … Tupa… omni  Scan… &lt;NA&gt;                 8.9       2.6       0.233  15.1\n19 Star-… Cond… omni  Sori… lc                  10.3       2.2      NA      13.7\n# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;"
+    "text": "Muestrar una fila al azar de cada grupo\n\n\nmsleep %&gt;% group_by(order) %&gt;% \n  slice_sample(n=1)\n\n# A tibble: 19 × 11\n# Groups:   order [19]\n   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake\n   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;\n 1 Tenrec Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA       8.4\n 2 Sheep  Ovis  herbi Arti… domesticated         3.8       0.6      NA      20.2\n 3 Tiger  Pant… carni Carn… en                  15.8      NA        NA       8.2\n 4 Pilot… Glob… carni Ceta… cd                   2.7       0.1      NA      21.4\n 5 Littl… Myot… inse… Chir… &lt;NA&gt;                19.9       2         0.2     4.1\n 6 Long-… Dasy… carni Cing… lc                  17.4       3.1       0.383   6.6\n 7 Thick… Lutr… carni Dide… lc                  19.4       6.6      NA       4.6\n 8 Phala… Phal… &lt;NA&gt;  Dipr… &lt;NA&gt;                13.7       1.8      NA      10.3\n 9 Europ… Erin… omni  Erin… lc                  10.1       3.5       0.283  13.9\n10 Gray … Hete… herbi Hyra… lc                   6.3       0.6      NA      17.7\n11 Rabbit Oryc… herbi Lago… domesticated         8.4       0.9       0.417  15.6\n12 Short… Tach… inse… Mono… &lt;NA&gt;                 8.6      NA        NA      15.4\n13 Horse  Equus herbi Peri… domesticated         2.9       0.6       1      21.1\n14 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6\n15 Baboon Papio omni  Prim… &lt;NA&gt;                 9.4       1         0.667  14.6\n16 Asian… Elep… herbi Prob… en                   3.9      NA        NA      20.1\n17 Deer … Pero… &lt;NA&gt;  Rode… &lt;NA&gt;                11.5      NA        NA      12.5\n18 Tree … Tupa… omni  Scan… &lt;NA&gt;                 8.9       2.6       0.233  15.1\n19 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1\n# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#desagrupar",
     "href": "presentaciones/4-LQNNESR.html#desagrupar",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "“Desagrupar”",
-    "text": "“Desagrupar”\nLas tablas agrupadas por group_by retienen el agrupamiento, y para descartarlo usamos ungroup()\n\nmsleep %&gt;% group_by(order) %&gt;% \n  slice_sample(n=1) %&gt;% ungroup()\n\n\n\n# A tibble: 19 × 11\n   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake\n   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;\n 1 Tenrec Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA       8.4\n 2 Goat   Capri herbi Arti… lc                   5.3       0.6      NA      18.7\n 3 North… Call… carni Carn… vu                   8.7       1.4       0.383  15.3\n 4 Commo… Phoc… carni Ceta… vu                   5.6      NA        NA      18.4\n 5 Littl… Myot… inse… Chir… &lt;NA&gt;                19.9       2         0.2     4.1\n 6 Giant… Prio… inse… Cing… en                  18.1       6.1      NA       5.9\n 7 North… Dide… omni  Dide… lc                  18         4.9       0.333   6  \n 8 Potor… Poto… herbi Dipr… &lt;NA&gt;                11.1       1.5      NA      12.9\n 9 Europ… Erin… omni  Erin… lc                  10.1       3.5       0.283  13.9\n10 Tree … Dend… herbi Hyra… lc                   5.3       0.5      NA      18.7\n11 Rabbit Oryc… herbi Lago… domesticated         8.4       0.9       0.417  15.6\n12 Short… Tach… inse… Mono… &lt;NA&gt;                 8.6      NA        NA      15.4\n13 Donkey Equus herbi Peri… domesticated         3.1       0.4      NA      20.9\n14 Three… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6\n15 Owl m… Aotus omni  Prim… &lt;NA&gt;                17         1.8      NA       7  \n16 Asian… Elep… herbi Prob… en                   3.9      NA        NA      20.1\n17 Guine… Cavis herbi Rode… domesticated         9.4       0.8       0.217  14.6\n18 Tree … Tupa… omni  Scan… &lt;NA&gt;                 8.9       2.6       0.233  15.1\n19 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1\n# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;"
+    "text": "“Desagrupar”\nLas tablas agrupadas por group_by retienen el agrupamiento, y para descartarlo usamos ungroup()\n\nmsleep %&gt;% group_by(order) %&gt;% \n  slice_sample(n=1) %&gt;% ungroup()\n\n# A tibble: 19 × 11\n   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake\n   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;\n 1 \"Tenr… Tenr… omni  Afro… &lt;NA&gt;                15.6       2.3      NA       8.4\n 2 \"Gira… Gira… herbi Arti… cd                   1.9       0.4      NA      22.1\n 3 \"Dog\"  Canis carni Carn… domesticated        10.1       2.9       0.333  13.9\n 4 \"Comm… Phoc… carni Ceta… vu                   5.6      NA        NA      18.4\n 5 \"Litt… Myot… inse… Chir… &lt;NA&gt;                19.9       2         0.2     4.1\n 6 \"Gian… Prio… inse… Cing… en                  18.1       6.1      NA       5.9\n 7 \"Nort… Dide… omni  Dide… lc                  18         4.9       0.333   6  \n 8 \"Poto… Poto… herbi Dipr… &lt;NA&gt;                11.1       1.5      NA      12.9\n 9 \"Euro… Erin… omni  Erin… lc                  10.1       3.5       0.283  13.9\n10 \"Gray… Hete… herbi Hyra… lc                   6.3       0.6      NA      17.7\n11 \"Rabb… Oryc… herbi Lago… domesticated         8.4       0.9       0.417  15.6\n12 \"Shor… Tach… inse… Mono… &lt;NA&gt;                 8.6      NA        NA      15.4\n13 \"Braz… Tapi… herbi Peri… vu                   4.4       1         0.9    19.6\n14 \"Thre… Brad… herbi Pilo… &lt;NA&gt;                14.4       2.2       0.767   9.6\n15 \"Pott… Pero… omni  Prim… lc                  11        NA        NA      13  \n16 \"Afri… Loxo… herbi Prob… vu                   3.3      NA        NA      20.7\n17 \"Vole… Micr… herbi Rode… &lt;NA&gt;                12.8      NA        NA      11.2\n18 \"Tree… Tupa… omni  Scan… &lt;NA&gt;                 8.9       2.6       0.233  15.1\n19 \"Musk… Sunc… &lt;NA&gt;  Sori… &lt;NA&gt;                12.8       2         0.183  11.2\n# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#agrupamiento-rápido",
     "href": "presentaciones/4-LQNNESR.html#agrupamiento-rápido",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Agrupamiento rápido",
-    "text": "Agrupamiento rápido\nEn versiones recientes de dplyr:\n\nAgrupar con .by o by\n\n\nmsleep %&gt;% slice_sample(n=2, by = order) \n\n# A tibble: 33 × 11\n   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake\n   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;\n 1 Tiger  Pant… carni Carn… en                  15.8      NA        NA       8.2\n 2 Domes… Felis carni Carn… domesticated        12.5       3.2       0.417  11.5\n 3 Patas… Eryt… omni  Prim… lc                  10.9       1.1      NA      13.1\n 4 Squir… Saim… omni  Prim… &lt;NA&gt;                 9.6       1.4      NA      14.4\n 5 Vespe… Calo… &lt;NA&gt;  Rode… &lt;NA&gt;                 7        NA        NA      17  \n 6 North… Onyc… carni Rode… lc                  14.5      NA        NA       9.5\n 7 Musk … Sunc… &lt;NA&gt;  Sori… &lt;NA&gt;                12.8       2         0.183  11.2\n 8 Great… Blar… omni  Sori… lc                  14.9       2.3       0.133   9.1\n 9 Roe d… Capr… herbi Arti… lc                   3        NA        NA      21  \n10 Goat   Capri herbi Arti… lc                   5.3       0.6      NA      18.7\n# ℹ 23 more rows\n# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;"
+    "text": "Agrupamiento rápido\nEn versiones recientes de dplyr:\n\nAgrupar con .by o by\n\n\nmsleep %&gt;% slice_sample(n=2, by = order) \n\n# A tibble: 33 × 11\n   name   genus vore  order conservation sleep_total sleep_rem sleep_cycle awake\n   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;              &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;dbl&gt;\n 1 Caspi… Phoca carni Carn… vu                   3.5       0.4      NA      20.5\n 2 Cheet… Acin… carni Carn… lc                  12.1      NA        NA      11.9\n 3 Macaq… Maca… omni  Prim… &lt;NA&gt;                10.1       1.2       0.75   13.9\n 4 Mongo… Lemur herbi Prim… vu                   9.5       0.9      NA      14.5\n 5 Cotto… Sigm… herbi Rode… &lt;NA&gt;                11.3       1.1       0.15   12.7\n 6 Round… Neof… herbi Rode… nt                  14.6      NA        NA       9.4\n 7 Star-… Cond… omni  Sori… lc                  10.3       2.2      NA      13.7\n 8 Musk … Sunc… &lt;NA&gt;  Sori… &lt;NA&gt;                12.8       2         0.183  11.2\n 9 Pig    Sus   omni  Arti… domesticated         9.1       2.4       0.5    14.9\n10 Sheep  Ovis  herbi Arti… domesticated         3.8       0.6      NA      20.2\n# ℹ 23 more rows\n# ℹ 2 more variables: brainwt &lt;dbl&gt;, bodywt &lt;dbl&gt;"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#resumiendo-valores",
     "href": "presentaciones/4-LQNNESR.html#resumiendo-valores",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Resumiendo valores",
-    "text": "Resumiendo valores\n\n\nmsleep %&gt;%  \n  summarize(mediana_slp = median(sleep_total),\n            media_brainwt=mean(brainwt), .by = \"order\")\n\n\n\n# A tibble: 19 × 3\n   order           mediana_slp media_brainwt\n   &lt;chr&gt;                 &lt;dbl&gt;         &lt;dbl&gt;\n 1 Carnivora              10.2     NA       \n 2 Primates                9.9     NA       \n 3 Rodentia               12.9     NA       \n 4 Soricomorpha           10.3      0.000592\n 5 Artiodactyla            3.9     NA       \n 6 Pilosa                 14.4     NA       \n 7 Cingulata              17.8      0.0459  \n 8 Hyracoidea              5.4      0.0152  \n 9 Didelphimorphia        18.7     NA       \n10 Proboscidea             3.6      5.16    \n11 Chiroptera             19.8      0.000275\n12 Perissodactyla          3.1      0.414   \n13 Erinaceomorpha         10.2      0.00295 \n14 Cetacea                 5.2     NA       \n15 Lagomorpha              8.4      0.0121  \n16 Diprotodontia          12.4     NA       \n17 Monotremata             8.6      0.025   \n18 Afrosoricida           15.6      0.0026  \n19 Scandentia              8.9      0.0025"
+    "text": "Resumiendo valores\n\n\nmsleep %&gt;% group_by(order) %&gt;% \n  summarize(mediana_slp = median(sleep_total),\n            media_brainwt=mean(brainwt))\n\n# A tibble: 19 × 3\n   order           mediana_slp media_brainwt\n   &lt;chr&gt;                 &lt;dbl&gt;         &lt;dbl&gt;\n 1 Afrosoricida           15.6      0.0026  \n 2 Artiodactyla            3.9     NA       \n 3 Carnivora              10.2     NA       \n 4 Cetacea                 5.2     NA       \n 5 Chiroptera             19.8      0.000275\n 6 Cingulata              17.8      0.0459  \n 7 Didelphimorphia        18.7     NA       \n 8 Diprotodontia          12.4     NA       \n 9 Erinaceomorpha         10.2      0.00295 \n10 Hyracoidea              5.4      0.0152  \n11 Lagomorpha              8.4      0.0121  \n12 Monotremata             8.6      0.025   \n13 Perissodactyla          3.1      0.414   \n14 Pilosa                 14.4     NA       \n15 Primates                9.9     NA       \n16 Proboscidea             3.6      5.16    \n17 Rodentia               12.9     NA       \n18 Scandentia              8.9      0.0025  \n19 Soricomorpha           10.3      0.000592"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#bucles-for-loops",
@@ -2433,7 +2433,7 @@
     "href": "presentaciones/4-LQNNESR.html#ejercicio---loops",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Ejercicio - loops",
-    "text": "Ejercicio - loops\nEscribir un bucle para imprimir en la consola cada letra del alfabeto, en minúscula y en orden descendiente (z,y,x,w…) \n\n\n\n\n\n\nNote\n\n\nhay constantes pre-instaladas en R que les pueden servir"
+    "text": "Ejercicio - loops\nEscribir un bucle para imprimir en la consola cada letra del alfabeto, en minúscula y en orden descendiente (z,y,x,w…) \n\n\n\n\n\n\nNote\n\n\n\nhay constantes pre-instaladas en R que les pueden servir"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#bucles-y-grupos",
@@ -2447,21 +2447,21 @@
     "href": "presentaciones/4-LQNNESR.html#vectorización",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Vectorización",
-    "text": "Vectorización\nOperaciones que ocurren en paralelo en todos los elementos (de un vector, lista, etc.) y no uno por uno en cada elemento\n¿Aquí qué pasa?\n\n\nx &lt;- c(1,3,12,4,7,8)\nx &gt; 5"
+    "text": "Vectorización\nOperaciones que ocurren en paralelo en todos los elementos (de un vector, lista, etc.) y no uno por uno en cada elemento\n\n¿Aquí qué pasa?\n\n\nx &lt;- c(1,3,12,4,7,8)\nx &gt; 5"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#los-operadores-lógicos-entre-muchos-otros-son-vectorizados",
     "href": "presentaciones/4-LQNNESR.html#los-operadores-lógicos-entre-muchos-otros-son-vectorizados",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Los operadores lógicos (entre muchos otros) son vectorizados",
-    "text": "Los operadores lógicos (entre muchos otros) son vectorizados\n\n\nx &lt;- c(1,3,12,4,7,8)\nx &gt; 5\n\n[1] FALSE FALSE  TRUE FALSE  TRUE  TRUE\n\n\n\nNo hace falta teclear todo ésto o escribir un bucle\n\n\nx[1]&gt;5 ; x[2]&gt;5\nx[3]&gt;5 ; x[4]&gt;5\nx[5]&gt;5 ; x[6]&gt;5"
+    "text": "Los operadores lógicos (entre muchos otros) son vectorizados\n\n\nx &lt;- c(1,3,12,4,7,8)\nx &gt; 5\n\n[1] FALSE FALSE  TRUE FALSE  TRUE  TRUE\n\n\n\nNo hace falta teclear todo ésto o escribir un bucle\n\n\nx[1]&gt;5 ; x[2]&gt;5\nx[3]&gt;5 ; x[4]&gt;5\nx[5]&gt;5 ; x[6]&gt;5\n\n\n\n\n\n\nAmerican Greetings"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#cuando-sí-necesitemos-iterar",
     "href": "presentaciones/4-LQNNESR.html#cuando-sí-necesitemos-iterar",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Cuando sí necesitemos iterar:",
-    "text": "Cuando sí necesitemos iterar:\n\n\n\n\n📦 purrr - Herramientas para programación funcional\n\nfunciones map que aplican una función a cada elemento de una lista o vector y devuelve un resultado de la misma longitud que la entrada\ntrabaja bien con listas\ncódigo legible y conciso\n\n\n\n\nThomas Mock (2018)\nFunctional Programming in R with purrr"
+    "text": "Cuando sí necesitemos iterar:\n\n\n\n\n📦 purrr - Herramientas para programación funcional\n\nfunciones map que aplican una función a cada elemento de una lista o vector y devuelve un resultado de la misma longitud que la entrada\ntrabaja bien con listas\ncódigo legible y conciso\n\n\n\n\n\nThomas Mock (2018)\nFunctional Programming in R with purrr\n\n\n\n\nmap(.x, .f, …)\n\npara cada elemento de .x\naplica .f\n... argumentos para .f"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#mapeando-funciones-a-datos",
@@ -2475,42 +2475,42 @@
     "href": "presentaciones/4-LQNNESR.html#funciones",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Funciones",
-    "text": "Funciones\n\nLearn by Example.com"
+    "text": "Funciones\n\n\n\nLearn by Example.com"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#definiendo-funciones",
     "href": "presentaciones/4-LQNNESR.html#definiendo-funciones",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Definiendo funciones",
-    "text": "Definiendo funciones\nusamos la función ‘function()’\nfunction( arglist ) expr\n\nargumentos (arglist): valores para la función\nexpresión (expr): un objeto que representa una acción que R puede hacer\n\n\n\n\n\n\nNote\n\n\nLas expresiones pueden tener una o más declaraciones"
+    "text": "Definiendo funciones\nusamos la función ‘function()’\nfunction( arglist ) expr\n\nargumentos (arglist): valores para la función\nexpresión (expr): un objeto que representa una acción que R puede hacer\n\n\n\n\n\n\nNote\n\n\n\nLas expresiones pueden tener una o más declaraciones"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#definiendo-funciones-1",
     "href": "presentaciones/4-LQNNESR.html#definiendo-funciones-1",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Definiendo funciones",
-    "text": "Definiendo funciones\n\n\nmi_funcion &lt;- function(mi_argumento){\n  mi_argumento+1 # declaración\n}\n\nmi_vector &lt;- c(3,5,6,7)\n\nmi_funcion(mi_argumento = mi_vector)\n\n[1] 4 6 7 8"
+    "text": "Definiendo funciones\n\n\nmi_funcion &lt;- function(mi_argumento){\n  mi_argumento+1 # declaración\n}\n\nmi_vector &lt;- c(3,5,6,7)\n\nmi_funcion(mi_argumento = mi_vector)\n\n[1] 4 6 7 8\n\n\n\n\nEl cuerpo de la función (las declaraciones que se ejecutan al correr la función) se agrupa con llaves ({})\n\n\nmiFunc &lt;- function(x) {\n  x + 4 # cuerpo\n}\n\n\n\n\n\n\n\nmiFunc(6)\n\n[1] 10\n\nmiFunc(x=6)\n\n[1] 10\n\n\n\n\nAl ejecutar funciones es opcional especificar los nombres de los argumentos, pero en funciones con &gt;1 argumentos, el orden importa\n\n\n\nPERO no hacen falta llaves para funciones con una sola declaración\n\n\nf &lt;- function(x) x+4   \nf(x=6)\n\n[1] 10\n\n\n\n\n\nf &lt;- function(x) mean(x)/2   \nf(c(6,43,12,5,7))\n\n[1] 7.3\n\n\n\n\nLas llaves rodean el cuerpo en funciones con dos o más declaraciones\n\n\nf &lt;- function(x)  y &lt;- (x*0.2885) log(y) # ERROR  \n\n\nAsí sí funciona. Las declaraciones (statements) están en líneas separadas\n\n\nf &lt;- function(x) {\n  y &lt;- (x*0.2885) # una declaración\n  log(y)          # otra declaración\n}\n\nf(5)\n\n[1] 0.3663777"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#función-sin-argumentos",
     "href": "presentaciones/4-LQNNESR.html#función-sin-argumentos",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Función sin argumentos",
-    "text": "Función sin argumentos\n\nqueHoraEs &lt;- function(){\nformat(Sys.time(), \"%H:%M\")\n}\nqueHoraEs()\n\n[1] \"23:40\""
+    "text": "Función sin argumentos\n\nqueHoraEs &lt;- function(){\nformat(Sys.time(), \"%H:%M\")\n}\nqueHoraEs()\n\n[1] \"21:42\""
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#funciones-anónimas",
     "href": "presentaciones/4-LQNNESR.html#funciones-anónimas",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Funciones anónimas",
-    "text": "Funciones anónimas\nFunciones para llevar (se crean y se ejecutan pero nunca se asignan a un objeto con nombre)\nSintaxis\n\n\n(function(x) x * x + 3)(10)\n\n[1] 103\n\n\n\nLa definición va entre paréntesis para separar la función de sus argumentos"
+    "text": "Funciones anónimas\nFunciones para llevar (se crean y se ejecutan pero nunca se asignan a un objeto con nombre)\n\nSintaxis\n\n\n(function(x) x * x + 3)(10)\n\n[1] 103\n\n\n\nLa definición va entre paréntesis para separar la función de sus argumentos\n\n\n\n(function(x) x + 3)(10)\n\n\nEs lo mismo que:\n\n\nf &lt;- function(x) x + 3\nf(10)\n# o bien \nf &lt;- function(x) {x + 3}\nf(10)"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#notation-corta-desde-r-v4.1.0",
     "href": "presentaciones/4-LQNNESR.html#notation-corta-desde-r-v4.1.0",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Notation corta (desde R v4.1.0)",
-    "text": "Notation corta (desde R v4.1.0)\nReemplaza “function(x) {}” con “\\(x){}”\n\n\n(\\(x) x + 3)(10)\n\n[1] 13\n\n(\\(x) x / 2)(10)\n\n[1] 5\n\n\n\n\n\nRuss Hyde (2021)\nNew features in R 4.1.0\n\n\n\n\n\n\n\n\nNote\n\n\nLos desarrolladores del tidyverse están migrando al uso de esta notación"
+    "text": "Notation corta (desde R v4.1.0)\nReemplaza “function(x) {}” con “\\(x){}”\n\n\n(\\(x) x + 3)(10)\n\n[1] 13\n\n(\\(x) x / 2)(10)\n\n[1] 5\n\n\n\n\n\nRuss Hyde (2021)\nNew features in R 4.1.0\n\n\n\n\n\n\n\n\nNote\n\n\n\nLos desarrolladores del tidyverse están migrando al uso de esta notación"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#funciones-anónimas-1",
@@ -2531,7 +2531,7 @@
     "href": "presentaciones/4-LQNNESR.html#listas-1",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Listas",
-    "text": "Listas\nObjetos que pueden contener elementos de diferentes tipos como números, cadenas de texto, vectores, tablas, o incluso más listas\n\n\nmi_lista &lt;- list(\n  un_numero = 7,\n  un_vector = c(\"rata\", \"gato\", \"taco\"),\n  un_dataframe = data.frame(\n    a = 1:3, b = c(\"K\", \"L\", \"M\")))\n\n\n\n\nRebecca Barter (2019)\nLearn to purrr"
+    "text": "Listas\nObjetos que pueden contener elementos de diferentes tipos como números, cadenas de texto, vectores, tablas, o incluso más listas\n\n\nmi_lista &lt;- list(\n  un_numero = 7,\n  un_vector = c(\"rata\", \"gato\", \"taco\"),\n  un_dataframe = data.frame(\n    a = 1:3, b = c(\"K\", \"L\", \"M\")))\n\n\n\n\nRebecca Barter (2019)\nLearn to purrr\n\n\n\n\n\nmi_lista\n\n$un_numero\n[1] 7\n\n$un_vector\n[1] \"rata\" \"gato\" \"taco\"\n\n$un_dataframe\n  a b\n1 1 K\n2 2 L\n3 3 M"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#podemos-creas-listas-partiendo-otros-objetos",
@@ -2566,7 +2566,7 @@
     "href": "presentaciones/4-LQNNESR.html#indexando-listas",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "‘Indexando’ listas",
-    "text": "‘Indexando’ listas\n\nHadley Wickam (2015) en Twitter"
+    "text": "‘Indexando’ listas\n\n\n\nHadley Wickam (2015) en Twitter"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#accediendo-a-elementos-de-listas",
@@ -2636,7 +2636,7 @@
     "href": "presentaciones/4-LQNNESR.html#map-para-aplicar-nuestra-función-a-la-lista",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "map() para aplicar nuestra función a la lista",
-    "text": "map() para aplicar nuestra función a la lista\n\n\n\n\n\n\nNote\n\n\nSolo usamos el nombre de la función\n\n\n\n\n\nmap(.x = rasgos, .f = resumenMMR)\n\n[[1]]\n[1] 2700 6300 3600\n\n[[2]]\n[1] 32.1 59.6 27.5\n\n[[3]]\n[1] 172 231  59"
+    "text": "map() para aplicar nuestra función a la lista\n\n\n\n\n\n\nNote\n\n\n\nSolo usamos el nombre de la función\n\n\n\n\nmap(.x = rasgos, .f = resumenMMR)\n\n[[1]]\n[1] 2700 6300 3600\n\n[[2]]\n[1] 32.1 59.6 27.5\n\n[[3]]\n[1] 172 231  59"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#map-con-salidas-específicas",
@@ -2678,7 +2678,7 @@
     "href": "presentaciones/4-LQNNESR.html#ejercicio",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Ejercicio",
-    "text": "Ejercicio\nCrear una carpeta llena de archivos de texto\n\ncargar el archivo resultados_21k.csv\nagrupar los datos por localidad y crear una lista de data frames con una para cada localidad\ncrear un vector con los nombres de las localidades\n\n\n\n\n\n\n\nNote\n\n\n😲 es posible iterar con dos inputs en paralelo"
+    "text": "Ejercicio\n\nCrear una carpeta llena de archivos de texto\n\ncargar el archivo resultados_21k.csv\nagrupar los datos por localidad y crear una lista de data frames con una para cada localidad\ncrear un vector con los nombres de las localidades\n\n\n\n\n\n\n\nNote\n\n\n\n😲 es posible iterar con dos inputs en paralelo"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#map-con-dos-inputs",
@@ -2727,7 +2727,7 @@
     "href": "presentaciones/4-LQNNESR.html#más-atajos",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Más atajos",
-    "text": "Más atajos\nModificar selección ctrl+alt+shift+m\nPara acceder a la documentación ? o F1\nAbriendo objetos en el visualizador\nctrl + click\nEjecutar de nuevo la última línea\nctrl + Alt + P\nAbrir el directorio de trabajo\nshell.exec(getwd()) en Windows y en Linux browseURL(getwd())"
+    "text": "Más atajos\nModificar selección ctrl+alt+shift+m\nPara acceder a la documentación ? o F1\nAbriendo objetos en el visualizador\nctrl + click\nEjecutar de nuevo la última línea\nctrl + Alt + P\n\nAbrir el directorio de trabajo\nshell.exec(getwd()) en Windows y en Linux browseURL(getwd())"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#práctica",
@@ -2769,14 +2769,14 @@
     "href": "presentaciones/4-LQNNESR.html#utilidades-geniales",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Utilidades geniales",
-    "text": "Utilidades geniales\n📦 datapasta\nCopiar y pegar datos desde y hacia R, manipular vectores"
+    "text": "Utilidades geniales\n\n📦 datapasta\nCopiar y pegar datos desde y hacia R, manipular vectores"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#resetear",
     "href": "presentaciones/4-LQNNESR.html#resetear",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "1 - Resetear",
-    "text": "1 - Resetear\nReiniciar R (limpia la ruta de búsqueda, “desprende” objetos, regresa opciones a sus valores predeterminados)\n\n\n\n\n\n\nNote\n\n\nsearch path: los entornos que definen los objetos y funciones a los que podemos acceder desde el entorno de trabajo global\n\n\n\nprueba\n(e.g. Sys.setenv(LANGUAGE=\"ko\"))"
+    "text": "1 - Resetear\nReiniciar R (limpia la ruta de búsqueda, “desprende” objetos, regresa opciones a sus valores predeterminados)\n\n\n\n\n\n\nNote\n\n\n\nsearch path: los entornos que definen los objetos y funciones a los que podemos acceder desde el entorno de trabajo global\n\n\n\nprueba\n(e.g. Sys.setenv(LANGUAGE=\"ko\"))"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#reprex-ejemplos-reproducibles",
@@ -3224,14 +3224,14 @@
     "href": "presentaciones/4-LQNNESR.html#section-1",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "",
-    "text": "Usando el argumento by ya no se quedan ‘pegados’ los grupos\n\n\nA veces usamos .by y a veces by ## Resumiendo valores\n\n\n\nmsleep %&gt;% group_by(order) %&gt;% \n  summarize(mediana_slp = median(sleep_total),\n            media_brainwt=mean(brainwt))\n\n\n\n# A tibble: 19 × 3\n   order           mediana_slp media_brainwt\n   &lt;chr&gt;                 &lt;dbl&gt;         &lt;dbl&gt;\n 1 Afrosoricida           15.6      0.0026  \n 2 Artiodactyla            3.9     NA       \n 3 Carnivora              10.2     NA       \n 4 Cetacea                 5.2     NA       \n 5 Chiroptera             19.8      0.000275\n 6 Cingulata              17.8      0.0459  \n 7 Didelphimorphia        18.7     NA       \n 8 Diprotodontia          12.4     NA       \n 9 Erinaceomorpha         10.2      0.00295 \n10 Hyracoidea              5.4      0.0152  \n11 Lagomorpha              8.4      0.0121  \n12 Monotremata             8.6      0.025   \n13 Perissodactyla          3.1      0.414   \n14 Pilosa                 14.4     NA       \n15 Primates                9.9     NA       \n16 Proboscidea             3.6      5.16    \n17 Rodentia               12.9     NA       \n18 Scandentia              8.9      0.0025  \n19 Soricomorpha           10.3      0.000592"
+    "text": "Usando el argumento by ya no se quedan ‘pegados’ los grupos\n\n\nA veces usamos .by y a veces by"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#resumiendo-valores-1",
     "href": "presentaciones/4-LQNNESR.html#resumiendo-valores-1",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Resumiendo valores",
-    "text": "Resumiendo valores\n\n\nmsleep %&gt;%  \n  summarize(mediana_slp = median(sleep_total),\n            media_brainwt=mean(brainwt), .by = \"order\")\n\n\n\n# A tibble: 19 × 3\n   order           mediana_slp media_brainwt\n   &lt;chr&gt;                 &lt;dbl&gt;         &lt;dbl&gt;\n 1 Carnivora              10.2     NA       \n 2 Primates                9.9     NA       \n 3 Rodentia               12.9     NA       \n 4 Soricomorpha           10.3      0.000592\n 5 Artiodactyla            3.9     NA       \n 6 Pilosa                 14.4     NA       \n 7 Cingulata              17.8      0.0459  \n 8 Hyracoidea              5.4      0.0152  \n 9 Didelphimorphia        18.7     NA       \n10 Proboscidea             3.6      5.16    \n11 Chiroptera             19.8      0.000275\n12 Perissodactyla          3.1      0.414   \n13 Erinaceomorpha         10.2      0.00295 \n14 Cetacea                 5.2     NA       \n15 Lagomorpha              8.4      0.0121  \n16 Diprotodontia          12.4     NA       \n17 Monotremata             8.6      0.025   \n18 Afrosoricida           15.6      0.0026  \n19 Scandentia              8.9      0.0025"
+    "text": "Resumiendo valores\n\n\nmsleep %&gt;%  \n  summarize(mediana_slp = median(sleep_total),\n            media_brainwt=mean(brainwt), .by = \"order\")\n\n# A tibble: 19 × 3\n   order           mediana_slp media_brainwt\n   &lt;chr&gt;                 &lt;dbl&gt;         &lt;dbl&gt;\n 1 Carnivora              10.2     NA       \n 2 Primates                9.9     NA       \n 3 Rodentia               12.9     NA       \n 4 Soricomorpha           10.3      0.000592\n 5 Artiodactyla            3.9     NA       \n 6 Pilosa                 14.4     NA       \n 7 Cingulata              17.8      0.0459  \n 8 Hyracoidea              5.4      0.0152  \n 9 Didelphimorphia        18.7     NA       \n10 Proboscidea             3.6      5.16    \n11 Chiroptera             19.8      0.000275\n12 Perissodactyla          3.1      0.414   \n13 Erinaceomorpha         10.2      0.00295 \n14 Cetacea                 5.2     NA       \n15 Lagomorpha              8.4      0.0121  \n16 Diprotodontia          12.4     NA       \n17 Monotremata             8.6      0.025   \n18 Afrosoricida           15.6      0.0026  \n19 Scandentia              8.9      0.0025"
   },
   {
     "objectID": "presentaciones/4-LQNNESR.html#section-9",
@@ -3266,7 +3266,7 @@
     "href": "presentaciones/4-LQNNESR.html#novedades",
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "Novedades",
-    "text": "Novedades\n\nPositron\nIDE de nueva generación para ciencia de datos multilenguaje\nInteligencia Artifial?\n\ngander\n\nextensiones para Positron\n\nguía LLM+R"
+    "text": "Novedades\n\n\nPositron\nIDE de nueva generación para ciencia de datos multilenguaje\n\n\nInteligencia Artifial?\n\ngander\n\nextensiones para Positron\n\nguía LLM+R"
   },
   {
     "objectID": "presentaciones/4.1-practica-funciones.html#para-qué-automatizar",
@@ -3323,5 +3323,12 @@
     "title": "Práctica: Automatización",
     "section": "",
     "text": "do_pca: Realiza un análisis de componentes principales\nget_scores: Extrae los resultados que necesitamos de la función do_pca\nNicheOv_SimTest: Utiliza los resultados de la función get_scores para caracterizar el nicho, mide el traslape de nicho y realizar las pruebas estadísticas de similitud de nicho"
+  },
+  {
+    "objectID": "presentaciones/4-LQNNESR.html",
+    "href": "presentaciones/4-LQNNESR.html",
+    "title": "Lo que nadie nos enseñó sobre R",
+    "section": "",
+    "text": "Entornos de trabajo y configuración\n\nIteración y vectorización para evitar repetición\n\nTrabajando con listas\n\nAtajos y herramientas para mayor eficiencia\n\nNovedades\n\nErrores comunes"
   }
 ]

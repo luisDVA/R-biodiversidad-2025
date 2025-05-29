@@ -261,6 +261,7 @@ msleep %>% slice_sample(n=2, by = order)
 
 
 > A veces usamos `.by` y a veces `by`
+
 ## Resumiendo valores
 
 :::{.med-code}

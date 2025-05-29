@@ -9,6 +9,9 @@ Descargar todos los archivos (datos y scripts) para los ejercicios y ejemplos de
 
 [[Archivos para el curso](archivos-ej/datoscurso.zip)]{style="font-size: 1.6rem; background-color: #ff835a; 	padding: 3px;	border-radius: 6px; text-align: center;"}
 
+[[Datos automatización](archivos-ej/practica_automatizacion.zip)]{style="font-size: 1.6rem; background-color: #ff835a; 	padding: 3px;	border-radius: 6px; text-align: center;"}
+
+
 ## Presentaciones
 
 Estas presentaciones en formato web cuentan con un índice de contenidos interactivo (botón en la esquina inferior izquierda).
