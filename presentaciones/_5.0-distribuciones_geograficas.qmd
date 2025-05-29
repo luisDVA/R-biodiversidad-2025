@@ -134,7 +134,7 @@ Agregar el mapa del mundo para saber qué onda!
 ```{r}
 #| eval: true
 #| echo: true
-wrld <- ne_countries(scale = "small",returnclass = "sf")
+wrld <- ne_countries(scale="small", returnclass="sf")
 ```
 
 ```{r}
@@ -155,7 +155,7 @@ ggplot()+
 #| echo: false
 
 ggplot()+
-  geom_sf(data=wrld)+geom_sf(data=sp_p1,col="blue",pch=19,size=1)+coord_sf(expand=F) +
+  geom_sf(data=wrld)+geom_sf(data=sp_p1,col="blue",pch=19,size=1)+coord_sf(expand=F)+
   labs(x="Longitud decimal ", y="Latitud decimal",
        title=expression(paste("Puntos reportados ", italic("Musonycteris harrisoni"))))+
   theme(plot.title = element_text(hjust = 0.5))
@@ -433,22 +433,45 @@ Por ejemplo, para especies restringidas o dependientes de aguas continentales po
 
 . . .
 
+```{r}
+#| eval: true
+#| echo: false
+#| message: false
+#| warning: false
+#| include: false
+#| results: hide
+
+south_america <- ne_countries(scale = "small", returnclass = "sf") %>% 
+  filter(continent == "South America") %>% 
+  st_union() %>%
+  st_sf(geometry=.)
+
+M <- st_read(here("data/polygons", "Cyphocharax_naegelii.shp")) %>% 
+  st_transform(4326) %>% st_make_valid()
+
+pc<-ggplot()+geom_sf(data=south_america)+geom_sf(data=M,fill="white",linewidth=0.3,color="black")
+```
+
+## 
+
 En este ejercicio, vamos a utilizar un pez dulceacuícola (*Cyphocharax naegelii*), que se distribuye en la cuenca alta del río Paraná
 
-. . .
+```{r}
+pc
+```
 
--   Carguemos una base de datos con los registros de la especie ya limpios para la cuenca del alto Paraná
+## 
+
+Entonces carguemos una base de datos con los registros de la especie ya limpios para la cuenca del alto Paraná
 
 ```{r}
 #| eval: true
 #| echo: true
 datos <- read_csv(file = here("data/polygons", "registros.csv")) %>%
   dplyr::select("longitude", "latitude") %>%
-  mutate(longitude=ifelse(duplicated(longitude),longitude+rnorm(1,mean=0, sd=0.0001), longitude)) %>%
+  mutate(longitude=ifelse(duplicated(longitude),longitude+rnorm(1,mean=0, sd=0.0001),longitude)) %>%
   mutate(latitude=ifelse(duplicated(latitude),latitude+rnorm(1,mean=0, sd=0.0001),latitude))
 ```
-
-. . .
 
 ## 
 
