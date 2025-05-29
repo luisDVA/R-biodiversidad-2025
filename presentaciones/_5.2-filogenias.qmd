@@ -1,7 +1,18 @@
 ---
 title: "Filogenias en R"
 author: Axel Arango & Fabricio Villalobos & Juliana Herrera
-format: revealjs
+format:
+  revealjs:
+    theme: curso_styles.scss
+    chalkboard: true
+    transition: fade
+    progress: true
+    preview-links: true
+    hide-inactive-cursor: true
+    highlight-style: printing
+    pause: true
+
+editor: visual
 ---
 
 ## Filogenias en R
