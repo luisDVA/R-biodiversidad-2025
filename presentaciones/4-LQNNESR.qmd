@@ -26,12 +26,12 @@ execute:
 
 ## Temas de este bloque:
 
-– Entornos de trabajo y configuración  
-– Iteración y vectorización para evitar repetición  
-– Trabajando con listas  
-– Manejo de matrices  
-– Atajos y herramientas para mayor eficiencia  
-– Errores comunes y cómo buscar soluciones  
+- Entornos de trabajo y configuración  
+- Iteración y vectorización para evitar repetición  
+- Trabajando con listas  
+- Atajos y herramientas para mayor eficiencia   
+- Novedades  
+- Errores comunes  
 
 ```{r}
 #| echo: false
@@ -95,20 +95,6 @@ R Startup\
 #>      \
 #>   ><((((º>  ><((((º>  ><((((º>  ><((((º>  ><((((º>
 #>       
-```
-
-- Ayuda con errores de dedo con `fcuk`
-
-```{text}
-#| echo: true
-#| eval: false
-
-> lenght(1:12)
-Error in lenght(1:12) : could not find function "lenght"
-> fcuk::init_error_tracker()
-> lenght(1:12)
-Error in lenght(1:12) : could not find function "lenght"
-Did you mean : length or ...length ?
 ```
 
 
@@ -269,8 +255,14 @@ En versiones recientes de `dplyr`:
 msleep %>% slice_sample(n=2, by = order) 
 ```
 
+##
 
+> Usando el argumento `by` ya no se quedan 'pegados' los grupos
+
+
+> A veces usamos `.by` y a veces `by`
 ## Resumiendo valores
+
 :::{.med-code}
 ```{r}
 #| eval: true
@@ -282,6 +274,21 @@ msleep %>% group_by(order) %>%
             media_brainwt=mean(brainwt))
 ```
 :::
+
+## Resumiendo valores
+
+:::{.med-code}
+```{r}
+#| eval: true
+#| echo: true
+#| output-location: fragment
+
+msleep %>%  
+  summarize(mediana_slp = median(sleep_total),
+            media_brainwt=mean(brainwt), .by = "order")
+```
+:::
+
 
 ## Bucles (_for loops_)
 
@@ -946,20 +953,10 @@ Mismo comportamiento
 listaNums <- list(c(5:10),c(20:27))
 # función anónima
 map(listaNums, function(x) x+2)
-# fórmula
-map(listaNums, ~ .x + 2)
 # notación 'nueva'
 map(listaNums,\(x) x+2)
 ```
 :::
-
-------------------------------------------------------------------------
-
-En notación de fórmula (usando `~`):
-
-`.x` siempre se refiere al elemento del vector o lista con el que estamos iterando
-
-Internamente `~.x + 4` se vuelve `function(x) x+4`
 
 ## Importando o escribiendo muchos archivos
 
@@ -1042,6 +1039,9 @@ Altman et al. (2021)\
 -   insertar 'pipe' (`ctrl`+`shift`+`m`)
 -   operador de asignación (`alt`+`-`)
 -   arrastrar línea (`alt`+`up`) o (`alt`+`down`)
+
+## 
+
 -   ejecutar línea (`ctrl`+`enter`)
 -   indentar o 'desindentar' selección (`tab` y `shift`+`tab`)
 -   convertir selección a comentario (`ctrl` + `shift` + `c`)
@@ -1084,7 +1084,7 @@ Exploremos la diversidad de paquetes que hay en CRAN hoy mismo:
 
 ```{r}
 #| echo: true
-#| eval: false
+#| eval: true
 
 library(dplyr)
 library(stringr)
@@ -1092,6 +1092,12 @@ p_db <- tools::CRAN_package_db()
 p_db <- p_db %>% select(Package, Author, Description, Title)
 ```
 
+
+##
+
+```{r}
+p_db |> filter(str_detect(Package,"gg"))
+```
 
 
 ## 📦 [`annotater`](https://annotater.liomys.mx)
@@ -1122,7 +1128,7 @@ library(readr) # Read Rectangular Text Data, CRAN v2.0.2
 
 ## 📦 [`littleboxes`](https://github.com/ThinkR-open/littleboxes)
 
-
+`remotes::install_github("ThinkR-open/littleboxes")`
 
 Cajas para títulos
 
@@ -1137,14 +1143,6 @@ Cajas para títulos
 ##%##################################################%##
 
 ```
-
-## 📦 `packup`
-
-https://github.com/MilesMcBain/packup
-
-Acomoda los llamados a `library()` al principio del archivo, quitando duplicados y ordenando alfabéticamente.
-
-> El orden alfabético puede no ser adecuado
 
 
 ## Secciones de código y el esquema de documento
@@ -1201,6 +1199,18 @@ Jenny Bryan (2020)\
 :::
 ::::
 
+## Novedades
+
+<br/>
+
+### Positron
+IDE de nueva generación para ciencia de datos multilenguaje 
+
+### Inteligencia Artifial?
+- `gander`   
+- extensiones para Positron  
+- guía [LLM+R](https://luisdva.github.io/llmsr-book/es/index.es.html)
+
 ## Errores comunes
 
 - paquetes sin cargar o cargados en desorden (search path)
@@ -1220,43 +1230,4 @@ Emily Jennings-Dobbs (2021)\
 
 - Correr los ejemplos disponibles con la ayuda y comparar con nuestro código
 
-
-# Buscando ayuda
-
-## Otras personas
-
-Foros 
-
-Grupos de usuarios locales o de RLadies
-
-[StackOverflow](https://stackoverflow.com/)
-
-Redes sociales  
-
-[GitHub](https://github.com/) - issues (cerrados o abiertos)
-
- - 🧐 Modales!
-
-## Búsquedas web
-
-Nadie sabe todo de memoria y hay que saber buscar en línea
-
-- Aprender a usar funciones avanzadas en los buscadores populares ["Google-fu"](https://tryhackme.com/resources/blog/google-fu) 
-
-- Conocer la terminología general\
-    [*"R subset rows partial match"*]{style="color: orange"}
-
-- Hacer búsquedas amplias (ej: no buscar partes de un mensaje que error que a nadie más le aparecerían)
-
-[Error: object 'tesis_luis_23w-final' not found]{style="color: red; font-family: monospace"}
-
-## ¿Cuáles soluciones son ~~mejores~~ útiles?
-
-- ¿Hace falta limitar los resultados temporalmente?
-
-- Soluciones para diferentes dialectos\
-    [Sort (order) data frame rows by multiple columns](https://stackoverflow.com/questions/1296646/sort-order-data-frame-rows-by-multiple-columns)\
-    (StackOverflow - 2009, 1.4 M visitas)
-
-# Discusión
 

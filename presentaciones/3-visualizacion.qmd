@@ -455,7 +455,7 @@ Modificando parámetros gráficos
 
 ## Temas (apariencias predeterminadas)
 
-Controlan múltiples aspectos de la apariencia del gasifico sin alterar los datos.
+Controlan múltiples aspectos de la apariencia del gráfico sin alterar los datos.
 
 - 8 disponibles con `ggplot2`  
 - paquetes con temas adicionales: [`ggthemes`](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/), [`artyfarty`](https://datarootsio.github.io/artyfarty/articles/introduction.html), [`hrbrthemes`](https://github.com/hrbrmstr/hrbrthemes)`  

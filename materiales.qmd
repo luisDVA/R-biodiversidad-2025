@@ -31,8 +31,10 @@ Estas presentaciones en formato web cuentan con un índice de contenidos interac
 
 ### Jueves
 
-<!--  -->
-<!--[Lo que Nunca nos Enseñaron sobre R](presentaciones/4-LQNNESR.qmd){.external target="_blank"} -->
+[Lo que Nunca nos Enseñaron sobre R](presentaciones/4-LQNNESR.qmd){.external target="_blank"}
+
+[Automatización y funciones](presentaciones/4.1-practica-funciones.qmd){.external target="_blank"}
+
 
 <!--[Manejo de Matrices](presentaciones/4.1-matricesv2.qmd){.external target="_blank"}  -->
 

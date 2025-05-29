@@ -1,0 +1,118 @@
+---
+title: "Práctica: Automatización"
+author: Gerardo Dirzo Uribe
+format:
+  revealjs:
+    theme: curso_styles.scss
+    transition: fade
+    progress: true
+    preview-links: true
+    hide-inactive-cursor: true
+    mermaid:
+      theme: neutral
+---
+
+## ¿Para qué automatizar?
+  
+Permite facilitar y optimizar diversas tareas internas
+
+  - Resumir código
+  
+  - Productividad
+  
+  - Evitar errores
+  
+  - Compartir código
+
+  
+
+## Ejemplo:
+
+Traslape de nicho Grinnelliano (climático)
+
+- Chiroptera:Phyllostomidae
+
+![*Uroderma*](https://inaturalist-open-data.s3.amazonaws.com/photos/464913/original.jpg)
+
+## ¿Qué necesitamos?
+
+  - El área geográfica ocupada de las especies (**Distribuciones geográficas**)
+  
+  
+  - El área geográfica que históricamente las especies pudieron haber explorado en un periodo relevante de tiempo (**Área de accesibilidad**)
+
+## Para esto
+
+  - Localidades de presencia (maldicho: Occurrencias)
+  
+  
+  - Localidades históricamente accesibles (Áreas de accesibilidad)
+  
+  
+  - Variables climáticas
+  
+## Con esta información
+
+  - Caracterizamos el nicho de nuestras especies de interés
+  
+  
+  - Estimamos el traslape en el espacio ambiental (D de Schoener)
+  
+  
+  - Pruebas estadísticas (pruebas de similitud de nicho)
+
+## Funciones
+
+El script "funciones.R" contiene las funciones que vamos a utilizar
+
+
+
+::: {.mermaid-wrapper}
+```{mermaid}
+flowchart LR
+classDef bigText font-size:40px;
+    A("do_pca"):::bigText --> B("get_scores"):::bigText
+    B --> C("NicheOv_SimTest"):::bigText
+```
+:::
+<style>
+.mermaid-wrapper {
+  display: flex;
+  justify-content: center;
+  transform: scale(2);
+  
+}
+</style>
+
+## Funciones
+
+El script "funciones.R" contiene las funciones que vamos a utilizar
+
+
+
+::: {.mermaid-wrapper}
+```{mermaid}
+flowchart LR
+classDef bigText font-size:40px;
+    A("do_pca"):::bigText --> B("get_scores"):::bigText
+    B --> C("NicheOv_SimTest"):::bigText
+```
+:::
+<style>
+.mermaid-wrapper {
+  display: flex;
+  justify-content: center;
+  transform: scale(2);
+  
+}
+</style>
+
+##
+
+  (@) `do_pca`: Realiza un análisis de componentes principales
+  
+  (@) `get_scores`: Extrae los resultados que necesitamos de la función `do_pca`
+  
+  (@) `NicheOv_SimTest`: Utiliza los resultados de la función `get_scores` para caracterizar el nicho, mide el traslape de nicho y realizar las pruebas estadísticas de similitud de nicho
+  
+  

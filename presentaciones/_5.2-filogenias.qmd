@@ -1,7 +1,27 @@
 ---
 title: "Filogenias en R"
 author: Axel Arango & Fabricio Villalobos & Juliana Herrera
-format: revealjs
+format:
+  revealjs:
+    theme: curso_styles.scss
+    chalkboard: true
+    transition: fade
+    progress: true
+    multiplex: false
+    preview-links: true
+    hide-inactive-cursor: true
+    highlight-style: pygments
+    pause: true
+editor: source
+knitr:
+  opts_chunk:
+    dev: "ragg_png"
+    retina: 3
+    dpi: 200
+execute:
+  freeze: auto
+  cache: true
+  echo: true
 ---
 
 ## Filogenias en R
@@ -245,6 +265,7 @@ Podemos agregar escalas de tiempo con el paquete `deeptime`
 
 ```{r, fig.width=4, fig.height=4,fig.align='center'}
 #| echo: true
+#| eval: false
 #| message: false
 #| warning: false
 
@@ -257,6 +278,24 @@ py+ geom_tiplab(size=1,color="black",angle=0)+xlim(-100,30)+ylim(-2,70)+coord_ge
 
 
 ```
+
+
+## 
+
+
+```{r, fig.width=4, fig.height=4,fig.align='center'}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+
+py<-revts(p1)
+
+py+ geom_tiplab(size=1,color="black",angle=0)+xlim(-100,30)+ylim(-2,70)+coord_geo(abbrv = T,neg=T,skip=NULL,dat=list("epochs"),size=2)
+
+```
+
+##
 
 ```{r, fig.width=4, fig.height=4,fig.align='center'}
 #| echo: true
@@ -769,4 +808,4 @@ p_ott/p_nk
 
 ## 
 
-Ahora podemos crear nuestras propias figuras usando estos rescursos.
+Ahora podemos crear nuestras propias figuras usando estos recursos.

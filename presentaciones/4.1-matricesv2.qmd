@@ -19,7 +19,6 @@ library(here)
 
 # Matrices
 
-
 ## Matrices
 
 ![](https://i.imgflip.com/lnf8o.jpg)
@@ -67,9 +66,9 @@ a <- matrix(1:6, ncol = 3, nrow = 2)
 b <- array(1:12, c(2, 3, 4))
 ```
 
-##
+## 
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 #| eval: true
@@ -87,7 +86,7 @@ b <- array(1:12, c(2, 3, 4))
 b
 ```
 :::
-:::
+:::::
 
 ## Argumentos de la función `matrix()`
 
@@ -150,10 +149,9 @@ diag(a)
 -   Identidad (valores de la diagonal son 1 y los demás, 0)
 -   Escalar (valores de la diagonal son iguales y los demás, 0)
 
-##
+## 
 
 ![](imgs/matrices.png)
-
 
 ## Operaciones con matrices: Sumatoria
 
@@ -168,7 +166,7 @@ diag(a)
 
 ```
 
-##
+## 
 
 ```{r}
 #| eval: true
@@ -195,7 +193,7 @@ diag(a)
 
 ## Operaciones con escalares
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 ```{r}
 #| eval: true
@@ -223,11 +221,11 @@ a + d
 
 ```
 :::
-:::
+:::::
 
 ## pero...
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 -   a + b y a + b2 son iguales?
 
@@ -243,7 +241,7 @@ a + d
 :::
 
 ::: {.column width="50%"}
-- Y esta suma, ¿sale bien?
+-   Y esta suma, ¿sale bien?
 
 ```{r}
 #| eval: false
@@ -254,7 +252,7 @@ a + d
  a + b2
 ```
 :::
-:::
+:::::
 
 ## Multiplicación de matrices
 
@@ -317,7 +315,8 @@ d <- matrix(c(0,1), nrow=2)
 
 ## la función `det()`
 
-- Para calcular el inverso es necesario conocer el *determinante*
+-   Para calcular el inverso es necesario conocer el *determinante*
+
 ```{r}
 #| eval: true
 #| echo: true
@@ -328,7 +327,8 @@ a
 
 ```
 
-##
+## 
+
 ```{r}
 #| eval: true
 #| echo: true
@@ -338,8 +338,9 @@ d
 
 ```
 
-##
-- Dividir cada elemento de la matriz inversa por por el determinante
+## 
+
+-   Dividir cada elemento de la matriz inversa por por el determinante
 
 ```{r}
 #| eval: true
@@ -355,7 +356,8 @@ inva
 
 ```
 
-##
+## 
+
 -   La función `solve()` calcula el inverso
 -   No confundir con `t()`, que es la función para transponer la matriz
 
@@ -368,7 +370,9 @@ ainv <- solve(a)
 ainv
 
 ```
+
 ## 
+
 ```{r}
 #| eval: true
 #| echo: true
@@ -440,7 +444,7 @@ M%*%N
 
 ## 
 
-::: columns
+::::: columns
 ::: {.column width="50%"}
 -   `Dense`
 
@@ -470,7 +474,7 @@ sM <- as(M, "sparseMatrix")
 sM
 ```
 :::
-:::
+:::::
 
 ## En ecología de comunidades
 
@@ -491,7 +495,7 @@ sM
 ## Matrices de distancia
 
 -   Pueden ser transformadas en objetos de distancias `dist()`
--   Por defecto calcula distancias euclidianas 
+-   Por defecto calcula distancias euclidianas
 
 ```{r}
 #| eval: true
@@ -501,7 +505,7 @@ dist(x)
 
 ```
 
-##
+## 
 
 ```{r}
 #| eval: true
@@ -528,7 +532,6 @@ vare.dist
 
 ## Transformar objetos `dist()` en objetos de formato *ancho*
 
-
 ```{r}
 #| eval: true
 #| echo: true
@@ -540,7 +543,8 @@ dx = dist(x)
 
 ```
 
-##
+## 
+
 ```{r}
 #| eval: true
 #| echo: true
@@ -555,7 +559,6 @@ dx |>
   head()
 
 ```
-
 
 # Visualización de matrices
 
@@ -605,6 +608,7 @@ moluscos = read_table(file=here("dados","moluscos.txt"))
 ambi = read_table(file=here("dados","ambi.txt"))
 
 ```
+
 ## Editar la tabla de moluscos, quitar la columna "sites"
 
 ```{r}
@@ -618,7 +622,6 @@ moluscos <-
 moluscos
 
 ```
-
 
 ## calcular las medias
 
@@ -646,8 +649,8 @@ molu.ord1<-molu.ord[,order(molu.medias,decreasing=T)]
 
 ## Visualizar
 
-
 -   Algunos ajustes..
+
 ```{r}
 #| eval: true
 #| echo: true
@@ -658,8 +661,10 @@ molu.ord2 <- cbind(molu.ord1,ambi2)
 
 ```
 
-##
+## 
+
 -   Qué vemos en la gráfica abajo? Hay algun patrón?
+
 ```{r}
 #| eval: true
 #| echo: true
@@ -669,7 +674,6 @@ molu.ord2 |>
   ggplot(aes(x=factor(lluvia),y=fct_rev(name),size=ifelse(value==0,NA,value)))+
   geom_point(shape=15)
 ```
-
 
 ## Otras opiciones de gráficos genéricos
 
