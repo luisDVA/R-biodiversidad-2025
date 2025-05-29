@@ -12,21 +12,20 @@ library(ape)
 library(dplyr)
 
 ```
-. . .
+
 Primero, ¿Qué es un árbol Filogenético?
 
 . . .
 
 -   Un árbol filogenético es un diagrama que muestra la relación de parentesco entre especies (o taxones)
 
--   Uno de los formatos más utilizados para representar filogenias son el *Newick*(.tree)
+-   Uno de los formatos más utilizados para representar filogenias es el *Newick*(.tree)
 
 -   El formato Newick es una notación para representar parentescos utilizando paréntesis y comas.
 
-
 ## 
 
--   Si queremos decir que A y B se parecen más entre ellos que con X, lo anotaríamos así:
+Si queremos decir que A y B se parecen más entre ellos que con X, lo anotaríamos así:
 
 ```{r prueba newick}
 #| eval: true
@@ -37,7 +36,7 @@ Primero, ¿Qué es un árbol Filogenético?
 
 ## 
 
-Para que *R* pueda identificar está notación, se puede usar `ape`:
+Para que *R* pueda identificar esta notación, se puede usar el paquete `ape`:
 
 ```{r newick}
 #| echo: true
@@ -63,7 +62,7 @@ read.tree(text=Canidae) %>% plot()
 
 ## 
 
-Y si agregamos murciélagos, todos ellos pertenecen a los mamíferos:
+Si agregamos murciélagos:
 
 ```{r}
 #| echo: true
@@ -77,7 +76,7 @@ read.tree(text=Mammalia) %>% plot()
 
 ## 
 
-Si quisiéramos agregar cuervos y zanates. ¿Estos dónde irían?
+También podríamos anexar otros grupos pj: cuervos y zanates. ¿Estos dónde irían?
 
 ```{r}
 #| label: zan
@@ -91,7 +90,7 @@ read.tree(text=tetrapoda) %>% plot()
 
 ## 
 
-Y si agregamos una planta, los mamíferos y las aves se anidarían.
+Si agregamos una planta, los mamíferos y las aves se anidarían.
 
 ```{r}
 #| eval: true
@@ -106,7 +105,7 @@ plot(Nktree)
 
 ## 
 
--   En este ejercicio haremos uso del paquete `ggtree` para graficar, personalizar, anotar y en general mejorar árboles filogenéticos
+En esta **práctica** haremos uso del paquete `ggtree` para graficar, personalizar y anotar árboles filogenéticos
 
 ## Paquetes necesarios:
 
@@ -127,22 +126,25 @@ library(TDbook)
 library(here)
 ```
 
-## Filogenia *Pimelodidae*
+## ¿Qué insumos utilizaremos?
 
-En este ejercicio utilizaremos una filogenia con las especies del Orden Siluriforme a las cuales se le conoce su tipo de migración. Esto es un subset de la Megafilogenia para peces propuesta por Rabosky (2018)
+En este ejercicio utilizaremos una filogenia con las especies del Orden Siluriformes (peces) a las cuales se le conoce su tipo de migración. Esto es un subset de la Megafilogenia para peces propuesta por Rabosky (2018)
 
 ```{r}
 #| eval: true
 #| echo: true
 
-fishtree <-read.tree(here("data","treefish.txt"))
 fishdata<-read.table(here("data","DataFish.txt"))
+
+fishtree <-read.tree(here("data","treefish.txt"))
+fishtree$tip.label<-gsub("_", " ", fishtree$tip.label)
+
 
 ```
 
 ## 
 
-Veamos esta filogenia graficándola, usando `ape`, la manera base para R.
+Podemos visualizar la información rápidamente usando `ape`,
 
 ```{r, fig.width=4, fig.height=5,fig.align='center'}
 #| eval: true
@@ -153,7 +155,7 @@ plot(fishtree, show.tip.label=F)
 
 ## 
 
-Ahora graficaremos el mismo árbol utilizando ggtree, el cual sigue una formula idéntica a la de ggplot. Nuestro árbol base se llamará **p1**:
+Ahora graficaremos el mismo árbol utilizando ggtree, el cual sigue una formula idéntica a la de `ggplot`. Nuestro árbol base se llamará **p1**:
 
 ```{r, fig.width=4, fig.height=5,fig.align='center'}
 #| eval: true
@@ -165,7 +167,9 @@ plot(p1)
 
 ## 
 
-Con **p1**, al igual que con cualquier otro gráfico de `ggplot`, podemos agregar parámetros gráficos para personalizar o agregar anotaciones a nuestra filogenia. Primero empezaremos con los parámetros de personalización. Por ejemplo, podemos cambiar la disposición de la filogenia utilizando el parámetro `layout_`:
+Con **p1,** al igual que con cualquier otro gráfico de `ggplot`, podemos agregar parámetros gráficos para personalizar o agregar anotaciones a nuestra filogenia.
+
+Por ejemplo, podemos cambiar la disposición de la filogenia utilizando el parámetro `layout_`:
 
 ## 
 
@@ -176,6 +180,7 @@ Con **p1**, al igual que con cualquier otro gráfico de `ggplot`, podemos agrega
 p1+layout_dendrogram()+
 p1+layout_fan()+
 p1+layout_circular()
+
 ```
 
 ## 
@@ -185,30 +190,31 @@ También podemos cambiar el color del fondo del gráfico
 ```{r, fig.width=4, fig.height=5,fig.align='center'}
 #| eval: true
 #| echo: true
-p1+  theme_tree(bgcolor="gray")
+p1+  theme_tree(bgcolor="skyblue")
 ```
 
-## Etiquetas y formas en tips
+## Adicionar información a los tips
 
-Agregar las etiquetas para las puntas de una manera personalizable:
+Agregar nombres a las puntas:
 
 ```{r, fig.width=4, fig.height=5,fig.align='center'}
 #| eval: true
 #| echo: true
-p1+xlim(NA, 110)+geom_tiplab(size=2,color="red",angle=0)
+
+p1+xlim(NA, 110)+geom_tiplab(size=2,color="black",angle=0)
 ```
 
 ## 
 
-formas a las puntas:
+O modificar las puntas:
 
 ```{r, fig.width=4, fig.height=5,fig.align='center'}
 #| eval: true
 #| echo: true
-p1+geom_tippoint(size=3,color="black",fill="skyblue",shape=21)
+p1+geom_tippoint(size=2,color="red",fill="black",shape=21)
 ```
 
-## Etiquetasy formas en nodos
+## Adicionar información a los nodos
 
 Etiquetas a los nodos:
 
@@ -216,7 +222,7 @@ Etiquetas a los nodos:
 #| eval: true
 #| echo: true
 
-p1+geom_nodelab(aes(label=node),size=2,color="blue", hjust=-0.6)+
+p1+geom_nodelab(aes(label=node),size=2,color="black", hjust=-0.6)+
   geom_nodelab(aes(subset = (node == 109), label = "*"),color = "red",size=10,hjust=1)
 
                                                     
@@ -229,56 +235,76 @@ o formas a los nodos:
 ```{r, fig.width=4, fig.height=5,fig.align='center'}
 #| eval: true
 #| echo: true
-p1+geom_nodelab(aes(label=node),size=2,color="blue", hjust=-0.6)+ geom_nodelab(aes(subset = (node == 109), label = "*"),color = "red",size=10,hjust=1)+
+p1+geom_nodelab(aes(label=node),size=2,color="black", hjust=-0.8)+ geom_nodelab(aes(subset = (node == 109), label = "*"),color = "red",size=10,hjust=1)+
   geom_nodepoint(size=2,color="red",fill="black",shape=21)
 ```
 
 ## Escalas temporales
 
-e incluso agregar una escala temporal a la filogenia, con la ayuda del paquete `deeptime`
+Podemos agregar escalas de tiempo con el paquete `deeptime`
 
-```{r, fig.width=4, fig.height=5,fig.align='center'}
-#| eval: true
+```{r, fig.width=4, fig.height=4,fig.align='center'}
 #| echo: true
+#| message: false
+#| warning: false
 
 py<-revts(p1)
-py+ geom_tiplab(size=2,color="black",angle=0)+xlim(-100,30)+ylim(-2,70)+coord_geo(abbrv = T,neg=T,skip=NULL,dat="epochs",size=2)+theme_tree2(axis.text.x=element_blank())+guides(x = "none")
+
+py+ geom_tiplab(size=1,color="black",angle=0)+xlim(-100,30)+ylim(-2,70)+coord_geo(abbrv = T,neg=T,skip=NULL,dat=list("epochs"),size=2)
+
+
+
+
+
 ```
 
-## Juntar varios parametros en `ggtree`
-
-Cómo en ggplot, todos estos parámetros son aditivos, por lo cual puedes construir la filogenia de manera gradual
-
-```{r, fig.width=8, fig.height=8}
-#| eval: false
+```{r, fig.width=4, fig.height=4,fig.align='center'}
 #| echo: true
-
-p1+ layout_circular()+xlim(NA,150)+geom_tiplab(size=2,color="darkblue")+
-  geom_tippoint(size=1,color="brown",shape=10)+
-  geom_nodelab(size=1,color="purple")+
-  geom_nodepoint(size=2,color="red",alpha=0.3,shape=16)
+#| message: false
+#| warning: false
+py+theme_tree2()
 ```
 
 ## 
 
-```{r, fig.width=4, fig.height=5,fig.align='center'}
+Recordemos que los parámetros son aditivos (con `+` podemos ir agregando uno por uno)
 
-#| eval: true
+```{r, fig.width=8, fig.height=8,fig.align='center'}
 #| echo: true
-#| include: true
-p1+ layout_circular()+xlim(NA,150)+geom_tiplab(size=2,color="darkblue")+
-  geom_tippoint(size=1,color="brown",shape=10)+
-  geom_nodelab(size=1,color="purple")+
+#| eval: false
+#| message: false
+#| warning: false
+
+
+p1+ layout_fan(angle = 180)+xlim(NA,150)+geom_tiplab(hjust= -0.2,size=2,color="black")+
+  geom_tippoint(size=1,color="black",shape=10)+
+  geom_nodelab(size=1,color="black")+
   geom_nodepoint(size=2,color="red",alpha=0.3,shape=16)
+```
+
+##
+
+```{r, fig.width=8, fig.height=8,fig.align='center'}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+
+
+p1+ layout_fan(angle = 180)+xlim(NA,150)+geom_tiplab(hjust= -0.2,size=2,color="black")+
+  geom_tippoint(size=1,color="black",shape=10)+
+  geom_nodelab(size=1,color="black")+
+  geom_nodepoint(size=2,color="red",alpha=0.3,shape=16)
+
 ```
 
 ## Anotaciones en Árboles
 
-Ahora para la anotación de los árboles, se pueden hacer varias cosas, por ejemplo, quiero seleccionar la parte de la filogenia donde se encuentra las especies de la Familia *Pimelodidae*
+Podemos incluir texto adicional en los gráficos,Por ejemplo: quiero seleccionar la parte de la filogenia donde se encuentra las especies de la Familia *Pimelodidae*
 
 ## Obtener nodos
 
-Para esto primero debemos encontrar el nodo del ancestro en común más reciente para este grupo. Usando un *tibble* y la estructura de `dplyr` es muy fácil
+Para esto primero debemos encontrar el nodo del ancestro común más reciente para este grupo (Usando un *tibble* y la estructura de `dplyr` es muy fácil).
 
 Después usando la función `getMRCA()` podemos encontrar el ancestro en común de estas especies
 
@@ -286,6 +312,7 @@ Después usando la función `getMRCA()` podemos encontrar el ancestro en común 
 #| eval: true
 #| echo: true
 fishdata$sciname<-row.names(fishdata)
+fishdata$sciname <- gsub("_", " ", fishdata$sciname)
 pimelo<-fishdata %>% filter(Family=="Pimelodidae")
 
 nodepimelo<-getMRCA(fishtree,pimelo$sciname)
@@ -296,7 +323,7 @@ nodepimelo
 
 ## 
 
-Ahora sabiendo que el ancestro en común de la familia *Pimelodidae* se encuentra en el nodo 80, puedo utilizar esta información para anotar la filogenia utilizando el parámetro *geom_cladelab*:
+Ahora conociendo que el ancestro en común de la familia *Pimelodidae* se encuentra en el nodo 80, puedo utilizar esta información para anotar la filogenia utilizando el parámetro *geom_cladelab*:
 
 ```{r, fig.width=8, fig.height=8,fig.align='center'}
 #| eval: true
@@ -309,7 +336,7 @@ p1+xlim(NA, 110)+ geom_cladelab(node=nodepimelo,label = "Pimelodidae",offset=0,b
 
 ## 
 
-y que tal si identificamos varias familias:
+Si queremos resaltar varias familias:
 
 ```{r, fig.width=8, fig.height=5,fig.align='center'}
 #| eval: true
@@ -321,75 +348,45 @@ nodelori<-getMRCA (fishtree,Loricariidae$sciname)
 Bagriidae<-fishdata %>% filter(Family=="Bagridae") %>% dplyr::select(sciname)
 nodeBagri<-getMRCA (fishtree,Bagriidae$sciname)
 
-
+nodesiluri
+nodelori
+nodeBagri
 ```
 
 ## 
 
 Ahora podemos jugar con varios parámetros gráficos
-```{r}
-#| eval: true
-#| include: false
-
-offspring.tbl_tree_item <- utils::getFromNamespace(".offspring.tbl_tree_item", "tidytree")
-```
-
-
-```{r, fig.width=8, fig.height=5,fig.align='center'}
-#| eval: false
-#| echo: true
-#| 
-p1+xlim(NA, 110)+
-  geom_cladelab(node=nodepimelo,label ="Pimelodidae",offset=0,barcolor="red",textcolor="brown",angle=0,offset.text=0.1)+
-  geom_cladelab(node=nodesiluri,label="Siluridae",offset=0,barcolor="blue",textcolor="blue",angle=0,offset.text=0.1)+
-  geom_cladelab(node=nodelori,label="Loricariidae",offset=0,barcolor="green",textcolor="green",angle=0,offset.text=0.1)+
-  geom_cladelab(node=nodeBagri,label = "Bagridae",offset=0,barcolor="black",textcolor="black",angle=0, offset.text=0.1)
-```
-
-## 
 
 ```{r, fig.width=8, fig.height=5,fig.align='center'}
 #| eval: true
 #| echo: true
 #| 
 p1+xlim(NA, 110)+
-  geom_cladelab(node=nodepimelo,label ="Pimelodidae",offset=0,barcolor="red",textcolor="brown",angle=0,offset.text=0.1)+
-  geom_cladelab(node=nodesiluri,label="Siluridae",offset=0,barcolor="blue",textcolor="blue",angle=0,offset.text=0.1)+
-  geom_cladelab(node=nodelori,label="Loricariidae",offset=0,barcolor="green",textcolor="green",angle=0,offset.text=0.1)+
-  geom_cladelab(node=nodeBagri,label = "Bagridae",offset=0,barcolor="black",textcolor="black",angle=0, offset.text=0.1)
-```
-
-. . .
-
-## 
-
-También podemos modificar parámetros gráficos de las anotaciones.
-
-```{r, fig.width=8, fig.height=5,fig.align='center'}
-#| eval: true
-#| echo: true
-p1+xlim(NA, 110)+ geom_cladelab(node=nodeBagri,label="Bagridae",geom="label",fill="skyblue",textcolor="black", barcolor="gray",angle=90)
+  geom_cladelab(node=nodepimelo,label ="Pimelodidae",offset=0,barcolor="#93C83E",textcolor="#93C83E",angle=0,offset.text=0.1,fontsize=4)+
+  geom_cladelab(node=nodesiluri,label="Siluridae",offset=0,barcolor="#007BA7",textcolor="#007BA7",angle=0,offset.text=0.1,fontsize=4)+
+  geom_cladelab(node=nodelori,label="Loricariidae",offset=0,barcolor="#AD5691",textcolor="#AD5691",angle=0,offset.text=0.1,fontsize=4)+
+  geom_cladelab(node=nodeBagri,label = "Bagridae",offset=0,barcolor="#EE3224",textcolor="#EE3224",angle=0, offset.text=0.1,fontsize=4)
 ```
 
 ## 
 
-También podemos realizar una anotación entre dos taxa, que pudieran o no estar relacionados, utilizando el parámetro `geom_strip()`:
+O incluso anotar grupos sin ancestro común utilizando el parámetro `geom_strip()`:
 
 ```{r, fig.width=8, fig.height=5,fig.align='center'}
 #| eval: true
 #| echo: true
 p1+xlim(0,120)+
-  geom_strip("Neoarius_graeffei","Gogo_arcuatus", label=" un clado polifilético", barsize = 2, offset.text = 0.2)
+  geom_strip("Neoarius graeffei","Gogo arcuatus", label=" Un clado polifilético", barsize = 2, offset.text = 0.2)
 ```
 
 ## Resaltar
 
-Otro parámetro de anotación muy interesante es *geom_highlight*, el cual nos permite destacar clados en particular, utilizando los nodos de ancestro en común:
+Otro parámetro de anotación muy interesante es *geom_highlight*, el cual nos permite destacar clados, utilizando los nodos de ancestro en común:
 
 ```{r, fig.width=8, fig.height=5,fig.align='center'}
 #| eval: true
 #| echo: true
-p1+ geom_highlight(node=80,alpha=0.5,fill="purple",type = "rect")
+p1+ geom_highlight(node=80,alpha=0.5,fill="#93C83E",type = "rect")
 ```
 
 ¿Qué clado es este? ...
@@ -400,16 +397,16 @@ p1+ geom_highlight(node=80,alpha=0.5,fill="purple",type = "rect")
 #| eval: true
 #| echo: true
 p1+
-  geom_highlight(node=80,alpha=0.5,fill="purple",type = "rect")+
-  geom_cladelab(node=80,label = "Pimelodiade",offset=0,barcolor="#9418f2",textcolor="#4c0980", offset.text=0)+
+  geom_highlight(node=80,alpha=0.5,fill="#93C83E",type = "rect")+
+  geom_cladelab(node=80,label = "Pimelodiade",offset=0,barcolor="#93C83E",textcolor="#93C83E", offset.text=0)+
   xlim(0,110)
 ```
 
 ## Phylopic
 
-Una función bastante interesante de `ggtree` es que se pueden personalizar las filogenías utilizando recursos en línea como *phylopic* o enriquecerlas con imágenes propias. 
+En `ggtree` como en `ggplot` podemos incluir imagenes de recursos en línea como *phylopic* o enriquecerlas con imágenes propias.
 
-Para poder hacer uso de esta función, primero debemos cargar 2 paquete extra:
+Para poder hacer uso de esta función, primero debemos cargar 2 paquetes extra:
 
 ```{r}
 #| eval: true
@@ -420,21 +417,38 @@ library("rphylopic")
 
 ## 
 
-podemos probar de la siguiente manera:
+Probemos con una especie de nuestro interes:
 
 ```{r, fig.width=8, fig.height=5,fig.align='center'}
+#| echo: true
 img <- pick_phylopic(name = "Ambystoma mexicanum", n = 1, view = 1)
 
 
 ```
 
-. . .
+Pueden explorar esta info: [rphylopic viñeta](https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.14221){preview-link="true"}
+
+## Guardar siluetas
+
+```{r}
+#| echo: true
+
+uuid <- get_uuid(name = "Erythromma najas")# obtener el identificador unico de la imagen
+img <- get_phylopic(uuid = uuid,format ="vector" ) #obtener imagen
+img<-recolor_phylopic(img,0.7, "blue",fill="black")
+plot(img)
+
+save_phylopic(img = img, path = "Cetops.png",
+              width = 500, height = 500)
+```
 
 ## 
 
-Hacer uso de *phylopic* para personalizar las anotaciones de las filogenias requiere que primero hagamos una tabla con los nodos, el nombre de la especie o clado a los cuales vamos a anotar y el phylopic_id.
+Para hacer uso de las imagenes en nuestra filogenia, primero debemos hacer una tabla con los nodos, el nombre de la especie o clado y el phylopic_id.
 
-En este ejemplo utilizaré los clados *Pimelodidae*, *Siluridae*,*Loricariidae*. Encontrar los phylopic_id es fácil usando la función `phylopic_uid()`
+En este ejemplo utilizaré los clados *Pimelodidae*, *Siluridae*, *Loricariidae*. 
+
+Encontrar los phylopic_id es fácil usando la función `phylopic_uid()`
 
 ```{r}
 #| eval: true
@@ -445,65 +459,46 @@ ids<-phylopic_uid(c("Phractocephalus hemioliopterus","Siluridae","Ameiurus","Cha
 
 ## 
 
-Con estos ids, ya podemos crear nuestra tabla con los datos necesarios y después gráficar nuestra filogenia:
+Con estos ids, ya podemos crear nuestra tabla con los datos necesarios y después gráficarlos:
 
 ```{r, fig.width=8, fig.height=5,fig.align='center'}
 #| eval: true
 #| echo: true
 dt<-data.frame(node=c(nodepimelo,nodesiluri,nodeBagri,nodelori),
                image=ids$uid,Family=c("Pimelodidae","Siluridae","Bagridae","Loricariidae"),
+               colorss=c("#93C83E","#007BA7","#EE3224","#AD5691"),
                size=c(0.1,0.1,0.1,0.05))
 dt
 ```
 
 ## 
 
+Por ejemplo: 
+
 ```{r, fig.width=8, fig.height=5,fig.align='center'}
 #| eval: true
 #| echo: true
+my_colors <- setNames(dt$colorss, dt$Family)
 
+p1+ylim(-10,80)+geom_cladelab(data = dt,mapping = aes(node = node, label = Family,image = image, color = Family ),geom = "phylopic",offset.text=4,  imagesize=dt$size,)+scale_color_manual(values = my_colors)
 
- p1+ylim(-10,80)+geom_cladelab(data = dt,mapping = aes(node = node, label = Family,image = image, color = Family),geom = "phylopic",imagesize=dt$size, offset.text=4)
 
 
 ```
 
 ## 
 
-Además, usando la argumentación como en `ggplot`, podemos personalizar los colores de nuestros *phylopics*:
+También podemos combinar otros parametros que ya conociamos:
 
 ```{r, fig.width=8, fig.height=5,fig.align='center'}
 #| eval: true
 #| echo: true
-
-
-dt$colourss=c("#3d5a80","#98c1d9","#ee6c4d","#293241")
-
-p1+ylim(-10,80)+geom_cladelab(data = dt, mapping = aes(node = node, label = Family, image = image, color = Family), geom = "phylopic", imagecolor=dt$colourss,barcolour=dt$colourss,imagesize=dt$size,offset.text=4)
-
-```
-
-## 
-
-Utilizando las funciones que ya conocemos, podemos crear una filogenia bastante atractiva:
-
-```{r, fig.width=8, fig.height=5,fig.align='center'}
-#| eval: false
-#| echo: true
- p1+ylim(-10,80)+xlim(-10,120)+
-   geom_cladelab(data = dt, 
-                       mapping = aes(node = node, label = Family, 
-                                     image = image, color = Family), 
-                       geom = "phylopic", 
-                       imagecolor=dt$colourss,
-                       barcolour=dt$colourss,
-                       imagesize=dt$size,offset.text=5)+
-  geom_highlight(dt,mapping = aes(node = node, label = Family,color = Family),type="rect",fill=dt$colourss,color=dt$colourss)+
-  geom_cladelab(node=80,label = "Pimelodiade",geom = "text",offset=0,barcolor="#3d5a80",textcolor= "#3d5a80", offset.text=10)+
-  geom_cladelab(node=113,label = "Bagridae",geom = "text",offset=0,barcolor="#98c1d9",textcolor= "#98c1d9", offset.text=10) +
-  geom_cladelab(node=119,label ="Siluridae" ,geom = "text",offset=0,barcolor="#ee6c4d",textcolor= "#ee6c4d",offset.text=10)+
-  geom_cladelab(node=128,label = "Loricarridae",geom = "text",offset=0,barcolor="#293241",textcolor= "#293241",offset.text=10)
-
+p1 + ylim(-10, 80) +geom_cladelab(data = dt,mapping = aes(node = node,label = Family, image = image,color = Family,size = size),
+    geom = "phylopic",offset.text = 4 ) +
+  scale_size_identity() +
+  geom_highlight( data = dt,
+    mapping = aes(node = node,
+      fill = Family,colour = Family),type = "rect")+scale_color_manual(values = my_colors) +scale_fill_manual(values = my_colors) 
 
 
 ```
@@ -512,110 +507,30 @@ Utilizando las funciones que ya conocemos, podemos crear una filogenia bastante 
 
 ```{r, fig.width=8, fig.height=5,fig.align='center'}
 #| eval: true
-#| echo: false
- p1+ylim(-10,80)+xlim(-10,120)+
-   geom_cladelab(data = dt, 
-                       mapping = aes(node = node, label = Family, 
-                                     image = image, color = Family), 
-                       geom = "phylopic", 
-                       imagecolor=dt$colourss,
-                       barcolour=dt$colourss,
-                       imagesize=dt$size,offset.text=5)+
-  geom_highlight(dt,mapping = aes(node = node, label = Family,color = Family),type="rect",fill=dt$colourss,color=dt$colourss)+
-  geom_cladelab(node=80,label = "Pimelodiade",geom = "text",offset=0,barcolor="#3d5a80",textcolor= "#3d5a80", offset.text=10)+
-  geom_cladelab(node=113,label = "Bagridae",geom = "text",offset=0,barcolor="#98c1d9",textcolor= "#98c1d9", offset.text=10) +
-  geom_cladelab(node=119,label ="Siluridae" ,geom = "text",offset=0,barcolor="#ee6c4d",textcolor= "#ee6c4d",offset.text=10)+
-  geom_cladelab(node=128,label = "Loricarridae",geom = "text",offset=0,barcolor="#293241",textcolor= "#293241",offset.text=10)
-
-
-
-```
-
-## 
-
-O estas:
-
-```{r, fig.width=8, fig.height=8,fig.align='center'}
-#| eval: false
 #| echo: true
 
+p2<-ggtree(fishtree,layout="circular",color="black")
 
-
-p2<-ggtree(fishtree,layout="circular",color="white")+theme_tree("black")
-
-p3<-p2+xlim(NA,250)+geom_cladelab(data = dt,mapping = aes(node = node, label = Family, 
-                                     image = image, color = Family), 
-              geom = "phylopic", 
-              barcolour=dt$colourss,
-              imagecolor=dt$colourss,
-              alpha=c(0.8,0.8,0.8,0.8),
-              imagesize=c(0.2,0.2,0.2,0.1),offset.text=c(130,120,100,100))+
-
-  geom_highlight(node=80,fill="#3d5a80")+
-  geom_cladelab(node=80,label="Pimelodidae",barcolor="#3d5a80",textcolor="white",offset.text=2, fontsize=4,angle =-30)+
-  
-  geom_highlight(node=113,fill="#98c1d9")+
-  geom_cladelab(node=113,label="Bagridae",barcolor="#98c1d9",textcolor="white",offset.text=2, fontsize=4,angle =110)+
-  
-  geom_highlight(node=119,fill="#ee6c4d")+
-  geom_cladelab(node=119,label="Siluridae",barcolor="#ee6c4d",textcolor="white",offset.text=2, fontsize=4,angle =80)+
-  
-  geom_highlight(node=128,fill="#293241")+
-  geom_cladelab(node=128,label="Loricariidae",barcolor="#293241",textcolor="white",offset.text=2,angle = 8)
-  
-
-p3
-
+p2 + ylim(-10, 80) +geom_cladelab(data = dt,mapping = aes(node = node,label = Family, image = image,color = Family,size = size),
+    geom = "phylopic",offset.text =  6) +
+  scale_size_identity() +
+  geom_highlight( data = dt, mapping = aes(node = node,fill = Family,colour = Family),type = "rect")+
+  scale_color_manual(values = my_colors) +scale_fill_manual(values = my_colors) 
 
 ```
 
-## 
+## Atributos de las especies
 
-```{r, fig.width=8, fig.height=8,fig.align='center'}
-#| eval: true
-#| echo: false
+También se puede usar `ggtree`, para graficar atributos de las especies en la filogenia.
 
-p2<-ggtree(fishtree,layout="circular",color="white")+theme_tree("black")
-
-p3<-p2+xlim(NA,250)+geom_cladelab(data = dt,mapping = aes(node = node, label = Family, 
-                                     image = image, color = Family), 
-              geom = "phylopic", 
-              barcolour=dt$colourss,
-              imagecolor=dt$colourss,
-              alpha=c(0.8,0.8,0.8,0.8),
-              imagesize=c(0.2,0.2,0.2,0.1),offset.text=c(130,140,140,140))+
-
-  geom_highlight(node=80,fill="#3d5a80")+
-  geom_cladelab(node=80,label="Pimelodidae",barcolor="#3d5a80",textcolor="white",offset.text=2, fontsize=4,angle =-30)+
-  
-  geom_highlight(node=113,fill="#98c1d9")+
-  geom_cladelab(node=113,label="Bagridae",barcolor="#98c1d9",textcolor="white",offset.text=2, fontsize=4,angle =110)+
-  
-  geom_highlight(node=119,fill="#ee6c4d")+
-  geom_cladelab(node=119,label="Siluridae",barcolor="#ee6c4d",textcolor="white",offset.text=2, fontsize=4,angle =80)+
-  
-  geom_highlight(node=128,fill="#293241")+
-  geom_cladelab(node=128,label="Loricariidae",barcolor="#293241",textcolor="white",offset.text=2,angle = 8)
-  
-
-p3
-
-```
-
-## 
-
-## Atributos en la filogenia
-
-Finalmente, se puede usar `ggtree()`, para graficar atributos de las especies en la filogenia.
-
-Para hacer esto, primero debemos cargar los atributos de los en este caso usaremos la longitud estándar máxima y el hábito migratorio:
+Para hacer esto, primero debemos cargar los atributos, en este caso usaremos la longitud estándar máxima y el hábito migratorio:
 
 ```{r}
 #| eval: true
 #| echo: true
 
 fishdata<-read.table(here("data","DataFish.txt"))
-
+fishdata$label<-gsub("_"," ",fishdata$label)
 
 head(fishdata)
 ```
@@ -643,7 +558,7 @@ Primero graficaremos los valores continuos de la longitud sobre las puntas del �
 #| echo: true
 
 p4<-ggtree(datatree)
-p4+geom_tippoint(aes(color= Length),size=3)
+  p4+geom_tippoint(aes(color= Length),size=3)
 ```
 
 ## 
@@ -655,29 +570,29 @@ podemos también personalizar esta escala:
 #| echo: true
 
 p4+
-  geom_tippoint(aes(color= Length),shape=19,size=3)+scale_colour_gradient(low='blue', high='red',breaks= c(15,50,100,150,200,300))
+  geom_tippoint(aes(color= Length),shape=19,size=3)+scale_colour_gradient(low='yellow', high='red',breaks= c(15,50,100,150,200,300))
 ```
 
 ## 
 
-¿Y cómo se verían los datos discretos?
+¿Cómo se verían los datos discretos?
 
 ```{r, fig.width=6, fig.height=8,fig.align='center'}
 #| eval: true
 #| echo: true
 
-p4+geom_tippoint(aes(color=salinity),shape=15)+ scale_colour_manual(values = c("blue","gray","skyblue"))
+p4+geom_tippoint(aes(color=salinity),shape=15,size=4)+ scale_colour_manual(values = c("blue","gray","skyblue"))
 ```
 
 ## 
 
-y ¿Pueden combinarse?
+¿Podemos incluir mas de un dato?
 
 ```{r, fig.width=6, fig.height=8,fig.align='center'}
-#| eval: false
+#| eval: true
 #| echo: true
 
-px<- p4+ geom_tippoint(aes(color=salinity),shape=15)+
+px<- p4+
   scale_color_manual(values = c("blue","gray","skyblue"))+
   scale_fill_manual(values = c("blue","gray","skyblue"))
 
@@ -687,25 +602,6 @@ px+ geom_facet(panel="Length",data =dd[1:65,],geom=geom_col,
                mapping=aes(x=Length,color=salinity,fill=salinity),orientation='y')+
     theme_tree2()
 ```
-
-## 
-
-```{r, fig.width=6, fig.height=8,fig.align='center'}
-#| eval: true
-#| echo: false
-
-px<- p4+ geom_tippoint(aes(color=salinity),shape=15)+
-  scale_color_manual(values = c("blue","gray","skyblue"))+
-  scale_fill_manual(values = c("blue","gray","skyblue"))
-
-dd<-data.frame(id=p4$data$label,value=p4$data$Length)  
-  
-px+ geom_facet(panel="Length",data =dd[1:65,],geom=geom_col, 
-               mapping=aes(x=Length,color=salinity,fill=salinity),orientation='y')+
-    theme_tree2()
-```
-
-## 
 
 ## 
 
@@ -766,15 +662,17 @@ p5+geom_fruit(data=dd[1:65,],
 
 ## 
 
-Para poder anotar las filogenias con imagenes, es recomendable usar árboles filogéticos pequeños. En este ejemplo usaremos una filogenia parafiletica con las Familias *Pimelodidae*,*Doradidae* y *Loricariidae*
+Imágenes propias
 
-Entonces, primero recuperamos un representante de cada grupo, *ape* es muy bueno para esto usando la función *keep.tip*:
+En este ejemplo usaremos las familias *Pimelodidae*,*Doradidae* y *Loricariidae*
+
+Primero recuperamos un representante de cada grupo, `ape` tiene una función que nos puede ser útil:  `keep.tip()`:
 
 ```{r, fig.width=6, fig.height=8,fig.align='center'}
 #| eval: true
 #| echo: true
 grouptree<-fishtree %>%
-keep.tip(c("Pimelodus_maculatus", "Lithodoras_dorsalis","Loricariichthys_anus"))
+keep.tip(c("Pimelodus maculatus", "Lithodoras dorsalis","Loricariichthys anus"))
 
 grouptree$tip.label<-c("Pimelodidae", "Doraridae","Loricariidae")
 
@@ -784,7 +682,7 @@ p6
 
 ## 
 
-Una vez teniendo este árbol parafilético, podemos colocar las imagenes en cada tip, es importante considerar, que las imagenes deben tener el nombre exacto del grupo o especie y el mismo formato:
+Para visualizar las imágenes como tips, el archivo, debe tener el nombre exacto del grupo o especie y todas las imaágenes el mismo formato (i.e JPG) :
 
 Las fotos aqui presentadas provienen del Proyecto `cavfish`
 
@@ -794,12 +692,12 @@ Las fotos aqui presentadas provienen del Proyecto `cavfish`
 p6+ 
   xlim(NA, 150) +
   geom_tiplab(aes(image=paste0("imgs/imagenes/", label, '.png')),geom="image", offset=3, align=1, size=0.6)+
-  geom_tiplab(geom="label",color="black",fill="white",offset = 30)
+  geom_tiplab(geom="label",color="black",offset = 30)
 ```
 
 ## 
 
-Pero, ¿Qué pasa si no me sé la taxonomía o no tengo la filogenia del grupo que estoy estudiando?
+Hasta ahora hemos usado filogenias conocidas. Pero, ¿Qué pasa si no tengo información de la filogenia del grupo que estoy estudiando?
 
 ```{r}
 #| eval: true
@@ -808,9 +706,9 @@ Pero, ¿Qué pasa si no me sé la taxonomía o no tengo la filogenia del grupo q
 picuid<-phylopic_uid(c("Argania","Quiscalus","Corvus","Desmodus","Vulpes","Canis lupus","Canis latrans"),seed=123)
 pics<-data.frame(label=Nktree$tip.label,uid=picuid$uid)
 phylopicNK<-ggtree(Nktree) %<+% pics+
-  geom_tiplab(aes(image=uid,color=label),geom="phylopic")+
+  geom_tiplab(aes(image=uid,color="black"),geom="phylopic",size=0.15)+
   theme(legend.position="none")+
-  scale_color_manual(values=c("#81613c","#919494","black","#473434","#2e275a","#e0cc77","#9ea26b"))
+  scale_color_manual(values=c("black"))
 ```
 
 ## 
@@ -819,17 +717,17 @@ phylopicNK<-ggtree(Nktree) %<+% pics+
 
 ```{r}
 #| eval: true
-#| echo: true
+#| echo: false
 phylopicNK
 ```
 
 ## 
 
-Haciendo uso de recursos en línea como *Open tree of Life*(OTL), podemoos obtener una filogenia utilizando las especies que necesitemos.
+Desde *Open tree of Life*(OTL), podemos obtener una filogenia utilizando las especies de nuestro interes
 
 ## 
 
-OTL tiene un útil paquete en R (`rotl`),para obtener filogenia
+OTL tiene un apquete para R (`rotl`) que podemos usar para obtener filogenias
 
 ```{r}
 #| eval: true
@@ -855,7 +753,7 @@ p_ott
 
 ## 
 
-Para la función de `rtol`, **NO** es necesario introducir las especies en orden, ya que ésta recuperará la taxonomia válida y nos arrojará una filogenia podada.
+Para la función de `rtol`, **NO** es necesario introducir las especies en orden, ya que ésta recuperará la taxonomia válida y nos arrojará una filogenia.
 
 En este caso, OTL nos regresó exactamente la misma filogenia que creamos al principio:
 
@@ -870,3 +768,5 @@ p_ott/p_nk
 ```
 
 ## 
+
+Ahora podemos crear nuestras propias figuras usando estos rescursos.
