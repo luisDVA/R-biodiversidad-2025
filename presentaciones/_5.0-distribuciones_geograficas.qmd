@@ -66,18 +66,16 @@ library(patchwork)
 
 Para comenzar podemos escoger una especie y aplicar la función `occ_data`
 
-El objeto `sp_data` es una lista con datos sobre los resultados obtenidos en GBIF (incluyendo algunos metadatos)
+El objeto **sp_data** es una lista con datos sobre los resultados obtenidos en GBIF (incluyendo algunos metadatos)
 
 Para trabajar únicamente con la tabla de registros hay que seleccionar el objeto data dentro del mismo
 
 ```{r}
 #| eval: true
 #| echo: true
-sp_data <- occ_data(scientificName = "Musonycteris harrisoni", limit = 500)[[2]]
+sp_data <- occ_data(scientificName="Musonycteris harrisoni", limit=500)[[2]]
 
 ```
-
-. . .
 
 ## 
 
@@ -89,27 +87,25 @@ Checar el nombre de las columnas (para después buscar únicamente las de posici
 names(sp_data)[1:30]
 ```
 
-. . .
-
 ## 
 
-1.  Crear otro objeto a partir `sp_data` únicamente con long/lat
+1.  Crear otro objeto a partir de **sp_data** únicamente con long/lat
 
 . . .
 
-2.  Quedarse únicamente con los puntos/registros individuales (i.e., excluir duplicados)
+2.  Quedarse únicamente con los puntos/registros individuales (*i.e.,* excluir duplicados)
 
 . . .
 
 3.  Transformarlo en un objeto espacial
 
-. . .
+## 
 
 ```{r}
 #| eval: true
 #| echo: true
 sp_p1<-sp_data%>%
-  select(decimalLongitude,decimalLatitude,species)%>%
+  dplyr::select(decimalLongitude,decimalLatitude,species)%>%
   mutate(lat=decimalLatitude,lon=decimalLongitude)%>%
   distinct() %>%
   na.omit() %>% 
@@ -120,8 +116,6 @@ sp_p1<-sp_data%>%
 ::: {.alert .alert-success role="alert"}
 NOTA: el nombre de la variable puede ser diferente (*e.g.*, "LATITUDE", "Latidude", "lat", etc. Siempre hay que checar antes)
 :::
-
-. . .
 
 ## 
 
@@ -144,21 +138,34 @@ wrld <- ne_countries(scale = "small",returnclass = "sf")
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 #| echo: true
+
 ggplot()+
-  geom_sf(data=wrld)+geom_sf(data=sp_p1,col="blue",pch=19,size=1)+coord_sf(expand = F) +
-  labs(x="Longitud decimal ",
-       y="Latitud decimal",
+  geom_sf(data=wrld)+geom_sf(data=sp_p1,col="blue",pch=19,size=1)+coord_sf(expand=F) +
+  labs(x="Longitud decimal ", y="Latitud decimal",
        title=expression(paste("Puntos reportados ", italic("Musonycteris harrisoni"))))+
   theme(plot.title = element_text(hjust = 0.5))
 ```
 
 ## 
 
-Hay algo claramente equivocado, ¿cierto? Los puntos/registros necesitan ser "curados" (limpiados)
+```{r}
+#| eval: true
+#| echo: false
+
+ggplot()+
+  geom_sf(data=wrld)+geom_sf(data=sp_p1,col="blue",pch=19,size=1)+coord_sf(expand=F) +
+  labs(x="Longitud decimal ", y="Latitud decimal",
+       title=expression(paste("Puntos reportados ", italic("Musonycteris harrisoni"))))+
+  theme(plot.title = element_text(hjust = 0.5))
+```
 
 . . .
+
+Hay algo claramente equivocado, ¿cierto? Los puntos/registros necesitan ser "curados" (limpiados)
+
+## 
 
 Eliminar los puntos con mala georeferencia (en este caso, puntos obvios en el "viejo mundo")
 
@@ -166,7 +173,7 @@ Eliminar los puntos con mala georeferencia (en este caso, puntos obvios en el "v
 #| eval: true
 #| echo: true
 sp_p1<-sp_data%>%
-  select(decimalLongitude,decimalLatitude,species)%>%
+  dplyr::select(decimalLongitude,decimalLatitude,species)%>%
   mutate(lat=decimalLatitude,lon=decimalLongitude)%>%
   distinct() %>% 
   na.omit() %>% 
@@ -201,7 +208,7 @@ Y ¿Cómo eliminamos los registros que están en el mar?
 #| eval: true
 #| echo: true
 sp_p1<-sp_data%>%
-  select(decimalLongitude,decimalLatitude,species)%>%
+  dplyr::select(decimalLongitude,decimalLatitude,species)%>%
   mutate(lat=decimalLatitude,lon=decimalLongitude)%>%
   distinct() %>%
   na.omit() %>% 
@@ -291,7 +298,7 @@ Falla porque encuentra puntos duplicados o, como en este caso, puntos en una lí
 #| eval: true
 #| echo: true
 
-sp_p3<-sp_p2 %>% select(X, Y)%>% 
+sp_p3<-sp_p2 %>% dplyr::select(X, Y)%>% 
 mutate(X = ifelse(duplicated(sp_p2$X), X + rnorm(1, mean = 0, sd = 0.0001), X))%>% 
 mutate(Y = ifelse(duplicated(sp_p2$Y), Y + rnorm(1, mean = 0, sd = 0.0001), Y))
 ```
@@ -436,7 +443,7 @@ En este ejercicio, vamos a utilizar un pez dulceacuícola (*Cyphocharax naegelii
 #| eval: true
 #| echo: true
 datos <- read_csv(file = here("data/polygons", "registros.csv")) %>%
-  select("longitude", "latitude") %>%
+  dplyr::select("longitude", "latitude") %>%
   mutate(longitude=ifelse(duplicated(longitude),longitude+rnorm(1,mean=0, sd=0.0001), longitude)) %>%
   mutate(latitude=ifelse(duplicated(latitude),latitude+rnorm(1,mean=0, sd=0.0001),latitude))
 ```
@@ -460,7 +467,7 @@ Grafiquemos los registros y la cuenca
 
 . . .
 
-NOTA: Debemos convertir los registros del objeto `datos` a un objeto de tipo `sf` para poder graficar en `ggplot`
+NOTA: Debemos convertir los registros del objeto **`datos`** a un objeto de tipo `sf` para poder graficar en `ggplot`
 
 ```{r}
 #| eval: true
@@ -549,7 +556,7 @@ mask.2 <- as.data.frame(mask, xy = TRUE)
 
 ## 
 
-¿cómo se ve?
+¿Cómo se ve?
 
 ```{r}
 #| eval: true
@@ -573,11 +580,11 @@ Teniendo los registros, capas de cuencas, y ráster de ríos, calculemos la exte
 
 . . .
 
-2.  Interceptar el polígono trazado en el numeral anterior con la capa de subcuencas (nivel 8; objeto `cuencas`)
+2.  Interceptar el polígono trazado con la capa de subcuencas (nivel 8; objeto **cuencas**)
 
 . . .
 
-3.  Rasterizar el polígono interceptado y cortarlo a los cuerpos de agua utilizando la capa ráster de los ríos del objeto `mask`
+3.  Rasterizar el polígono interceptado y cortarlo a los cuerpos de agua utilizando la capa ráster de los ríos del objeto **mask**
 
 . . .
 
@@ -623,7 +630,7 @@ ggplot()+
 
 ## 
 
-Seleccionar del objeto `cuencas` los ID interceptados para unir las subcuencas seleccionadas
+Seleccionar del objeto **cuencas** los ID interceptados para unir las subcuencas seleccionadas
 
 ```{r}
 #| eval: true
@@ -644,7 +651,7 @@ ggplot()+
 
 ## 
 
-Por último, utilizamos el polígono ajustado a las subcuencas (objeto `range_union`) y lo rasterizamos. Luego, lo cortamos a los ríos usando el ráster del objeto `mask`
+Por último, utilizamos el polígono ajustado a las subcuencas (objeto **range_union**) y lo rasterizamos. Luego, lo cortamos a los ríos usando el ráster del objeto **mask**
 
 . . .
 
@@ -717,4 +724,56 @@ ggplot()+
 
 ```
 
-. . .
+## 
+
+Grafiquemos todo el proceso para tener una visión general
+
+```{r}
+#| eval: true
+#| echo: true
+dots <-  
+  ggplot()+
+  geom_sf(data=M, fill="white", linewidth=0.3, colour="black")+
+  geom_sf(data=datos_sf, colour="black", size=0.7)+
+  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+
+  theme_void()
+
+alpha_poly <-
+  ggplot()+
+  geom_sf(data=M, fill="white", linewidth=0.3, colour="black")+
+  geom_sf(data=naegelli_poly,fill="green",linewidth=0.2,colour="black",alpha=0.3)+
+  geom_sf(data=datos_sf, colour="black", size=1)+
+  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+
+  theme_void()
+
+intercept_poly <-
+  ggplot()+
+  geom_sf(data=cuencas, fill="white", linewidth= 0.1, colour="black")+
+  geom_sf(data=intersect_poly$geometry,fill="green",linewidth=0.2,colour="black",alpha=0.3)+
+  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+
+  theme_void()
+
+unrestrict_range <-
+  ggplot()+
+  geom_sf(data=M, fill="white", linewidth=0.3, colour="black")+
+  geom_sf(data=range_union,fill="green",linewidth=0.2,colour="black",alpha=0.3)+
+  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+
+  theme_void()
+
+restrict_range <-
+ggplot()+
+  geom_sf(data=M, fill="white", linewidth=0.3, colour="black")+
+  geom_raster(data=water_restric, aes(x=x, y=y), fill="red") +
+  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+
+  theme_void()
+```
+
+## 
+
+```{r}
+#| eval: true
+#| echo: true
+dots + plot_spacer() + alpha_poly +
+plot_spacer() + intercept_poly + plot_spacer() +
+unrestrict_range + plot_spacer() + restrict_range
+```
