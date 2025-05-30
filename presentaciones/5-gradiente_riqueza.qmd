@@ -55,7 +55,7 @@ primates_maps <- st_read(here("dados","primates_maps.shp"))
 
 ```
 
-. . .
+##
 
 Conocer el dominio ("extent") de los datos, para usarlo después en la delimitación del espacio (geográfico) de trabajo
 
@@ -110,6 +110,12 @@ Primero, convertimos el raster en un `data.frame`
 rdf <- as.data.frame(primates.pam$Richness_Raster, xy=TRUE) #Convert raster to data.frame
 names(rdf)[3] <- 'richness' #Name value column
 head(rdf)
+```
+
+##
+```{r}
+#| eval: true
+#| echo: true
 rdf2 <- rdf
 rdf2[,3] <- ifelse(rdf[,3]==0,NA,rdf[,3])
 head(rdf2)

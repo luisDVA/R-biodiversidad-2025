@@ -60,7 +60,7 @@
     "href": "materiales.html#presentaciones",
     "title": "Materiales del curso",
     "section": "Presentaciones",
-    "text": "Presentaciones\nEstas presentaciones en formato web cuentan con un índice de contenidos interactivo (botón en la esquina inferior izquierda).\n\nLunes\nFlujos de Trabajo y Organización de Proyectos\nExploración de datos\nManipulación y Limpieza de datos - I\n\n\nMartes\nManipulación y Limpieza de datos - II\n\n\nMiércoles\nVisualización de Datos\n\n\nJueves\nLo que Nunca nos Enseñaron sobre R\nAutomatización y funciones\n\n\n\nViernes"
+    "text": "Presentaciones\nEstas presentaciones en formato web cuentan con un índice de contenidos interactivo (botón en la esquina inferior izquierda).\n\nLunes\nFlujos de Trabajo y Organización de Proyectos\nExploración de datos\nManipulación y Limpieza de datos - I\n\n\nMartes\nManipulación y Limpieza de datos - II\n\n\nMiércoles\nVisualización de Datos\n\n\nJueves\nLo que Nunca nos Enseñaron sobre R\nAutomatización y funciones\n\n\n\nViernes\nDistribuciones Geográficas\nRiqueza de Especies\nMapas Bivariados\nFilogenias"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html",
@@ -73,8 +73,8 @@
     "objectID": "presentaciones/5-gradiente_riqueza.html#áreas-de-distribución-y-patrones-geográficos-de-riqueza",
     "href": "presentaciones/5-gradiente_riqueza.html#áreas-de-distribución-y-patrones-geográficos-de-riqueza",
     "title": "Patrones geográficos de riqueza de especies",
-    "section": "",
-    "text": "“To do science is to search for repeated patterns, not simply to accumulate facts” R. MacArthur\n\n\nA partir de las distribuciones geográficas de las especies es posible describir y evaluar diferentes patrones de biodiversidad que emergen cuando estudiamos conjuntos de especies (y no a nivel indivual)"
+    "section": "Áreas de distribución y patrones geográficos de riqueza",
+    "text": "Áreas de distribución y patrones geográficos de riqueza\n\n“To do science is to search for repeated patterns, not simply to accumulate facts” R. MacArthur\n\n\nA partir de las distribuciones geográficas de las especies es posible describir y evaluar diferentes patrones de biodiversidad que emergen cuando estudiamos conjuntos de especies (y no a nivel indivual)"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html#áreas-de-distribución-y-patrones-geográficos-de-riqueza-1",
@@ -102,70 +102,70 @@
     "href": "presentaciones/5-gradiente_riqueza.html#section-1",
     "title": "Patrones geográficos de riqueza de especies",
     "section": "",
-    "text": "Cargar los polígonos de las especies de interés (shapefiles en su carpeta de trabajo)\n\nprimates_maps &lt;- st_read(here(\"dados\",\"primates_maps.shp\"))\n\nReading layer `primates_maps' from data source \n  `/home/luisd/Dropbox/darcyDB/PDRF/R-biodiversidad-2025/dados/primates_maps.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 915 features and 28 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -99.2274 ymin: -34.83983 xmax: 141.9292 ymax: 41.54623\nGeodetic CRS:  WGS 84\n\n\n. . .\nConocer el dominio (“extent”) de los datos, para usarlo después en la delimitación del espacio (geográfico) de trabajo\n\nst_bbox(primates_maps)\n\n     xmin      ymin      xmax      ymax \n-99.22740 -34.83983 141.92917  41.54623"
+    "text": "Cargar los polígonos de las especies de interés (shapefiles en su carpeta de trabajo)\n\nprimates_maps &lt;- st_read(here(\"dados\",\"primates_maps.shp\"))\n\nReading layer `primates_maps' from data source \n  `/home/luisd/Dropbox/darcyDB/PDRF/R-biodiversidad-2025/dados/primates_maps.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 915 features and 28 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -99.2274 ymin: -34.83983 xmax: 141.9292 ymax: 41.54623\nGeodetic CRS:  WGS 84"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html#section-2",
     "href": "presentaciones/5-gradiente_riqueza.html#section-2",
     "title": "Patrones geográficos de riqueza de especies",
     "section": "",
-    "text": "Crear una matriz de presencia-ausencia a partir de los polígonos\n\nprimates.pam &lt;- lets.presab(primates_maps, xmn = -100,xmx = 141, ymn = -35, ymx = 42, resol=1, count=T)\n\n\n  |                                                                            \n  |                                                                      |   0%\n  |                                                                            \n  |                                                                      |   1%\n  |                                                                            \n  |=                                                                     |   1%\n  |                                                                            \n  |=                                                                     |   2%\n  |                                                                            \n  |==                                                                    |   2%\n  |                                                                            \n  |==                                                                    |   3%\n  |                                                                            \n  |===                                                                   |   4%\n  |                                                                            \n  |===                                                                   |   5%\n  |                                                                            \n  |====                                                                  |   5%\n  |                                                                            \n  |====                                                                  |   6%\n  |                                                                            \n  |=====                                                                 |   6%\n  |                                                                            \n  |=====                                                                 |   7%\n  |                                                                            \n  |=====                                                                 |   8%\n  |                                                                            \n  |======                                                                |   8%\n  |                                                                            \n  |======                                                                |   9%\n  |                                                                            \n  |=======                                                               |   9%\n  |                                                                            \n  |=======                                                               |  10%\n  |                                                                            \n  |=======                                                               |  11%\n  |                                                                            \n  |========                                                              |  11%\n  |                                                                            \n  |========                                                              |  12%\n  |                                                                            \n  |=========                                                             |  12%\n  |                                                                            \n  |=========                                                             |  13%\n  |                                                                            \n  |=========                                                             |  14%\n  |                                                                            \n  |==========                                                            |  14%\n  |                                                                            \n  |==========                                                            |  15%\n  |                                                                            \n  |===========                                                           |  15%\n  |                                                                            \n  |===========                                                           |  16%\n  |                                                                            \n  |============                                                          |  17%\n  |                                                                            \n  |============                                                          |  18%\n  |                                                                            \n  |=============                                                         |  18%\n  |                                                                            \n  |=============                                                         |  19%\n  |                                                                            \n  |==============                                                        |  19%\n  |                                                                            \n  |==============                                                        |  20%\n  |                                                                            \n  |==============                                                        |  21%\n  |                                                                            \n  |===============                                                       |  21%\n  |                                                                            \n  |===============                                                       |  22%\n  |                                                                            \n  |================                                                      |  22%\n  |                                                                            \n  |================                                                      |  23%\n  |                                                                            \n  |=================                                                     |  24%\n  |                                                                            \n  |=================                                                     |  25%\n  |                                                                            \n  |==================                                                    |  25%\n  |                                                                            \n  |==================                                                    |  26%\n  |                                                                            \n  |===================                                                   |  26%\n  |                                                                            \n  |===================                                                   |  27%\n  |                                                                            \n  |===================                                                   |  28%\n  |                                                                            \n  |====================                                                  |  28%\n  |                                                                            \n  |====================                                                  |  29%\n  |                                                                            \n  |=====================                                                 |  29%\n  |                                                                            \n  |=====================                                                 |  30%\n  |                                                                            \n  |=====================                                                 |  31%\n  |                                                                            \n  |======================                                                |  31%\n  |                                                                            \n  |======================                                                |  32%\n  |                                                                            \n  |=======================                                               |  32%\n  |                                                                            \n  |=======================                                               |  33%\n  |                                                                            \n  |=======================                                               |  34%\n  |                                                                            \n  |========================                                              |  34%\n  |                                                                            \n  |========================                                              |  35%\n  |                                                                            \n  |=========================                                             |  35%\n  |                                                                            \n  |=========================                                             |  36%\n  |                                                                            \n  |==========================                                            |  37%\n  |                                                                            \n  |==========================                                            |  38%\n  |                                                                            \n  |===========================                                           |  38%\n  |                                                                            \n  |===========================                                           |  39%\n  |                                                                            \n  |============================                                          |  39%\n  |                                                                            \n  |============================                                          |  40%\n  |                                                                            \n  |============================                                          |  41%\n  |                                                                            \n  |=============================                                         |  41%\n  |                                                                            \n  |=============================                                         |  42%\n  |                                                                            \n  |==============================                                        |  42%\n  |                                                                            \n  |==============================                                        |  43%\n  |                                                                            \n  |===============================                                       |  44%\n  |                                                                            \n  |===============================                                       |  45%\n  |                                                                            \n  |================================                                      |  45%\n  |                                                                            \n  |================================                                      |  46%\n  |                                                                            \n  |=================================                                     |  46%\n  |                                                                            \n  |=================================                                     |  47%\n  |                                                                            \n  |=================================                                     |  48%\n  |                                                                            \n  |==================================                                    |  48%\n  |                                                                            \n  |==================================                                    |  49%\n  |                                                                            \n  |===================================                                   |  49%\n  |                                                                            \n  |===================================                                   |  50%\n  |                                                                            \n  |===================================                                   |  51%\n  |                                                                            \n  |====================================                                  |  51%\n  |                                                                            \n  |====================================                                  |  52%\n  |                                                                            \n  |=====================================                                 |  52%\n  |                                                                            \n  |=====================================                                 |  53%\n  |                                                                            \n  |=====================================                                 |  54%\n  |                                                                            \n  |======================================                                |  54%\n  |                                                                            \n  |======================================                                |  55%\n  |                                                                            \n  |=======================================                               |  55%\n  |                                                                            \n  |=======================================                               |  56%\n  |                                                                            \n  |========================================                              |  57%\n  |                                                                            \n  |========================================                              |  58%\n  |                                                                            \n  |=========================================                             |  58%\n  |                                                                            \n  |=========================================                             |  59%\n  |                                                                            \n  |==========================================                            |  59%\n  |                                                                            \n  |==========================================                            |  60%\n  |                                                                            \n  |==========================================                            |  61%\n  |                                                                            \n  |===========================================                           |  61%\n  |                                                                            \n  |===========================================                           |  62%\n  |                                                                            \n  |============================================                          |  62%\n  |                                                                            \n  |============================================                          |  63%\n  |                                                                            \n  |=============================================                         |  64%\n  |                                                                            \n  |=============================================                         |  65%\n  |                                                                            \n  |==============================================                        |  65%\n  |                                                                            \n  |==============================================                        |  66%\n  |                                                                            \n  |===============================================                       |  66%\n  |                                                                            \n  |===============================================                       |  67%\n  |                                                                            \n  |===============================================                       |  68%\n  |                                                                            \n  |================================================                      |  68%\n  |                                                                            \n  |================================================                      |  69%\n  |                                                                            \n  |=================================================                     |  69%\n  |                                                                            \n  |=================================================                     |  70%\n  |                                                                            \n  |=================================================                     |  71%\n  |                                                                            \n  |==================================================                    |  71%\n  |                                                                            \n  |==================================================                    |  72%\n  |                                                                            \n  |===================================================                   |  72%\n  |                                                                            \n  |===================================================                   |  73%\n  |                                                                            \n  |===================================================                   |  74%\n  |                                                                            \n  |====================================================                  |  74%\n  |                                                                            \n  |====================================================                  |  75%\n  |                                                                            \n  |=====================================================                 |  75%\n  |                                                                            \n  |=====================================================                 |  76%\n  |                                                                            \n  |======================================================                |  77%\n  |                                                                            \n  |======================================================                |  78%\n  |                                                                            \n  |=======================================================               |  78%\n  |                                                                            \n  |=======================================================               |  79%\n  |                                                                            \n  |========================================================              |  79%\n  |                                                                            \n  |========================================================              |  80%\n  |                                                                            \n  |========================================================              |  81%\n  |                                                                            \n  |=========================================================             |  81%\n  |                                                                            \n  |=========================================================             |  82%\n  |                                                                            \n  |==========================================================            |  82%\n  |                                                                            \n  |==========================================================            |  83%\n  |                                                                            \n  |===========================================================           |  84%\n  |                                                                            \n  |===========================================================           |  85%\n  |                                                                            \n  |============================================================          |  85%\n  |                                                                            \n  |============================================================          |  86%\n  |                                                                            \n  |=============================================================         |  86%\n  |                                                                            \n  |=============================================================         |  87%\n  |                                                                            \n  |=============================================================         |  88%\n  |                                                                            \n  |==============================================================        |  88%\n  |                                                                            \n  |==============================================================        |  89%\n  |                                                                            \n  |===============================================================       |  89%\n  |                                                                            \n  |===============================================================       |  90%\n  |                                                                            \n  |===============================================================       |  91%\n  |                                                                            \n  |================================================================      |  91%\n  |                                                                            \n  |================================================================      |  92%\n  |                                                                            \n  |=================================================================     |  92%\n  |                                                                            \n  |=================================================================     |  93%\n  |                                                                            \n  |=================================================================     |  94%\n  |                                                                            \n  |==================================================================    |  94%\n  |                                                                            \n  |==================================================================    |  95%\n  |                                                                            \n  |===================================================================   |  95%\n  |                                                                            \n  |===================================================================   |  96%\n  |                                                                            \n  |====================================================================  |  97%\n  |                                                                            \n  |====================================================================  |  98%\n  |                                                                            \n  |===================================================================== |  98%\n  |                                                                            \n  |===================================================================== |  99%\n  |                                                                            \n  |======================================================================|  99%\n  |                                                                            \n  |======================================================================| 100%"
+    "text": "Conocer el dominio (“extent”) de los datos, para usarlo después en la delimitación del espacio (geográfico) de trabajo\n\nst_bbox(primates_maps)\n\n     xmin      ymin      xmax      ymax \n-99.22740 -34.83983 141.92917  41.54623"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html#cómo-se-ve-el-patrón-geográfico",
     "href": "presentaciones/5-gradiente_riqueza.html#cómo-se-ve-el-patrón-geográfico",
     "title": "Patrones geográficos de riqueza de especies",
     "section": "¿Cómo se ve el patrón geográfico?",
-    "text": "¿Cómo se ve el patrón geográfico?\n. . .\n\nplot(primates.pam)"
+    "text": "¿Cómo se ve el patrón geográfico?\n\n\nplot(primates.pam)"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html#section-3",
     "href": "presentaciones/5-gradiente_riqueza.html#section-3",
     "title": "Patrones geográficos de riqueza de especies",
     "section": "",
-    "text": "¿Qué tiene el objeto que se graficó?\n\nprimates.pam$Richness_Raster\n\nclass       : SpatRaster \ndimensions  : 77, 241, 1  (nrow, ncol, nlyr)\nresolution  : 1, 1  (x, y)\nextent      : -100, 141, -35, 42  (xmin, xmax, ymin, ymax)\ncoord. ref. : +proj=longlat +datum=WGS84 +no_defs \nsource(s)   : memory\nname        : lyr.1 \nmin value   :     0 \nmax value   :    33"
+    "text": "Crear una matriz de presencia-ausencia a partir de los polígonos\n\nprimates.pam &lt;- lets.presab(primates_maps, xmn = -100,xmx = 141, ymn = -35, ymx = 42, resol=1, count=T)\n\n\n  |                                                                            \n  |                                                                      |   0%\n  |                                                                            \n  |                                                                      |   1%\n  |                                                                            \n  |=                                                                     |   1%\n  |                                                                            \n  |=                                                                     |   2%\n  |                                                                            \n  |==                                                                    |   2%\n  |                                                                            \n  |==                                                                    |   3%\n  |                                                                            \n  |===                                                                   |   4%\n  |                                                                            \n  |===                                                                   |   5%\n  |                                                                            \n  |====                                                                  |   5%\n  |                                                                            \n  |====                                                                  |   6%\n  |                                                                            \n  |=====                                                                 |   6%\n  |                                                                            \n  |=====                                                                 |   7%\n  |                                                                            \n  |=====                                                                 |   8%\n  |                                                                            \n  |======                                                                |   8%\n  |                                                                            \n  |======                                                                |   9%\n  |                                                                            \n  |=======                                                               |   9%\n  |                                                                            \n  |=======                                                               |  10%\n  |                                                                            \n  |=======                                                               |  11%\n  |                                                                            \n  |========                                                              |  11%\n  |                                                                            \n  |========                                                              |  12%\n  |                                                                            \n  |=========                                                             |  12%\n  |                                                                            \n  |=========                                                             |  13%\n  |                                                                            \n  |=========                                                             |  14%\n  |                                                                            \n  |==========                                                            |  14%\n  |                                                                            \n  |==========                                                            |  15%\n  |                                                                            \n  |===========                                                           |  15%\n  |                                                                            \n  |===========                                                           |  16%\n  |                                                                            \n  |============                                                          |  17%\n  |                                                                            \n  |============                                                          |  18%\n  |                                                                            \n  |=============                                                         |  18%\n  |                                                                            \n  |=============                                                         |  19%\n  |                                                                            \n  |==============                                                        |  19%\n  |                                                                            \n  |==============                                                        |  20%\n  |                                                                            \n  |==============                                                        |  21%\n  |                                                                            \n  |===============                                                       |  21%\n  |                                                                            \n  |===============                                                       |  22%\n  |                                                                            \n  |================                                                      |  22%\n  |                                                                            \n  |================                                                      |  23%\n  |                                                                            \n  |=================                                                     |  24%\n  |                                                                            \n  |=================                                                     |  25%\n  |                                                                            \n  |==================                                                    |  25%\n  |                                                                            \n  |==================                                                    |  26%\n  |                                                                            \n  |===================                                                   |  26%\n  |                                                                            \n  |===================                                                   |  27%\n  |                                                                            \n  |===================                                                   |  28%\n  |                                                                            \n  |====================                                                  |  28%\n  |                                                                            \n  |====================                                                  |  29%\n  |                                                                            \n  |=====================                                                 |  29%\n  |                                                                            \n  |=====================                                                 |  30%\n  |                                                                            \n  |=====================                                                 |  31%\n  |                                                                            \n  |======================                                                |  31%\n  |                                                                            \n  |======================                                                |  32%\n  |                                                                            \n  |=======================                                               |  32%\n  |                                                                            \n  |=======================                                               |  33%\n  |                                                                            \n  |=======================                                               |  34%\n  |                                                                            \n  |========================                                              |  34%\n  |                                                                            \n  |========================                                              |  35%\n  |                                                                            \n  |=========================                                             |  35%\n  |                                                                            \n  |=========================                                             |  36%\n  |                                                                            \n  |==========================                                            |  37%\n  |                                                                            \n  |==========================                                            |  38%\n  |                                                                            \n  |===========================                                           |  38%\n  |                                                                            \n  |===========================                                           |  39%\n  |                                                                            \n  |============================                                          |  39%\n  |                                                                            \n  |============================                                          |  40%\n  |                                                                            \n  |============================                                          |  41%\n  |                                                                            \n  |=============================                                         |  41%\n  |                                                                            \n  |=============================                                         |  42%\n  |                                                                            \n  |==============================                                        |  42%\n  |                                                                            \n  |==============================                                        |  43%\n  |                                                                            \n  |===============================                                       |  44%\n  |                                                                            \n  |===============================                                       |  45%\n  |                                                                            \n  |================================                                      |  45%\n  |                                                                            \n  |================================                                      |  46%\n  |                                                                            \n  |=================================                                     |  46%\n  |                                                                            \n  |=================================                                     |  47%\n  |                                                                            \n  |=================================                                     |  48%\n  |                                                                            \n  |==================================                                    |  48%\n  |                                                                            \n  |==================================                                    |  49%\n  |                                                                            \n  |===================================                                   |  49%\n  |                                                                            \n  |===================================                                   |  50%\n  |                                                                            \n  |===================================                                   |  51%\n  |                                                                            \n  |====================================                                  |  51%\n  |                                                                            \n  |====================================                                  |  52%\n  |                                                                            \n  |=====================================                                 |  52%\n  |                                                                            \n  |=====================================                                 |  53%\n  |                                                                            \n  |=====================================                                 |  54%\n  |                                                                            \n  |======================================                                |  54%\n  |                                                                            \n  |======================================                                |  55%\n  |                                                                            \n  |=======================================                               |  55%\n  |                                                                            \n  |=======================================                               |  56%\n  |                                                                            \n  |========================================                              |  57%\n  |                                                                            \n  |========================================                              |  58%\n  |                                                                            \n  |=========================================                             |  58%\n  |                                                                            \n  |=========================================                             |  59%\n  |                                                                            \n  |==========================================                            |  59%\n  |                                                                            \n  |==========================================                            |  60%\n  |                                                                            \n  |==========================================                            |  61%\n  |                                                                            \n  |===========================================                           |  61%\n  |                                                                            \n  |===========================================                           |  62%\n  |                                                                            \n  |============================================                          |  62%\n  |                                                                            \n  |============================================                          |  63%\n  |                                                                            \n  |=============================================                         |  64%\n  |                                                                            \n  |=============================================                         |  65%\n  |                                                                            \n  |==============================================                        |  65%\n  |                                                                            \n  |==============================================                        |  66%\n  |                                                                            \n  |===============================================                       |  66%\n  |                                                                            \n  |===============================================                       |  67%\n  |                                                                            \n  |===============================================                       |  68%\n  |                                                                            \n  |================================================                      |  68%\n  |                                                                            \n  |================================================                      |  69%\n  |                                                                            \n  |=================================================                     |  69%\n  |                                                                            \n  |=================================================                     |  70%\n  |                                                                            \n  |=================================================                     |  71%\n  |                                                                            \n  |==================================================                    |  71%\n  |                                                                            \n  |==================================================                    |  72%\n  |                                                                            \n  |===================================================                   |  72%\n  |                                                                            \n  |===================================================                   |  73%\n  |                                                                            \n  |===================================================                   |  74%\n  |                                                                            \n  |====================================================                  |  74%\n  |                                                                            \n  |====================================================                  |  75%\n  |                                                                            \n  |=====================================================                 |  75%\n  |                                                                            \n  |=====================================================                 |  76%\n  |                                                                            \n  |======================================================                |  77%\n  |                                                                            \n  |======================================================                |  78%\n  |                                                                            \n  |=======================================================               |  78%\n  |                                                                            \n  |=======================================================               |  79%\n  |                                                                            \n  |========================================================              |  79%\n  |                                                                            \n  |========================================================              |  80%\n  |                                                                            \n  |========================================================              |  81%\n  |                                                                            \n  |=========================================================             |  81%\n  |                                                                            \n  |=========================================================             |  82%\n  |                                                                            \n  |==========================================================            |  82%\n  |                                                                            \n  |==========================================================            |  83%\n  |                                                                            \n  |===========================================================           |  84%\n  |                                                                            \n  |===========================================================           |  85%\n  |                                                                            \n  |============================================================          |  85%\n  |                                                                            \n  |============================================================          |  86%\n  |                                                                            \n  |=============================================================         |  86%\n  |                                                                            \n  |=============================================================         |  87%\n  |                                                                            \n  |=============================================================         |  88%\n  |                                                                            \n  |==============================================================        |  88%\n  |                                                                            \n  |==============================================================        |  89%\n  |                                                                            \n  |===============================================================       |  89%\n  |                                                                            \n  |===============================================================       |  90%\n  |                                                                            \n  |===============================================================       |  91%\n  |                                                                            \n  |================================================================      |  91%\n  |                                                                            \n  |================================================================      |  92%\n  |                                                                            \n  |=================================================================     |  92%\n  |                                                                            \n  |=================================================================     |  93%\n  |                                                                            \n  |=================================================================     |  94%\n  |                                                                            \n  |==================================================================    |  94%\n  |                                                                            \n  |==================================================================    |  95%\n  |                                                                            \n  |===================================================================   |  95%\n  |                                                                            \n  |===================================================================   |  96%\n  |                                                                            \n  |====================================================================  |  97%\n  |                                                                            \n  |====================================================================  |  98%\n  |                                                                            \n  |===================================================================== |  98%\n  |                                                                            \n  |===================================================================== |  99%\n  |                                                                            \n  |======================================================================|  99%\n  |                                                                            \n  |======================================================================| 100%"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html#section-4",
     "href": "presentaciones/5-gradiente_riqueza.html#section-4",
     "title": "Patrones geográficos de riqueza de especies",
     "section": "",
-    "text": "Vamos a verlo en ggplot\n. . .\nPrimero, convertimos el raster en un data.frame\n\nrdf &lt;- as.data.frame(primates.pam$Richness_Raster, xy=TRUE) #Convert raster to data.frame\nnames(rdf)[3] &lt;- 'richness' #Name value column\nhead(rdf)\n\n      x    y richness\n1 -99.5 41.5        0\n2 -98.5 41.5        0\n3 -97.5 41.5        0\n4 -96.5 41.5        0\n5 -95.5 41.5        0\n6 -94.5 41.5        0\n\nrdf2 &lt;- rdf\nrdf2[,3] &lt;- ifelse(rdf[,3]==0,NA,rdf[,3])\nhead(rdf2)\n\n      x    y richness\n1 -99.5 41.5       NA\n2 -98.5 41.5       NA\n3 -97.5 41.5       NA\n4 -96.5 41.5       NA\n5 -95.5 41.5       NA\n6 -94.5 41.5       NA"
+    "text": "¿Qué tiene el objeto que se graficó?\n\nprimates.pam$Richness_Raster\n\nclass       : SpatRaster \ndimensions  : 77, 241, 1  (nrow, ncol, nlyr)\nresolution  : 1, 1  (x, y)\nextent      : -100, 141, -35, 42  (xmin, xmax, ymin, ymax)\ncoord. ref. : +proj=longlat +datum=WGS84 +no_defs \nsource(s)   : memory\nname        : lyr.1 \nmin value   :     0 \nmax value   :    33"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html#section-5",
     "href": "presentaciones/5-gradiente_riqueza.html#section-5",
     "title": "Patrones geográficos de riqueza de especies",
     "section": "",
-    "text": "Ahora sí, lo graficamos\n\nggplot(data = rdf2)+\n  geom_raster(mapping=aes(x=x, y=y, fill=richness))+\n  scale_fill_gradientn(colours= rev(inferno(10)), name='Richness')"
+    "text": "Vamos a verlo en ggplot\n\nPrimero, convertimos el raster en un data.frame\n\nrdf &lt;- as.data.frame(primates.pam$Richness_Raster, xy=TRUE) #Convert raster to data.frame\nnames(rdf)[3] &lt;- 'richness' #Name value column\nhead(rdf)\n\n      x    y richness\n1 -99.5 41.5        0\n2 -98.5 41.5        0\n3 -97.5 41.5        0\n4 -96.5 41.5        0\n5 -95.5 41.5        0\n6 -94.5 41.5        0"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html#section-6",
     "href": "presentaciones/5-gradiente_riqueza.html#section-6",
     "title": "Patrones geográficos de riqueza de especies",
     "section": "",
-    "text": "¿Qué más podemos hacer con esto?\n. . .\nPor ejemplo, relacionar el patrón de riqueza con alguna variable ambiental\n. . .\nCarguemos una variable ambiental (temperatura máxima, que viene de WorldClim)\n\ntemp &lt;- rast(here(\"dados\",\"bio1.bil\"))\n\nplot(temp)"
+    "text": "rdf2 &lt;- rdf\nrdf2[,3] &lt;- ifelse(rdf[,3]==0,NA,rdf[,3])\nhead(rdf2)\n\n      x    y richness\n1 -99.5 41.5       NA\n2 -98.5 41.5       NA\n3 -97.5 41.5       NA\n4 -96.5 41.5       NA\n5 -95.5 41.5       NA\n6 -94.5 41.5       NA"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html#section-7",
     "href": "presentaciones/5-gradiente_riqueza.html#section-7",
     "title": "Patrones geográficos de riqueza de especies",
     "section": "",
-    "text": "temp &lt;- rast(here(\"dados\",\"bio1.bil\"))\n\nplot(temp)"
+    "text": "Ahora sí, lo graficamos\n\nggplot(data = rdf2)+\n  geom_raster(mapping=aes(x=x, y=y, fill=richness))+\n  scale_fill_gradientn(colours= rev(inferno(10)), name='Richness')"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html#section-8",
     "href": "presentaciones/5-gradiente_riqueza.html#section-8",
     "title": "Patrones geográficos de riqueza de especies",
     "section": "",
-    "text": "Ahora, podemos extraer ambos valores/variables de interés: riqueza y temperatura\n¿Cómo? . . .\n\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:terra':\n\n    intersect, union\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nprimates.pam2 &lt;- primates.pam2 &lt;- as_tibble(primates.pam$Presence_and_Absence_Matrix)\n\nprimates.richness &lt;- primates.pam2 %&gt;% \n  mutate(richness=rowSums(primates.pam2[,-c(1:2)])) %&gt;% \n  select(`Longitude(x)`,`Latitude(y)`,richness) %&gt;% \n  filter(richness&gt;0)\n\n\ntemp2 &lt;- extract(temp, primates.pam2[,1:2])"
+    "text": "¿Qué más podemos hacer con esto?\n\nPor ejemplo, relacionar el patrón de riqueza con alguna variable ambiental\n\n\nCarguemos una variable ambiental (temperatura máxima, que viene de WorldClim)\n\ntemp &lt;- rast(here(\"dados\",\"bio1.bil\"))\n\nplot(temp)"
   },
   {
     "objectID": "presentaciones/5-gradiente_riqueza.html#section-9",
     "href": "presentaciones/5-gradiente_riqueza.html#section-9",
     "title": "Patrones geográficos de riqueza de especies",
     "section": "",
-    "text": "Ahora ya podemos evaluar la relación entre riqueza y temperatura\n\nplot(primates.richness$richness~temp2$bio1)\n\n\n\n\n\n\n\n\n. . .\n\ncor.test(temp2$bio1, primates.richness$richness, method=\"spearman\")\n\nWarning in cor.test.default(temp2$bio1, primates.richness$richness, method =\n\"spearman\"): Cannot compute exact p-value with ties\n\n\n\n    Spearman's rank correlation rho\n\ndata:  temp2$bio1 and primates.richness$richness\nS = 1.0509e+10, p-value &lt; 2.2e-16\nalternative hypothesis: true rho is not equal to 0\nsample estimates:\n     rho \n0.188953"
+    "text": "temp &lt;- rast(here(\"dados\",\"bio1.bil\"))\n\nplot(temp)"
   },
   {
     "objectID": "presentaciones/2-manipulacion_y_limpieza.html",
@@ -3330,5 +3330,1076 @@
     "title": "Lo que nadie nos enseñó sobre R",
     "section": "",
     "text": "Entornos de trabajo y configuración\n\nIteración y vectorización para evitar repetición\n\nTrabajando con listas\n\nAtajos y herramientas para mayor eficiencia\n\nNovedades\n\nErrores comunes"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#área-de-distribución-geográfica",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#área-de-distribución-geográfica",
+    "title": "Distribuciones geográficas",
+    "section": "Área de distribución geográfica",
+    "text": "Área de distribución geográfica\n“…el espacio donde las condiciones ecológicas favorecen, real o potencialmente y en varios niveles, las interacciones no efímeras de los individuos de una especie” Mota-Vargas & Rojas-Soto 2012"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#puntos-polígonos-y-mapas-de-distribución",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#puntos-polígonos-y-mapas-de-distribución",
+    "title": "Distribuciones geográficas",
+    "section": "Puntos, polígonos y mapas de distribución",
+    "text": "Puntos, polígonos y mapas de distribución\nLos registros (colectas georreferenciadas) de las especies son los datos primarios de biodiversidad, a partir de los cuales podemos estimar las áreas de distribución de estas y describir/evaluar los patrones de diversidad que emergen de su agregación (traslape; e.g., gradiente geográfico de riqueza)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "En este ejemplo/ejercicio veremos cómo obtener dichos registros directamente desde R\n\n\n\nTambién, veremos cómo generar áreas de distribución (extensiones de presencia) a partir de estos registros, creando polígonos de diferentes tipos (mínimo, alpha y alpha dinámico)\n\n\n\n\nLos datos de registros serán obtenidos de la plataforma en línea Global Biodiversity Information Facility - GBIF"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#paquetes-necesarios",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#paquetes-necesarios",
+    "title": "Distribuciones geográficas",
+    "section": "Paquetes necesarios:",
+    "text": "Paquetes necesarios:\n\nlibrary(readr)\nlibrary(rgbif)\nlibrary(dplyr)\nlibrary(here)\nlibrary(ggplot2)\nlibrary(sf)\nlibrary(terra)\nlibrary(rnaturalearth)\nlibrary(alphahull)\nlibrary(rangeBuilder)\nlibrary(janitor)\nlibrary(ggthemes)\nlibrary(patchwork)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-1",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-1",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Para comenzar podemos escoger una especie y aplicar la función occ_data\nEl objeto sp_data es una lista con datos sobre los resultados obtenidos en GBIF (incluyendo algunos metadatos)\nPara trabajar únicamente con la tabla de registros hay que seleccionar el objeto data dentro del mismo\n\nsp_data &lt;- occ_data(scientificName=\"Musonycteris harrisoni\", limit=500)[[2]]"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-2",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-2",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Checar el nombre de las columnas (para después buscar únicamente las de posición geográfica: lat/long)\n\nnames(sp_data)[1:30]\n\n [1] \"key\"                    \"scientificName\"         \"decimalLatitude\"       \n [4] \"decimalLongitude\"       \"issues\"                 \"datasetKey\"            \n [7] \"publishingOrgKey\"       \"installationKey\"        \"hostingOrganizationKey\"\n[10] \"publishingCountry\"      \"protocol\"               \"lastCrawled\"           \n[13] \"lastParsed\"             \"crawlId\"                \"projectId\"             \n[16] \"basisOfRecord\"          \"individualCount\"        \"occurrenceStatus\"      \n[19] \"sex\"                    \"taxonKey\"               \"kingdomKey\"            \n[22] \"phylumKey\"              \"classKey\"               \"orderKey\"              \n[25] \"familyKey\"              \"genusKey\"               \"speciesKey\"            \n[28] \"acceptedTaxonKey\"       \"acceptedScientificName\" \"kingdom\""
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-3",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-3",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Crear otro objeto a partir de sp_data únicamente con long/lat\n\n\n\nQuedarse únicamente con los puntos/registros individuales (i.e., excluir duplicados)\n\n\n\n\nTransformarlo en un objeto espacial"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-4",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-4",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "sp_p1&lt;-sp_data%&gt;%\n  dplyr::select(decimalLongitude,decimalLatitude,species)%&gt;%\n  mutate(lat=decimalLatitude,lon=decimalLongitude)%&gt;%\n  distinct() %&gt;%\n  na.omit() %&gt;% \n  st_as_sf(coords = c('decimalLongitude','decimalLatitude'),crs=\"EPSG: 4326\")\n\n\nNOTA: el nombre de la variable puede ser diferente (e.g., “LATITUDE”, “Latidude”, “lat”, etc. Siempre hay que checar antes)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-5",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-5",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Graficar (poner en un mapa) los puntos de presencia de nuestra especie\n\nggplot()+ geom_sf(data=sp_p1, col=\"blue\",pch=19)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-6",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-6",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Agregar el mapa del mundo para saber qué onda!\n\nwrld &lt;- ne_countries(scale=\"small\", returnclass=\"sf\")\n\n\nggplot()+\n  geom_sf(data=wrld)+geom_sf(data=sp_p1,col=\"blue\",pch=19,size=1)+coord_sf(expand=F) +\n  labs(x=\"Longitud decimal \", y=\"Latitud decimal\",\n       title=expression(paste(\"Puntos reportados \", italic(\"Musonycteris harrisoni\"))))+\n  theme(plot.title = element_text(hjust = 0.5))"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-7",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-7",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Hay algo claramente equivocado, ¿cierto? Los puntos/registros necesitan ser “curados” (limpiados)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-8",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-8",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Eliminar los puntos con mala georeferencia (en este caso, puntos obvios en el “viejo mundo”)\n\nsp_p1&lt;-sp_data%&gt;%\n  dplyr::select(decimalLongitude,decimalLatitude,species)%&gt;%\n  mutate(lat=decimalLatitude,lon=decimalLongitude)%&gt;%\n  distinct() %&gt;% \n  na.omit() %&gt;% \n  st_as_sf(coords = c('decimalLongitude','decimalLatitude'),crs=\"EPSG: 4326\")%&gt;%\n  filter(lat&gt; 0.5) %&gt;% filter(lat&lt; 22)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-9",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-9",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Ahora sí, mapeamos de nuevo pero sólamente en la región de interés (México)\n\nmex_map &lt;- filter(wrld,name==\"Mexico\")\n\n\n\nggplot()+geom_sf(data=mex_map)+\n  geom_sf(data=sp_p1,col=\"blue\",pch=19,size=1)+coord_sf(expand = F)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-10",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-10",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Y ¿Cómo eliminamos los registros que están en el mar?\n\nsp_p1&lt;-sp_data%&gt;%\n  dplyr::select(decimalLongitude,decimalLatitude,species)%&gt;%\n  mutate(lat=decimalLatitude,lon=decimalLongitude)%&gt;%\n  distinct() %&gt;%\n  na.omit() %&gt;% \n  st_as_sf(coords = c('decimalLongitude','decimalLatitude'),crs=\"EPSG: 4326\")%&gt;%\n  filter(lat&gt; 0.5) %&gt;%\n  filter(lat&lt; 22)%&gt;%\n  filter(lon&gt; -105.56611)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-11",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-11",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Verifiquemos nuevamente los registros en el mapa\n\nggplot()+geom_sf(data=mex_map)+\n  geom_sf(data=sp_p1,col=\"blue\",pch=19,size=1)+coord_sf(expand = F)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-12",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-12",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Una vez tenemos los datos curados, podemos crear nuestro poligono mínimo convexo\n\nsp1_mcp &lt;- st_convex_hull(st_union(sp_p1))\n\n\n¿Cómo se ve?"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-13",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-13",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "sp1_mcp2 &lt;- st_as_sf(sp1_mcp)\n\nggplot()+\n  geom_sf(data=mex_map)+\n  geom_sf(data=sp1_mcp, fill=\"blue\")"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-14",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-14",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Usamos el paquete alphahull\nNOTA: Esta función solo acepta tablas como entrada\n\nsp_p2 &lt;- as.data.frame(st_coordinates(sp_p1))\n\n\nsp1_alphahull &lt;- ahull(sp_p2, alpha = 6)\n\nError: shull: duplicate points found\n\n\n\nError: shull: duplicate points found\n\n\nFalla porque encuentra puntos duplicados o, como en este caso, puntos en una línea recta (i.e., mismo X y/o mismo Y)."
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-15",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-15",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "¿Cómo podemos identificar y solucionar este error?\n\nsp_p3&lt;-sp_p2 %&gt;% dplyr::select(X, Y)%&gt;% \nmutate(X = ifelse(duplicated(sp_p2$X), X + rnorm(1, mean = 0, sd = 0.0001), X))%&gt;% \nmutate(Y = ifelse(duplicated(sp_p2$Y), Y + rnorm(1, mean = 0, sd = 0.0001), Y))"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-16",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-16",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Ahora si, podemos crear el Alpha Hull con un valor de alpha escogido (por la razón que crean relevante)\n\nsp1_alphahull &lt;- ahull(sp_p3, alpha = 1)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-17",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-17",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Para observar el alpha hull, necesitamos que el objeto sea de tipo espacial del paquete sf. Para eso usaremos una función independiente, disponible en su carpeta de trabajo\n\nsource(file = here(\"data\",\"ah2sf.R\"))\nsp1_alphahull.poly &lt;- ah2sf(sp1_alphahull)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-18",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-18",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "¿Cómo se ve?\n\n\nggplot()+\n  geom_sf(data=mex_map)+\n  geom_sf(data=sp1_alphahull.poly,fill=\"blue\")"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-19",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-19",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Usamos el paquete rangeBuilder, el cual crea un polígono alpha hull con un valor de alpha “óptimo” basado en la distribución espacial de los puntos\n\nsp_range &lt;- getDynamicAlphaHull(\n  sp_p3, #Tabla de puntos/registros de la especie\n  coordHeaders = c(\"decimalLongitude\", \"decimalLatitude\"),# x y y\n  fraction = 0.95,   # la fracción mínima de registros que debe incluir el polígono\n  partCount = 2,  # el máximo de polígonos disyuntos permitidos\n  initialAlpha = 1, # Alpha inicial\n  alphaIncrement = 0.5,\n  alphaCap = 1000,\n  clipToCoast = \"terrestrial\"  # solo la parte terrestre del polígono se mantendrá (se cortan las partes no-terrestres/acuáticas con base en un mapa descargado de naturalearth).\n)\n\n\n\nalpha &lt;- sp_range[[2]]\nalpha\n\n[1] \"alpha1.5\""
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-20",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-20",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Convertir el polígono alpha a un objeto sf\n\nsp1_dynalpha &lt;- st_make_valid(st_as_sf(sp_range[[1]]))\n\n\n¿Cómo podemos visualizarlo?\n\nggplot()+ geom_sf(data=mex_map)+ \n  geom_sf(data=sp1_dynalpha, fill=\"blue\")"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-21",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-21",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "¿Y ….Cómo se ven todos los polígonos?\n\n\nggplot()+\n  geom_sf(data=mex_map)+ geom_sf(data=sp1_mcp,fill=\"red\",alpha=0.1) +\n  geom_sf(data=sp_range[[1]], fill=\"blue\",alpha=0.5)+ \n  geom_sf(data=sp1_alphahull.poly,fill=\"yellow\",alpha=0.5)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-22",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-22",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Finalmente, podemos salvar esos polígonos como shapefiles, para usarlos en otros software (e.g., QGIS) y eventualmente juntar los de varias especies para otros análisis (ejercicio siguiente)\n\nst_write(sp1_mcp2, \"sp1_min_convex.shp\")\nst_write(sp1_alphahull.poly, \"sp1_alphahull.shp\")\nst_write(sp1_dynalpha, \"sp1_dyn_alphahull.shp\")"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-23",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-23",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Por ejemplo, para especies restringidas o dependientes de aguas continentales podemos implementar algunos ajustes luego de determinar su extensión de presencia"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-24",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-24",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "En este ejercicio, vamos a utilizar un pez dulceacuícola (Cyphocharax naegelii), que se distribuye en la cuenca alta del río Paraná"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-25",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-25",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Entonces carguemos una base de datos con los registros de la especie ya limpios para la cuenca del alto Paraná\n\ndatos &lt;- read_csv(file = here(\"data/polygons\", \"registros.csv\")) %&gt;%\n  dplyr::select(\"longitude\", \"latitude\") %&gt;%\n  mutate(longitude=ifelse(duplicated(longitude),longitude+rnorm(1,mean=0, sd=0.0001),longitude)) %&gt;%\n  mutate(latitude=ifelse(duplicated(latitude),latitude+rnorm(1,mean=0, sd=0.0001),latitude))"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-26",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-26",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Y carguemos un shape de referencia para la cuenca del alto Paraná (https://www.hydrosheds.org/)\n\nM &lt;- st_read( here(\"data/polygons\", \"Cyphocharax_naegelii.shp\")) %&gt;% \n  st_transform(4326) %&gt;% st_make_valid()\n\nReading layer `Cyphocharax_naegelii' from data source \n  `/home/luisd/Dropbox/darcyDB/PDRF/R-biodiversidad-2025/data/polygons/Cyphocharax_naegelii.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 1 feature and 13 fields\nGeometry type: POLYGON\nDimension:     XY\nBounding box:  xmin: -58.64583 ymin: -27.81307 xmax: -43.58333 ymax: -15.45417\nGeodetic CRS:  WGS 84"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-27",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-27",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Grafiquemos los registros y la cuenca\n\nNOTA: Debemos convertir los registros del objeto datos a un objeto de tipo sf para poder graficar en ggplot\n\ndatos_sf &lt;- st_as_sf(datos, coords = c(\"longitude\", \"latitude\"), crs = 4326)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-28",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-28",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Veamos los registros distribuidos en la cuenca\n\nggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth= 0.5, colour=\"black\")+\n  geom_sf(data=datos_sf, colour=\"blue\", size=1)+\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+\n  labs(x=\"Longitud decimal\", y=\"Latitud decimal\",\n       title=expression(paste(\"Registros reportados \", italic(\"Cyphocharax naegelli\"))))+\n  theme(plot.title=element_text(hjust=0.5))"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-29",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-29",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Como vamos a hacer dos tipos de ajustes, necesitamos algunos insumos complementarios:\n\n\nOtros shapes de cuencas, pero de menor orden (i.e., cuencas más pequeñas); en este caso, subcuencas nivel 8 (HydroSHEDS)\n\n\n# Subcuencas nivel 8 (Hydrobasin)\ncuencas &lt;- st_read(here(\"data/polygons\", \"Basins_8.shp\")) %&gt;% \n  st_transform(4326) %&gt;% st_make_valid()\n\nReading layer `Basins_8' from data source \n  `/home/luisd/Dropbox/darcyDB/PDRF/R-biodiversidad-2025/data/polygons/Basins_8.shp' \n  using driver `ESRI Shapefile'\nSimple feature collection with 1286 features and 31 fields\nGeometry type: MULTIPOLYGON\nDimension:     XY\nBounding box:  xmin: -58.64583 ymin: -27.81307 xmax: -43.58333 ymax: -15.45417\nGeodetic CRS:  WGS 84"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-30",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-30",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Grafiquemos las subcuencas para tener una referencia visual\n\nggplot()+\n  geom_sf(data=cuencas, fill=\"white\", linewidth= 0.1, colour=\"black\")+\n  coord_sf(crs=st_crs(4326),xlim=c(-58.2, -43.9),ylim=c(-28,-15),expand=TRUE)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-31",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-31",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Ráster de referencia que represente los cuerpos de agua (e.g., ríos, embalse)\n\n\nDado que solo necesitamos el ráster como una referencia, asignaremos un valor único para todos los píxeles diferentes de NA\n\nmask &lt;- rast(here(\"data/polygons\", \"rivers.tif\"))\nmask[!is.na(mask)]&lt;-1\n\n\n\nNOTA: Para graficar el ráster, primero hay que convertirlo en un data.frame\n\nmask.2 &lt;- as.data.frame(mask, xy = TRUE)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-32",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-32",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "¿Cómo se ve?\n\nggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth=0.5, colour=\"black\")+\n  geom_raster(data = mask.2, aes(x=x, y=y), fill=\"red\")+\n  coord_sf(crs=st_crs(4326),xlim=c(-58.2, -43.9),ylim=c(-28,-15),expand=TRUE)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-33",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-33",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Teniendo los registros, capas de cuencas, y ráster de ríos, calculemos la extensión de presencia de la especie y luego ajustémoslo a las subcuencas, y a los cuerpos de agua\n\n\nTrazar el polígono (igual que en el primer ejercicio utilizando la función ahull)\n\n\n\n\nInterceptar el polígono trazado con la capa de subcuencas (nivel 8; objeto cuencas)\n\n\n\n\nRasterizar el polígono interceptado y cortarlo a los cuerpos de agua utilizando la capa ráster de los ríos del objeto mask"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-34",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-34",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Construir el polígono alfa\n\nnaegelli_poly &lt;- ahull(datos, alpha = 1.5) %&gt;% ah2sf()\n\n\nggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth= 0.5, colour=\"black\")+\n  geom_sf(data=naegelli_poly,fill=\"green\",linewidth=0.2,colour=\"black\",alpha=0.3)+\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-35",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-35",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Interceptar el polígono con las subcuencas\n\nintersect_poly &lt;- st_intersection(cuencas, naegelli_poly)\n\n\nggplot()+\n  geom_sf(data=cuencas, fill=\"white\", linewidth= 0.1, colour=\"black\")+\n  geom_sf(data=intersect_poly$geometry,fill=\"green\",linewidth=0.2,colour=\"black\",alpha=0.3)+\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-36",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-36",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Seleccionar del objeto cuencas los ID interceptados para unir las subcuencas seleccionadas\n\nrange_union &lt;- cuencas[(intersect_poly),] %&gt;% st_union()\n\n\nggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth= 0.5, colour=\"black\")+\n  geom_sf(data=range_union,fill=\"green\",linewidth=0.2,colour=\"black\",alpha=0.3)+\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-37",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-37",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Por último, utilizamos el polígono ajustado a las subcuencas (objeto range_union) y lo rasterizamos. Luego, lo cortamos a los ríos usando el ráster del objeto mask\n\nNOTA: Dado que el objeto final es una capa ráster, necesitamos transformarla en un data.frame para poder graficarla en ggplot\n\nwater_restric&lt;-rasterize(st_as_sf(vect(range_union)),mask,getCover=TRUE)%&gt;% \n  crop(mask, mask = TRUE, snap = \"near\") %&gt;%\n  as.data.frame(xy = TRUE)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-38",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-38",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Veamos la extensión de presencia ajustada a los ríos\n\nggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth=0.5, colour=\"black\")+\n  geom_raster(data = water_restric, aes(x=x, y=y), fill=\"red\")+\n  coord_sf(crs=st_crs(4326),xlim=c(-58.2, -43.9),ylim=c(-28,-15),expand=TRUE)"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-39",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-39",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Grafiquemos ambos resultados para tener una aproximación visual\n\nunrestrict_range &lt;-\n  ggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth= 0.5, colour=\"black\")+\n  geom_sf(data=range_union,fill=\"green\",linewidth=0.2,colour=\"black\",alpha=0.3)+\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+\n  labs(x=\"Longitud decimal\", y=\"Latitud decimal\",\n       title=expression(paste(\"Sin restricciones a cuerpos de agua\")))+\n  theme(plot.title=element_text(hjust=0.5))\n\n\nrestrict_range &lt;-\nggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth=0.5, colour=\"black\")+\n  geom_raster(data = water_restric, aes(x=x, y=y), fill=\"red\") +\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+\n  labs(x=\"Longitud decimal\", y=\"\",\n       title=expression(paste(\"Restringido a cuerpos de agua\")))+\n  theme(plot.title=element_text(hjust=0.5))"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-40",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-40",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "(unrestrict_range | restrict_range) +\n  plot_layout(widths = c(1, 1))"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-41",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-41",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "Grafiquemos todo el proceso para tener una visión general\n\ndots &lt;-  \n  ggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth=0.3, colour=\"black\")+\n  geom_sf(data=datos_sf, colour=\"black\", size=0.7)+\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+\n  theme_void()\n\nalpha_poly &lt;-\n  ggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth=0.3, colour=\"black\")+\n  geom_sf(data=naegelli_poly,fill=\"green\",linewidth=0.2,colour=\"black\",alpha=0.3)+\n  geom_sf(data=datos_sf, colour=\"black\", size=1)+\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+\n  theme_void()\n\nintercept_poly &lt;-\n  ggplot()+\n  geom_sf(data=cuencas, fill=\"white\", linewidth= 0.1, colour=\"black\")+\n  geom_sf(data=intersect_poly$geometry,fill=\"green\",linewidth=0.2,colour=\"black\",alpha=0.3)+\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+\n  theme_void()\n\nunrestrict_range &lt;-\n  ggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth=0.3, colour=\"black\")+\n  geom_sf(data=range_union,fill=\"green\",linewidth=0.2,colour=\"black\",alpha=0.3)+\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+\n  theme_void()\n\nrestrict_range &lt;-\nggplot()+\n  geom_sf(data=M, fill=\"white\", linewidth=0.3, colour=\"black\")+\n  geom_raster(data=water_restric, aes(x=x, y=y), fill=\"red\") +\n  coord_sf(crs=st_crs(4326), xlim=c(-58.2, -43.9), ylim=c(-28,-15), expand=TRUE)+\n  theme_void()"
+  },
+  {
+    "objectID": "presentaciones/5.0-distribuciones_geograficas.html#section-42",
+    "href": "presentaciones/5.0-distribuciones_geograficas.html#section-42",
+    "title": "Distribuciones geográficas",
+    "section": "",
+    "text": "dots + plot_spacer() + alpha_poly +\nplot_spacer() + intercept_poly + plot_spacer() +\nunrestrict_range + plot_spacer() + restrict_range"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-10",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-10",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "Ahora, podemos extraer ambos valores/variables de interés: riqueza y temperatura\n¿Cómo? . . .\n\nlibrary(dplyr)\n\nprimates.pam2 &lt;- primates.pam2 &lt;- as_tibble(primates.pam$Presence_and_Absence_Matrix)\n\nprimates.richness &lt;- primates.pam2 %&gt;% \n  mutate(richness=rowSums(primates.pam2[,-c(1:2)])) %&gt;% \n  select(`Longitude(x)`,`Latitude(y)`,richness) %&gt;% \n  filter(richness&gt;0)\n\n\ntemp2 &lt;- extract(temp, primates.pam2[,1:2])"
+  },
+  {
+    "objectID": "presentaciones/5-gradiente_riqueza.html#section-11",
+    "href": "presentaciones/5-gradiente_riqueza.html#section-11",
+    "title": "Patrones geográficos de riqueza de especies",
+    "section": "",
+    "text": "Ahora ya podemos evaluar la relación entre riqueza y temperatura\n\nplot(primates.richness$richness~temp2$bio1)\n\n\n\n\ncor.test(temp2$bio1, primates.richness$richness, method=\"spearman\")\n\n\n    Spearman's rank correlation rho\n\ndata:  temp2$bio1 and primates.richness$richness\nS = 1.0509e+10, p-value &lt; 2.2e-16\nalternative hypothesis: true rho is not equal to 0\nsample estimates:\n     rho \n0.188953"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#paquetes",
+    "href": "presentaciones/5.1-mapas_bivariados.html#paquetes",
+    "title": "Mapas bivariados",
+    "section": "Paquetes",
+    "text": "Paquetes\nVamos a utilizar los siguientes paquetes:\n\nbiscale\nggplot2"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#biscale",
+    "href": "presentaciones/5.1-mapas_bivariados.html#biscale",
+    "title": "Mapas bivariados",
+    "section": "Biscale",
+    "text": "Biscale\n\n\n\n\n\nPaquete para producir mapas bivariados (i.e. dos variables en el mismo layout)\n\nSirve para producir leyendas bivariadas\nHerramientas para classificación de datos en categorías usando diferentes técnicas\nDocumentación"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#según-wikipedia",
+    "href": "presentaciones/5.1-mapas_bivariados.html#según-wikipedia",
+    "title": "Mapas bivariados",
+    "section": "Según Wikipedia…",
+    "text": "Según Wikipedia…\n\nMapas bivariados también son conocidos como Mapa coropleto o Mapa de coropletas\n\n\nMapa temático en el que las áreas se sombrean de distintos colores, frecuentemente de la misma gama cromática, que representan distintos valores de una variable estadística característica."
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#dos-o-más-variables",
+    "href": "presentaciones/5.1-mapas_bivariados.html#dos-o-más-variables",
+    "title": "Mapas bivariados",
+    "section": "Dos o más variables…",
+    "text": "Dos o más variables…\n\nLos mapas bivariados son útiles para graficar dos variables\nAjuste de colores, transparencias y formas"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#son-bastante-comunes-para-reportar-resultados-de-elecciones",
+    "href": "presentaciones/5.1-mapas_bivariados.html#son-bastante-comunes-para-reportar-resultados-de-elecciones",
+    "title": "Mapas bivariados",
+    "section": "Son bastante comunes para reportar resultados de elecciones",
+    "text": "Son bastante comunes para reportar resultados de elecciones"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#también-para-reportar-indicadores-socio-económicos",
+    "href": "presentaciones/5.1-mapas_bivariados.html#también-para-reportar-indicadores-socio-económicos",
+    "title": "Mapas bivariados",
+    "section": "También para reportar indicadores socio-económicos",
+    "text": "También para reportar indicadores socio-económicos"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#hay-otros-ejemplos-colores-y-marcaciones",
+    "href": "presentaciones/5.1-mapas_bivariados.html#hay-otros-ejemplos-colores-y-marcaciones",
+    "title": "Mapas bivariados",
+    "section": "Hay otros ejemplos: colores y marcaciones",
+    "text": "Hay otros ejemplos: colores y marcaciones"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#hay-otros-ejemplos-colores-y-area",
+    "href": "presentaciones/5.1-mapas_bivariados.html#hay-otros-ejemplos-colores-y-area",
+    "title": "Mapas bivariados",
+    "section": "Hay otros ejemplos: colores y area ",
+    "text": "Hay otros ejemplos: colores y area"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#leyendas-triangulares---tres-variables-sabatini-et-al.-2022",
+    "href": "presentaciones/5.1-mapas_bivariados.html#leyendas-triangulares---tres-variables-sabatini-et-al.-2022",
+    "title": "Mapas bivariados",
+    "section": "Leyendas triangulares - Tres variables Sabatini et al. 2022 ",
+    "text": "Leyendas triangulares - Tres variables Sabatini et al. 2022"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#formatos-complejos",
+    "href": "presentaciones/5.1-mapas_bivariados.html#formatos-complejos",
+    "title": "Mapas bivariados",
+    "section": "Formatos complejos",
+    "text": "Formatos complejos\nSabatini et al. 2022  ## Mapas RGB"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#leyendas-rectangulares-con-varias-categorias",
+    "href": "presentaciones/5.1-mapas_bivariados.html#leyendas-rectangulares-con-varias-categorias",
+    "title": "Mapas bivariados",
+    "section": "Leyendas rectangulares con varias categorias",
+    "text": "Leyendas rectangulares con varias categorias\nPeixoto et al. 2017"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#pero-lo-más-importante-es-que-la-información-esté-clara",
+    "href": "presentaciones/5.1-mapas_bivariados.html#pero-lo-más-importante-es-que-la-información-esté-clara",
+    "title": "Mapas bivariados",
+    "section": "Pero lo más importante es que la información esté clara",
+    "text": "Pero lo más importante es que la información esté clara\n\n¿Cuál de los dos mapas transmite mejor la información?"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#teoría",
+    "href": "presentaciones/5.1-mapas_bivariados.html#teoría",
+    "title": "Mapas bivariados",
+    "section": "Teoría:",
+    "text": "Teoría:\n\nLa idea central es buscar una manera de como combinar estas dos variables\nEscalas diferentes, número diferente de categorías etc…\nLos mapas bivariados conllevan dos pasos:\n\nCategorización de las variables según alguna estadística\nPreparación de una leyenda y su “paleta” de colores"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#pasos",
+    "href": "presentaciones/5.1-mapas_bivariados.html#pasos",
+    "title": "Mapas bivariados",
+    "section": "Pasos:",
+    "text": "Pasos:\n\nNormalizar los datos en conteos o proporciones\nlas funciones cut() y summary() de R base pueden ser útiles (revisar también santoku)\nCon los datos iris\n\n\nsummary(iris$Sepal.Length)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  4.300   5.100   5.800   5.843   6.400   7.900"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "library(janitor)\n\n# Categorizar de acuerdo a los quantiles\nci = cut(iris$Sepal.Length,\n         breaks = c(4.3,5.1,5.8,6.4, max(iris$Sepal.Length)))\n\n# Explorar los resultados\ntabyl(ci)\n\n        ci  n     percent valid_percent\n (4.3,5.1] 40 0.266666667     0.2684564\n (5.1,5.8] 39 0.260000000     0.2617450\n (5.8,6.4] 35 0.233333333     0.2348993\n (6.4,7.9] 35 0.233333333     0.2348993\n      &lt;NA&gt;  1 0.006666667            NA"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#la-función-classintervals",
+    "href": "presentaciones/5.1-mapas_bivariados.html#la-función-classintervals",
+    "title": "Mapas bivariados",
+    "section": "la función classIntervals()",
+    "text": "la función classIntervals()\n\nPermite categorizar los datos usando varios tipos de categorización\nquantile, jenkins, equal para mencionar algunas\nhay que definir el numero de clases (parámetro n)\n\n\nlibrary(classInt)\n\nclassInt::classIntervals(iris$Sepal.Length,style=\"quantile\",n=4)\n\nstyle: quantile\n  one of 5,984 possible partitions of this variable into 4 classes\n[4.3,5.1) [5.1,5.8) [5.8,6.4) [6.4,7.9] \n       32        41        35        42"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-1",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-1",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "Luego de categorizar el vector de interés, se puede cortar con la función cut()\nTambién se puede generar un vector con las categorías y juntarlo a los datos originales usando la función findCols()\n\n\n\nbreaks = classInt::classIntervals(iris$Sepal.Length,style=\"quantile\",n=4)$brks\n\ncc = cut(iris$Sepal.Length, breaks = breaks)\ntabyl(cc)\n\n        cc  n     percent valid_percent\n (4.3,5.1] 40 0.266666667     0.2684564\n (5.1,5.8] 39 0.260000000     0.2617450\n (5.8,6.4] 35 0.233333333     0.2348993\n (6.4,7.9] 35 0.233333333     0.2348993\n      &lt;NA&gt;  1 0.006666667            NA"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#la-función-findcols",
+    "href": "presentaciones/5.1-mapas_bivariados.html#la-función-findcols",
+    "title": "Mapas bivariados",
+    "section": "la función findCols()",
+    "text": "la función findCols()\n\n# Generar un vector que se pueda juntar a la tabla de datos originales\n\nfc = findCols(classInt::classIntervals(iris$Sepal.Length,style=\"quantile\",n=4))\nhead(fc)\n\n[1] 2 1 1 1 1 2"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#usando-el-paquete-biscale",
+    "href": "presentaciones/5.1-mapas_bivariados.html#usando-el-paquete-biscale",
+    "title": "Mapas bivariados",
+    "section": "usando el paquete biscale",
+    "text": "usando el paquete biscale\n\n\n\nSe utliza la función bi_class() para generar las catetorias\nPermite hacer la categorización de las dos variables elejidas de una vez, a diferencia de classIntervals()\n\n\n\nlibrary(biscale)\n\ndata &lt;- bi_class(iris, x = Sepal.Length, y = Petal.Length, style = \"quantile\", dim = 3)\nhead(data$bi_class)\n\n[1] \"1-1\" \"1-1\" \"1-1\" \"1-1\" \"1-1\" \"1-1\""
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#preparación-de-una-leyenda",
+    "href": "presentaciones/5.1-mapas_bivariados.html#preparación-de-una-leyenda",
+    "title": "Mapas bivariados",
+    "section": "Preparación de una leyenda",
+    "text": "Preparación de una leyenda"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#la-función-bi_legend",
+    "href": "presentaciones/5.1-mapas_bivariados.html#la-función-bi_legend",
+    "title": "Mapas bivariados",
+    "section": "La función bi_legend()",
+    "text": "La función bi_legend()\n\nPara ver las paletas disponibles aquí\n\n\nbi_legend(pal = \"GrPink\",\n                    dim = 3,\n                    xlab = \"Sepal.Length\",\n                    ylab = \"Petal.Lenght\",\n                    size = 12)"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#el-mapa-bivariado",
+    "href": "presentaciones/5.1-mapas_bivariados.html#el-mapa-bivariado",
+    "title": "Mapas bivariados",
+    "section": "El mapa bivariado",
+    "text": "El mapa bivariado\n\nVamos a ver el ejemplo del vignette\n\n\nSon datos sobre el porcentaje de “brancos” y la ganancia en los EUA.\nVamos usar las columnas pctWhite y medInc para hacer el mapa.\nVamos usar 3 dimensiones y categorizar los datos usando quantiles"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#manos-a-la-obra",
+    "href": "presentaciones/5.1-mapas_bivariados.html#manos-a-la-obra",
+    "title": "Mapas bivariados",
+    "section": "Manos a la obra!",
+    "text": "Manos a la obra!\n\n\n\nDeterminamos el geom como geom_sf y fill=bi_class\nbi_class debe ser la categorización que hemos visto anteriormente con bi_class()\n\n\n\nlibrary(ggplot2)\nlibrary(sf)\n\ndata &lt;- bi_class(stl_race_income, x = pctWhite, y = medInc, style = \"quantile\", dim = 3)\n\nmap &lt;- ggplot() +\n  geom_sf(data = data, mapping = aes(fill = bi_class), color = \"white\", size = 0.1, show.legend = FALSE) +\n  bi_scale_fill(pal = \"GrPink\", dim = 3)\n\n\n\nbi_scale_fill, tiene el argumento pal para la paleta de colores y dim para el numero de categorías utilizadas"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-5",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-5",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "Después de preparar el mapa, hay que preparar la leyenda\n\n\nlegend &lt;- bi_legend(pal = \"GrPink\",\n                    dim = 3,\n                    xlab = \"Higher % White \",\n                    ylab = \"Higher Income \",\n                    size = 8)\n\n\nFinalmente, ponerlos lado a lado usando patchwork\n\n\nlibrary(patchwork)\n\nmap + legend"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-6",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-6",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "Se juede jugar con el layout final usando la función inset\np1 + inset_element(p2, 0.6, 0.6, 1, 1) # left, top, right, bottom"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-7",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-7",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "El tutorial de Len Kiefer\nUsar el paquete classInt para categorizar los datos\nUsar el esquema de colores de la leyenda para preparar el mapa"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-8",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-8",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "Qué chulada!"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-9",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-9",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "La leyenda se hace con la función expand_grid() de tidyr\n\n\nlibrary(tidyr)\n\nd=expand.grid(x=1:3,y=1:3)"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-10",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-10",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "library(ggplot2)\nggplot(d, aes(x,y))+\n  geom_tile(aes(alpha=x+y,fill=atan(y/x)))+\n  scale_fill_viridis_c()+\n  theme(legend.position=\"none\",\n        axis.text.y = element_blank(),\n        axis.text.x = element_blank(),\n        axis.ticks = element_blank(),\n        panel.grid.minor = element_blank(),\n        panel.grid.major = element_blank())+\n  coord_equal()"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-11",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-11",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "Lo importante aqui es usar el geom geom_tile\nPermite usar varios colores\nVamos jugar con los valores de alpha (transparencia) y fill"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-12",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-12",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "ggplot(d, aes(x,y))+\n  geom_tile(aes(fill=atan(y/x)))+\n  scale_fill_viridis_c()+\n  theme(legend.position=\"none\",\n        axis.text.y = element_blank(),\n        axis.text.x = element_blank(),\n        axis.ticks = element_blank(),\n        panel.grid.minor = element_blank(),\n        panel.grid.major = element_blank())+\n  coord_equal()\n\n\n\n\n\n\n\n\n\n\nggplot(d, aes(x,y))+\n  geom_tile(aes(fill=atan(y/x),alpha=x+y))+\n  scale_fill_viridis_c()+\n  theme(legend.position=\"none\",\n        axis.text.y = element_blank(),\n        axis.text.x = element_blank(),\n        axis.ticks = element_blank(),\n        panel.grid.minor = element_blank(),\n        panel.grid.major = element_blank())+\n  coord_equal()"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#categorizar-los-datos",
+    "href": "presentaciones/5.1-mapas_bivariados.html#categorizar-los-datos",
+    "title": "Mapas bivariados",
+    "section": "Categorizar los datos",
+    "text": "Categorizar los datos\n\nvamos usar las funciones classInt() y findCols()\n\n\n x=classInt::classIntervals(stl_race_income$pctWhite,\n                            4,style = \"quantile\")\n y=classInt::classIntervals(stl_race_income$medInc,\n                            4,style = \"quantile\")"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-13",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-13",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "stl_race_income$x = classInt::findCols(x)\nstl_race_income$y = classInt::findCols(y)\nhead(stl_race_income)\n\n        GEOID  pctWhite medInc\n1 29510102300 82.925682  51650\n2 29510102400 90.116046  45375\n3 29510104500 74.723618  54286\n4 29510106100  1.752464  18895\n5 29510105500  2.376729  36130\n6 29510105200 36.833277  60938\n                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          geometry\n1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      -90.29702, -90.29696, -90.29687, -90.29660, -90.29651, -90.29638, -90.29601, -90.29588, -90.29536, -90.29528, -90.29521, -90.29512, -90.29503, -90.29415, -90.29398, -90.29348, -90.29332, -90.29315, -90.29267, -90.29251, -90.29215, -90.29144, -90.29106, -90.29074, -90.29071, -90.29040, -90.29011, -90.28971, -90.28947, -90.28916, -90.28900, -90.28853, -90.28843, -90.28837, -90.28817, -90.28804, -90.28757, -90.28737, -90.28720, -90.28697, -90.28668, -90.28651, -90.28643, -90.28637, -90.28617, -90.28598, -90.28586, -90.28577, -90.28551, -90.28549, -90.28535, -90.28511, -90.28447, -90.28435, -90.28433, -90.28427, -90.28415, -90.28387, -90.28335, -90.28297, -90.28286, -90.28074, -90.28031, -90.27998, -90.27967, -90.27958, -90.27916, -90.27868, -90.27847, -90.27750, -90.27716, -90.27729, -90.27767, -90.27780, -90.27784, -90.27796, -90.27800, -90.27808, -90.27834, -90.27843, -90.27858, -90.27893, -90.27905, -90.27920, -90.27927, -90.27948, -90.27956, -90.27958, -90.27965, -90.27967, -90.27977, -90.28006, -90.28015, -90.28020, -90.28033, -90.28038, -90.28075, -90.28122, -90.28137, -90.28197, -90.28262, -90.28291, -90.28299, -90.28306, -90.28314, -90.28322, -90.28346, -90.28352, -90.28372, -90.28379, -90.28397, -90.28411, -90.28460, -90.28509, -90.28542, -90.28553, -90.28583, -90.28594, -90.28609, -90.28655, -90.28671, -90.28675, -90.28688, -90.28692, -90.28695, -90.28704, -90.28705, -90.28974, -90.28981, -90.29230, -90.29242, -90.29250, -90.29343, -90.29462, -90.29657, -90.29698, -90.29702, 38.56237, 38.56241, 38.56247, 38.56265, 38.56271, 38.56279, 38.56305, 38.56313, 38.56348, 38.56352, 38.56357, 38.56364, 38.56370, 38.56428, 38.56439, 38.56470, 38.56480, 38.56490, 38.56519, 38.56528, 38.56550, 38.56591, 38.56614, 38.56634, 38.56636, 38.56654, 38.56671, 38.56695, 38.56709, 38.56728, 38.56737, 38.56765, 38.56771, 38.56775, 38.56787, 38.56795, 38.56823, 38.56835, 38.56845, 38.56859, 38.56876, 38.56886, 38.56890, 38.56895, 38.56912, 38.56928, 38.56940, 38.56929, 38.56902, 38.56900, 38.56885, 38.56861, 38.56795, 38.56786, 38.56784, 38.56784, 38.56787, 38.56803, 38.56835, 38.56859, 38.56867, 38.56750, 38.56727, 38.56713, 38.56703, 38.56700, 38.56685, 38.56665, 38.56655, 38.56618, 38.56603, 38.56589, 38.56548, 38.56535, 38.56530, 38.56518, 38.56514, 38.56504, 38.56476, 38.56466, 38.56449, 38.56410, 38.56397, 38.56379, 38.56372, 38.56348, 38.56341, 38.56338, 38.56330, 38.56328, 38.56317, 38.56286, 38.56275, 38.56270, 38.56256, 38.56251, 38.56212, 38.56163, 38.56148, 38.56083, 38.56014, 38.55984, 38.55976, 38.55968, 38.55960, 38.55951, 38.55926, 38.55919, 38.55898, 38.55891, 38.55871, 38.55855, 38.55802, 38.55749, 38.55714, 38.55703, 38.55671, 38.55660, 38.55643, 38.55594, 38.55578, 38.55573, 38.55560, 38.55556, 38.55552, 38.55544, 38.55542, 38.55702, 38.55707, 38.55892, 38.55900, 38.55904, 38.55975, 38.56061, 38.56203, 38.56233, 38.56237\n2 -90.28452, -90.28448, -90.28445, -90.28422, -90.28401, -90.28349, -90.28346, -90.28343, -90.28310, -90.28297, -90.28285, -90.28278, -90.28258, -90.28252, -90.28245, -90.28238, -90.28223, -90.28221, -90.28215, -90.28200, -90.28175, -90.28151, -90.28109, -90.28104, -90.28096, -90.28072, -90.28056, -90.28024, -90.28017, -90.27985, -90.27983, -90.27973, -90.27957, -90.27943, -90.27935, -90.27933, -90.27922, -90.27916, -90.27898, -90.27890, -90.27882, -90.27862, -90.27817, -90.27804, -90.27785, -90.27779, -90.27763, -90.27757, -90.27741, -90.27719, -90.27716, -90.27711, -90.27704, -90.27683, -90.27648, -90.27635, -90.27614, -90.27592, -90.27581, -90.27574, -90.27552, -90.27544, -90.27525, -90.27495, -90.27466, -90.27446, -90.27426, -90.27393, -90.27365, -90.27345, -90.27325, -90.27323, -90.27296, -90.27257, -90.27235, -90.27224, -90.27193, -90.27183, -90.27126, -90.27095, -90.27074, -90.27064, -90.27054, -90.27041, -90.27030, -90.26999, -90.26981, -90.26978, -90.26969, -90.26966, -90.26939, -90.26918, -90.26858, -90.26832, -90.26845, -90.26847, -90.26855, -90.26858, -90.26863, -90.26879, -90.26884, -90.26890, -90.26897, -90.26905, -90.26910, -90.26969, -90.27125, -90.27144, -90.27147, -90.27185, -90.27202, -90.27211, -90.27237, -90.27246, -90.27266, -90.27280, -90.27324, -90.27344, -90.27360, -90.27405, -90.27408, -90.27424, -90.27428, -90.27440, -90.27445, -90.27464, -90.27498, -90.27523, -90.27542, -90.27550, -90.27573, -90.27581, -90.27589, -90.27597, -90.27612, -90.27620, -90.27638, -90.27693, -90.27712, -90.27729, -90.27781, -90.27798, -90.27812, -90.27816, -90.27850, -90.27871, -90.27889, -90.27927, -90.27965, -90.27970, -90.28046, -90.28052, -90.28068, -90.28105, -90.28193, -90.28211, -90.28247, -90.28249, -90.28269, -90.28278, -90.28344, -90.28377, -90.28407, -90.28415, -90.28438, -90.28440, -90.28440, -90.28451, -90.28453, -90.28452, 38.57405, 38.57416, 38.57424, 38.57465, 38.57505, 38.57601, 38.57607, 38.57612, 38.57672, 38.57697, 38.57719, 38.57732, 38.57771, 38.57785, 38.57797, 38.57809, 38.57832, 38.57836, 38.57843, 38.57862, 38.57884, 38.57902, 38.57924, 38.57926, 38.57929, 38.57940, 38.57947, 38.57961, 38.57965, 38.57983, 38.57985, 38.57993, 38.58005, 38.58017, 38.58024, 38.58026, 38.58038, 38.58045, 38.58067, 38.58079, 38.58094, 38.58092, 38.58088, 38.58086, 38.58084, 38.58084, 38.58082, 38.58081, 38.58079, 38.58076, 38.58075, 38.58074, 38.58071, 38.58056, 38.58027, 38.58017, 38.58001, 38.57984, 38.57974, 38.57974, 38.57973, 38.57973, 38.57972, 38.57972, 38.57972, 38.57971, 38.57971, 38.57971, 38.57971, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57970, 38.57969, 38.57966, 38.57961, 38.57955, 38.57949, 38.57931, 38.57921, 38.57923, 38.57930, 38.57933, 38.57919, 38.57908, 38.57878, 38.57865, 38.57825, 38.57818, 38.57795, 38.57787, 38.57772, 38.57726, 38.57711, 38.57695, 38.57671, 38.57647, 38.57631, 38.57662, 38.57744, 38.57755, 38.57756, 38.57776, 38.57787, 38.57784, 38.57777, 38.57775, 38.57769, 38.57765, 38.57756, 38.57752, 38.57749, 38.57739, 38.57738, 38.57733, 38.57732, 38.57728, 38.57726, 38.57719, 38.57706, 38.57693, 38.57684, 38.57680, 38.57668, 38.57664, 38.57660, 38.57656, 38.57647, 38.57642, 38.57631, 38.57598, 38.57587, 38.57577, 38.57545, 38.57535, 38.57526, 38.57524, 38.57504, 38.57491, 38.57479, 38.57456, 38.57434, 38.57431, 38.57387, 38.57383, 38.57374, 38.57350, 38.57294, 38.57280, 38.57253, 38.57251, 38.57233, 38.57224, 38.57162, 38.57132, 38.57224, 38.57250, 38.57327, 38.57332, 38.57333, 38.57372, 38.57388, 38.57405\n3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          -90.29432, -90.29425, -90.29422, -90.29417, -90.29416, -90.29412, -90.29402, -90.29400, -90.29394, -90.29390, -90.29379, -90.29376, -90.29372, -90.29362, -90.29358, -90.29356, -90.29352, -90.29350, -90.29348, -90.29343, -90.29342, -90.29339, -90.29333, -90.29331, -90.29327, -90.29320, -90.29315, -90.29311, -90.29308, -90.29300, -90.29300, -90.29297, -90.29289, -90.29288, -90.29265, -90.29240, -90.29217, -90.29183, -90.29148, -90.29125, -90.29035, -90.28992, -90.28973, -90.28822, -90.28765, -90.28707, -90.28675, -90.28614, -90.28559, -90.28518, -90.28498, -90.28278, -90.28264, -90.28146, -90.28069, -90.27850, -90.27683, -90.27537, -90.27453, -90.27391, -90.27289, -90.27268, -90.27242, -90.27115, -90.26995, -90.26962, -90.26949, -90.26798, -90.26746, -90.26635, -90.26598, -90.26577, -90.26519, -90.26487, -90.26450, -90.26451, -90.26454, -90.26455, -90.26457, -90.26465, -90.26468, -90.26469, -90.26473, -90.26474, -90.26476, -90.26483, -90.26486, -90.26487, -90.26489, -90.26490, -90.26491, -90.26496, -90.26498, -90.26501, -90.26510, -90.26512, -90.26514, -90.26534, -90.26548, -90.26570, -90.26680, -90.26749, -90.26796, -90.26850, -90.26872, -90.26918, -90.27013, -90.27193, -90.27243, -90.27282, -90.27367, -90.27401, -90.27573, -90.27662, -90.27766, -90.27929, -90.28018, -90.28176, -90.28229, -90.28636, -90.28651, -90.28809, -90.28850, -90.28971, -90.29012, -90.29098, -90.29118, -90.29202, -90.29336, -90.29354, -90.29403, -90.29435, -90.29432, 38.62098, 38.62118, 38.62124, 38.62154, 38.62159, 38.62179, 38.62233, 38.62241, 38.62270, 38.62289, 38.62344, 38.62363, 38.62380, 38.62434, 38.62452, 38.62460, 38.62484, 38.62492, 38.62501, 38.62530, 38.62540, 38.62553, 38.62593, 38.62607, 38.62629, 38.62669, 38.62698, 38.62720, 38.62737, 38.62785, 38.62788, 38.62805, 38.62852, 38.62858, 38.62999, 38.63146, 38.63143, 38.63140, 38.63136, 38.63134, 38.63125, 38.63121, 38.63119, 38.63105, 38.63099, 38.63093, 38.63089, 38.63082, 38.63078, 38.63075, 38.63073, 38.63056, 38.63055, 38.63041, 38.63031, 38.63010, 38.62994, 38.62980, 38.62972, 38.62966, 38.62956, 38.62954, 38.62952, 38.62940, 38.62927, 38.62924, 38.62923, 38.62909, 38.62904, 38.62893, 38.62889, 38.62887, 38.62882, 38.62879, 38.62875, 38.62869, 38.62851, 38.62845, 38.62828, 38.62780, 38.62763, 38.62756, 38.62735, 38.62728, 38.62713, 38.62670, 38.62655, 38.62651, 38.62636, 38.62632, 38.62622, 38.62595, 38.62586, 38.62567, 38.62512, 38.62501, 38.62493, 38.62395, 38.62322, 38.62328, 38.62357, 38.62373, 38.62383, 38.62392, 38.62396, 38.62403, 38.62410, 38.62407, 38.62404, 38.62401, 38.62391, 38.62387, 38.62367, 38.62357, 38.62345, 38.62326, 38.62315, 38.62296, 38.62290, 38.62242, 38.62240, 38.62222, 38.62217, 38.62201, 38.62196, 38.62185, 38.62183, 38.62167, 38.62131, 38.62124, 38.62106, 38.62091, 38.62098\n4                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         -90.29005, -90.28941, -90.28915, -90.28881, -90.28821, -90.28763, -90.28734, -90.28684, -90.28603, -90.28596, -90.28590, -90.28582, -90.28575, -90.28572, -90.28560, -90.28553, -90.28522, -90.28404, -90.28302, -90.28256, -90.28232, -90.28189, -90.28133, -90.28113, -90.28099, -90.28055, -90.28036, -90.28016, -90.27958, -90.27938, -90.27917, -90.27855, -90.27834, -90.27819, -90.27776, -90.27762, -90.27727, -90.27702, -90.27623, -90.27588, -90.27563, -90.27444, -90.27414, -90.27413, -90.27312, -90.27296, -90.27251, -90.27236, -90.27256, -90.27284, -90.27314, -90.27333, -90.27351, -90.27380, -90.27408, -90.27427, -90.27445, -90.27502, -90.27521, -90.27540, -90.27615, -90.27686, -90.27878, -90.27884, -90.27965, -90.28021, -90.28053, -90.28070, -90.28122, -90.28140, -90.28157, -90.28191, -90.28209, -90.28227, -90.28244, -90.28297, -90.28314, -90.28356, -90.28433, -90.28468, -90.28574, -90.28609, -90.28716, -90.28809, -90.28846, -90.28860, -90.28900, -90.28913, -90.28932, -90.28963, -90.28967, -90.28977, -90.28981, -90.28984, -90.28988, -90.28991, -90.28995, -90.29005, 38.67058, 38.67139, 38.67172, 38.67214, 38.67290, 38.67363, 38.67400, 38.67463, 38.67565, 38.67560, 38.67557, 38.67553, 38.67549, 38.67547, 38.67540, 38.67537, 38.67520, 38.67455, 38.67403, 38.67378, 38.67365, 38.67343, 38.67313, 38.67302, 38.67294, 38.67270, 38.67260, 38.67249, 38.67218, 38.67207, 38.67196, 38.67162, 38.67151, 38.67143, 38.67120, 38.67113, 38.67094, 38.67080, 38.67038, 38.67019, 38.67005, 38.66941, 38.66925, 38.66923, 38.66869, 38.66861, 38.66837, 38.66829, 38.66803, 38.66768, 38.66726, 38.66699, 38.66673, 38.66632, 38.66595, 38.66569, 38.66543, 38.66467, 38.66441, 38.66414, 38.66309, 38.66347, 38.66450, 38.66454, 38.66498, 38.66529, 38.66546, 38.66555, 38.66583, 38.66592, 38.66602, 38.66620, 38.66630, 38.66640, 38.66649, 38.66677, 38.66687, 38.66709, 38.66750, 38.66769, 38.66826, 38.66846, 38.66903, 38.66953, 38.66972, 38.66979, 38.67001, 38.67008, 38.67018, 38.67035, 38.67037, 38.67043, 38.67045, 38.67047, 38.67049, 38.67051, 38.67053, 38.67058\n5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            -90.28601, -90.28595, -90.28593, -90.28593, -90.28592, -90.28587, -90.28586, -90.28572, -90.28569, -90.28564, -90.28559, -90.28556, -90.28552, -90.28547, -90.28542, -90.28539, -90.28530, -90.28525, -90.28520, -90.28512, -90.28499, -90.28419, -90.28371, -90.28335, -90.28314, -90.28297, -90.28244, -90.28227, -90.28209, -90.28191, -90.28157, -90.28140, -90.28122, -90.28070, -90.28053, -90.28021, -90.27965, -90.27884, -90.27878, -90.27686, -90.27615, -90.27526, -90.27437, -90.27362, -90.27249, -90.27246, -90.27199, -90.27047, -90.26926, -90.26898, -90.26722, -90.26640, -90.26626, -90.26599, -90.26586, -90.26572, -90.26575, -90.26579, -90.26584, -90.26587, -90.26590, -90.26592, -90.26594, -90.26599, -90.26603, -90.26606, -90.26611, -90.26616, -90.26619, -90.26622, -90.26626, -90.26631, -90.26634, -90.26705, -90.26918, -90.26989, -90.26996, -90.27017, -90.27024, -90.27072, -90.27088, -90.27122, -90.27215, -90.27263, -90.27265, -90.27271, -90.27274, -90.27275, -90.27278, -90.27280, -90.27284, -90.27287, -90.27295, -90.27299, -90.27301, -90.27307, -90.27308, -90.27309, -90.27358, -90.27382, -90.27481, -90.27517, -90.27593, -90.27601, -90.27674, -90.27733, -90.27888, -90.27872, -90.27868, -90.27860, -90.27853, -90.27849, -90.27838, -90.27834, -90.28143, -90.28345, -90.28360, -90.28369, -90.28383, -90.28425, -90.28547, -90.28602, -90.28601, 38.65899, 38.65938, 38.65951, 38.65955, 38.65961, 38.65992, 38.66002, 38.66089, 38.66109, 38.66140, 38.66170, 38.66190, 38.66210, 38.66240, 38.66273, 38.66294, 38.66348, 38.66380, 38.66401, 38.66416, 38.66433, 38.66544, 38.66609, 38.66658, 38.66687, 38.66677, 38.66649, 38.66640, 38.66630, 38.66620, 38.66602, 38.66592, 38.66583, 38.66555, 38.66546, 38.66529, 38.66498, 38.66454, 38.66450, 38.66347, 38.66309, 38.66262, 38.66214, 38.66174, 38.66111, 38.66109, 38.66090, 38.66073, 38.66062, 38.66059, 38.66041, 38.66031, 38.66030, 38.66027, 38.66025, 38.66024, 38.66004, 38.65972, 38.65944, 38.65924, 38.65905, 38.65888, 38.65877, 38.65848, 38.65829, 38.65811, 38.65784, 38.65757, 38.65739, 38.65721, 38.65694, 38.65667, 38.65649, 38.65656, 38.65678, 38.65685, 38.65686, 38.65688, 38.65689, 38.65694, 38.65696, 38.65700, 38.65708, 38.65713, 38.65699, 38.65659, 38.65646, 38.65639, 38.65618, 38.65611, 38.65586, 38.65563, 38.65512, 38.65487, 38.65474, 38.65436, 38.65430, 38.65423, 38.65429, 38.65431, 38.65440, 38.65443, 38.65449, 38.65450, 38.65457, 38.65463, 38.65477, 38.65577, 38.65595, 38.65646, 38.65695, 38.65718, 38.65787, 38.65811, 38.65842, 38.65861, 38.65862, 38.65863, 38.65865, 38.65869, 38.65881, 38.65886, 38.65899\n6                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               -90.29462, -90.29460, -90.29458, -90.29456, -90.29456, -90.29451, -90.29449, -90.29446, -90.29442, -90.29436, -90.29433, -90.29430, -90.29426, -90.29421, -90.29418, -90.29415, -90.29410, -90.29406, -90.29403, -90.29400, -90.29396, -90.29391, -90.29389, -90.29385, -90.29384, -90.29386, -90.29389, -90.29402, -90.29411, -90.29425, -90.29434, -90.29459, -90.29414, -90.29392, -90.29371, -90.29360, -90.29353, -90.29310, -90.29289, -90.29243, -90.29231, -90.29147, -90.29105, -90.29059, -90.29022, -90.28911, -90.28874, -90.28834, -90.28742, -90.28714, -90.28674, -90.28638, -90.28625, -90.28532, -90.28503, -90.28479, -90.28446, -90.28431, -90.28400, -90.28314, -90.28308, -90.28277, -90.28263, -90.28222, -90.28216, -90.28208, -90.28210, -90.28215, -90.28217, -90.28231, -90.28240, -90.28247, -90.28248, -90.28252, -90.28253, -90.28254, -90.28259, -90.28267, -90.28273, -90.28277, -90.28281, -90.28286, -90.28292, -90.28296, -90.28340, -90.28350, -90.28452, -90.28516, -90.28528, -90.28531, -90.28533, -90.28543, -90.28544, -90.28547, -90.28546, -90.28542, -90.28533, -90.28597, -90.29487, -90.29462, 38.64858, 38.64872, 38.64883, 38.64893, 38.64894, 38.64925, 38.64936, 38.64955, 38.64980, 38.65012, 38.65031, 38.65049, 38.65078, 38.65104, 38.65123, 38.65141, 38.65168, 38.65197, 38.65215, 38.65233, 38.65260, 38.65288, 38.65306, 38.65326, 38.65336, 38.65349, 38.65358, 38.65382, 38.65400, 38.65425, 38.65443, 38.65493, 38.65489, 38.65486, 38.65484, 38.65479, 38.65477, 38.65472, 38.65470, 38.65465, 38.65464, 38.65457, 38.65453, 38.65449, 38.65445, 38.65434, 38.65430, 38.65426, 38.65417, 38.65414, 38.65409, 38.65405, 38.65404, 38.65396, 38.65393, 38.65391, 38.65388, 38.65386, 38.65384, 38.65376, 38.65375, 38.65373, 38.65372, 38.65368, 38.65367, 38.65366, 38.65355, 38.65321, 38.65310, 38.65230, 38.65178, 38.65142, 38.65134, 38.65112, 38.65110, 38.65102, 38.65074, 38.65031, 38.64990, 38.64963, 38.64938, 38.64902, 38.64866, 38.64842, 38.64847, 38.64848, 38.64859, 38.64864, 38.64788, 38.64768, 38.64759, 38.64684, 38.64673, 38.64651, 38.64637, 38.64623, 38.64606, 38.64612, 38.64699, 38.64858\n  x y\n1 4 4\n2 4 3\n3 4 4\n4 1 1\n5 1 3\n6 2 4"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#crar-un-objeto-para-el-alpha-y-otro-para-el-fill",
+    "href": "presentaciones/5.1-mapas_bivariados.html#crar-un-objeto-para-el-alpha-y-otro-para-el-fill",
+    "title": "Mapas bivariados",
+    "section": "Crar un objeto para el alpha y otro para el fill",
+    "text": "Crar un objeto para el alpha y otro para el fill\n\nstl_race_income$alpha = as.character(stl_race_income$x + stl_race_income$y)\nstl_race_income$color = as.character(atan(stl_race_income$y/stl_race_income$x))"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#graficar-el-mapa",
+    "href": "presentaciones/5.1-mapas_bivariados.html#graficar-el-mapa",
+    "title": "Mapas bivariados",
+    "section": "Graficar el mapa",
+    "text": "Graficar el mapa\n\nmap = ggplot()+\n  #geom_sf(data=wrld)+\n  geom_sf(data = stl_race_income,aes(fill=color,alpha=alpha),shape=15, size=11,show.legend = FALSE)+\n  scale_fill_viridis_d()+\n  theme_bw()\nmap"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#graficar-la-leyenda",
+    "href": "presentaciones/5.1-mapas_bivariados.html#graficar-la-leyenda",
+    "title": "Mapas bivariados",
+    "section": "Graficar la leyenda",
+    "text": "Graficar la leyenda\n\nleg = ggplot(d, aes(x,y))+\n  geom_tile(aes(fill=atan(y/x),alpha=x+y))+\n  scale_fill_viridis_c()+\n  theme(legend.position=\"none\",\n        axis.text.y = element_blank(),\n        axis.text.x = element_blank(),\n        axis.ticks = element_blank(),\n        panel.grid.minor = element_blank(),\n        panel.grid.major = element_blank())+\n  coord_equal()\nleg"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#juntar-los-dos",
+    "href": "presentaciones/5.1-mapas_bivariados.html#juntar-los-dos",
+    "title": "Mapas bivariados",
+    "section": "Juntar los dos",
+    "text": "Juntar los dos"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#se-parecen",
+    "href": "presentaciones/5.1-mapas_bivariados.html#se-parecen",
+    "title": "Mapas bivariados",
+    "section": "Se parecen?",
+    "text": "Se parecen?"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#vamos-hacer-el-mapa-bivariado-de-la-diversidad-filogenetica-de-angiospermas-en-la-peninsula-de-yucatán",
+    "href": "presentaciones/5.1-mapas_bivariados.html#vamos-hacer-el-mapa-bivariado-de-la-diversidad-filogenetica-de-angiospermas-en-la-peninsula-de-yucatán",
+    "title": "Mapas bivariados",
+    "section": "Vamos hacer el mapa bivariado de la diversidad filogenetica de angiospermas en la Peninsula de Yucatán",
+    "text": "Vamos hacer el mapa bivariado de la diversidad filogenetica de angiospermas en la Peninsula de Yucatán\n\nUsando el paquete biscale\nManualmente"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#section-14",
+    "href": "presentaciones/5.1-mapas_bivariados.html#section-14",
+    "title": "Mapas bivariados",
+    "section": "",
+    "text": "# Los paquetes que vamos a utilizar\nlibrary(sf)\nlibrary(ggplot2)\nlibrary(rnaturalearth)\nlibrary(tidyterra)\nlibrary(classInt)\nlibrary(biscale)"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#cargar-el-mapa-base",
+    "href": "presentaciones/5.1-mapas_bivariados.html#cargar-el-mapa-base",
+    "title": "Mapas bivariados",
+    "section": "Cargar el mapa base",
+    "text": "Cargar el mapa base\n\nwrld &lt;- ne_countries(scale = \"small\",returnclass = \"sf\")"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#cargar-los-datos-y-ajustar-el-crs",
+    "href": "presentaciones/5.1-mapas_bivariados.html#cargar-los-datos-y-ajustar-el-crs",
+    "title": "Mapas bivariados",
+    "section": "Cargar los datos y ajustar el CRS",
+    "text": "Cargar los datos y ajustar el CRS\n\nresu = read.csv(file=\"dados_bivariate_maps.csv\")\ngeo = st_as_sf(resu,coords = c(1,2))\nst_crs(geo)= st_crs(wrld)"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#preparar-el-mapa-usando-el-paquete-biscale",
+    "href": "presentaciones/5.1-mapas_bivariados.html#preparar-el-mapa-usando-el-paquete-biscale",
+    "title": "Mapas bivariados",
+    "section": "1. Preparar el mapa usando el paquete biscale",
+    "text": "1. Preparar el mapa usando el paquete biscale\n\nCalcular las categorias\n\n\ncat &lt;- bi_class(geo, x = TBD, y = PBD, style = \"quantile\", dim = 3)"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#preparar-la-leyenda",
+    "href": "presentaciones/5.1-mapas_bivariados.html#preparar-la-leyenda",
+    "title": "Mapas bivariados",
+    "section": "Preparar la leyenda",
+    "text": "Preparar la leyenda\n\nleg =bi_legend(pal = \"DkBlue\",\n          dim = 3,\n          xlab = \"Taxonomic beta\",\n          ylab = \"Phylogenetic beta\",\n          size = 12)"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#preparar-el-mapa",
+    "href": "presentaciones/5.1-mapas_bivariados.html#preparar-el-mapa",
+    "title": "Mapas bivariados",
+    "section": "Preparar el mapa",
+    "text": "Preparar el mapa\n\nmap =ggplot(data=wrld)+\n  geom_sf()+\n  geom_sf(data = cat, aes(color =  bi_class), size = 10, shape=15,show.legend = FALSE) +\n  bi_scale_color(pal = \"DkBlue\", dim = 3)+\n  theme_bw()+\n  theme(panel.grid.major = element_blank())+\n  coord_sf(xlim = c(-95, -86), ylim = c(16, 25), expand = FALSE)\nmap"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#manualmente",
+    "href": "presentaciones/5.1-mapas_bivariados.html#manualmente",
+    "title": "Mapas bivariados",
+    "section": "2. Manualmente",
+    "text": "2. Manualmente\n\nCrear un grid\n\n\nd&lt;-expand.grid(x=1:3,y=1:3)\nd"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#crear-la-leyenda",
+    "href": "presentaciones/5.1-mapas_bivariados.html#crear-la-leyenda",
+    "title": "Mapas bivariados",
+    "section": "Crear la leyenda",
+    "text": "Crear la leyenda\n\nleg2 =ggplot(d,aes(x,y))+\n  \n  #crear el *tile* jugando con los parámetros de colores *fill* y *alpha*\n  geom_tile( aes(fill=atan(y/x),alpha=x+y))+\n  scale_fill_viridis_c()+\n  \n  #Definir los temas\n  theme(legend.position=\"none\",\n        panel.background=element_blank(),\n        axis.text.y = element_blank(),\n        axis.text.x = element_blank(),\n        axis.ticks = element_blank(),\n        axis.title.x = element_text(size=15,hjust=0.6),\n        axis.title.y = element_text(size=15),\n        panel.grid.minor = element_blank(),\n        panel.grid.major = element_blank(),\n        plot.background = element_rect(fill = \"white\",color=\"white\"))+\n \n  # Definir los titulos de los ejes\n  labs(x=\"PBD\",\n       y=\"TBD\")+\n  \n  # Decir que los tiles deben se cuadrados\n  coord_equal()+\n  \n  # Poner flechitas\n  geom_segment(aes(x=1, xend = 3 , y=0, yend = 0), size=1.5,\n               arrow = arrow(length = unit(0.6,\"cm\"))) +\n  geom_segment(aes(x=0, xend = 0 , y=1, yend = 3), size=1.5,\n               arrow = arrow(length = unit(0.6,\"cm\"))) \nleg2"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#categorizar-los-datos-1",
+    "href": "presentaciones/5.1-mapas_bivariados.html#categorizar-los-datos-1",
+    "title": "Mapas bivariados",
+    "section": "Categorizar los datos",
+    "text": "Categorizar los datos\n\ncatTBD = classInt::classIntervals(geo$TBD,3,style = \"quantile\")\ncatPBD = classInt::classIntervals(geo$PBD,3,style = \"quantile\")\n\n# Juntar las columnas\ngeo$catTBD = classInt::findCols(catTBD)\ngeo$catPBD= classInt::findCols(catPBD)"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#hacer-las-columnas-para-el-alpha-transparencia-y-color",
+    "href": "presentaciones/5.1-mapas_bivariados.html#hacer-las-columnas-para-el-alpha-transparencia-y-color",
+    "title": "Mapas bivariados",
+    "section": "Hacer las columnas para el alpha (transparencia) y color",
+    "text": "Hacer las columnas para el alpha (transparencia) y color\n\ngeo$alpha = as.character(geo$catTBD + geo$catPBD)\ngeo$color  = as.character(atan(geo$catTBD/geo$catPBD))"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#hacer-el-mapa",
+    "href": "presentaciones/5.1-mapas_bivariados.html#hacer-el-mapa",
+    "title": "Mapas bivariados",
+    "section": "Hacer el mapa",
+    "text": "Hacer el mapa\n\nmap2 = ggplot()+\n  geom_sf(data=wrld)+\n  geom_sf(data = geo,aes(color=color,alpha=alpha),shape=15, size=10,show.legend = FALSE)+\n  scale_color_viridis_d()+\n  theme_bw()+\n  theme(panel.grid.major = element_blank())+\n  coord_sf(xlim = c(-95, -86), ylim = c(16, 25), expand = FALSE)\nmap2"
+  },
+  {
+    "objectID": "presentaciones/5.1-mapas_bivariados.html#agregar-la-leyenda",
+    "href": "presentaciones/5.1-mapas_bivariados.html#agregar-la-leyenda",
+    "title": "Mapas bivariados",
+    "section": "Agregar la leyenda",
+    "text": "Agregar la leyenda\n\nmap + leg\nmap2 + leg2"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#filogenias-en-r",
+    "href": "presentaciones/5.2-filogenias.html#filogenias-en-r",
+    "title": "Filogenias en R",
+    "section": "Filogenias en R",
+    "text": "Filogenias en R\nPrimero, ¿Qué es un árbol Filogenético?\n\n\nUn árbol filogenético es un diagrama que muestra la relación de parentesco entre especies (o taxones)\nUno de los formatos más utilizados para representar filogenias es el Newick(.tree)\nEl formato Newick es una notación para representar parentescos utilizando paréntesis y comas."
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section",
+    "href": "presentaciones/5.2-filogenias.html#section",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Si queremos decir que A y B se parecen más entre ellos que con X, lo anotaríamos así:\n\n\"((A,B),X);\"\n\n[1] \"((A,B),X);\""
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-1",
+    "href": "presentaciones/5.2-filogenias.html#section-1",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Para que R pueda identificar esta notación, se puede usar el paquete ape:\n\nlibrary(ape)\nread.tree(text=\"((A,B),X);\") %&gt;% plot()"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-2",
+    "href": "presentaciones/5.2-filogenias.html#section-2",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "El formato Newick es anidado, por lo que podemos explorar la relación entre diferentes grupos. Por ejemplo:\nSabemos que los lobos, los coyotes y los zorros pertenecen a Canidae, pero que los lobos y los coyotes son del mismo género\n\nCanidae &lt;-\"(Vulpes_vulpes,(Canis_lupus,Canis_latrans));\"\nread.tree(text=Canidae) %&gt;% plot()"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-3",
+    "href": "presentaciones/5.2-filogenias.html#section-3",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Si agregamos murciélagos:\n\nMammalia &lt;-\"(Desmodus_rotundus,(Vulpes_vulpes,(Canis_lupus,Canis_latrans)));\"\nread.tree(text=Mammalia) %&gt;% plot()"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-4",
+    "href": "presentaciones/5.2-filogenias.html#section-4",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "También podríamos anexar otros grupos pj: cuervos y zanates. ¿Estos dónde irían?\n\ntetrapoda&lt;-\"((Quiscalus_mexicanus,Corvus_corax),(Desmodus_rotundus,(Vulpes_vulpes,(Canis_lupus,Canis_latrans))));\"\n\nread.tree(text=tetrapoda) %&gt;% plot()"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-5",
+    "href": "presentaciones/5.2-filogenias.html#section-5",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Si agregamos una planta, los mamíferos y las aves se anidarían.\n\nEukarya&lt;-\"(Sideroxylon_celastrinum,((Quiscalus_mexicanus,Corvus_corax),(Desmodus_rotundus,(Vulpes_vulpes,(Canis_lupus,Canis_latrans)))));\"\n\nNktree&lt;-read.tree(text=Eukarya) \nplot(Nktree)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-6",
+    "href": "presentaciones/5.2-filogenias.html#section-6",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "En esta práctica haremos uso del paquete ggtree para graficar, personalizar y anotar árboles filogenéticos\n\ninstall.packages(\"BiocManager\")\nBiocManager::install(\"ggtree\")"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#paquetes-necesarios",
+    "href": "presentaciones/5.2-filogenias.html#paquetes-necesarios",
+    "title": "Filogenias en R",
+    "section": "Paquetes necesarios:",
+    "text": "Paquetes necesarios:\n\nlibrary(ape)\nlibrary(ggtree)\nlibrary(deeptime)\nlibrary(tidytree)\nlibrary(ggimage)\nlibrary(geiger)\nlibrary(caper)\nlibrary(TDbook)\nlibrary(here)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#qué-insumos-utilizaremos",
+    "href": "presentaciones/5.2-filogenias.html#qué-insumos-utilizaremos",
+    "title": "Filogenias en R",
+    "section": "¿Qué insumos utilizaremos?",
+    "text": "¿Qué insumos utilizaremos?\nEn este ejercicio utilizaremos una filogenia con las especies del Orden Siluriformes (peces) a las cuales se le conoce su tipo de migración. Esto es un subset de la Megafilogenia para peces propuesta por Rabosky (2018)\n\nfishdata&lt;-read.table(here(\"data\",\"DataFish.txt\"))\n\nfishtree &lt;-read.tree(here(\"data\",\"treefish.txt\"))\nfishtree$tip.label&lt;-gsub(\"_\", \" \", fishtree$tip.label)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-7",
+    "href": "presentaciones/5.2-filogenias.html#section-7",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Podemos visualizar la información rápidamente usando ape,\n\nplot(fishtree, show.tip.label=F)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-8",
+    "href": "presentaciones/5.2-filogenias.html#section-8",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Ahora graficaremos el mismo árbol utilizando ggtree, el cual sigue una formula idéntica a la de ggplot. Nuestro árbol base se llamará p1:\n\np1&lt;-ggtree(fishtree,color=\"black\",size=0.5)\nplot(p1)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-9",
+    "href": "presentaciones/5.2-filogenias.html#section-9",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Con p1, al igual que con cualquier otro gráfico de ggplot, podemos agregar parámetros gráficos para personalizar o agregar anotaciones a nuestra filogenia.\nPor ejemplo, podemos cambiar la disposición de la filogenia utilizando el parámetro layout_:"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-10",
+    "href": "presentaciones/5.2-filogenias.html#section-10",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "p1+layout_dendrogram()+\np1+layout_fan()+\np1+layout_circular()"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-11",
+    "href": "presentaciones/5.2-filogenias.html#section-11",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "También podemos cambiar el color del fondo del gráfico\n\np1+  theme_tree(bgcolor=\"skyblue\")"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#adicionar-información-a-los-tips",
+    "href": "presentaciones/5.2-filogenias.html#adicionar-información-a-los-tips",
+    "title": "Filogenias en R",
+    "section": "Adicionar información a los tips",
+    "text": "Adicionar información a los tips\nAgregar nombres a las puntas:\n\np1+xlim(NA, 110)+geom_tiplab(size=2,color=\"black\",angle=0)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-12",
+    "href": "presentaciones/5.2-filogenias.html#section-12",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "O modificar las puntas:\n\np1+geom_tippoint(size=2,color=\"red\",fill=\"black\",shape=21)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#adicionar-información-a-los-nodos",
+    "href": "presentaciones/5.2-filogenias.html#adicionar-información-a-los-nodos",
+    "title": "Filogenias en R",
+    "section": "Adicionar información a los nodos",
+    "text": "Adicionar información a los nodos\nEtiquetas a los nodos:\n\np1+geom_nodelab(aes(label=node),size=2,color=\"black\", hjust=-0.6)+\n  geom_nodelab(aes(subset = (node == 109), label = \"*\"),color = \"red\",size=10,hjust=1)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-13",
+    "href": "presentaciones/5.2-filogenias.html#section-13",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "o formas a los nodos:\n\np1+geom_nodelab(aes(label=node),size=2,color=\"black\", hjust=-0.8)+ geom_nodelab(aes(subset = (node == 109), label = \"*\"),color = \"red\",size=10,hjust=1)+\n  geom_nodepoint(size=2,color=\"red\",fill=\"black\",shape=21)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#escalas-temporales",
+    "href": "presentaciones/5.2-filogenias.html#escalas-temporales",
+    "title": "Filogenias en R",
+    "section": "Escalas temporales",
+    "text": "Escalas temporales\nPodemos agregar escalas de tiempo con el paquete deeptime\n\npy&lt;-revts(p1)\n\npy+ geom_tiplab(size=1,color=\"black\",angle=0)+xlim(-100,30)+ylim(-2,70)+coord_geo(abbrv = T,neg=T,skip=NULL,dat=list(\"epochs\"),size=2)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-15",
+    "href": "presentaciones/5.2-filogenias.html#section-15",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "py+theme_tree2()"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-16",
+    "href": "presentaciones/5.2-filogenias.html#section-16",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Recordemos que los parámetros son aditivos (con + podemos ir agregando uno por uno)\n\np1+ layout_fan(angle = 180)+xlim(NA,150)+geom_tiplab(hjust= -0.2,size=2,color=\"black\")+\n  geom_tippoint(size=1,color=\"black\",shape=10)+\n  geom_nodelab(size=1,color=\"black\")+\n  geom_nodepoint(size=2,color=\"red\",alpha=0.3,shape=16)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#anotaciones-en-árboles",
+    "href": "presentaciones/5.2-filogenias.html#anotaciones-en-árboles",
+    "title": "Filogenias en R",
+    "section": "Anotaciones en Árboles",
+    "text": "Anotaciones en Árboles\nPodemos incluir texto adicional en los gráficos,Por ejemplo: quiero seleccionar la parte de la filogenia donde se encuentra las especies de la Familia Pimelodidae"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#obtener-nodos",
+    "href": "presentaciones/5.2-filogenias.html#obtener-nodos",
+    "title": "Filogenias en R",
+    "section": "Obtener nodos",
+    "text": "Obtener nodos\nPara esto primero debemos encontrar el nodo del ancestro común más reciente para este grupo (Usando un tibble y la estructura de dplyr es muy fácil).\nDespués usando la función getMRCA() podemos encontrar el ancestro en común de estas especies\n\nfishdata$sciname&lt;-row.names(fishdata)\nfishdata$sciname &lt;- gsub(\"_\", \" \", fishdata$sciname)\npimelo&lt;-fishdata %&gt;% filter(Family==\"Pimelodidae\")\n\nnodepimelo&lt;-getMRCA(fishtree,pimelo$sciname)\nnodepimelo\n\n[1] 80"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-18",
+    "href": "presentaciones/5.2-filogenias.html#section-18",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Ahora conociendo que el ancestro en común de la familia Pimelodidae se encuentra en el nodo 80, puedo utilizar esta información para anotar la filogenia utilizando el parámetro geom_cladelab:\n\np1+xlim(NA, 110)+ geom_cladelab(node=nodepimelo,label = \"Pimelodidae\",offset=0,barcolor=\"red\",textcolor=\"red\",angle=0, offset.text=0.1)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-19",
+    "href": "presentaciones/5.2-filogenias.html#section-19",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Si queremos resaltar varias familias:\n\nSiluridae&lt;-fishdata %&gt;% filter(Family==\"Siluridae\") %&gt;% dplyr::select(sciname)\nnodesiluri&lt;-getMRCA (fishtree,Siluridae$sciname)\nLoricariidae&lt;-fishdata %&gt;% filter(Family==\"Loricariidae\") %&gt;% dplyr::select(sciname)\nnodelori&lt;-getMRCA (fishtree,Loricariidae$sciname)\nBagriidae&lt;-fishdata %&gt;% filter(Family==\"Bagridae\") %&gt;% dplyr::select(sciname)\nnodeBagri&lt;-getMRCA (fishtree,Bagriidae$sciname)\n\nnodesiluri\n\n[1] 119\n\nnodelori\n\n[1] 128\n\nnodeBagri\n\n[1] 113"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-20",
+    "href": "presentaciones/5.2-filogenias.html#section-20",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Ahora podemos jugar con varios parámetros gráficos\n\np1+xlim(NA, 110)+\n  geom_cladelab(node=nodepimelo,label =\"Pimelodidae\",offset=0,barcolor=\"#93C83E\",textcolor=\"#93C83E\",angle=0,offset.text=0.1,fontsize=4)+\n  geom_cladelab(node=nodesiluri,label=\"Siluridae\",offset=0,barcolor=\"#007BA7\",textcolor=\"#007BA7\",angle=0,offset.text=0.1,fontsize=4)+\n  geom_cladelab(node=nodelori,label=\"Loricariidae\",offset=0,barcolor=\"#AD5691\",textcolor=\"#AD5691\",angle=0,offset.text=0.1,fontsize=4)+\n  geom_cladelab(node=nodeBagri,label = \"Bagridae\",offset=0,barcolor=\"#EE3224\",textcolor=\"#EE3224\",angle=0, offset.text=0.1,fontsize=4)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-21",
+    "href": "presentaciones/5.2-filogenias.html#section-21",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "O incluso anotar grupos sin ancestro común utilizando el parámetro geom_strip():\n\np1+xlim(0,120)+\n  geom_strip(\"Neoarius graeffei\",\"Gogo arcuatus\", label=\" Un clado polifilético\", barsize = 2, offset.text = 0.2)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#resaltar",
+    "href": "presentaciones/5.2-filogenias.html#resaltar",
+    "title": "Filogenias en R",
+    "section": "Resaltar",
+    "text": "Resaltar\nOtro parámetro de anotación muy interesante es geom_highlight, el cual nos permite destacar clados, utilizando los nodos de ancestro en común:\n\np1+ geom_highlight(node=80,alpha=0.5,fill=\"#93C83E\",type = \"rect\")\n\n\n¿Qué clado es este? …"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-22",
+    "href": "presentaciones/5.2-filogenias.html#section-22",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "p1+\n  geom_highlight(node=80,alpha=0.5,fill=\"#93C83E\",type = \"rect\")+\n  geom_cladelab(node=80,label = \"Pimelodiade\",offset=0,barcolor=\"#93C83E\",textcolor=\"#93C83E\", offset.text=0)+\n  xlim(0,110)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#phylopic",
+    "href": "presentaciones/5.2-filogenias.html#phylopic",
+    "title": "Filogenias en R",
+    "section": "Phylopic",
+    "text": "Phylopic\nEn ggtree como en ggplot podemos incluir imagenes de recursos en línea como phylopic o enriquecerlas con imágenes propias.\nPara poder hacer uso de esta función, primero debemos cargar 2 paquetes extra:\n\nlibrary(\"rsvg\")\nlibrary(\"rphylopic\")"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-23",
+    "href": "presentaciones/5.2-filogenias.html#section-23",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Probemos con una especie de nuestro interes:\n\nimg &lt;- pick_phylopic(name = \"Ambystoma mexicanum\", n = 1, view = 1)\n\n[1] \"575eaa51-6c9b-4d36-9881-b8463c68ebbc\"\n\n\n\nPueden explorar esta info: rphylopic viñeta"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#guardar-siluetas",
+    "href": "presentaciones/5.2-filogenias.html#guardar-siluetas",
+    "title": "Filogenias en R",
+    "section": "Guardar siluetas",
+    "text": "Guardar siluetas\n\nuuid &lt;- get_uuid(name = \"Erythromma najas\")# obtener el identificador unico de la imagen\nimg &lt;- get_phylopic(uuid = uuid,format =\"vector\" ) #obtener imagen\nimg&lt;-recolor_phylopic(img,0.7, \"blue\",fill=\"black\")\nplot(img)\n\nsave_phylopic(img = img, path = \"Cetops.png\",\n              width = 500, height = 500)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-24",
+    "href": "presentaciones/5.2-filogenias.html#section-24",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Para hacer uso de las imagenes en nuestra filogenia, primero debemos hacer una tabla con los nodos, el nombre de la especie o clado y el phylopic_id.\nEn este ejemplo utilizaré los clados Pimelodidae, Siluridae, Loricariidae.\nEncontrar los phylopic_id es fácil usando la función phylopic_uid()\n\nids&lt;-phylopic_uid(c(\"Phractocephalus hemioliopterus\",\"Siluridae\",\"Ameiurus\",\"Chaetostoma microps\"))"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-25",
+    "href": "presentaciones/5.2-filogenias.html#section-25",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Con estos ids, ya podemos crear nuestra tabla con los datos necesarios y después gráficarlos:\n\ndt&lt;-data.frame(node=c(nodepimelo,nodesiluri,nodeBagri,nodelori),\n               image=ids$uid,Family=c(\"Pimelodidae\",\"Siluridae\",\"Bagridae\",\"Loricariidae\"),\n               colorss=c(\"#93C83E\",\"#007BA7\",\"#EE3224\",\"#AD5691\"),\n               size=c(0.1,0.1,0.1,0.05))\ndt\n\n  node                                image       Family colorss size\n1   80 6cb85c3d-c455-4e9f-bfa3-fa1f8bc5c0cd  Pimelodidae #93C83E 0.10\n2  119 7cb387d7-9b23-4e5c-a007-2d938339cb8a    Siluridae #007BA7 0.10\n3  113 7a6448e5-09c4-40c8-8378-599d7f974bfe     Bagridae #EE3224 0.10\n4  128 e557aeed-4adf-4953-ad1b-45490d3d7f3d Loricariidae #AD5691 0.05"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-26",
+    "href": "presentaciones/5.2-filogenias.html#section-26",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Por ejemplo:\n\nmy_colors &lt;- setNames(dt$colorss, dt$Family)\n\np1+ylim(-10,80)+geom_cladelab(data = dt,mapping = aes(node = node, label = Family,image = image, color = Family ),geom = \"phylopic\",offset.text=4,  imagesize=dt$size,)+scale_color_manual(values = my_colors)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-27",
+    "href": "presentaciones/5.2-filogenias.html#section-27",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "También podemos combinar otros parametros que ya conociamos:\n\np1 + ylim(-10, 80) +geom_cladelab(data = dt,mapping = aes(node = node,label = Family, image = image,color = Family,size = size),\n    geom = \"phylopic\",offset.text = 4 ) +\n  scale_size_identity() +\n  geom_highlight( data = dt,\n    mapping = aes(node = node,\n      fill = Family,colour = Family),type = \"rect\")+scale_color_manual(values = my_colors) +scale_fill_manual(values = my_colors)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-28",
+    "href": "presentaciones/5.2-filogenias.html#section-28",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "p2&lt;-ggtree(fishtree,layout=\"circular\",color=\"black\")\n\np2 + ylim(-10, 80) +geom_cladelab(data = dt,mapping = aes(node = node,label = Family, image = image,color = Family,size = size),\n    geom = \"phylopic\",offset.text =  6) +\n  scale_size_identity() +\n  geom_highlight( data = dt, mapping = aes(node = node,fill = Family,colour = Family),type = \"rect\")+\n  scale_color_manual(values = my_colors) +scale_fill_manual(values = my_colors)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#atributos-de-las-especies",
+    "href": "presentaciones/5.2-filogenias.html#atributos-de-las-especies",
+    "title": "Filogenias en R",
+    "section": "Atributos de las especies",
+    "text": "Atributos de las especies\nTambién se puede usar ggtree, para graficar atributos de las especies en la filogenia.\nPara hacer esto, primero debemos cargar los atributos, en este caso usaremos la longitud estándar máxima y el hábito migratorio:\n\nfishdata&lt;-read.table(here(\"data\",\"DataFish.txt\"))\nfishdata$label&lt;-gsub(\"_\",\" \",fishdata$label)\n\nhead(fishdata)\n\n                                   Genus.x      Family        Order       Class\nSynodontis_contractus           Synodontis  Mochokidae Siluriformes Actinopteri\nMochokiella_paynei             Mochokiella  Mochokidae Siluriformes Actinopteri\nChiloglanis_asymetricaudalis   Chiloglanis  Mochokidae Siluriformes Actinopteri\nAtopochilus_savorgnani         Atopochilus  Mochokidae Siluriformes Actinopteri\nAmphilius_atesuensis             Amphilius Amphiliidae Siluriformes Actinopteri\nAuchenoglanis_biscutatus     Auchenoglanis Claroteidae Siluriformes Actinopteri\n                                      salinity Length        AnaCat\nSynodontis_contractus               Freshwater    9.7 Non-migratory\nMochokiella_paynei                  Freshwater    3.6 Non-migratory\nChiloglanis_asymetricaudalis        Freshwater    7.6 Non-migratory\nAtopochilus_savorgnani              Freshwater   10.5 Non-migratory\nAmphilius_atesuensis         Freshwater-Marine    9.3 Non-migratory\nAuchenoglanis_biscutatus            Freshwater   54.0 Potamodromous\n                                                    label\nSynodontis_contractus               Synodontis contractus\nMochokiella_paynei                     Mochokiella paynei\nChiloglanis_asymetricaudalis Chiloglanis asymetricaudalis\nAtopochilus_savorgnani             Atopochilus savorgnani\nAmphilius_atesuensis                 Amphilius atesuensis\nAuchenoglanis_biscutatus         Auchenoglanis biscutatus"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-29",
+    "href": "presentaciones/5.2-filogenias.html#section-29",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Una vez cargados los datos, la manera más fácil de utilizarlos es uniendolos a la filogenia usando la función full_join, es importante que las especies estén etiquetadas como label, para que la función las reconozca:\n\ndatatree&lt;-left_join(fishtree,fishdata,by=\"label\")"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-30",
+    "href": "presentaciones/5.2-filogenias.html#section-30",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "¡Listo! Ahora tenemos una filogenia con atributos y podemos graficarlos juntos\nPrimero graficaremos los valores continuos de la longitud sobre las puntas del árbol en una escala de colores:\n\np4&lt;-ggtree(datatree)\n  p4+geom_tippoint(aes(color= Length),size=3)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-31",
+    "href": "presentaciones/5.2-filogenias.html#section-31",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "podemos también personalizar esta escala:\n\np4+\n  geom_tippoint(aes(color= Length),shape=19,size=3)+scale_colour_gradient(low='yellow', high='red',breaks= c(15,50,100,150,200,300))"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-32",
+    "href": "presentaciones/5.2-filogenias.html#section-32",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "¿Cómo se verían los datos discretos?\n\np4+geom_tippoint(aes(color=salinity),shape=15,size=4)+ scale_colour_manual(values = c(\"blue\",\"gray\",\"skyblue\"))"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-33",
+    "href": "presentaciones/5.2-filogenias.html#section-33",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "¿Podemos incluir mas de un dato?\n\npx&lt;- p4+\n  scale_color_manual(values = c(\"blue\",\"gray\",\"skyblue\"))+\n  scale_fill_manual(values = c(\"blue\",\"gray\",\"skyblue\"))\n\ndd&lt;-data.frame(id=p4$data$label,value=p4$data$Length)  \n  \npx+ geom_facet(panel=\"Length\",data =dd[1:65,],geom=geom_col, \n               mapping=aes(x=Length,color=salinity,fill=salinity),orientation='y')+\n    theme_tree2()"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-34",
+    "href": "presentaciones/5.2-filogenias.html#section-34",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "ggtreeExtra\n\nlibrary(ggtreeExtra)\n\np5&lt;-p4+geom_tippoint(aes(colour=AnaCat))+scale_color_manual(values = c(\"#3d5a80\",\"#98c1d9\",\"#e0fbfc\",\"#293241\",\"#ee6c4d\"))\n\np5+geom_fruit(data=dd[1:65,],\n         geom=geom_bar,\n         mapping = aes(\n                     y=id,\n                     x=value,\n                     group=salinity,\n                     fill=salinity),pwidth=0.38, \n                    orientation=\"y\", \n                    stat=\"identity\",axis.params=list(\n                         axis       = \"x\",\n                         text.size  = 1.8,\n                         hjust      = 1,\n                         vjust      = 0.5,\n                         nbreak     = 3))+ scale_fill_manual(values = c(\"blue\",\"gray\",\"skyblue\"))"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-36",
+    "href": "presentaciones/5.2-filogenias.html#section-36",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Imágenes propias\nEn este ejemplo usaremos las familias Pimelodidae,Doradidae y Loricariidae\nPrimero recuperamos un representante de cada grupo, ape tiene una función que nos puede ser útil: keep.tip():\n\ngrouptree&lt;-fishtree %&gt;%\nkeep.tip(c(\"Pimelodus maculatus\", \"Lithodoras dorsalis\",\"Loricariichthys anus\"))\n\ngrouptree$tip.label&lt;-c(\"Pimelodidae\", \"Doraridae\",\"Loricariidae\")\n\np6&lt;-ggtree(grouptree,size=1)+xlim(0,120)+ geom_tiplab(color=\"navyblue\",offset = 0.5,size=5)\np6"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-37",
+    "href": "presentaciones/5.2-filogenias.html#section-37",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Para visualizar las imágenes como tips, el archivo, debe tener el nombre exacto del grupo o especie y todas las imaágenes el mismo formato (i.e JPG) :\nLas fotos aqui presentadas provienen del Proyecto cavfish\n\np6+ \n  xlim(NA, 150) +\n  geom_tiplab(aes(image=paste0(\"imgs/imagenes/\", label, '.png')),geom=\"image\", offset=3, align=1, size=0.6)+\n  geom_tiplab(geom=\"label\",color=\"black\",offset = 30)"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-38",
+    "href": "presentaciones/5.2-filogenias.html#section-38",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Hasta ahora hemos usado filogenias conocidas. Pero, ¿Qué pasa si no tengo información de la filogenia del grupo que estoy estudiando?"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-39",
+    "href": "presentaciones/5.2-filogenias.html#section-39",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "¿Se acuerdan de esta filogenia?"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-40",
+    "href": "presentaciones/5.2-filogenias.html#section-40",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Desde Open tree of Life(OTL), podemos obtener una filogenia utilizando las especies de nuestro interes"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-41",
+    "href": "presentaciones/5.2-filogenias.html#section-41",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "OTL tiene un apquete para R (rotl) que podemos usar para obtener filogenias\n\nlibrary(\"rotl\")\notl_tree&lt;-rotl::tnrs_match_names(c(\"Quiscalus mexicanus\",\"Canis lupus\",\"Corvus corax\",\"Canis latrans\",\"Vulpes vulpes\",\"Desmodus rotundus\",\"Sideroxylon celastrinum\")) %&gt;% \n  pull(ott_id) %&gt;% \n  tol_induced_subtree(label_format=\"name\")\n\n\nProgress [---------------------------------] 0/210 (  0%) ?s\nProgress [==============================] 210/210 (100%)  0s"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-42",
+    "href": "presentaciones/5.2-filogenias.html#section-42",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "p_ott&lt;-ggtree(otl_tree)+\n  xlim(0,9)+\n  geom_tiplab(color=\"blue\")\np_ott"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-43",
+    "href": "presentaciones/5.2-filogenias.html#section-43",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Para la función de rtol, NO es necesario introducir las especies en orden, ya que ésta recuperará la taxonomia válida y nos arrojará una filogenia.\nEn este caso, OTL nos regresó exactamente la misma filogenia que creamos al principio:\n\np_nk&lt;-ggtree(Nktree)+\n  xlim(0,9)+\n  geom_tiplab(color=\"red\")\n\np_ott/p_nk"
+  },
+  {
+    "objectID": "presentaciones/5.2-filogenias.html#section-44",
+    "href": "presentaciones/5.2-filogenias.html#section-44",
+    "title": "Filogenias en R",
+    "section": "",
+    "text": "Ahora podemos crear nuestras propias figuras usando estos recursos."
   }
 ]

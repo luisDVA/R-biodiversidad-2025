@@ -43,10 +43,11 @@ Estas presentaciones en formato web cuentan con un índice de contenidos interac
 
 ### Viernes
 
-<!--[Distribuciones Geográficas](presentaciones/5.0-distribuciones_geograficas.qmd){.external target="_blank"}  -->
+[Distribuciones Geográficas](presentaciones/5.0-distribuciones_geograficas.qmd){.external target="_blank"}  
 
-<!--[Riqueza de Especies](presentaciones/5-gradiente_riqueza.qmd){.external target="_blank"}  -->
+[Riqueza de Especies](presentaciones/5-gradiente_riqueza.qmd){.external target="_blank"}  
 
-<!--[Mapas Bivariados](presentaciones/5.1-mapas_bivariados.qmd){.external target="_blank"}   -->
+[Mapas Bivariados](presentaciones/5.1-mapas_bivariados.qmd){.external target="_blank"}  
 
-<!--[Filogenias](presentaciones/5.2-filogenias.qmd){.external target="_blank"}  -->
+[Filogenias](presentaciones/5.2-filogenias.qmd){.external target="_blank"}  
+
